@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#6200EE</color>
+    <color name="colorFadedPurple">#666200EE</color>
+    <color name="colorPrimaryDark">#3700B3</color>
+    <color name="colorFadedDarkPurple">#663700B3</color>
+    <color name="colorAccent">#6603DAC5</color>
+    <color name="colorFadedPink">#66ff69b4</color>
+    <color name="colorFadedYellow">#66ffff00</color>
+    <color name="colorFadedRed">#66ff0000</color>
+</resources>
