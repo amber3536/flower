@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
@@ -21,6 +22,7 @@ public class AudioPlayer extends Fragment {
     private FloatingActionButton pauseBtn;
     private String track;
     private ImageView img;
+    private TextView txt;
     String[] prayerArray = {"Attract the Hearts of Men", "Lauded Be Thy Name", "Glorified Art Thou, O Lord My God",
             "From the Sweet-Scented Streams", "Create in Me a Pure Heart", "He is the Gracious, the All_Bountiful",
             "Glory to Thee, O My God!", "Magnified, O Lord My God, Be Thy Name"};
@@ -35,6 +37,7 @@ public class AudioPlayer extends Fragment {
         playBtn = view.findViewById(R.id.floatingActionButton);
         pauseBtn = view.findViewById(R.id.floatingActionButton2);
         img = view.findViewById(R.id.audio_img);
+        txt = view.findViewById(R.id.audio_txt);
 
         Bundle bundle = this.getArguments();
         if (bundle != null) {
@@ -56,6 +59,7 @@ public class AudioPlayer extends Fragment {
 
                 view.findViewById(R.id.layout_audio_player).setBackground(gradientDrawable);
                 img.setImageResource(R.mipmap.attract_photo_foreground);
+                txt.setText(prayerArray[0]);
                 break;
             case "Lauded Be Thy Name":
                 mp = MediaPlayer.create(getActivity().getApplicationContext(), R.raw.marian);
