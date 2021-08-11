@@ -42,7 +42,7 @@ public class ParisTalks extends Fragment {
 //                switch (selectedItem) {
 //                    case "The Evolution of Matter and Development of the Soul":
 
-                        loadFragment(new AudioPlayer(), "EXTRA", selectedItem);
+                        loadFragment(new AudioPlayerBahaullah(), "EXTRA", selectedItem);
                       //  break;
               //  }
 
