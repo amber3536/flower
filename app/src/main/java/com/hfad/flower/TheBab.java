@@ -22,11 +22,10 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-public class Bahaullah extends Fragment {
+public class TheBab extends Fragment {
     private View view;
     MediaPlayer mp;
-    private FloatingActionButton playBtn;
-    private FloatingActionButton pauseBtn;
+    private FloatingActionButton fab;
     private Button btn;
     private TextView txt;
     String[] mobileArray = {"Attract the Hearts of Men...", "Lauded Be Thy Name...", "Glorified Art Thou, O Lord My God...",
@@ -37,12 +36,10 @@ public class Bahaullah extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        view = inflater.inflate(R.layout.fragment_bahaullah, container, false);
+        view = inflater.inflate(R.layout.fragment_the_bab, container, false);
         //setRetainInstance(true);
-       // btn = view.findViewById(R.id.button_play_all);
-        txt = view.findViewById(R.id.tv_bahaulllah);
-        playBtn = view.findViewById(R.id.fab_bahaullah);
-        //pauseBtn = view.findViewById(R.id.fab_bahaullah1);
+        // btn = view.findViewById(R.id.button_play_all);
+        txt = view.findViewById(R.id.tv_the_bab);
 
         TextPaint paint = txt.getPaint();
         float width = paint.measureText("Play All");
@@ -64,7 +61,7 @@ public class Bahaullah extends Fragment {
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext(),
                 android.R.layout.simple_list_item_1, mobileArray);
 
-        final ListView listView = (ListView) view.findViewById(R.id.bahaullah_list);
+        final ListView listView = (ListView) view.findViewById(R.id.the_bab_list);
         listView.setAdapter(adapter);
 
 
@@ -96,16 +93,6 @@ public class Bahaullah extends Fragment {
 //                intent.putExtra(selectedItem, "Paris");
                 //getFragmentManager().popBackStack();
                 //textView.setText("The best football player is : " + selectedItem);
-            }
-        });
-
-        playBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //pauseBtn.setVisibility(View.VISIBLE);
-                //playBtn.setVisibility(View.GONE);
-                loadFragment(new AudioPlayerBahaullah(), "EXTRA", "all");
-                //mp.start();
             }
         });
 //        TextView tv = view.findViewById(R.id.label);

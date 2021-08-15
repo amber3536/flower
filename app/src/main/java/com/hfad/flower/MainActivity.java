@@ -25,7 +25,8 @@ public class MainActivity extends AppCompatActivity  {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        loadFragment(new MainFragment());
+        if (savedInstanceState == null)
+            loadFragment(new MainFragment());
         //btnzIn = (Button)findViewById(R.id.zoomButton);
         //btnzOut = (Button)findViewById(R.id.btnZoomOut);
 
@@ -45,6 +46,15 @@ public class MainActivity extends AppCompatActivity  {
 //                img.startAnimation(animZoomOut);
 //            }
 //        });
+    }
+
+    @Override
+    public void onRestoreInstanceState(Bundle savedInstanceState) {
+        // Always call the superclass so it can restore the view hierarchy
+        super.onRestoreInstanceState(savedInstanceState);
+
+        // Restore state members from saved instance
+        //mCurrentScore = savedInstanceState.getInt(STATE_SCORE);
     }
 
 //    private void hideView() {
@@ -96,6 +106,7 @@ public class MainActivity extends AppCompatActivity  {
     public void onBackPressed() {
         //showView();
         //selectionChosen();
+
         super.onBackPressed();
     }
 

@@ -23,6 +23,8 @@ public class AudioPlayerBahaullah extends Fragment {
     private String track;
     private ImageView img;
     private TextView txt;
+    private int trackNum = 0;
+    private GradientDrawable gradientDrawable;
     String[] prayerArray = {"Attract the Hearts of Men...", "Lauded Be Thy Name...", "Glorified Art Thou, O Lord My God...",
             "From the Sweet-Scented Streams...", "Create in Me a Pure Heart...", "He is the Gracious, the All_Bountiful...",
             "Glory to Thee, O My God!", "Magnified, O Lord My God, Be Thy Name..."};
@@ -45,7 +47,7 @@ public class AudioPlayerBahaullah extends Fragment {
             //Log.i("here", "onCreateView: " + position);
         }
 
-        GradientDrawable gradientDrawable;
+
 
         switch(track) {
             case "Attract the Hearts of Men...":
@@ -140,6 +142,20 @@ public class AudioPlayerBahaullah extends Fragment {
                 txt.setText(prayerArray[6]);
                 break;
             case "Magnified, O Lord My God, Be Thy Name...":
+                mp = MediaPlayer.create(getActivity().getApplicationContext(), R.raw.from_the_sweet_scented);
+                gradientDrawable = new GradientDrawable(
+                        GradientDrawable.Orientation.TOP_BOTTOM,
+                        new int[]{ContextCompat.getColor(getContext(), R.color.colorAccent),
+                                ContextCompat.getColor(getContext(), R.color.colorFadedRed),
+                                ContextCompat.getColor(getContext(), R.color.colorFadedYellow),
+                                ContextCompat.getColor(getContext(), R.color.colorAccent)});
+
+                view.findViewById(R.id.layout_audio_player).setBackground(gradientDrawable);
+                img.setImageResource(R.mipmap.magnified_oh_lord_foreground);
+                txt.setText(prayerArray[7]);
+                break;
+            case "all":
+                playAll(trackNum);
                 break;
             case "The Evolution of Matter and Development of the Soul":
                 mp = MediaPlayer.create(getActivity().getApplicationContext(), R.raw.paris_talks20);
@@ -171,11 +187,78 @@ public class AudioPlayerBahaullah extends Fragment {
                 playBtn.setVisibility(View.VISIBLE);
                 pauseBtn.setVisibility(View.GONE);
 
-                mp.stop();
+                mp.pause();
             }
         });
 
+        mp.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+
+            @Override
+            public void onCompletion(MediaPlayer mp) {
+                //performOnEnd();
+                if (track.equals("all") && trackNum < 1) {
+                    trackNum++;
+                    playAll(trackNum);
+                }
+                else {
+                    playBtn.setVisibility(View.VISIBLE);
+                    pauseBtn.setVisibility(View.GONE);
+                }
+
+            }
+
+        });
 
     return view;
+    }
+
+
+
+    private void playAll(int num) {
+        switch (num) {
+            case 0:
+                mp = MediaPlayer.create(getActivity().getApplicationContext(), R.raw.marian);
+                gradientDrawable = new GradientDrawable(
+                        GradientDrawable.Orientation.TOP_BOTTOM,
+                        new int[]{ContextCompat.getColor(getContext(), R.color.colorAccent),
+                                ContextCompat.getColor(getContext(), R.color.colorFadedYellow),
+                                ContextCompat.getColor(getContext(), R.color.colorFadedPink),
+                                ContextCompat.getColor(getContext(), R.color.colorAccent)});
+
+                view.findViewById(R.id.layout_audio_player).setBackground(gradientDrawable);
+                img.setImageResource(R.mipmap.attract_photo_foreground);
+                txt.setText(prayerArray[0]);
+                pauseBtn.setVisibility(View.VISIBLE);
+                playBtn.setVisibility(View.GONE);
+                mp.start();
+                break;
+            case 1:
+                mp = MediaPlayer.create(getActivity().getApplicationContext(), R.raw.brooklyn_bridge);
+                txt.setText(prayerArray[1]);
+                img.setImageResource(R.mipmap.lauded_photo_foreground);
+                mp.start();
+                break;
+        }
+
+//        mp = MediaPlayer.create(getActivity().getApplicationContext(), R.raw.brooklyn_bridge);
+//        GradientDrawable gd = new GradientDrawable(
+//                GradientDrawable.Orientation.TOP_BOTTOM,
+//                new int[]{ContextCompat.getColor(getContext(), R.color.colorAccent),
+//                        ContextCompat.getColor(getContext(), R.color.colorFadedYellow),
+//                        ContextCompat.getColor(getContext(), R.color.colorFadedPink),
+//                        ContextCompat.getColor(getContext(), R.color.colorAccent)});
+//
+//
+//
+//        view.findViewById(R.id.layout_audio_player).setBackground(gd);
+//        img.setImageResource(R.mipmap.lauded_photo_foreground);
+//        txt.setText(prayerArray[1]);
+//        mp.start();
+    }
+
+    @Override
+    public void onDestroy() {
+        mp.stop();
+        super.onDestroy();
     }
 }

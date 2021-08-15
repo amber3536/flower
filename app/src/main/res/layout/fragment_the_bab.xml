@@ -5,23 +5,23 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorLightBlue"
-    tools:context="com.hfad.flower.Bahaullah">
+    tools:context="com.hfad.flower.TheBab">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/linearLayout">
-    <ListView
-        android:id="@+id/bahaullah_list"
-        android:layout_width="wrap_content"
-       android:layout_height="wrap_content"
+        <ListView
+            android:id="@+id/the_bab_list"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
 
-        app:layout_constraintBottom_toTopOf="@+id/fab_bahaullah"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintBottom_toTopOf="@+id/fab_the_bab"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
 
-    </ListView>
+        </ListView>
 
 
 
@@ -29,12 +29,12 @@
     </LinearLayout>
 
     <TextView
-        android:id="@+id/tv_bahaulllah"
+        android:id="@+id/tv_the_bab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/fab_bahaullah"
+        app:layout_constraintTop_toBottomOf="@id/fab_the_bab"
         app:layout_constraintBottom_toBottomOf="parent"
         android:text="Play All"
         android:textSize="20sp"
@@ -42,7 +42,7 @@
         android:fontFamily="@font/montserrat_regular"/>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fab_bahaullah"
+        android:id="@+id/fab_the_bab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:clickable="true"
@@ -54,10 +54,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         android:src="@android:drawable/ic_media_play"
-        app:layout_constraintBottom_toBottomOf="@id/tv_bahaulllah"
+        app:layout_constraintBottom_toBottomOf="@id/tv_the_bab"
         />
-
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

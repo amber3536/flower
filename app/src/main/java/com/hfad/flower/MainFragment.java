@@ -49,6 +49,7 @@ public class MainFragment extends Fragment {
                              Bundle savedInstanceState) {
 
         view = inflater.inflate(R.layout.fragment_main, container, false);
+        setRetainInstance(true);
 
         img1 = (ImageView)view.findViewById(R.id.petalView);
         // paris_pic = findViewById(R.id.)
@@ -240,7 +241,7 @@ public class MainFragment extends Fragment {
 //                img1.clearAnimation();
 //                img9.clearAnimation();
 
-                loadFragment(new AbdulBaha());
+                loadFragment(new TheBab());
                 //hideView();
             }
         });
