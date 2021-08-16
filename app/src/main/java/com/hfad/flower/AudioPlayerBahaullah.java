@@ -3,6 +3,7 @@ package com.hfad.flower;
 import android.graphics.drawable.GradientDrawable;
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,12 +18,13 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class AudioPlayerBahaullah extends Fragment {
     private View view;
-    private MediaPlayer mp;
+    public MediaPlayer mp;
     private FloatingActionButton playBtn;
     private FloatingActionButton pauseBtn;
     private String track;
     private ImageView img;
     private TextView txt;
+    private MediaPlayer.OnCompletionListener listener;
     private int trackNum = 0;
     private GradientDrawable gradientDrawable;
     String[] prayerArray = {"Attract the Hearts of Men...", "Lauded Be Thy Name...", "Glorified Art Thou, O Lord My God...",
@@ -156,6 +158,7 @@ public class AudioPlayerBahaullah extends Fragment {
                 break;
             case "all":
                 playAll(trackNum);
+                //txt.setText(prayerArray[0]);
                 break;
             case "The Evolution of Matter and Development of the Soul":
                 mp = MediaPlayer.create(getActivity().getApplicationContext(), R.raw.paris_talks20);
@@ -168,6 +171,8 @@ public class AudioPlayerBahaullah extends Fragment {
 
                 view.findViewById(R.id.layout_audio_player).setBackground(gradientDrawable);
                 break;
+
+
         }
 
 
@@ -191,11 +196,14 @@ public class AudioPlayerBahaullah extends Fragment {
             }
         });
 
-        mp.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+
+        mp.setOnCompletionListener(listener = new MediaPlayer.OnCompletionListener() {
 
             @Override
             public void onCompletion(MediaPlayer mp) {
                 //performOnEnd();
+               // mp.release();
+                Log.i("Audio Bahaullah", "onCompletion: " + trackNum);
                 if (track.equals("all") && trackNum < 1) {
                     trackNum++;
                     playAll(trackNum);
@@ -209,10 +217,10 @@ public class AudioPlayerBahaullah extends Fragment {
 
         });
 
+
+
     return view;
     }
-
-
 
     private void playAll(int num) {
         switch (num) {
@@ -233,12 +241,19 @@ public class AudioPlayerBahaullah extends Fragment {
                 mp.start();
                 break;
             case 1:
+               // mp.release();
+               // mp.stop();
+               // mp.reset();
                 mp = MediaPlayer.create(getActivity().getApplicationContext(), R.raw.brooklyn_bridge);
+                mp.setOnCompletionListener(listener);
                 txt.setText(prayerArray[1]);
                 img.setImageResource(R.mipmap.lauded_photo_foreground);
+                //mp.setLooping(false);
                 mp.start();
                 break;
         }
+    }
+
 
 //        mp = MediaPlayer.create(getActivity().getApplicationContext(), R.raw.brooklyn_bridge);
 //        GradientDrawable gd = new GradientDrawable(
@@ -254,11 +269,19 @@ public class AudioPlayerBahaullah extends Fragment {
 //        img.setImageResource(R.mipmap.lauded_photo_foreground);
 //        txt.setText(prayerArray[1]);
 //        mp.start();
-    }
+
 
     @Override
     public void onDestroy() {
         mp.stop();
+        Log.i("Audio Bahaullah", "onDestroy: ");
+
         super.onDestroy();
+    }
+
+    @Override
+    public void onResume() {
+        Log.i("Audio Bahaullah", "onResume: ");
+        super.onResume();
     }
 }
