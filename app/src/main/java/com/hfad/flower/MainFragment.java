@@ -77,10 +77,10 @@ public class MainFragment extends Fragment {
 
         GradientDrawable gradientDrawable = new GradientDrawable(
                 GradientDrawable.Orientation.TOP_BOTTOM,
-                new int[]{ContextCompat.getColor(getContext(), R.color.colorAccent),
-                        ContextCompat.getColor(getContext(), R.color.colorFadedPurple),
+                new int[]{ContextCompat.getColor(getContext(), R.color.fadedTurquoise),
                         ContextCompat.getColor(getContext(), R.color.colorFadedDarkPurple),
-                        ContextCompat.getColor(getContext(), R.color.colorAccent)});
+                        ContextCompat.getColor(getContext(), R.color.colorFadedPurple),
+                        ContextCompat.getColor(getContext(), R.color.fadedTurquoise)});
 
         view.findViewById(R.id.layout_main).setBackground(gradientDrawable);
 
