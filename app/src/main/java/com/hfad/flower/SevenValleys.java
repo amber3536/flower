@@ -18,7 +18,7 @@ public class SevenValleys extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        view = inflater.inflate(R.layout.fragment_seven_valleys, container, false);
+        view = inflater.inflate(R.layout.fragment_coming_soon, container, false);
         tv = view.findViewById(R.id.textView);
 
 

@@ -25,13 +25,13 @@ public class ParisTalks extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        view = inflater.inflate(R.layout.fragment_paris_talks, container, false);
+        view = inflater.inflate(R.layout.fragment_prayer_list, container, false);
         //tv = view.findViewById(R.id.textView);
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext(),
                 android.R.layout.simple_list_item_1, mobileArray);
 
-        final ListView listView = (ListView) view.findViewById(R.id.paris_talks_list);
+        final ListView listView = (ListView) view.findViewById(R.id.prayer_list);
         listView.setAdapter(adapter);
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {

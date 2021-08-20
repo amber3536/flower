@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="colorPrimary">#6200EE</color>
-    <color name="colorFadedPurple">#996200EE</color>
+    <color name="colorFadedPurple">#736200EE</color>
     <color name="colorPrimaryDark">#3700B3</color>
-    <color name="colorFadedDarkPurple">#993700B3</color>
+    <color name="colorFadedDarkPurple">#733700B3</color>
     <color name="colorAccent">#6603DAC5</color>
     <color name="colorFadedPink">#66ff69b4</color>
     <color name="colorFadedYellow">#66ffff00</color>
     <color name="colorFadedRed">#66ff0000</color>
     <color name="colorLightBlue">#80afeeee</color>
-    <color name="fadedTurquoise">#6600ced1</color>
+    <color name="fadedTurquoise">#7900ced1</color>
     <color name="fadedNavy">#66000080</color>
     <color  name="violet">#BF9400D3</color>
     <color  name="indigo">#4B0082</color>

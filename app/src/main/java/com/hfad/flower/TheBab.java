@@ -3,6 +3,7 @@ package com.hfad.flower;
 import android.content.res.ColorStateList;
 import android.graphics.LinearGradient;
 import android.graphics.Shader;
+import android.graphics.Typeface;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.text.TextPaint;
@@ -28,18 +29,20 @@ public class TheBab extends Fragment {
     private FloatingActionButton fab;
     private Button btn;
     private TextView txt;
-    String[] mobileArray = {"Attract the Hearts of Men...", "Lauded Be Thy Name...", "Glorified Art Thou, O Lord My God...",
-            "From the Sweet-Scented Streams...", "Create in Me a Pure Heart...", "He is the Gracious, the All_Bountiful...",
-            "Glory to Thee, O My God!", "Magnified, O Lord My God, Be Thy Name..."};
+    String[] mobileArray = {"Lauded be Thy name...", "It is better to guide...", "God loveth those who are...",
+            "God hath, at all times...", "Rid thou thyself...", "He--glorified be His mention...",
+            "Say: Praise be to God", "Glory be unto Thee...", "I beg Thee to forgive me...", "Glory be to Thee, O God!",
+            "O Lord! Enable all the peoples...", "Throughout eternity Thou hast been...", "I adjure Thee by Thy might...",
+            "Praise be to Thee..."};
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        view = inflater.inflate(R.layout.fragment_the_bab, container, false);
+        view = inflater.inflate(R.layout.fragment_prayer_list, container, false);
         //setRetainInstance(true);
         // btn = view.findViewById(R.id.button_play_all);
-        txt = view.findViewById(R.id.tv_the_bab);
+        txt = view.findViewById(R.id.tv_prayer_list);
 
         TextPaint paint = txt.getPaint();
         float width = paint.measureText("Play All");
@@ -56,12 +59,12 @@ public class TheBab extends Fragment {
         txt.getPaint().setShader(textShader);
 
         txt.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(getActivity(), R.color.colorAccent)));
-        //tv.setTypeface(null, Typeface.BOLD);
+        //tv.setTypeface(Typeface.BOLD);
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext(),
                 android.R.layout.simple_list_item_1, mobileArray);
 
-        final ListView listView = (ListView) view.findViewById(R.id.the_bab_list);
+        final ListView listView = (ListView) view.findViewById(R.id.prayer_list);
         listView.setAdapter(adapter);
 
 
@@ -72,7 +75,7 @@ public class TheBab extends Fragment {
 
                 //Intent intent = new Intent(view.getContext(), MainActivity.class);
                 //intent.putExtra("EXTRA", selectedItem);
-                loadFragment(new AudioPlayerBahaullah(), "EXTRA", selectedItem);
+                loadFragment(new AudioPlayerTheBab(), "EXTRA", selectedItem);
 
 //                switch (selectedItem) {
 //                    case "O Thou Whose Face":

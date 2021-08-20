@@ -15,8 +15,7 @@ import androidx.fragment.app.Fragment;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-
-public class AudioPlayerBahaullah extends Fragment {
+public class AudioPlayerTheBab extends Fragment {
     private View view;
     public MediaPlayer mp;
     private FloatingActionButton playBtn;
@@ -27,10 +26,11 @@ public class AudioPlayerBahaullah extends Fragment {
     private MediaPlayer.OnCompletionListener listener;
     private int trackNum = 0;
     private GradientDrawable gradientDrawable;
-    String[] prayerArray = {"Attract the Hearts of Men...", "Lauded Be Thy Name...", "Glorified Art Thou, O Lord My God...",
-            "From the Sweet-Scented Streams...", "Create in Me a Pure Heart...", "He is the Gracious, the All_Bountiful...",
-            "Glory to Thee, O My God!", "Magnified, O Lord My God, Be Thy Name..."};
-
+    String[] prayerArray = {"Lauded be Thy name...", "It is better to guide...", "God loveth those who are...",
+            "God hath, at all times...", "Rid thou thyself...", "He--glorified be His mention...",
+            "Say: Praise be to God", "Glory be unto Thee...", "I beg Thee to forgive me...", "Glory be to Thee, O God!",
+            "O Lord! Enable all the peoples...", "Throughout eternity Thou hast been...", "I adjure Thee by Thy might...",
+            "Praise be to Thee..."};
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -52,7 +52,7 @@ public class AudioPlayerBahaullah extends Fragment {
 
 
         switch(track) {
-            case "Attract the Hearts of Men...":
+            case "Lauded be Thy name...":
                 mp = MediaPlayer.create(getActivity().getApplicationContext(), R.raw.o_thou_whose_face2);
                 gradientDrawable = new GradientDrawable(
                         GradientDrawable.Orientation.TOP_BOTTOM,
@@ -65,7 +65,7 @@ public class AudioPlayerBahaullah extends Fragment {
                 img.setImageResource(R.mipmap.attract_photo_foreground);
                 txt.setText(prayerArray[0]);
                 break;
-            case "Lauded Be Thy Name...":
+            case "It is better to guide...":
                 mp = MediaPlayer.create(getActivity().getApplicationContext(), R.raw.marian);
                 gradientDrawable = new GradientDrawable(
                         GradientDrawable.Orientation.TOP_BOTTOM,
@@ -78,7 +78,7 @@ public class AudioPlayerBahaullah extends Fragment {
                 img.setImageResource(R.mipmap.lauded_photo_foreground);
                 txt.setText(prayerArray[1]);
                 break;
-            case "Glorified Art Thou, O Lord My God...":
+            case "God loveth those who are...":
                 mp = MediaPlayer.create(getActivity().getApplicationContext(), R.raw.marian);
                 gradientDrawable = new GradientDrawable(
                         GradientDrawable.Orientation.TOP_BOTTOM,
@@ -91,7 +91,7 @@ public class AudioPlayerBahaullah extends Fragment {
                 img.setImageResource(R.mipmap.glorified_art_thou_photo_foreground);
                 txt.setText(prayerArray[2]);
                 break;
-            case "From the Sweet-Scented Streams...":
+            case "God hath, at all times...":
                 mp = MediaPlayer.create(getActivity().getApplicationContext(), R.raw.from_the_sweet_scented);
                 gradientDrawable = new GradientDrawable(
                         GradientDrawable.Orientation.TOP_BOTTOM,
@@ -104,7 +104,7 @@ public class AudioPlayerBahaullah extends Fragment {
                 img.setImageResource(R.mipmap.from_the_sweet_scented_photo_foreground);
                 txt.setText(prayerArray[3]);
                 break;
-            case "Create in Me a Pure Heart...":
+            case "Rid thou thyself...":
                 mp = MediaPlayer.create(getActivity().getApplicationContext(), R.raw.from_the_sweet_scented);
                 gradientDrawable = new GradientDrawable(
                         GradientDrawable.Orientation.TOP_BOTTOM,
@@ -117,7 +117,7 @@ public class AudioPlayerBahaullah extends Fragment {
                 img.setImageResource(R.mipmap.create_in_me_a_pure_photo_foreground);
                 txt.setText(prayerArray[4]);
                 break;
-            case "He is the Gracious, the All_Bountiful...":
+            case "He--glorified be His mention...":
                 mp = MediaPlayer.create(getActivity().getApplicationContext(), R.raw.from_the_sweet_scented);
                 gradientDrawable = new GradientDrawable(
                         GradientDrawable.Orientation.TOP_BOTTOM,
@@ -130,7 +130,7 @@ public class AudioPlayerBahaullah extends Fragment {
                 img.setImageResource(R.mipmap.he_is_the_gracious_photo_foreground);
                 txt.setText(prayerArray[5]);
                 break;
-            case "Glory to Thee, O My God!":
+            case "Say: Praise be to God":
                 mp = MediaPlayer.create(getActivity().getApplicationContext(), R.raw.from_the_sweet_scented);
                 gradientDrawable = new GradientDrawable(
                         GradientDrawable.Orientation.TOP_BOTTOM,
@@ -143,7 +143,7 @@ public class AudioPlayerBahaullah extends Fragment {
                 img.setImageResource(R.mipmap.glory_to_thee_photo_foreground);
                 txt.setText(prayerArray[6]);
                 break;
-            case "Magnified, O Lord My God, Be Thy Name...":
+            case "Glory be unto Thee...":
                 mp = MediaPlayer.create(getActivity().getApplicationContext(), R.raw.from_the_sweet_scented);
                 gradientDrawable = new GradientDrawable(
                         GradientDrawable.Orientation.TOP_BOTTOM,
@@ -160,7 +160,7 @@ public class AudioPlayerBahaullah extends Fragment {
                 playAll(trackNum);
                 //txt.setText(prayerArray[0]);
                 break;
-            case "The Evolution of Matter and Development of the Soul":
+            case "I beg Thee to forgive me...":
                 mp = MediaPlayer.create(getActivity().getApplicationContext(), R.raw.paris_talks20);
                 gradientDrawable = new GradientDrawable(
                         GradientDrawable.Orientation.TOP_BOTTOM,
@@ -170,20 +170,86 @@ public class AudioPlayerBahaullah extends Fragment {
                                 ContextCompat.getColor(getContext(), R.color.colorAccent)});
 
                 view.findViewById(R.id.layout_audio_player).setBackground(gradientDrawable);
+                img.setImageResource(R.mipmap.magnified_oh_lord_foreground);
+                txt.setText(prayerArray[8]);
                 break;
+            case "Glory be to Thee, O God!":
+                mp = MediaPlayer.create(getActivity().getApplicationContext(), R.raw.paris_talks20);
+                gradientDrawable = new GradientDrawable(
+                        GradientDrawable.Orientation.TOP_BOTTOM,
+                        new int[]{ContextCompat.getColor(getContext(), R.color.colorAccent),
+                                ContextCompat.getColor(getContext(), R.color.colorFadedRed),
+                                ContextCompat.getColor(getContext(), R.color.colorFadedPink),
+                                ContextCompat.getColor(getContext(), R.color.colorAccent)});
 
+                view.findViewById(R.id.layout_audio_player).setBackground(gradientDrawable);
+                img.setImageResource(R.mipmap.magnified_oh_lord_foreground);
+                txt.setText(prayerArray[9]);
+                break;
+            case "O Lord! Enable all the peoples...":
+                mp = MediaPlayer.create(getActivity().getApplicationContext(), R.raw.paris_talks20);
+                gradientDrawable = new GradientDrawable(
+                        GradientDrawable.Orientation.TOP_BOTTOM,
+                        new int[]{ContextCompat.getColor(getContext(), R.color.colorAccent),
+                                ContextCompat.getColor(getContext(), R.color.colorFadedRed),
+                                ContextCompat.getColor(getContext(), R.color.colorFadedPink),
+                                ContextCompat.getColor(getContext(), R.color.colorAccent)});
+
+                view.findViewById(R.id.layout_audio_player).setBackground(gradientDrawable);
+                img.setImageResource(R.mipmap.magnified_oh_lord_foreground);
+                txt.setText(prayerArray[10]);
+                break;
+            case "Throughout eternity Thou hast been...":
+                mp = MediaPlayer.create(getActivity().getApplicationContext(), R.raw.paris_talks20);
+                gradientDrawable = new GradientDrawable(
+                        GradientDrawable.Orientation.TOP_BOTTOM,
+                        new int[]{ContextCompat.getColor(getContext(), R.color.colorAccent),
+                                ContextCompat.getColor(getContext(), R.color.colorFadedRed),
+                                ContextCompat.getColor(getContext(), R.color.colorFadedPink),
+                                ContextCompat.getColor(getContext(), R.color.colorAccent)});
+
+                view.findViewById(R.id.layout_audio_player).setBackground(gradientDrawable);
+                img.setImageResource(R.mipmap.magnified_oh_lord_foreground);
+                txt.setText(prayerArray[11]);
+                break;
+            case "I adjure Thee by Thy might...":
+                mp = MediaPlayer.create(getActivity().getApplicationContext(), R.raw.paris_talks20);
+                gradientDrawable = new GradientDrawable(
+                        GradientDrawable.Orientation.TOP_BOTTOM,
+                        new int[]{ContextCompat.getColor(getContext(), R.color.colorAccent),
+                                ContextCompat.getColor(getContext(), R.color.colorFadedRed),
+                                ContextCompat.getColor(getContext(), R.color.colorFadedPink),
+                                ContextCompat.getColor(getContext(), R.color.colorAccent)});
+
+                view.findViewById(R.id.layout_audio_player).setBackground(gradientDrawable);
+                img.setImageResource(R.mipmap.magnified_oh_lord_foreground);
+                txt.setText(prayerArray[12]);
+                break;
+            case "Praise be to Thee...":
+                mp = MediaPlayer.create(getActivity().getApplicationContext(), R.raw.paris_talks20);
+                gradientDrawable = new GradientDrawable(
+                        GradientDrawable.Orientation.TOP_BOTTOM,
+                        new int[]{ContextCompat.getColor(getContext(), R.color.colorAccent),
+                                ContextCompat.getColor(getContext(), R.color.colorFadedRed),
+                                ContextCompat.getColor(getContext(), R.color.colorFadedPink),
+                                ContextCompat.getColor(getContext(), R.color.colorAccent)});
+
+                view.findViewById(R.id.layout_audio_player).setBackground(gradientDrawable);
+                img.setImageResource(R.mipmap.magnified_oh_lord_foreground);
+                txt.setText(prayerArray[13]);
+                break;
 
         }
 
 
         playBtn.setOnClickListener(new View.OnClickListener() {
-                  @Override
-                  public void onClick(View v) {
-                      pauseBtn.setVisibility(View.VISIBLE);
-                      playBtn.setVisibility(View.GONE);
+            @Override
+            public void onClick(View v) {
+                pauseBtn.setVisibility(View.VISIBLE);
+                playBtn.setVisibility(View.GONE);
 
-                      mp.start();
-                  }
+                mp.start();
+            }
         });
 
         pauseBtn.setOnClickListener(new View.OnClickListener() {
@@ -202,7 +268,7 @@ public class AudioPlayerBahaullah extends Fragment {
             @Override
             public void onCompletion(MediaPlayer mp) {
                 //performOnEnd();
-               // mp.release();
+                // mp.release();
                 Log.i("Audio Bahaullah", "onCompletion: " + trackNum);
                 if (track.equals("all") && trackNum < 1) {
                     trackNum++;
@@ -219,7 +285,7 @@ public class AudioPlayerBahaullah extends Fragment {
 
 
 
-    return view;
+        return view;
     }
 
     private void playAll(int num) {
@@ -241,9 +307,9 @@ public class AudioPlayerBahaullah extends Fragment {
                 mp.start();
                 break;
             case 1:
-               // mp.release();
-               // mp.stop();
-               // mp.reset();
+                // mp.release();
+                // mp.stop();
+                // mp.reset();
                 mp = MediaPlayer.create(getActivity().getApplicationContext(), R.raw.brooklyn_bridge);
                 mp.setOnCompletionListener(listener);
                 txt.setText(prayerArray[1]);
@@ -274,14 +340,15 @@ public class AudioPlayerBahaullah extends Fragment {
     @Override
     public void onDestroy() {
         mp.stop();
-        Log.i("Audio Bahaullah", "onDestroy: ");
+        Log.i("Audio The Bab", "onDestroy: ");
 
         super.onDestroy();
     }
 
     @Override
     public void onResume() {
-        Log.i("Audio Bahaullah", "onResume: ");
+        Log.i("Audio The Bab", "onResume: ");
         super.onResume();
     }
+
 }

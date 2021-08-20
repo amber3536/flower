@@ -37,11 +37,11 @@ public class Bahaullah extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        view = inflater.inflate(R.layout.fragment_bahaullah, container, false);
+        view = inflater.inflate(R.layout.fragment_prayer_list, container, false);
         //setRetainInstance(true);
        // btn = view.findViewById(R.id.button_play_all);
-        txt = view.findViewById(R.id.tv_bahaulllah);
-        playBtn = view.findViewById(R.id.fab_bahaullah);
+        txt = view.findViewById(R.id.tv_prayer_list);
+        playBtn = view.findViewById(R.id.fab_prayer_list);
         //pauseBtn = view.findViewById(R.id.fab_bahaullah1);
 
         TextPaint paint = txt.getPaint();
@@ -64,7 +64,7 @@ public class Bahaullah extends Fragment {
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext(),
                 android.R.layout.simple_list_item_1, mobileArray);
 
-        final ListView listView = (ListView) view.findViewById(R.id.bahaullah_list);
+        final ListView listView = (ListView) view.findViewById(R.id.prayer_list);
         listView.setAdapter(adapter);
 
 
