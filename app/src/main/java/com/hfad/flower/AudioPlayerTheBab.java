@@ -56,91 +56,91 @@ public class AudioPlayerTheBab extends Fragment {
                 mp = MediaPlayer.create(getActivity().getApplicationContext(), R.raw.o_thou_whose_face2);
                 gradientDrawable = new GradientDrawable(
                         GradientDrawable.Orientation.TOP_BOTTOM,
-                        new int[]{ContextCompat.getColor(getContext(), R.color.colorAccent),
+                        new int[]{ContextCompat.getColor(getContext(), R.color.fadedGreen),
                                 ContextCompat.getColor(getContext(), R.color.colorFadedYellow),
-                                ContextCompat.getColor(getContext(), R.color.colorFadedPink),
-                                ContextCompat.getColor(getContext(), R.color.colorAccent)});
+                                ContextCompat.getColor(getContext(), R.color.fadedTurquoise),
+                                ContextCompat.getColor(getContext(), R.color.fadedNavy)});
 
                 view.findViewById(R.id.layout_audio_player).setBackground(gradientDrawable);
-                img.setImageResource(R.mipmap.attract_photo_foreground);
+                img.setImageResource(R.mipmap.lauded_be_thy_name_foreground);
                 txt.setText(prayerArray[0]);
                 break;
             case "It is better to guide...":
                 mp = MediaPlayer.create(getActivity().getApplicationContext(), R.raw.marian);
                 gradientDrawable = new GradientDrawable(
                         GradientDrawable.Orientation.TOP_BOTTOM,
-                        new int[]{ContextCompat.getColor(getContext(), R.color.colorAccent),
-                                ContextCompat.getColor(getContext(), R.color.colorFadedYellow),
-                                ContextCompat.getColor(getContext(), R.color.colorFadedPink),
-                                ContextCompat.getColor(getContext(), R.color.colorAccent)});
+                        new int[]{ContextCompat.getColor(getContext(), R.color.fadedNavy),
+                                ContextCompat.getColor(getContext(), R.color.fadedGreen),
+                                ContextCompat.getColor(getContext(), R.color.fadedTurquoise),
+                                ContextCompat.getColor(getContext(), R.color.fadedBlue)});
 
                 view.findViewById(R.id.layout_audio_player).setBackground(gradientDrawable);
-                img.setImageResource(R.mipmap.lauded_photo_foreground);
+                img.setImageResource(R.mipmap.it_is_better_to_guide_foreground);
                 txt.setText(prayerArray[1]);
                 break;
             case "God loveth those who are...":
                 mp = MediaPlayer.create(getActivity().getApplicationContext(), R.raw.marian);
                 gradientDrawable = new GradientDrawable(
                         GradientDrawable.Orientation.TOP_BOTTOM,
-                        new int[]{ContextCompat.getColor(getContext(), R.color.colorAccent),
-                                ContextCompat.getColor(getContext(), R.color.fadedBlue),
-                                ContextCompat.getColor(getContext(), R.color.fadedGreen),
-                                ContextCompat.getColor(getContext(), R.color.colorAccent)});
+                        new int[]{ContextCompat.getColor(getContext(), R.color.fadedNavy),
+                                ContextCompat.getColor(getContext(), R.color.fadedTurquoise),
+                                ContextCompat.getColor(getContext(), R.color.fadedNavy),
+                                ContextCompat.getColor(getContext(), R.color.fadedGray)});
 
                 view.findViewById(R.id.layout_audio_player).setBackground(gradientDrawable);
-                img.setImageResource(R.mipmap.glorified_art_thou_photo_foreground);
+                img.setImageResource(R.mipmap.god_loveth_those_who_are_foreground);
                 txt.setText(prayerArray[2]);
                 break;
             case "God hath, at all times...":
                 mp = MediaPlayer.create(getActivity().getApplicationContext(), R.raw.from_the_sweet_scented);
                 gradientDrawable = new GradientDrawable(
                         GradientDrawable.Orientation.TOP_BOTTOM,
-                        new int[]{ContextCompat.getColor(getContext(), R.color.fadedBlue),
-                                ContextCompat.getColor(getContext(), R.color.colorFadedYellow),
-                                ContextCompat.getColor(getContext(), R.color.colorFadedPink),
-                                ContextCompat.getColor(getContext(), R.color.fadedBlue)});
+                        new int[]{ContextCompat.getColor(getContext(), R.color.fadedGray),
+                                ContextCompat.getColor(getContext(), R.color.fadedForestGreen),
+                                ContextCompat.getColor(getContext(), R.color.colorFadedRed),
+                                ContextCompat.getColor(getContext(), R.color.fadedGray)});
 
                 view.findViewById(R.id.layout_audio_player).setBackground(gradientDrawable);
-                img.setImageResource(R.mipmap.from_the_sweet_scented_photo_foreground);
+                img.setImageResource(R.mipmap.god_hath_at_all_times_foreground);
                 txt.setText(prayerArray[3]);
                 break;
             case "Rid thou thyself...":
                 mp = MediaPlayer.create(getActivity().getApplicationContext(), R.raw.from_the_sweet_scented);
                 gradientDrawable = new GradientDrawable(
                         GradientDrawable.Orientation.TOP_BOTTOM,
-                        new int[]{ContextCompat.getColor(getContext(), R.color.fadedBlue),
-                                ContextCompat.getColor(getContext(), R.color.colorAccent),
-                                ContextCompat.getColor(getContext(), R.color.lightBlue),
-                                ContextCompat.getColor(getContext(), R.color.fadedBlue)});
+                        new int[]{ContextCompat.getColor(getContext(), R.color.fadedNavy),
+                                ContextCompat.getColor(getContext(), R.color.colorFadedRed),
+                                ContextCompat.getColor(getContext(), R.color.colorFadedPink),
+                                ContextCompat.getColor(getContext(), R.color.fadedNavy)});
 
                 view.findViewById(R.id.layout_audio_player).setBackground(gradientDrawable);
-                img.setImageResource(R.mipmap.create_in_me_a_pure_photo_foreground);
+                img.setImageResource(R.mipmap.rid_thou_thyself_foreground);
                 txt.setText(prayerArray[4]);
                 break;
             case "He--glorified be His mention...":
                 mp = MediaPlayer.create(getActivity().getApplicationContext(), R.raw.from_the_sweet_scented);
                 gradientDrawable = new GradientDrawable(
                         GradientDrawable.Orientation.TOP_BOTTOM,
-                        new int[]{ContextCompat.getColor(getContext(), R.color.fadedGreen),
-                                ContextCompat.getColor(getContext(), R.color.colorFadedYellow),
-                                ContextCompat.getColor(getContext(), R.color.colorFadedPink),
-                                ContextCompat.getColor(getContext(), R.color.fadedGreen)});
+                        new int[]{ContextCompat.getColor(getContext(), R.color.fadedGray),
+                                ContextCompat.getColor(getContext(), R.color.fadedOrange),
+                                ContextCompat.getColor(getContext(), R.color.fadedGray),
+                                ContextCompat.getColor(getContext(), R.color.fadedOrange)});
 
                 view.findViewById(R.id.layout_audio_player).setBackground(gradientDrawable);
-                img.setImageResource(R.mipmap.he_is_the_gracious_photo_foreground);
+                img.setImageResource(R.mipmap.he_glorified_be_his_mention_foreground);
                 txt.setText(prayerArray[5]);
                 break;
             case "Say: Praise be to God":
                 mp = MediaPlayer.create(getActivity().getApplicationContext(), R.raw.from_the_sweet_scented);
                 gradientDrawable = new GradientDrawable(
                         GradientDrawable.Orientation.TOP_BOTTOM,
-                        new int[]{ContextCompat.getColor(getContext(), R.color.colorAccent),
+                        new int[]{ContextCompat.getColor(getContext(), R.color.fadedGray),
                                 ContextCompat.getColor(getContext(), R.color.colorFadedRed),
-                                ContextCompat.getColor(getContext(), R.color.colorFadedPink),
-                                ContextCompat.getColor(getContext(), R.color.colorAccent)});
+                                ContextCompat.getColor(getContext(), R.color.fadedNavy),
+                                ContextCompat.getColor(getContext(), R.color.colorFadedYellow)});
 
                 view.findViewById(R.id.layout_audio_player).setBackground(gradientDrawable);
-                img.setImageResource(R.mipmap.glory_to_thee_photo_foreground);
+                img.setImageResource(R.mipmap.say_praise_be_to_god_foreground);
                 txt.setText(prayerArray[6]);
                 break;
             case "Glory be unto Thee...":
@@ -148,12 +148,12 @@ public class AudioPlayerTheBab extends Fragment {
                 gradientDrawable = new GradientDrawable(
                         GradientDrawable.Orientation.TOP_BOTTOM,
                         new int[]{ContextCompat.getColor(getContext(), R.color.colorAccent),
-                                ContextCompat.getColor(getContext(), R.color.colorFadedRed),
-                                ContextCompat.getColor(getContext(), R.color.colorFadedYellow),
+                                ContextCompat.getColor(getContext(), R.color.colorFadedPurple),
+                                ContextCompat.getColor(getContext(), R.color.colorFadedDarkPurple),
                                 ContextCompat.getColor(getContext(), R.color.colorAccent)});
 
                 view.findViewById(R.id.layout_audio_player).setBackground(gradientDrawable);
-                img.setImageResource(R.mipmap.magnified_oh_lord_foreground);
+                img.setImageResource(R.mipmap.glory_be_unto_thee_foreground);
                 txt.setText(prayerArray[7]);
                 break;
             case "all":
@@ -170,7 +170,7 @@ public class AudioPlayerTheBab extends Fragment {
                                 ContextCompat.getColor(getContext(), R.color.colorAccent)});
 
                 view.findViewById(R.id.layout_audio_player).setBackground(gradientDrawable);
-                img.setImageResource(R.mipmap.magnified_oh_lord_foreground);
+                img.setImageResource(R.mipmap.i_beg_thee_to_forgive_me_foreground);
                 txt.setText(prayerArray[8]);
                 break;
             case "Glory be to Thee, O God!":
@@ -178,25 +178,25 @@ public class AudioPlayerTheBab extends Fragment {
                 gradientDrawable = new GradientDrawable(
                         GradientDrawable.Orientation.TOP_BOTTOM,
                         new int[]{ContextCompat.getColor(getContext(), R.color.colorAccent),
-                                ContextCompat.getColor(getContext(), R.color.colorFadedRed),
-                                ContextCompat.getColor(getContext(), R.color.colorFadedPink),
+                                ContextCompat.getColor(getContext(), R.color.fadedGray),
+                                ContextCompat.getColor(getContext(), R.color.fadedNavy),
                                 ContextCompat.getColor(getContext(), R.color.colorAccent)});
 
                 view.findViewById(R.id.layout_audio_player).setBackground(gradientDrawable);
-                img.setImageResource(R.mipmap.magnified_oh_lord_foreground);
+                img.setImageResource(R.mipmap.glory_be_to_thee_o_god_foreground);
                 txt.setText(prayerArray[9]);
                 break;
             case "O Lord! Enable all the peoples...":
                 mp = MediaPlayer.create(getActivity().getApplicationContext(), R.raw.paris_talks20);
                 gradientDrawable = new GradientDrawable(
                         GradientDrawable.Orientation.TOP_BOTTOM,
-                        new int[]{ContextCompat.getColor(getContext(), R.color.colorAccent),
+                        new int[]{ContextCompat.getColor(getContext(), R.color.colorFadedPurple),
                                 ContextCompat.getColor(getContext(), R.color.colorFadedRed),
                                 ContextCompat.getColor(getContext(), R.color.colorFadedPink),
-                                ContextCompat.getColor(getContext(), R.color.colorAccent)});
+                                ContextCompat.getColor(getContext(), R.color.colorFadedYellow)});
 
                 view.findViewById(R.id.layout_audio_player).setBackground(gradientDrawable);
-                img.setImageResource(R.mipmap.magnified_oh_lord_foreground);
+                img.setImageResource(R.mipmap.o_lord_enable_all_the_peoples_foreground);
                 txt.setText(prayerArray[10]);
                 break;
             case "Throughout eternity Thou hast been...":

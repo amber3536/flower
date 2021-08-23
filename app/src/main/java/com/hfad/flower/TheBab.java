@@ -59,7 +59,11 @@ public class TheBab extends Fragment {
         txt.getPaint().setShader(textShader);
 
         txt.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(getActivity(), R.color.colorAccent)));
-        //tv.setTypeface(Typeface.BOLD);
+        //txt.setTypeface(, Typeface.BOLD);
+//        Typeface font = Typeface.createFromAsset(
+//                getContext().getAssets(),
+//                "fonts/montserrat_regular.ttf");
+//        txt.setTypeface(font, );
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext(),
                 android.R.layout.simple_list_item_1, mobileArray);

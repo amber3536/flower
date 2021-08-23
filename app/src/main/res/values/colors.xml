@@ -10,6 +10,8 @@
     <color name="colorFadedRed">#66ff0000</color>
     <color name="colorLightBlue">#80afeeee</color>
     <color name="fadedTurquoise">#7900ced1</color>
+    <color name="fadedGray">#66696969</color>
+    <color name="fadedForestGreen">#662f4f4f</color>
     <color name="fadedNavy">#66000080</color>
     <color  name="violet">#BF9400D3</color>
     <color  name="indigo">#4B0082</color>
@@ -20,5 +22,6 @@
     <color name="fadedBlue">#660000FF</color>
     <color  name="yellow">#FFFF00</color>
     <color  name="orange">#BFFF7F00</color>
+    <color name="fadedOrange">#66FF7F00</color>
     <color  name="red">#BFFF0000</color>
 </resources>
