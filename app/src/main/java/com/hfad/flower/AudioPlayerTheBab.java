@@ -38,8 +38,8 @@ public class AudioPlayerTheBab extends Fragment {
 
         view = inflater.inflate(R.layout.fragment_audio, container, false);
 
-        playBtn = view.findViewById(R.id.floatingActionButton);
-        pauseBtn = view.findViewById(R.id.floatingActionButton2);
+        playBtn = view.findViewById(R.id.fab_play);
+        pauseBtn = view.findViewById(R.id.fab_pause);
         img = view.findViewById(R.id.audio_img);
         txt = view.findViewById(R.id.audio_txt);
 
@@ -203,39 +203,39 @@ public class AudioPlayerTheBab extends Fragment {
                 mp = MediaPlayer.create(getActivity().getApplicationContext(), R.raw.paris_talks20);
                 gradientDrawable = new GradientDrawable(
                         GradientDrawable.Orientation.TOP_BOTTOM,
-                        new int[]{ContextCompat.getColor(getContext(), R.color.colorAccent),
-                                ContextCompat.getColor(getContext(), R.color.colorFadedRed),
-                                ContextCompat.getColor(getContext(), R.color.colorFadedPink),
-                                ContextCompat.getColor(getContext(), R.color.colorAccent)});
+                        new int[]{ContextCompat.getColor(getContext(), R.color.fadedGray),
+                                ContextCompat.getColor(getContext(), R.color.fadedOrange),
+                                ContextCompat.getColor(getContext(), R.color.fadedForestGreen),
+                                ContextCompat.getColor(getContext(), R.color.fadedGray)});
 
                 view.findViewById(R.id.layout_audio_player).setBackground(gradientDrawable);
-                img.setImageResource(R.mipmap.magnified_oh_lord_foreground);
+                img.setImageResource(R.mipmap.throughout_eternity_thou_hast_been_foreground);
                 txt.setText(prayerArray[11]);
                 break;
             case "I adjure Thee by Thy might...":
                 mp = MediaPlayer.create(getActivity().getApplicationContext(), R.raw.paris_talks20);
                 gradientDrawable = new GradientDrawable(
                         GradientDrawable.Orientation.TOP_BOTTOM,
-                        new int[]{ContextCompat.getColor(getContext(), R.color.colorAccent),
-                                ContextCompat.getColor(getContext(), R.color.colorFadedRed),
-                                ContextCompat.getColor(getContext(), R.color.colorFadedPink),
-                                ContextCompat.getColor(getContext(), R.color.colorAccent)});
+                        new int[]{ContextCompat.getColor(getContext(), R.color.fadedGray),
+                                ContextCompat.getColor(getContext(), R.color.colorAccent),
+                                ContextCompat.getColor(getContext(), R.color.fadedForestGreen),
+                                ContextCompat.getColor(getContext(), R.color.fadedGray)});
 
                 view.findViewById(R.id.layout_audio_player).setBackground(gradientDrawable);
-                img.setImageResource(R.mipmap.magnified_oh_lord_foreground);
+                img.setImageResource(R.mipmap.i_adjure_thee_by_thy_might_foreground);
                 txt.setText(prayerArray[12]);
                 break;
             case "Praise be to Thee...":
                 mp = MediaPlayer.create(getActivity().getApplicationContext(), R.raw.paris_talks20);
                 gradientDrawable = new GradientDrawable(
                         GradientDrawable.Orientation.TOP_BOTTOM,
-                        new int[]{ContextCompat.getColor(getContext(), R.color.colorAccent),
-                                ContextCompat.getColor(getContext(), R.color.colorFadedRed),
+                        new int[]{ContextCompat.getColor(getContext(), R.color.fadedOrange),
                                 ContextCompat.getColor(getContext(), R.color.colorFadedPink),
+                                ContextCompat.getColor(getContext(), R.color.fadedGray),
                                 ContextCompat.getColor(getContext(), R.color.colorAccent)});
 
                 view.findViewById(R.id.layout_audio_player).setBackground(gradientDrawable);
-                img.setImageResource(R.mipmap.magnified_oh_lord_foreground);
+                img.setImageResource(R.mipmap.praise_be_to_thee_foreground);
                 txt.setText(prayerArray[13]);
                 break;
 
