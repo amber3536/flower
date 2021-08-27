@@ -23,6 +23,7 @@ public class AudioPlayerTheBab extends Fragment {
     private String track;
     private ImageView img;
     private TextView txt;
+    private int playAllOn = 0;
     private MediaPlayer.OnCompletionListener listener;
     private int trackNum = 0;
     private GradientDrawable gradientDrawable;
@@ -50,7 +51,103 @@ public class AudioPlayerTheBab extends Fragment {
         }
 
 
+        playTrack(track);
 
+
+        playBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                pauseBtn.setVisibility(View.VISIBLE);
+                playBtn.setVisibility(View.GONE);
+
+                if (playAllOn == 1) {
+                    playAllOn = 0;
+                    playAll(trackNum);
+                }
+                else {
+                    mp.start();
+                }
+            }
+        });
+
+        pauseBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                playBtn.setVisibility(View.VISIBLE);
+                pauseBtn.setVisibility(View.GONE);
+
+                mp.pause();
+            }
+        });
+
+
+        mp.setOnCompletionListener(listener = new MediaPlayer.OnCompletionListener() {
+
+            @Override
+            public void onCompletion(MediaPlayer mp) {
+                //performOnEnd();
+                // mp.release();
+                Log.i("Audio Bahaullah", "onCompletion: " + trackNum);
+                if (track.equals("all") && trackNum < 1) {
+                    trackNum++;
+                    playAll(trackNum);
+                }
+                else if (track.equals("all") && trackNum == 1) {
+                    trackNum = 0;
+                    playAllOn = 1;
+                    playBtn.setVisibility(View.VISIBLE);
+                    pauseBtn.setVisibility(View.GONE);
+                }
+                else {
+                    playBtn.setVisibility(View.VISIBLE);
+                    pauseBtn.setVisibility(View.GONE);
+                }
+
+            }
+
+        });
+
+
+
+        return view;
+    }
+
+    private void playAll(int num) {
+        switch (num) {
+            case 0:
+                mp = MediaPlayer.create(getActivity().getApplicationContext(), R.raw.marian);
+                mp.setOnCompletionListener(listener);
+                gradientDrawable = new GradientDrawable(
+                        GradientDrawable.Orientation.TOP_BOTTOM,
+                        new int[]{ContextCompat.getColor(getContext(), R.color.colorAccent),
+                                ContextCompat.getColor(getContext(), R.color.colorFadedYellow),
+                                ContextCompat.getColor(getContext(), R.color.colorFadedPink),
+                                ContextCompat.getColor(getContext(), R.color.colorAccent)});
+
+                view.findViewById(R.id.layout_audio_player).setBackground(gradientDrawable);
+                img.setImageResource(R.mipmap.attract_photo_foreground);
+                txt.setText(prayerArray[0]);
+                pauseBtn.setVisibility(View.VISIBLE);
+                playBtn.setVisibility(View.GONE);
+                mp.start();
+                break;
+            case 1:
+                // mp.release();
+                // mp.stop();
+                // mp.reset();
+                mp = MediaPlayer.create(getActivity().getApplicationContext(), R.raw.brooklyn_bridge);
+                mp.setOnCompletionListener(listener);
+                txt.setText(prayerArray[1]);
+                img.setImageResource(R.mipmap.lauded_photo_foreground);
+                pauseBtn.setVisibility(View.VISIBLE);
+                playBtn.setVisibility(View.INVISIBLE);
+                //mp.setLooping(false);
+                mp.start();
+                break;
+        }
+    }
+
+    private void playTrack(String track) {
         switch(track) {
             case "Lauded be Thy name...":
                 mp = MediaPlayer.create(getActivity().getApplicationContext(), R.raw.o_thou_whose_face2);
@@ -69,9 +166,9 @@ public class AudioPlayerTheBab extends Fragment {
                 mp = MediaPlayer.create(getActivity().getApplicationContext(), R.raw.marian);
                 gradientDrawable = new GradientDrawable(
                         GradientDrawable.Orientation.TOP_BOTTOM,
-                        new int[]{ContextCompat.getColor(getContext(), R.color.fadedNavy),
+                        new int[]{ContextCompat.getColor(getContext(), R.color.fadedBlue),
+                                ContextCompat.getColor(getContext(), R.color.fadedForestGreen),
                                 ContextCompat.getColor(getContext(), R.color.fadedGreen),
-                                ContextCompat.getColor(getContext(), R.color.fadedTurquoise),
                                 ContextCompat.getColor(getContext(), R.color.fadedBlue)});
 
                 view.findViewById(R.id.layout_audio_player).setBackground(gradientDrawable);
@@ -241,83 +338,6 @@ public class AudioPlayerTheBab extends Fragment {
 
         }
 
-
-        playBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                pauseBtn.setVisibility(View.VISIBLE);
-                playBtn.setVisibility(View.GONE);
-
-                mp.start();
-            }
-        });
-
-        pauseBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                playBtn.setVisibility(View.VISIBLE);
-                pauseBtn.setVisibility(View.GONE);
-
-                mp.pause();
-            }
-        });
-
-
-        mp.setOnCompletionListener(listener = new MediaPlayer.OnCompletionListener() {
-
-            @Override
-            public void onCompletion(MediaPlayer mp) {
-                //performOnEnd();
-                // mp.release();
-                Log.i("Audio Bahaullah", "onCompletion: " + trackNum);
-                if (track.equals("all") && trackNum < 1) {
-                    trackNum++;
-                    playAll(trackNum);
-                }
-                else {
-                    playBtn.setVisibility(View.VISIBLE);
-                    pauseBtn.setVisibility(View.GONE);
-                }
-
-            }
-
-        });
-
-
-
-        return view;
-    }
-
-    private void playAll(int num) {
-        switch (num) {
-            case 0:
-                mp = MediaPlayer.create(getActivity().getApplicationContext(), R.raw.marian);
-                gradientDrawable = new GradientDrawable(
-                        GradientDrawable.Orientation.TOP_BOTTOM,
-                        new int[]{ContextCompat.getColor(getContext(), R.color.colorAccent),
-                                ContextCompat.getColor(getContext(), R.color.colorFadedYellow),
-                                ContextCompat.getColor(getContext(), R.color.colorFadedPink),
-                                ContextCompat.getColor(getContext(), R.color.colorAccent)});
-
-                view.findViewById(R.id.layout_audio_player).setBackground(gradientDrawable);
-                img.setImageResource(R.mipmap.attract_photo_foreground);
-                txt.setText(prayerArray[0]);
-                pauseBtn.setVisibility(View.VISIBLE);
-                playBtn.setVisibility(View.GONE);
-                mp.start();
-                break;
-            case 1:
-                // mp.release();
-                // mp.stop();
-                // mp.reset();
-                mp = MediaPlayer.create(getActivity().getApplicationContext(), R.raw.brooklyn_bridge);
-                mp.setOnCompletionListener(listener);
-                txt.setText(prayerArray[1]);
-                img.setImageResource(R.mipmap.lauded_photo_foreground);
-                //mp.setLooping(false);
-                mp.start();
-                break;
-        }
     }
 
 

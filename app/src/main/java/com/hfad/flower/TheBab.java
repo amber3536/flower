@@ -26,7 +26,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 public class TheBab extends Fragment {
     private View view;
     MediaPlayer mp;
-    private FloatingActionButton fab;
+    private FloatingActionButton playBtn;
     private Button btn;
     private TextView txt;
     String[] mobileArray = {"Lauded be Thy name...", "It is better to guide...", "God loveth those who are...",
@@ -43,6 +43,7 @@ public class TheBab extends Fragment {
         //setRetainInstance(true);
         // btn = view.findViewById(R.id.button_play_all);
         txt = view.findViewById(R.id.tv_prayer_list);
+        playBtn = view.findViewById(R.id.fab_prayer_list);
 
         TextPaint paint = txt.getPaint();
         float width = paint.measureText("Play All");
@@ -100,6 +101,16 @@ public class TheBab extends Fragment {
 //                intent.putExtra(selectedItem, "Paris");
                 //getFragmentManager().popBackStack();
                 //textView.setText("The best football player is : " + selectedItem);
+            }
+        });
+
+        playBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //pauseBtn.setVisibility(View.VISIBLE);
+                //playBtn.setVisibility(View.GONE);
+                loadFragment(new AudioPlayerBahaullah(), "EXTRA", "all");
+                //mp.start();
             }
         });
 //        TextView tv = view.findViewById(R.id.label);
