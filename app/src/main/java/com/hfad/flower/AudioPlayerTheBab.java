@@ -20,10 +20,13 @@ public class AudioPlayerTheBab extends Fragment {
     public MediaPlayer mp;
     private FloatingActionButton playBtn;
     private FloatingActionButton pauseBtn;
+    private FloatingActionButton backBtn;
+    private FloatingActionButton forwardBtn;
     private String track;
     private ImageView img;
     private TextView txt;
     private int playAllOn = 0;
+    private int maxNumTracks = 1; //change later
     private MediaPlayer.OnCompletionListener listener;
     private int trackNum = 0;
     private GradientDrawable gradientDrawable;
@@ -41,6 +44,8 @@ public class AudioPlayerTheBab extends Fragment {
 
         playBtn = view.findViewById(R.id.fab_play);
         pauseBtn = view.findViewById(R.id.fab_pause);
+        forwardBtn = view.findViewById(R.id.fab_forward);
+        backBtn = view.findViewById(R.id.fab_back);
         img = view.findViewById(R.id.audio_img);
         txt = view.findViewById(R.id.audio_txt);
 
@@ -77,6 +82,124 @@ public class AudioPlayerTheBab extends Fragment {
                 pauseBtn.setVisibility(View.GONE);
 
                 mp.pause();
+            }
+        });
+
+        forwardBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                switch(track) {
+                    case "Lauded be Thy name...":
+                        mp.pause();
+                        playBtn.setVisibility(View.VISIBLE);
+                        pauseBtn.setVisibility(View.GONE);
+                        track = "It is better to guide...";
+                        playTrack(track);
+                        break;
+                    case "It is better to guide...":
+                        mp.pause();
+                        playBtn.setVisibility(View.VISIBLE);
+                        pauseBtn.setVisibility(View.GONE);
+                        track = "God loveth those who are...";
+                        playTrack(track);
+                        break;
+                    case "God loveth those who are...":
+                        mp.pause();
+                        playBtn.setVisibility(View.VISIBLE);
+                        pauseBtn.setVisibility(View.GONE);
+                        track = "God hath, at all times...";
+                        playTrack(track);
+                        break;
+                    case "God hath, at all times...":
+                        mp.pause();
+                        playBtn.setVisibility(View.VISIBLE);
+                        pauseBtn.setVisibility(View.GONE);
+                        track = "Rid thou thyself...";
+                        playTrack(track);
+                        break;
+                    case "Rid thou thyself...":
+                        mp.pause();
+                        playBtn.setVisibility(View.VISIBLE);
+                        pauseBtn.setVisibility(View.GONE);
+                        track = "He--glorified be His mention...";
+                        playTrack(track);
+                        break;
+                    case "He--glorified be His mention...":
+                        mp.pause();
+                        playBtn.setVisibility(View.VISIBLE);
+                        pauseBtn.setVisibility(View.GONE);
+                        track = "Say: Praise be to God";
+                        playTrack(track);
+                        break;
+                    case "Say: Praise be to God":
+                        mp.pause();
+                        playBtn.setVisibility(View.VISIBLE);
+                        pauseBtn.setVisibility(View.GONE);
+                        track = "Glory be unto Thee...";
+                        playTrack(track);
+                        break;
+                    case "Glory be unto Thee...":
+                        mp.pause();
+                        playBtn.setVisibility(View.VISIBLE);
+                        pauseBtn.setVisibility(View.GONE);
+                        track = "I beg Thee to forgive me...";
+                        playTrack(track);
+                        break;
+                    case "I beg Thee to forgive me...":
+                        mp.pause();
+                        playBtn.setVisibility(View.VISIBLE);
+                        pauseBtn.setVisibility(View.GONE);
+                        track = "Glory be to Thee, O God!";
+                        playTrack(track);
+                        break;
+                    case "Glory be to Thee, O God!":
+                        mp.pause();
+                        playBtn.setVisibility(View.VISIBLE);
+                        pauseBtn.setVisibility(View.GONE);
+                        track = "O Lord! Enable all the peoples...";
+                        playTrack(track);
+                        break;
+                    case "O Lord! Enable all the peoples...":
+                        mp.pause();
+                        playBtn.setVisibility(View.VISIBLE);
+                        pauseBtn.setVisibility(View.GONE);
+                        track = "Throughout eternity Thou hast been...";
+                        playTrack(track);
+                        break;
+                    case "Throughout eternity Thou hast been...":
+                        mp.pause();
+                        playBtn.setVisibility(View.VISIBLE);
+                        pauseBtn.setVisibility(View.GONE);
+                        track = "I adjure Thee by Thy might...";
+                        playTrack(track);
+                        break;
+                    case "I adjure Thee by Thy might...":
+                        mp.pause();
+                        playBtn.setVisibility(View.VISIBLE);
+                        pauseBtn.setVisibility(View.GONE);
+                        track = "Praise be to Thee...";
+                        playTrack(track);
+                        break;
+                    case "Praise be to Thee...":
+                        mp.pause();
+                        playBtn.setVisibility(View.VISIBLE);
+                        pauseBtn.setVisibility(View.GONE);
+                        track = "Lauded be Thy name...";
+                        playTrack(track);
+                        break;
+                    case "all":
+                        mp.pause();
+                        playBtn.setVisibility(View.VISIBLE);
+                        pauseBtn.setVisibility(View.GONE);
+                        if (trackNum == maxNumTracks)
+                            trackNum = 0;
+                        else
+                            trackNum++;
+                        playAll(trackNum);
+                        //txt.setText(prayerArray[0]);
+                        break;
+
+                }
             }
         });
 
@@ -151,6 +274,7 @@ public class AudioPlayerTheBab extends Fragment {
         switch(track) {
             case "Lauded be Thy name...":
                 mp = MediaPlayer.create(getActivity().getApplicationContext(), R.raw.o_thou_whose_face2);
+                mp.setOnCompletionListener(listener);
                 gradientDrawable = new GradientDrawable(
                         GradientDrawable.Orientation.TOP_BOTTOM,
                         new int[]{ContextCompat.getColor(getContext(), R.color.fadedGreen),
@@ -164,6 +288,7 @@ public class AudioPlayerTheBab extends Fragment {
                 break;
             case "It is better to guide...":
                 mp = MediaPlayer.create(getActivity().getApplicationContext(), R.raw.marian);
+                mp.setOnCompletionListener(listener);
                 gradientDrawable = new GradientDrawable(
                         GradientDrawable.Orientation.TOP_BOTTOM,
                         new int[]{ContextCompat.getColor(getContext(), R.color.fadedBlue),
@@ -177,6 +302,7 @@ public class AudioPlayerTheBab extends Fragment {
                 break;
             case "God loveth those who are...":
                 mp = MediaPlayer.create(getActivity().getApplicationContext(), R.raw.marian);
+                mp.setOnCompletionListener(listener);
                 gradientDrawable = new GradientDrawable(
                         GradientDrawable.Orientation.TOP_BOTTOM,
                         new int[]{ContextCompat.getColor(getContext(), R.color.fadedNavy),
@@ -190,6 +316,7 @@ public class AudioPlayerTheBab extends Fragment {
                 break;
             case "God hath, at all times...":
                 mp = MediaPlayer.create(getActivity().getApplicationContext(), R.raw.from_the_sweet_scented);
+                mp.setOnCompletionListener(listener);
                 gradientDrawable = new GradientDrawable(
                         GradientDrawable.Orientation.TOP_BOTTOM,
                         new int[]{ContextCompat.getColor(getContext(), R.color.fadedGray),
@@ -203,6 +330,7 @@ public class AudioPlayerTheBab extends Fragment {
                 break;
             case "Rid thou thyself...":
                 mp = MediaPlayer.create(getActivity().getApplicationContext(), R.raw.from_the_sweet_scented);
+                mp.setOnCompletionListener(listener);
                 gradientDrawable = new GradientDrawable(
                         GradientDrawable.Orientation.TOP_BOTTOM,
                         new int[]{ContextCompat.getColor(getContext(), R.color.fadedNavy),
@@ -216,6 +344,7 @@ public class AudioPlayerTheBab extends Fragment {
                 break;
             case "He--glorified be His mention...":
                 mp = MediaPlayer.create(getActivity().getApplicationContext(), R.raw.from_the_sweet_scented);
+                mp.setOnCompletionListener(listener);
                 gradientDrawable = new GradientDrawable(
                         GradientDrawable.Orientation.TOP_BOTTOM,
                         new int[]{ContextCompat.getColor(getContext(), R.color.fadedGray),
@@ -229,6 +358,7 @@ public class AudioPlayerTheBab extends Fragment {
                 break;
             case "Say: Praise be to God":
                 mp = MediaPlayer.create(getActivity().getApplicationContext(), R.raw.from_the_sweet_scented);
+                mp.setOnCompletionListener(listener);
                 gradientDrawable = new GradientDrawable(
                         GradientDrawable.Orientation.TOP_BOTTOM,
                         new int[]{ContextCompat.getColor(getContext(), R.color.fadedGray),
@@ -242,6 +372,7 @@ public class AudioPlayerTheBab extends Fragment {
                 break;
             case "Glory be unto Thee...":
                 mp = MediaPlayer.create(getActivity().getApplicationContext(), R.raw.from_the_sweet_scented);
+                mp.setOnCompletionListener(listener);
                 gradientDrawable = new GradientDrawable(
                         GradientDrawable.Orientation.TOP_BOTTOM,
                         new int[]{ContextCompat.getColor(getContext(), R.color.colorAccent),
@@ -259,6 +390,7 @@ public class AudioPlayerTheBab extends Fragment {
                 break;
             case "I beg Thee to forgive me...":
                 mp = MediaPlayer.create(getActivity().getApplicationContext(), R.raw.paris_talks20);
+                mp.setOnCompletionListener(listener);
                 gradientDrawable = new GradientDrawable(
                         GradientDrawable.Orientation.TOP_BOTTOM,
                         new int[]{ContextCompat.getColor(getContext(), R.color.colorAccent),
@@ -272,6 +404,7 @@ public class AudioPlayerTheBab extends Fragment {
                 break;
             case "Glory be to Thee, O God!":
                 mp = MediaPlayer.create(getActivity().getApplicationContext(), R.raw.paris_talks20);
+                mp.setOnCompletionListener(listener);
                 gradientDrawable = new GradientDrawable(
                         GradientDrawable.Orientation.TOP_BOTTOM,
                         new int[]{ContextCompat.getColor(getContext(), R.color.colorAccent),
@@ -285,6 +418,7 @@ public class AudioPlayerTheBab extends Fragment {
                 break;
             case "O Lord! Enable all the peoples...":
                 mp = MediaPlayer.create(getActivity().getApplicationContext(), R.raw.paris_talks20);
+                mp.setOnCompletionListener(listener);
                 gradientDrawable = new GradientDrawable(
                         GradientDrawable.Orientation.TOP_BOTTOM,
                         new int[]{ContextCompat.getColor(getContext(), R.color.colorFadedPurple),
@@ -298,6 +432,7 @@ public class AudioPlayerTheBab extends Fragment {
                 break;
             case "Throughout eternity Thou hast been...":
                 mp = MediaPlayer.create(getActivity().getApplicationContext(), R.raw.paris_talks20);
+                mp.setOnCompletionListener(listener);
                 gradientDrawable = new GradientDrawable(
                         GradientDrawable.Orientation.TOP_BOTTOM,
                         new int[]{ContextCompat.getColor(getContext(), R.color.fadedGray),
@@ -311,6 +446,7 @@ public class AudioPlayerTheBab extends Fragment {
                 break;
             case "I adjure Thee by Thy might...":
                 mp = MediaPlayer.create(getActivity().getApplicationContext(), R.raw.paris_talks20);
+                mp.setOnCompletionListener(listener);
                 gradientDrawable = new GradientDrawable(
                         GradientDrawable.Orientation.TOP_BOTTOM,
                         new int[]{ContextCompat.getColor(getContext(), R.color.fadedGray),
@@ -324,6 +460,7 @@ public class AudioPlayerTheBab extends Fragment {
                 break;
             case "Praise be to Thee...":
                 mp = MediaPlayer.create(getActivity().getApplicationContext(), R.raw.paris_talks20);
+                mp.setOnCompletionListener(listener);
                 gradientDrawable = new GradientDrawable(
                         GradientDrawable.Orientation.TOP_BOTTOM,
                         new int[]{ContextCompat.getColor(getContext(), R.color.fadedOrange),

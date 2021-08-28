@@ -29,6 +29,7 @@ public class AudioPlayerBahaullah extends Fragment {
     private FloatingActionButton forwardBtn;
     private MediaPlayer.OnCompletionListener listener;
     private int trackNum = 0;
+    private int numTracks = 1; //change later
     private int trackCount = 0;
     private GradientDrawable gradientDrawable;
     String[] prayerArray = {"Attract the hearts of men...", "Lauded be Thy name...", "Glorified art Thou, O Lord my God...",
@@ -45,6 +46,7 @@ public class AudioPlayerBahaullah extends Fragment {
         playBtn = view.findViewById(R.id.fab_play);
         pauseBtn = view.findViewById(R.id.fab_pause);
         forwardBtn = view.findViewById(R.id.fab_forward);
+        backBtn = view.findViewById(R.id.fab_back);
         img = view.findViewById(R.id.audio_img);
         txt = view.findViewById(R.id.audio_txt);
 
@@ -100,40 +102,143 @@ public class AudioPlayerBahaullah extends Fragment {
                         playTrack(track);
                        break;
                    case "Lauded Be Thy Name...":
+                       mp.pause();
+                       playBtn.setVisibility(View.VISIBLE);
+                       pauseBtn.setVisibility(View.GONE);
                        track = "Glorified Art Thou, O Lord My God...";
                        playTrack(track);
                        break;
                    case "Glorified Art Thou, O Lord My God...":
+                       mp.pause();
+                       playBtn.setVisibility(View.VISIBLE);
+                       pauseBtn.setVisibility(View.GONE);
                        track = "From the Sweet-Scented Streams...";
                        playTrack(track);
                        break;
                    case "From the Sweet-Scented Streams...":
+                       mp.pause();
+                       playBtn.setVisibility(View.VISIBLE);
+                       pauseBtn.setVisibility(View.GONE);
                        track = "Create in Me a Pure Heart...";
                        playTrack(track);
                        break;
                    case "Create in Me a Pure Heart...":
+                       mp.pause();
+                       playBtn.setVisibility(View.VISIBLE);
+                       pauseBtn.setVisibility(View.GONE);
                        track = "He is the Gracious, the All_Bountiful...";
                        playTrack(track);
                        break;
                    case "He is the Gracious, the All_Bountiful...":
+                       mp.pause();
+                       playBtn.setVisibility(View.VISIBLE);
+                       pauseBtn.setVisibility(View.GONE);
                        track = "Glory to Thee, O My God!";
                        playTrack(track);
                        break;
                    case "Glory to Thee, O My God!":
+                       mp.pause();
+                       playBtn.setVisibility(View.VISIBLE);
+                       pauseBtn.setVisibility(View.GONE);
                        track = "Magnified, O Lord My God, Be Thy Name...";
                        playTrack(track);
                        break;
                    case "Magnified, O Lord My God, Be Thy Name...":
+                       mp.pause();
+                       playBtn.setVisibility(View.VISIBLE);
+                       pauseBtn.setVisibility(View.GONE);
                        track = "Attract the Hearts of Men...";
                        playTrack(track);
                        break;
                    case "all":
                        //playAllOn = 1;
-                       trackNum++;
+                       mp.pause();
+                       playBtn.setVisibility(View.VISIBLE);
+                       pauseBtn.setVisibility(View.GONE);
+                       if (trackNum == numTracks)
+                           trackNum = 0;
+                       else
+                           trackNum++;
                        playAll(trackNum);
                        //txt.setText(prayerArray[0]);
                        break;
                }
+            }
+        });
+
+        backBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                switch (track) {
+                    case "Attract the Hearts of Men...":
+                        mp.pause();
+                        playBtn.setVisibility(View.VISIBLE);
+                        pauseBtn.setVisibility(View.GONE);
+                        track = "Magnified, O Lord My God, Be Thy Name...";
+                        playTrack(track);
+                        break;
+                    case "Lauded Be Thy Name...":
+                        mp.pause();
+                        playBtn.setVisibility(View.VISIBLE);
+                        pauseBtn.setVisibility(View.GONE);
+                        track = "Attract the Hearts of Men...";
+                        playTrack(track);
+                        break;
+                    case "Glorified Art Thou, O Lord My God...":
+                        mp.pause();
+                        playBtn.setVisibility(View.VISIBLE);
+                        pauseBtn.setVisibility(View.GONE);
+                        track = "Lauded Be Thy Name...";
+                        playTrack(track);
+                        break;
+                    case "From the Sweet-Scented Streams...":
+                        mp.pause();
+                        playBtn.setVisibility(View.VISIBLE);
+                        pauseBtn.setVisibility(View.GONE);
+                        track = "Glorified Art Thou, O Lord My God...";
+                        playTrack(track);
+                        break;
+                    case "Create in Me a Pure Heart...":
+                        mp.pause();
+                        playBtn.setVisibility(View.VISIBLE);
+                        pauseBtn.setVisibility(View.GONE);
+                        track = "From the Sweet-Scented Streams...";
+                        playTrack(track);
+                        break;
+                    case "He is the Gracious, the All_Bountiful...":
+                        mp.pause();
+                        playBtn.setVisibility(View.VISIBLE);
+                        pauseBtn.setVisibility(View.GONE);
+                        track = "Create in Me a Pure Heart...";
+                        playTrack(track);
+                        break;
+                    case "Glory to Thee, O My God!":
+                        mp.pause();
+                        playBtn.setVisibility(View.VISIBLE);
+                        pauseBtn.setVisibility(View.GONE);
+                        track = "He is the Gracious, the All_Bountiful...";
+                        playTrack(track);
+                        break;
+                    case "Magnified, O Lord My God, Be Thy Name...":
+                        mp.pause();
+                        playBtn.setVisibility(View.VISIBLE);
+                        pauseBtn.setVisibility(View.GONE);
+                        track = "Glory to Thee, O My God!";
+                        playTrack(track);
+                        break;
+                    case "all":
+                        //playAllOn = 1;
+                        mp.pause();
+                        playBtn.setVisibility(View.VISIBLE);
+                        pauseBtn.setVisibility(View.GONE);
+                        if (trackNum == 0)
+                            trackNum = numTracks;
+                        else
+                            trackNum--;
+                        playAll(trackNum);
+                        //txt.setText(prayerArray[0]);
+                        break;
+                }
             }
         });
 
@@ -154,11 +259,11 @@ public class AudioPlayerBahaullah extends Fragment {
                 //performOnEnd();
                // mp.release();
                 Log.i("Audio Bahaullah", "onCompletion: " + trackNum);
-                if (track.equals("all") && trackNum < 1) {
+                if (track.equals("all") && trackNum < numTracks) {
                     trackNum++;
                     playAll(trackNum);
                 }
-                else if (track.equals("all") && trackNum == 1) {
+                else if (track.equals("all") && trackNum == numTracks) {
                     trackNum = 0;
                     playAllOn = 1;
                     playBtn.setVisibility(View.VISIBLE);
