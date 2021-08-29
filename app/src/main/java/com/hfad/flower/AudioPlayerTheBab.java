@@ -203,6 +203,125 @@ public class AudioPlayerTheBab extends Fragment {
             }
         });
 
+        backBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                switch(track) {
+                    case "Lauded be Thy name...":
+                        mp.pause();
+                        playBtn.setVisibility(View.VISIBLE);
+                        pauseBtn.setVisibility(View.GONE);
+                        track = "Praise be to Thee...";
+                        playTrack(track);
+                        break;
+                    case "It is better to guide...":
+                        mp.pause();
+                        playBtn.setVisibility(View.VISIBLE);
+                        pauseBtn.setVisibility(View.GONE);
+                        track = "Lauded be Thy name...";
+                        playTrack(track);
+                        break;
+                    case "God loveth those who are...":
+                        mp.pause();
+                        playBtn.setVisibility(View.VISIBLE);
+                        pauseBtn.setVisibility(View.GONE);
+                        track = "It is better to guide...";
+                        playTrack(track);
+                        break;
+                    case "God hath, at all times...":
+                        mp.pause();
+                        playBtn.setVisibility(View.VISIBLE);
+                        pauseBtn.setVisibility(View.GONE);
+                        track = "God loveth those who are...";
+                        playTrack(track);
+                        break;
+                    case "Rid thou thyself...":
+                        mp.pause();
+                        playBtn.setVisibility(View.VISIBLE);
+                        pauseBtn.setVisibility(View.GONE);
+                        track = "God hath, at all times...";
+                        playTrack(track);
+                        break;
+                    case "He--glorified be His mention...":
+                        mp.pause();
+                        playBtn.setVisibility(View.VISIBLE);
+                        pauseBtn.setVisibility(View.GONE);
+                        track = "Rid thou thyself...";
+                        playTrack(track);
+                        break;
+                    case "Say: Praise be to God":
+                        mp.pause();
+                        playBtn.setVisibility(View.VISIBLE);
+                        pauseBtn.setVisibility(View.GONE);
+                        track = "He--glorified be His mention...";
+                        playTrack(track);
+                        break;
+                    case "Glory be unto Thee...":
+                        mp.pause();
+                        playBtn.setVisibility(View.VISIBLE);
+                        pauseBtn.setVisibility(View.GONE);
+                        track = "Say: Praise be to God";
+                        playTrack(track);
+                        break;
+                    case "I beg Thee to forgive me...":
+                        mp.pause();
+                        playBtn.setVisibility(View.VISIBLE);
+                        pauseBtn.setVisibility(View.GONE);
+                        track = "Glory be unto Thee...";
+                        playTrack(track);
+                        break;
+                    case "Glory be to Thee, O God!":
+                        mp.pause();
+                        playBtn.setVisibility(View.VISIBLE);
+                        pauseBtn.setVisibility(View.GONE);
+                        track = "I beg Thee to forgive me...";
+                        playTrack(track);
+                        break;
+                    case "O Lord! Enable all the peoples...":
+                        mp.pause();
+                        playBtn.setVisibility(View.VISIBLE);
+                        pauseBtn.setVisibility(View.GONE);
+                        track = "Glory be to Thee, O God!";
+                        playTrack(track);
+                        break;
+                    case "Throughout eternity Thou hast been...":
+                        mp.pause();
+                        playBtn.setVisibility(View.VISIBLE);
+                        pauseBtn.setVisibility(View.GONE);
+                        track = "O Lord! Enable all the peoples...";
+                        playTrack(track);
+                        break;
+                    case "I adjure Thee by Thy might...":
+                        mp.pause();
+                        playBtn.setVisibility(View.VISIBLE);
+                        pauseBtn.setVisibility(View.GONE);
+                        track = "Throughout eternity Thou hast been...";
+                        playTrack(track);
+                        break;
+                    case "Praise be to Thee...":
+                        mp.pause();
+                        playBtn.setVisibility(View.VISIBLE);
+                        pauseBtn.setVisibility(View.GONE);
+                        track = "I adjure Thee by Thy might...";
+                        playTrack(track);
+                        break;
+                    case "all":
+                        mp.pause();
+                        playBtn.setVisibility(View.VISIBLE);
+                        pauseBtn.setVisibility(View.GONE);
+                        if (trackNum == maxNumTracks)
+                            trackNum = 0;
+                        else
+                            trackNum++;
+                        playAll(trackNum);
+                        //txt.setText(prayerArray[0]);
+                        break;
+
+                }
+            }
+        });
+
+
 
         mp.setOnCompletionListener(listener = new MediaPlayer.OnCompletionListener() {
 

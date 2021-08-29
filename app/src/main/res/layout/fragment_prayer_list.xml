@@ -38,9 +38,9 @@
         app:layout_constraintBottom_toBottomOf="parent"
         android:text="Play All"
         android:textSize="20sp"
-        android:textStyle="bold"
+
         android:layout_marginBottom="30dp"
-        android:fontFamily="@font/montserrat_regular"/>
+        android:fontFamily="@font/merriweather_sans_bold"/>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab_prayer_list"
