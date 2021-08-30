@@ -76,7 +76,7 @@ public class AbdulBaha extends Fragment {
 
                 //Intent intent = new Intent(view.getContext(), MainActivity.class);
                 //intent.putExtra("EXTRA", selectedItem);
-                loadFragment(new AudioPlayerBahaullah(), "EXTRA", selectedItem);
+                loadFragment(new AudioPlayerAbdulBaha(), "EXTRA", selectedItem);
 
 //                switch (selectedItem) {
 //                    case "O Thou Whose Face":
@@ -105,7 +105,7 @@ public class AbdulBaha extends Fragment {
             public void onClick(View v) {
                 //pauseBtn.setVisibility(View.VISIBLE);
                 //playBtn.setVisibility(View.GONE);
-                loadFragment(new AudioPlayerBahaullah(), "EXTRA", "all");
+                loadFragment(new AudioPlayerAbdulBaha(), "EXTRA", "all");
                 //mp.start();
             }
         });
