@@ -375,12 +375,12 @@ public class AudioPlayerAbdulBaha extends Fragment {
                 gradientDrawable = new GradientDrawable(
                         GradientDrawable.Orientation.TOP_BOTTOM,
                         new int[]{ContextCompat.getColor(getContext(), R.color.colorAccent),
-                                ContextCompat.getColor(getContext(), R.color.colorFadedYellow),
-                                ContextCompat.getColor(getContext(), R.color.colorFadedPink),
+                                ContextCompat.getColor(getContext(), R.color.fadedNavy),
+                                ContextCompat.getColor(getContext(), R.color.fadedForestGreen),
                                 ContextCompat.getColor(getContext(), R.color.colorAccent)});
 
                 view.findViewById(R.id.layout_audio_player).setBackground(gradientDrawable);
-                img.setImageResource(R.mipmap.attract_photo_foreground);
+                img.setImageResource(R.mipmap.make_firm_our_steps_foreground);
                 txt.setText(prayerArray[0]);
                 pauseBtn.setVisibility(View.VISIBLE);
                 playBtn.setVisibility(View.INVISIBLE);
@@ -412,12 +412,12 @@ public class AudioPlayerAbdulBaha extends Fragment {
                 gradientDrawable = new GradientDrawable(
                         GradientDrawable.Orientation.TOP_BOTTOM,
                         new int[]{ContextCompat.getColor(getContext(), R.color.colorAccent),
-                                ContextCompat.getColor(getContext(), R.color.colorFadedYellow),
-                                ContextCompat.getColor(getContext(), R.color.colorFadedPink),
+                                ContextCompat.getColor(getContext(), R.color.fadedNavy),
+                                ContextCompat.getColor(getContext(), R.color.fadedForestGreen),
                                 ContextCompat.getColor(getContext(), R.color.colorAccent)});
 
                 view.findViewById(R.id.layout_audio_player).setBackground(gradientDrawable);
-                img.setImageResource(R.mipmap.attract_photo_foreground);
+                img.setImageResource(R.mipmap.make_firm_our_steps_foreground);
                 txt.setText(prayerArray[0]);
                 trackCount = 0;
                 break;
@@ -427,12 +427,12 @@ public class AudioPlayerAbdulBaha extends Fragment {
                 gradientDrawable = new GradientDrawable(
                         GradientDrawable.Orientation.TOP_BOTTOM,
                         new int[]{ContextCompat.getColor(getContext(), R.color.colorAccent),
-                                ContextCompat.getColor(getContext(), R.color.colorFadedYellow),
+                                ContextCompat.getColor(getContext(), R.color.fadedForestGreen),
                                 ContextCompat.getColor(getContext(), R.color.colorFadedPink),
                                 ContextCompat.getColor(getContext(), R.color.colorAccent)});
 
                 view.findViewById(R.id.layout_audio_player).setBackground(gradientDrawable);
-                img.setImageResource(R.mipmap.lauded_photo_foreground);
+                img.setImageResource(R.mipmap.o_compassionate_god_foreground);
                 txt.setText(prayerArray[1]);
                 trackCount = 1;
                 break;
@@ -442,12 +442,12 @@ public class AudioPlayerAbdulBaha extends Fragment {
                 gradientDrawable = new GradientDrawable(
                         GradientDrawable.Orientation.TOP_BOTTOM,
                         new int[]{ContextCompat.getColor(getContext(), R.color.colorAccent),
-                                ContextCompat.getColor(getContext(), R.color.fadedBlue),
-                                ContextCompat.getColor(getContext(), R.color.fadedGreen),
+                                ContextCompat.getColor(getContext(), R.color.colorFadedYellow),
+                                ContextCompat.getColor(getContext(), R.color.colorFadedPink),
                                 ContextCompat.getColor(getContext(), R.color.colorAccent)});
 
                 view.findViewById(R.id.layout_audio_player).setBackground(gradientDrawable);
-                img.setImageResource(R.mipmap.glorified_art_thou_photo_foreground);
+                img.setImageResource(R.mipmap.o_thou_beloved_foreground);
                 txt.setText(prayerArray[2]);
                 trackCount = 2;
                 break;
