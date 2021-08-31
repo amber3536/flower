@@ -29,9 +29,9 @@ public class Bahaullah extends Fragment {
     private FloatingActionButton pauseBtn;
     private Button btn;
     private TextView txt;
-    String[] mobileArray = {"Attract the Hearts of Men...", "Lauded Be Thy Name...", "Glorified Art Thou, O Lord My God...",
-            "From the Sweet-Scented Streams...", "Create in Me a Pure Heart...", "He is the Gracious, the All_Bountiful...",
-            "Glory to Thee, O My God!", "Magnified, O Lord My God, Be Thy Name..."};
+    String[] mobileArray = {"Attract the hearts of men...", "Lauded be Thy name...", "Glorified art Thou, O Lord my God...",
+            "From the sweet-scented streams...", "Create in me a pure heart...", "He is the Gracious, the All-Bountiful...",
+            "Glory to Thee, O my God!", "Magnified, O Lord my God, be Thy name..."};
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
