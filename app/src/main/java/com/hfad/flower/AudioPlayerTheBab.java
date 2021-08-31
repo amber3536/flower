@@ -30,6 +30,20 @@ public class AudioPlayerTheBab extends Fragment {
     private MediaPlayer.OnCompletionListener listener;
     private int trackNum = 0;
     private GradientDrawable gradientDrawable;
+    final String prayer1 = "Lauded be Thy name...";
+    final String prayer2 = "It is better to guide...";
+    final String prayer3 = "God loveth those who are...";
+    final String prayer4 = "God hath, at all times...";
+    final String prayer5 = "Rid thou thyself...";
+    final String prayer6 = "He--glorified be His mention...";
+    final String prayer7 = "Say: Praise be to God";
+    final String prayer8 = "Glory be unto Thee...";
+    final String prayer9 = "I beg Thee to forgive me...";
+    final String prayer10 = "Glory be to Thee, O God!";
+    final String prayer11 = "O Lord! Enable all the peoples...";
+    final String prayer12 = "Throughout eternity Thou hast been...";
+    final String prayer13 = "I adjure Thee by Thy might...";
+    final String prayer14 = "Praise be to Thee...";
     String[] prayerArray = {"Lauded be Thy name...", "It is better to guide...", "God loveth those who are...",
             "God hath, at all times...", "Rid thou thyself...", "He--glorified be His mention...",
             "Say: Praise be to God", "Glory be unto Thee...", "I beg Thee to forgive me...", "Glory be to Thee, O God!",
@@ -89,102 +103,102 @@ public class AudioPlayerTheBab extends Fragment {
             @Override
             public void onClick(View v) {
                 switch(track) {
-                    case "Lauded be Thy name...":
+                    case prayer1:
                         mp.pause();
                         playBtn.setVisibility(View.VISIBLE);
                         pauseBtn.setVisibility(View.GONE);
-                        track = "It is better to guide...";
+                        track = prayer2;
                         playTrack(track);
                         break;
-                    case "It is better to guide...":
+                    case prayer2:
                         mp.pause();
                         playBtn.setVisibility(View.VISIBLE);
                         pauseBtn.setVisibility(View.GONE);
-                        track = "God loveth those who are...";
+                        track = prayer3;
                         playTrack(track);
                         break;
-                    case "God loveth those who are...":
+                    case prayer3:
                         mp.pause();
                         playBtn.setVisibility(View.VISIBLE);
                         pauseBtn.setVisibility(View.GONE);
-                        track = "God hath, at all times...";
+                        track = prayer4;
                         playTrack(track);
                         break;
-                    case "God hath, at all times...":
+                    case prayer4:
                         mp.pause();
                         playBtn.setVisibility(View.VISIBLE);
                         pauseBtn.setVisibility(View.GONE);
-                        track = "Rid thou thyself...";
+                        track = prayer5;
                         playTrack(track);
                         break;
-                    case "Rid thou thyself...":
+                    case prayer5:
                         mp.pause();
                         playBtn.setVisibility(View.VISIBLE);
                         pauseBtn.setVisibility(View.GONE);
-                        track = "He--glorified be His mention...";
+                        track = prayer6;
                         playTrack(track);
                         break;
-                    case "He--glorified be His mention...":
+                    case prayer6:
                         mp.pause();
                         playBtn.setVisibility(View.VISIBLE);
                         pauseBtn.setVisibility(View.GONE);
-                        track = "Say: Praise be to God";
+                        track = prayer7;
                         playTrack(track);
                         break;
-                    case "Say: Praise be to God":
+                    case prayer7:
                         mp.pause();
                         playBtn.setVisibility(View.VISIBLE);
                         pauseBtn.setVisibility(View.GONE);
-                        track = "Glory be unto Thee...";
+                        track = prayer8;
                         playTrack(track);
                         break;
-                    case "Glory be unto Thee...":
+                    case prayer8:
                         mp.pause();
                         playBtn.setVisibility(View.VISIBLE);
                         pauseBtn.setVisibility(View.GONE);
-                        track = "I beg Thee to forgive me...";
+                        track = prayer9;
                         playTrack(track);
                         break;
-                    case "I beg Thee to forgive me...":
+                    case prayer9:
                         mp.pause();
                         playBtn.setVisibility(View.VISIBLE);
                         pauseBtn.setVisibility(View.GONE);
-                        track = "Glory be to Thee, O God!";
+                        track = prayer10;
                         playTrack(track);
                         break;
-                    case "Glory be to Thee, O God!":
+                    case prayer10:
                         mp.pause();
                         playBtn.setVisibility(View.VISIBLE);
                         pauseBtn.setVisibility(View.GONE);
-                        track = "O Lord! Enable all the peoples...";
+                        track = prayer11;
                         playTrack(track);
                         break;
-                    case "O Lord! Enable all the peoples...":
+                    case prayer11:
                         mp.pause();
                         playBtn.setVisibility(View.VISIBLE);
                         pauseBtn.setVisibility(View.GONE);
-                        track = "Throughout eternity Thou hast been...";
+                        track = prayer12;
                         playTrack(track);
                         break;
-                    case "Throughout eternity Thou hast been...":
+                    case prayer12:
                         mp.pause();
                         playBtn.setVisibility(View.VISIBLE);
                         pauseBtn.setVisibility(View.GONE);
-                        track = "I adjure Thee by Thy might...";
+                        track = prayer13;
                         playTrack(track);
                         break;
-                    case "I adjure Thee by Thy might...":
+                    case prayer13:
                         mp.pause();
                         playBtn.setVisibility(View.VISIBLE);
                         pauseBtn.setVisibility(View.GONE);
-                        track = "Praise be to Thee...";
+                        track = prayer14;
                         playTrack(track);
                         break;
-                    case "Praise be to Thee...":
+                    case prayer14:
                         mp.pause();
                         playBtn.setVisibility(View.VISIBLE);
                         pauseBtn.setVisibility(View.GONE);
-                        track = "Lauded be Thy name...";
+                        track = prayer1;
                         playTrack(track);
                         break;
                     case "all":
@@ -207,102 +221,102 @@ public class AudioPlayerTheBab extends Fragment {
             @Override
             public void onClick(View v) {
                 switch(track) {
-                    case "Lauded be Thy name...":
+                    case prayer1:
                         mp.pause();
                         playBtn.setVisibility(View.VISIBLE);
                         pauseBtn.setVisibility(View.GONE);
-                        track = "Praise be to Thee...";
+                        track = prayer14;
                         playTrack(track);
                         break;
-                    case "It is better to guide...":
+                    case prayer2:
                         mp.pause();
                         playBtn.setVisibility(View.VISIBLE);
                         pauseBtn.setVisibility(View.GONE);
-                        track = "Lauded be Thy name...";
+                        track = prayer1;
                         playTrack(track);
                         break;
-                    case "God loveth those who are...":
+                    case prayer3:
                         mp.pause();
                         playBtn.setVisibility(View.VISIBLE);
                         pauseBtn.setVisibility(View.GONE);
-                        track = "It is better to guide...";
+                        track = prayer2;
                         playTrack(track);
                         break;
-                    case "God hath, at all times...":
+                    case prayer4:
                         mp.pause();
                         playBtn.setVisibility(View.VISIBLE);
                         pauseBtn.setVisibility(View.GONE);
-                        track = "God loveth those who are...";
+                        track = prayer3;
                         playTrack(track);
                         break;
-                    case "Rid thou thyself...":
+                    case prayer5:
                         mp.pause();
                         playBtn.setVisibility(View.VISIBLE);
                         pauseBtn.setVisibility(View.GONE);
-                        track = "God hath, at all times...";
+                        track = prayer4;
                         playTrack(track);
                         break;
-                    case "He--glorified be His mention...":
+                    case prayer6:
                         mp.pause();
                         playBtn.setVisibility(View.VISIBLE);
                         pauseBtn.setVisibility(View.GONE);
-                        track = "Rid thou thyself...";
+                        track = prayer5;
                         playTrack(track);
                         break;
-                    case "Say: Praise be to God":
+                    case prayer7:
                         mp.pause();
                         playBtn.setVisibility(View.VISIBLE);
                         pauseBtn.setVisibility(View.GONE);
-                        track = "He--glorified be His mention...";
+                        track = prayer6;
                         playTrack(track);
                         break;
-                    case "Glory be unto Thee...":
+                    case prayer8:
                         mp.pause();
                         playBtn.setVisibility(View.VISIBLE);
                         pauseBtn.setVisibility(View.GONE);
-                        track = "Say: Praise be to God";
+                        track = prayer7;
                         playTrack(track);
                         break;
-                    case "I beg Thee to forgive me...":
+                    case prayer9:
                         mp.pause();
                         playBtn.setVisibility(View.VISIBLE);
                         pauseBtn.setVisibility(View.GONE);
-                        track = "Glory be unto Thee...";
+                        track = prayer8;
                         playTrack(track);
                         break;
-                    case "Glory be to Thee, O God!":
+                    case prayer10:
                         mp.pause();
                         playBtn.setVisibility(View.VISIBLE);
                         pauseBtn.setVisibility(View.GONE);
-                        track = "I beg Thee to forgive me...";
+                        track = prayer9;
                         playTrack(track);
                         break;
-                    case "O Lord! Enable all the peoples...":
+                    case prayer11:
                         mp.pause();
                         playBtn.setVisibility(View.VISIBLE);
                         pauseBtn.setVisibility(View.GONE);
-                        track = "Glory be to Thee, O God!";
+                        track = prayer10;
                         playTrack(track);
                         break;
-                    case "Throughout eternity Thou hast been...":
+                    case prayer12:
                         mp.pause();
                         playBtn.setVisibility(View.VISIBLE);
                         pauseBtn.setVisibility(View.GONE);
-                        track = "O Lord! Enable all the peoples...";
+                        track = prayer11;
                         playTrack(track);
                         break;
-                    case "I adjure Thee by Thy might...":
+                    case prayer13:
                         mp.pause();
                         playBtn.setVisibility(View.VISIBLE);
                         pauseBtn.setVisibility(View.GONE);
-                        track = "Throughout eternity Thou hast been...";
+                        track = prayer12;
                         playTrack(track);
                         break;
-                    case "Praise be to Thee...":
+                    case prayer14:
                         mp.pause();
                         playBtn.setVisibility(View.VISIBLE);
                         pauseBtn.setVisibility(View.GONE);
-                        track = "I adjure Thee by Thy might...";
+                        track = prayer13;
                         playTrack(track);
                         break;
                     case "all":
@@ -391,7 +405,7 @@ public class AudioPlayerTheBab extends Fragment {
 
     private void playTrack(String track) {
         switch(track) {
-            case "Lauded be Thy name...":
+            case prayer1:
                 mp = MediaPlayer.create(getActivity().getApplicationContext(), R.raw.o_thou_whose_face2);
                 mp.setOnCompletionListener(listener);
                 gradientDrawable = new GradientDrawable(
@@ -405,7 +419,7 @@ public class AudioPlayerTheBab extends Fragment {
                 img.setImageResource(R.mipmap.lauded_be_thy_name_foreground);
                 txt.setText(prayerArray[0]);
                 break;
-            case "It is better to guide...":
+            case prayer2:
                 mp = MediaPlayer.create(getActivity().getApplicationContext(), R.raw.marian);
                 mp.setOnCompletionListener(listener);
                 gradientDrawable = new GradientDrawable(
@@ -419,7 +433,7 @@ public class AudioPlayerTheBab extends Fragment {
                 img.setImageResource(R.mipmap.it_is_better_to_guide_foreground);
                 txt.setText(prayerArray[1]);
                 break;
-            case "God loveth those who are...":
+            case prayer3:
                 mp = MediaPlayer.create(getActivity().getApplicationContext(), R.raw.marian);
                 mp.setOnCompletionListener(listener);
                 gradientDrawable = new GradientDrawable(
@@ -433,7 +447,7 @@ public class AudioPlayerTheBab extends Fragment {
                 img.setImageResource(R.mipmap.god_loveth_those_who_are_foreground);
                 txt.setText(prayerArray[2]);
                 break;
-            case "God hath, at all times...":
+            case prayer4:
                 mp = MediaPlayer.create(getActivity().getApplicationContext(), R.raw.from_the_sweet_scented);
                 mp.setOnCompletionListener(listener);
                 gradientDrawable = new GradientDrawable(
@@ -447,7 +461,7 @@ public class AudioPlayerTheBab extends Fragment {
                 img.setImageResource(R.mipmap.god_hath_at_all_times_foreground);
                 txt.setText(prayerArray[3]);
                 break;
-            case "Rid thou thyself...":
+            case prayer5:
                 mp = MediaPlayer.create(getActivity().getApplicationContext(), R.raw.from_the_sweet_scented);
                 mp.setOnCompletionListener(listener);
                 gradientDrawable = new GradientDrawable(
@@ -461,7 +475,7 @@ public class AudioPlayerTheBab extends Fragment {
                 img.setImageResource(R.mipmap.rid_thou_thyself_foreground);
                 txt.setText(prayerArray[4]);
                 break;
-            case "He--glorified be His mention...":
+            case prayer6:
                 mp = MediaPlayer.create(getActivity().getApplicationContext(), R.raw.from_the_sweet_scented);
                 mp.setOnCompletionListener(listener);
                 gradientDrawable = new GradientDrawable(
@@ -475,7 +489,7 @@ public class AudioPlayerTheBab extends Fragment {
                 img.setImageResource(R.mipmap.he_glorified_be_his_mention_foreground);
                 txt.setText(prayerArray[5]);
                 break;
-            case "Say: Praise be to God":
+            case prayer7:
                 mp = MediaPlayer.create(getActivity().getApplicationContext(), R.raw.from_the_sweet_scented);
                 mp.setOnCompletionListener(listener);
                 gradientDrawable = new GradientDrawable(
@@ -489,7 +503,7 @@ public class AudioPlayerTheBab extends Fragment {
                 img.setImageResource(R.mipmap.say_praise_be_to_god_foreground);
                 txt.setText(prayerArray[6]);
                 break;
-            case "Glory be unto Thee...":
+            case prayer8:
                 mp = MediaPlayer.create(getActivity().getApplicationContext(), R.raw.from_the_sweet_scented);
                 mp.setOnCompletionListener(listener);
                 gradientDrawable = new GradientDrawable(
@@ -503,11 +517,8 @@ public class AudioPlayerTheBab extends Fragment {
                 img.setImageResource(R.mipmap.glory_be_unto_thee_foreground);
                 txt.setText(prayerArray[7]);
                 break;
-            case "all":
-                playAll(trackNum);
-                //txt.setText(prayerArray[0]);
-                break;
-            case "I beg Thee to forgive me...":
+
+            case prayer9:
                 mp = MediaPlayer.create(getActivity().getApplicationContext(), R.raw.paris_talks20);
                 mp.setOnCompletionListener(listener);
                 gradientDrawable = new GradientDrawable(
@@ -521,7 +532,7 @@ public class AudioPlayerTheBab extends Fragment {
                 img.setImageResource(R.mipmap.i_beg_thee_to_forgive_me_foreground);
                 txt.setText(prayerArray[8]);
                 break;
-            case "Glory be to Thee, O God!":
+            case prayer10:
                 mp = MediaPlayer.create(getActivity().getApplicationContext(), R.raw.paris_talks20);
                 mp.setOnCompletionListener(listener);
                 gradientDrawable = new GradientDrawable(
@@ -535,7 +546,7 @@ public class AudioPlayerTheBab extends Fragment {
                 img.setImageResource(R.mipmap.glory_be_to_thee_o_god_foreground);
                 txt.setText(prayerArray[9]);
                 break;
-            case "O Lord! Enable all the peoples...":
+            case prayer11:
                 mp = MediaPlayer.create(getActivity().getApplicationContext(), R.raw.paris_talks20);
                 mp.setOnCompletionListener(listener);
                 gradientDrawable = new GradientDrawable(
@@ -549,7 +560,7 @@ public class AudioPlayerTheBab extends Fragment {
                 img.setImageResource(R.mipmap.o_lord_enable_all_the_peoples_foreground);
                 txt.setText(prayerArray[10]);
                 break;
-            case "Throughout eternity Thou hast been...":
+            case prayer12:
                 mp = MediaPlayer.create(getActivity().getApplicationContext(), R.raw.paris_talks20);
                 mp.setOnCompletionListener(listener);
                 gradientDrawable = new GradientDrawable(
@@ -563,7 +574,7 @@ public class AudioPlayerTheBab extends Fragment {
                 img.setImageResource(R.mipmap.throughout_eternity_thou_hast_been_foreground);
                 txt.setText(prayerArray[11]);
                 break;
-            case "I adjure Thee by Thy might...":
+            case prayer13:
                 mp = MediaPlayer.create(getActivity().getApplicationContext(), R.raw.paris_talks20);
                 mp.setOnCompletionListener(listener);
                 gradientDrawable = new GradientDrawable(
@@ -577,7 +588,7 @@ public class AudioPlayerTheBab extends Fragment {
                 img.setImageResource(R.mipmap.i_adjure_thee_by_thy_might_foreground);
                 txt.setText(prayerArray[12]);
                 break;
-            case "Praise be to Thee...":
+            case prayer14:
                 mp = MediaPlayer.create(getActivity().getApplicationContext(), R.raw.paris_talks20);
                 mp.setOnCompletionListener(listener);
                 gradientDrawable = new GradientDrawable(
@@ -590,6 +601,10 @@ public class AudioPlayerTheBab extends Fragment {
                 view.findViewById(R.id.layout_audio_player).setBackground(gradientDrawable);
                 img.setImageResource(R.mipmap.praise_be_to_thee_foreground);
                 txt.setText(prayerArray[13]);
+                break;
+            case "all":
+                playAll(trackNum);
+                //txt.setText(prayerArray[0]);
                 break;
 
         }
