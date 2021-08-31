@@ -32,6 +32,19 @@ public class AudioPlayerAbdulBaha extends Fragment {
     private int numTracks = 1; //change later
     private int trackCount = 0;
     private GradientDrawable gradientDrawable;
+    final String prayer1 = "Make firm our steps...";
+    final String prayer2 = "O compassionate God!";
+    final String prayer3 = "O Thou beloved of my heart...";
+    final String prayer4 = "O Thou compassionate Lord...";
+    final String prayer5 = "O my Lord! Thou knowest...";
+    final String prayer6 = "Lord! Pitiful are we...";
+    final String prayer7 = "O Thou kind Lord!";
+    final String prayer8 = "O my merciful Lord!";
+    final String prayer9 = "He is the Most Holy...";
+    final String prayer10 = "O God of Mercy!";
+    final String prayer11 = "O Lord! Grant me a measure...";
+    final String prayer12 = "O God! Refresh and gladden...";
+    final String prayer13 = "O Divine Providence!";
     String[] prayerArray = {"Make firm our steps...", "O compassionate God!", "O Thou beloved of my heart...",
             "O Thou compassionate Lord...", "O my Lord! Thou knowest...", "Lord! Pitiful are we...",
             "O Thou kind Lord!", "O my merciful Lord!", "He is the Most Holy...", "O God of Mercy!",
@@ -95,95 +108,95 @@ public class AudioPlayerAbdulBaha extends Fragment {
             @Override
             public void onClick(View v) {
                 switch (track) {
-                    case "Make firm our steps...":
+                    case prayer1:
                         mp.pause();
                         playBtn.setVisibility(View.VISIBLE);
                         pauseBtn.setVisibility(View.GONE);
-                        track = "Lauded Be Thy Name...";
+                        track = prayer2;
                         playTrack(track);
                         break;
-                    case "O compassionate God!":
+                    case prayer2:
                         mp.pause();
                         playBtn.setVisibility(View.VISIBLE);
                         pauseBtn.setVisibility(View.GONE);
-                        track = "Glorified Art Thou, O Lord My God...";
+                        track = prayer3;
                         playTrack(track);
                         break;
-                    case "O Thou beloved of my heart...":
+                    case prayer3:
                         mp.pause();
                         playBtn.setVisibility(View.VISIBLE);
                         pauseBtn.setVisibility(View.GONE);
-                        track = "From the Sweet-Scented Streams...";
+                        track = prayer4;
                         playTrack(track);
                         break;
-                    case "O Thou compassionate Lord...":
+                    case prayer4:
                         mp.pause();
                         playBtn.setVisibility(View.VISIBLE);
                         pauseBtn.setVisibility(View.GONE);
-                        track = "Create in Me a Pure Heart...";
+                        track = prayer5;
                         playTrack(track);
                         break;
-                    case "O my Lord! Thou knowest...":
+                    case prayer5:
                         mp.pause();
                         playBtn.setVisibility(View.VISIBLE);
                         pauseBtn.setVisibility(View.GONE);
-                        track = "He is the Gracious, the All_Bountiful...";
+                        track = prayer6;
                         playTrack(track);
                         break;
-                    case "Lord! Pitiful are we...":
+                    case prayer6:
                         mp.pause();
                         playBtn.setVisibility(View.VISIBLE);
                         pauseBtn.setVisibility(View.GONE);
-                        track = "Glory to Thee, O My God!";
+                        track = prayer7;
                         playTrack(track);
                         break;
-                    case "O Thou kind Lord!":
+                    case prayer7:
                         mp.pause();
                         playBtn.setVisibility(View.VISIBLE);
                         pauseBtn.setVisibility(View.GONE);
-                        track = "Magnified, O Lord My God, Be Thy Name...";
+                        track = prayer8;
                         playTrack(track);
                         break;
-                    case "O my merciful Lord!":
+                    case prayer8:
                         mp.pause();
                         playBtn.setVisibility(View.VISIBLE);
                         pauseBtn.setVisibility(View.GONE);
-                        track = "Attract the Hearts of Men...";
+                        track = prayer9;
                         playTrack(track);
                         break;
-                    case "He is the Most Holy...":
+                    case prayer9:
                         mp.pause();
                         playBtn.setVisibility(View.VISIBLE);
                         pauseBtn.setVisibility(View.GONE);
-                        track = "Attract the Hearts of Men1...";
+                        track = prayer10;
                         playTrack(track);
                         break;
-                    case "O God of Mercy!":
+                    case prayer10:
                         mp.pause();
                         playBtn.setVisibility(View.VISIBLE);
                         pauseBtn.setVisibility(View.GONE);
-                        track = "Attract thes Hearts of Men1...";
+                        track = prayer11;
                         playTrack(track);
                         break;
-                    case "O Lord! Grant me a measure...":
+                    case prayer11:
                         mp.pause();
                         playBtn.setVisibility(View.VISIBLE);
                         pauseBtn.setVisibility(View.GONE);
-                        track = "Attract thes Hearts sof Men1...";
+                        track = prayer12;
                         playTrack(track);
                         break;
-                    case "O God! Refresh and gladden...":
+                    case prayer12:
                         mp.pause();
                         playBtn.setVisibility(View.VISIBLE);
                         pauseBtn.setVisibility(View.GONE);
-                        track = "Attract dthes Hearts sof Men1...";
+                        track = prayer13;
                         playTrack(track);
                         break;
-                    case "O Divine Providence!":
+                    case prayer13:
                         mp.pause();
                         playBtn.setVisibility(View.VISIBLE);
                         pauseBtn.setVisibility(View.GONE);
-                        track = "Attract dthess Hearts sof Men1...";
+                        track = prayer1;
                         playTrack(track);
                         break;
                     case "all":
@@ -206,95 +219,95 @@ public class AudioPlayerAbdulBaha extends Fragment {
             @Override
             public void onClick(View v) {
                 switch (track) {
-                    case "Make firm our steps...":
+                    case prayer1:
                         mp.pause();
                         playBtn.setVisibility(View.VISIBLE);
                         pauseBtn.setVisibility(View.GONE);
-                        track = "Magnified, O Lord My God, Be Thy Name...";
+                        track = prayer13;
                         playTrack(track);
                         break;
-                    case "O compassionate God!":
+                    case prayer2:
                         mp.pause();
                         playBtn.setVisibility(View.VISIBLE);
                         pauseBtn.setVisibility(View.GONE);
-                        track = "Attract the Hearts of Men...";
+                        track = prayer1;
                         playTrack(track);
                         break;
-                    case "O Thou beloved of my heart...":
+                    case prayer3:
                         mp.pause();
                         playBtn.setVisibility(View.VISIBLE);
                         pauseBtn.setVisibility(View.GONE);
-                        track = "Lauded Be Thy Name...";
+                        track = prayer2;
                         playTrack(track);
                         break;
-                    case "O Thou compassionate Lord...":
+                    case prayer4:
                         mp.pause();
                         playBtn.setVisibility(View.VISIBLE);
                         pauseBtn.setVisibility(View.GONE);
-                        track = "Glorified Art Thou, O Lord My God...";
+                        track = prayer3;
                         playTrack(track);
                         break;
-                    case "O my Lord! Thou knowest...":
+                    case prayer5:
                         mp.pause();
                         playBtn.setVisibility(View.VISIBLE);
                         pauseBtn.setVisibility(View.GONE);
-                        track = "From the Sweet-Scented Streams...";
+                        track = prayer4;
                         playTrack(track);
                         break;
-                    case "Lord! Pitiful are we...":
+                    case prayer6:
                         mp.pause();
                         playBtn.setVisibility(View.VISIBLE);
                         pauseBtn.setVisibility(View.GONE);
-                        track = "Create in Me a Pure Heart...";
+                        track = prayer5;
                         playTrack(track);
                         break;
-                    case "O Thou kind Lord!":
+                    case prayer7:
                         mp.pause();
                         playBtn.setVisibility(View.VISIBLE);
                         pauseBtn.setVisibility(View.GONE);
-                        track = "He is the Gracious, the All_Bountiful...";
+                        track = prayer6;
                         playTrack(track);
                         break;
-                    case "O my merciful Lord!":
+                    case prayer8:
                         mp.pause();
                         playBtn.setVisibility(View.VISIBLE);
                         pauseBtn.setVisibility(View.GONE);
-                        track = "Glory to Thee, O My God!";
+                        track = prayer7;
                         playTrack(track);
                         break;
-                    case "He is the Most Holy...":
+                    case prayer9:
                         mp.pause();
                         playBtn.setVisibility(View.VISIBLE);
                         pauseBtn.setVisibility(View.GONE);
-                        track = "Glory to Thees, O My God!";
+                        track = prayer8;
                         playTrack(track);
                         break;
-                    case "O God of Mercy!":
+                    case prayer10:
                         mp.pause();
                         playBtn.setVisibility(View.VISIBLE);
                         pauseBtn.setVisibility(View.GONE);
-                        track = "Glory to Theses, O My God!";
+                        track = prayer9;
                         playTrack(track);
                         break;
-                    case "O Lord! Grant me a measure...":
+                    case prayer11:
                         mp.pause();
                         playBtn.setVisibility(View.VISIBLE);
                         pauseBtn.setVisibility(View.GONE);
-                        track = "Glory tho Theses, O My God!";
+                        track = prayer10;
                         playTrack(track);
                         break;
-                    case "O God! Refresh and gladden...":
+                    case prayer12:
                         mp.pause();
                         playBtn.setVisibility(View.VISIBLE);
                         pauseBtn.setVisibility(View.GONE);
-                        track = "Glory thso Theses, O My God!";
+                        track = prayer11;
                         playTrack(track);
                         break;
-                    case "O Divine Providence!":
+                    case prayer13:
                         mp.pause();
                         playBtn.setVisibility(View.VISIBLE);
                         pauseBtn.setVisibility(View.GONE);
-                        track = "Glory thso Thesses, O My God!";
+                        track = prayer12;
                         playTrack(track);
                         break;
                     case "all":
@@ -393,7 +406,7 @@ public class AudioPlayerAbdulBaha extends Fragment {
     private void playTrack(String track) {
 
         switch(track) {
-            case "Make firm our steps...":
+            case prayer1:
                 mp = MediaPlayer.create(getActivity().getApplicationContext(), R.raw.o_thou_whose_face2);
                 mp.setOnCompletionListener(listener);
                 gradientDrawable = new GradientDrawable(
@@ -408,7 +421,7 @@ public class AudioPlayerAbdulBaha extends Fragment {
                 txt.setText(prayerArray[0]);
                 trackCount = 0;
                 break;
-            case "O compassionate God!":
+            case prayer2:
                 mp = MediaPlayer.create(getActivity().getApplicationContext(), R.raw.marian);
                 mp.setOnCompletionListener(listener);
                 gradientDrawable = new GradientDrawable(
@@ -423,7 +436,7 @@ public class AudioPlayerAbdulBaha extends Fragment {
                 txt.setText(prayerArray[1]);
                 trackCount = 1;
                 break;
-            case "O Thou beloved of my heart...":
+            case prayer3:
                 mp = MediaPlayer.create(getActivity().getApplicationContext(), R.raw.marian);
                 mp.setOnCompletionListener(listener);
                 gradientDrawable = new GradientDrawable(
@@ -438,7 +451,7 @@ public class AudioPlayerAbdulBaha extends Fragment {
                 txt.setText(prayerArray[2]);
                 trackCount = 2;
                 break;
-            case "O Thou compassionate Lord...":
+            case prayer4:
                 mp = MediaPlayer.create(getActivity().getApplicationContext(), R.raw.from_the_sweet_scented);
                 mp.setOnCompletionListener(listener);
                 gradientDrawable = new GradientDrawable(
@@ -453,7 +466,7 @@ public class AudioPlayerAbdulBaha extends Fragment {
                 txt.setText(prayerArray[3]);
                 trackCount = 3;
                 break;
-            case "O my Lord! Thou knowest...":
+            case prayer5:
                 mp = MediaPlayer.create(getActivity().getApplicationContext(), R.raw.from_the_sweet_scented);
                 mp.setOnCompletionListener(listener);
                 gradientDrawable = new GradientDrawable(
@@ -468,7 +481,7 @@ public class AudioPlayerAbdulBaha extends Fragment {
                 txt.setText(prayerArray[4]);
                 trackCount = 4;
                 break;
-            case "Lord! Pitiful are we...":
+            case prayer6:
                 mp = MediaPlayer.create(getActivity().getApplicationContext(), R.raw.from_the_sweet_scented);
                 mp.setOnCompletionListener(listener);
                 gradientDrawable = new GradientDrawable(
@@ -483,7 +496,7 @@ public class AudioPlayerAbdulBaha extends Fragment {
                 txt.setText(prayerArray[5]);
                 trackCount = 5;
                 break;
-            case "O Thou kind Lord!":
+            case prayer7:
                 mp = MediaPlayer.create(getActivity().getApplicationContext(), R.raw.from_the_sweet_scented);
                 mp.setOnCompletionListener(listener);
                 gradientDrawable = new GradientDrawable(
@@ -498,7 +511,7 @@ public class AudioPlayerAbdulBaha extends Fragment {
                 txt.setText(prayerArray[6]);
                 trackCount = 6;
                 break;
-            case "O my merciful Lord!":
+            case prayer8:
                 mp = MediaPlayer.create(getActivity().getApplicationContext(), R.raw.from_the_sweet_scented);
                 mp.setOnCompletionListener(listener);
                 gradientDrawable = new GradientDrawable(
@@ -513,7 +526,7 @@ public class AudioPlayerAbdulBaha extends Fragment {
                 txt.setText(prayerArray[7]);
                 trackCount = 7;
                 break;
-            case "He is the Most Holy...":
+            case prayer9:
                 mp = MediaPlayer.create(getActivity().getApplicationContext(), R.raw.from_the_sweet_scented);
                 mp.setOnCompletionListener(listener);
                 gradientDrawable = new GradientDrawable(
@@ -528,7 +541,7 @@ public class AudioPlayerAbdulBaha extends Fragment {
                 txt.setText(prayerArray[8]);
                 trackCount = 7;
                 break;
-            case "O God of Mercy!":
+            case prayer10:
                 mp = MediaPlayer.create(getActivity().getApplicationContext(), R.raw.from_the_sweet_scented);
                 mp.setOnCompletionListener(listener);
                 gradientDrawable = new GradientDrawable(
@@ -543,7 +556,7 @@ public class AudioPlayerAbdulBaha extends Fragment {
                 txt.setText(prayerArray[9]);
                 trackCount = 7;
                 break;
-            case "O Lord! Grant me a measure...":
+            case prayer11:
                 mp = MediaPlayer.create(getActivity().getApplicationContext(), R.raw.from_the_sweet_scented);
                 mp.setOnCompletionListener(listener);
                 gradientDrawable = new GradientDrawable(
@@ -558,7 +571,7 @@ public class AudioPlayerAbdulBaha extends Fragment {
                 txt.setText(prayerArray[10]);
                 trackCount = 7;
                 break;
-            case "O God! Refresh and gladden...":
+            case prayer12:
                 mp = MediaPlayer.create(getActivity().getApplicationContext(), R.raw.from_the_sweet_scented);
                 mp.setOnCompletionListener(listener);
                 gradientDrawable = new GradientDrawable(
@@ -573,7 +586,7 @@ public class AudioPlayerAbdulBaha extends Fragment {
                 txt.setText(prayerArray[11]);
                 trackCount = 7;
                 break;
-            case "O Divine Providence!":
+            case prayer13:
                 mp = MediaPlayer.create(getActivity().getApplicationContext(), R.raw.from_the_sweet_scented);
                 mp.setOnCompletionListener(listener);
                 gradientDrawable = new GradientDrawable(

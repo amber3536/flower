@@ -29,6 +29,7 @@ public class AbdulBaha extends Fragment {
     private FloatingActionButton pauseBtn;
     private Button btn;
     private TextView txt;
+
     String[] mobileArray = {"Make firm our steps...", "O compassionate God!", "O Thou beloved of my heart...",
             "O Thou compassionate Lord...", "O my Lord! Thou knowest...", "Lord! Pitiful are we...",
             "O Thou kind Lord!", "O my merciful Lord!", "He is the Most Holy...", "O God of Mercy!",
