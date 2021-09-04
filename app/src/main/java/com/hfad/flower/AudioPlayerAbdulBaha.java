@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
@@ -31,6 +32,7 @@ public class AudioPlayerAbdulBaha extends Fragment {
     private int trackNum = 0;
     private int numTracks = 1; //change later
     private int trackCount = 0;
+    private String tr = "TRACK";
     private GradientDrawable gradientDrawable;
     final String prayer1 = "Make firm our steps...";
     final String prayer2 = "O compassionate God!";
@@ -68,6 +70,12 @@ public class AudioPlayerAbdulBaha extends Fragment {
         if (bundle != null) {
             track = bundle.getString("EXTRA", "");
             //Log.i("here", "onCreateView: " + position);
+        }
+
+        if (savedInstanceState != null) {
+
+            track = savedInstanceState.getString(tr, track);
+            Log.i("Audio Abdul Baha", "onCreateView: " + track);
         }
 
         playTrack(track);
@@ -576,13 +584,13 @@ public class AudioPlayerAbdulBaha extends Fragment {
                 mp.setOnCompletionListener(listener);
                 gradientDrawable = new GradientDrawable(
                         GradientDrawable.Orientation.TOP_BOTTOM,
-                        new int[]{ContextCompat.getColor(getContext(), R.color.colorAccent),
-                                ContextCompat.getColor(getContext(), R.color.colorFadedRed),
+                        new int[]{ContextCompat.getColor(getContext(), R.color.fadedForestGreen),
                                 ContextCompat.getColor(getContext(), R.color.colorFadedYellow),
+                                ContextCompat.getColor(getContext(), R.color.fadedGray),
                                 ContextCompat.getColor(getContext(), R.color.colorAccent)});
 
                 view.findViewById(R.id.layout_audio_player).setBackground(gradientDrawable);
-                img.setImageResource(R.mipmap.magnified_oh_lord_foreground);
+                img.setImageResource(R.mipmap.o_god_refresh_and_foreground);
                 txt.setText(prayerArray[11]);
                 trackCount = 7;
                 break;
@@ -642,14 +650,24 @@ public class AudioPlayerAbdulBaha extends Fragment {
     @Override
     public void onDestroy() {
         mp.stop();
-        Log.i("Audio Bahaullah", "onDestroy: ");
+        Log.i("Audio Abdul Baha", "onDestroy: ");
 
         super.onDestroy();
     }
 
     @Override
     public void onResume() {
-        Log.i("Audio Bahaullah", "onResume: ");
+        Log.i("Audio Abdul Baha", "onResume: ");
         super.onResume();
     }
+    @Override
+    public void onSaveInstanceState(@NonNull Bundle outState) {
+        // Make sure to call the super method so that the states of our views are saved
+        super.onSaveInstanceState(outState);
+        // Save our own state now
+        //outState.putInt(STATE_COUNTER, mCounter);
+        Log.i("Audio Abdul Baha", "onSaveInstanceState: " + track);
+        outState.putString(tr, track);
+    }
+
 }

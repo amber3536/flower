@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
@@ -25,6 +26,7 @@ public class AudioPlayerTheBab extends Fragment {
     private String track;
     private ImageView img;
     private TextView txt;
+    private String tr = "TRACK";
     private int playAllOn = 0;
     private int maxNumTracks = 1; //change later
     private MediaPlayer.OnCompletionListener listener;
@@ -67,6 +69,12 @@ public class AudioPlayerTheBab extends Fragment {
         if (bundle != null) {
             track = bundle.getString("EXTRA", "");
             //Log.i("here", "onCreateView: " + position);
+        }
+
+        if (savedInstanceState != null) {
+
+            track = savedInstanceState.getString(tr, track);
+            Log.i("Audio The Bab", "onCreateView: " + track);
         }
 
 
@@ -640,6 +648,16 @@ public class AudioPlayerTheBab extends Fragment {
     public void onResume() {
         Log.i("Audio The Bab", "onResume: ");
         super.onResume();
+    }
+
+    @Override
+    public void onSaveInstanceState(@NonNull Bundle outState) {
+        // Make sure to call the super method so that the states of our views are saved
+        super.onSaveInstanceState(outState);
+        // Save our own state now
+        //outState.putInt(STATE_COUNTER, mCounter);
+        Log.i("Audio The Bab", "onSaveInstanceState: " + track);
+        outState.putString(tr, track);
     }
 
 }
