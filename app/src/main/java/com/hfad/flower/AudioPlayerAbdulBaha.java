@@ -456,13 +456,13 @@ public class AudioPlayerAbdulBaha extends Fragment {
                 mp.setOnCompletionListener(listener);
                 gradientDrawable = new GradientDrawable(
                         GradientDrawable.Orientation.TOP_BOTTOM,
-                        new int[]{ContextCompat.getColor(getContext(), R.color.fadedBlue),
-                                ContextCompat.getColor(getContext(), R.color.colorFadedYellow),
-                                ContextCompat.getColor(getContext(), R.color.colorFadedPink),
-                                ContextCompat.getColor(getContext(), R.color.fadedBlue)});
+                        new int[]{ContextCompat.getColor(getContext(), R.color.colorAccent),
+                                ContextCompat.getColor(getContext(), R.color.fadedForestGreen),
+                                ContextCompat.getColor(getContext(), R.color.fadedGray),
+                                ContextCompat.getColor(getContext(), R.color.fadedForestGreen)});
 
                 view.findViewById(R.id.layout_audio_player).setBackground(gradientDrawable);
-                img.setImageResource(R.mipmap.from_the_sweet_scented_photo_foreground);
+                img.setImageResource(R.mipmap.o_thou_compassionate_lord_foreground);
                 txt.setText(prayerArray[3]);
                 trackCount = 3;
                 break;
@@ -471,13 +471,13 @@ public class AudioPlayerAbdulBaha extends Fragment {
                 mp.setOnCompletionListener(listener);
                 gradientDrawable = new GradientDrawable(
                         GradientDrawable.Orientation.TOP_BOTTOM,
-                        new int[]{ContextCompat.getColor(getContext(), R.color.fadedBlue),
-                                ContextCompat.getColor(getContext(), R.color.colorAccent),
-                                ContextCompat.getColor(getContext(), R.color.lightBlue),
-                                ContextCompat.getColor(getContext(), R.color.fadedBlue)});
+                        new int[]{ContextCompat.getColor(getContext(), R.color.fadedGray),
+                                ContextCompat.getColor(getContext(), R.color.colorFadedRed),
+                                ContextCompat.getColor(getContext(), R.color.colorFadedYellow),
+                                ContextCompat.getColor(getContext(), R.color.fadedGray)});
 
                 view.findViewById(R.id.layout_audio_player).setBackground(gradientDrawable);
-                img.setImageResource(R.mipmap.create_in_me_a_pure_photo_foreground);
+                img.setImageResource(R.mipmap.o_my_lord_thou_knowest_foreground);
                 txt.setText(prayerArray[4]);
                 trackCount = 4;
                 break;
@@ -486,13 +486,13 @@ public class AudioPlayerAbdulBaha extends Fragment {
                 mp.setOnCompletionListener(listener);
                 gradientDrawable = new GradientDrawable(
                         GradientDrawable.Orientation.TOP_BOTTOM,
-                        new int[]{ContextCompat.getColor(getContext(), R.color.fadedGreen),
+                        new int[]{ContextCompat.getColor(getContext(), R.color.fadedNavy),
                                 ContextCompat.getColor(getContext(), R.color.colorFadedYellow),
-                                ContextCompat.getColor(getContext(), R.color.colorFadedPink),
-                                ContextCompat.getColor(getContext(), R.color.fadedGreen)});
+                                ContextCompat.getColor(getContext(), R.color.fadedBlue),
+                                ContextCompat.getColor(getContext(), R.color.fadedForestGreen)});
 
                 view.findViewById(R.id.layout_audio_player).setBackground(gradientDrawable);
-                img.setImageResource(R.mipmap.he_is_the_gracious_photo_foreground);
+                img.setImageResource(R.mipmap.lord_pitiful_are_we_foreground);
                 txt.setText(prayerArray[5]);
                 trackCount = 5;
                 break;
@@ -502,12 +502,12 @@ public class AudioPlayerAbdulBaha extends Fragment {
                 gradientDrawable = new GradientDrawable(
                         GradientDrawable.Orientation.TOP_BOTTOM,
                         new int[]{ContextCompat.getColor(getContext(), R.color.colorAccent),
-                                ContextCompat.getColor(getContext(), R.color.colorFadedRed),
-                                ContextCompat.getColor(getContext(), R.color.colorFadedPink),
+                                ContextCompat.getColor(getContext(), R.color.fadedNavy),
+                                ContextCompat.getColor(getContext(), R.color.fadedGray),
                                 ContextCompat.getColor(getContext(), R.color.colorAccent)});
 
                 view.findViewById(R.id.layout_audio_player).setBackground(gradientDrawable);
-                img.setImageResource(R.mipmap.glory_to_thee_photo_foreground);
+                img.setImageResource(R.mipmap.o_thou_kind_lord_foreground);
                 txt.setText(prayerArray[6]);
                 trackCount = 6;
                 break;
@@ -517,12 +517,12 @@ public class AudioPlayerAbdulBaha extends Fragment {
                 gradientDrawable = new GradientDrawable(
                         GradientDrawable.Orientation.TOP_BOTTOM,
                         new int[]{ContextCompat.getColor(getContext(), R.color.colorAccent),
-                                ContextCompat.getColor(getContext(), R.color.colorFadedRed),
-                                ContextCompat.getColor(getContext(), R.color.colorFadedYellow),
-                                ContextCompat.getColor(getContext(), R.color.colorAccent)});
+                                ContextCompat.getColor(getContext(), R.color.colorFadedDarkPurple),
+                                ContextCompat.getColor(getContext(), R.color.fadedForestGreen),
+                                ContextCompat.getColor(getContext(), R.color.fadedGreen)});
 
                 view.findViewById(R.id.layout_audio_player).setBackground(gradientDrawable);
-                img.setImageResource(R.mipmap.magnified_oh_lord_foreground);
+                img.setImageResource(R.mipmap.o_my_merciful_lord_foreground);
                 txt.setText(prayerArray[7]);
                 trackCount = 7;
                 break;
@@ -532,12 +532,12 @@ public class AudioPlayerAbdulBaha extends Fragment {
                 gradientDrawable = new GradientDrawable(
                         GradientDrawable.Orientation.TOP_BOTTOM,
                         new int[]{ContextCompat.getColor(getContext(), R.color.colorAccent),
-                                ContextCompat.getColor(getContext(), R.color.colorFadedRed),
-                                ContextCompat.getColor(getContext(), R.color.colorFadedYellow),
+                                ContextCompat.getColor(getContext(), R.color.fadedForestGreen),
+                                ContextCompat.getColor(getContext(), R.color.fadedGray),
                                 ContextCompat.getColor(getContext(), R.color.colorAccent)});
 
                 view.findViewById(R.id.layout_audio_player).setBackground(gradientDrawable);
-                img.setImageResource(R.mipmap.magnified_oh_lord_foreground);
+                img.setImageResource(R.mipmap.he_is_the_most_holy_foreground);
                 txt.setText(prayerArray[8]);
                 trackCount = 7;
                 break;
@@ -546,13 +546,13 @@ public class AudioPlayerAbdulBaha extends Fragment {
                 mp.setOnCompletionListener(listener);
                 gradientDrawable = new GradientDrawable(
                         GradientDrawable.Orientation.TOP_BOTTOM,
-                        new int[]{ContextCompat.getColor(getContext(), R.color.colorAccent),
+                        new int[]{ContextCompat.getColor(getContext(), R.color.fadedNavy),
                                 ContextCompat.getColor(getContext(), R.color.colorFadedRed),
                                 ContextCompat.getColor(getContext(), R.color.colorFadedYellow),
-                                ContextCompat.getColor(getContext(), R.color.colorAccent)});
+                                ContextCompat.getColor(getContext(), R.color.fadedNavy)});
 
                 view.findViewById(R.id.layout_audio_player).setBackground(gradientDrawable);
-                img.setImageResource(R.mipmap.magnified_oh_lord_foreground);
+                img.setImageResource(R.mipmap.o_god_of_mercy_foreground);
                 txt.setText(prayerArray[9]);
                 trackCount = 7;
                 break;
@@ -561,13 +561,13 @@ public class AudioPlayerAbdulBaha extends Fragment {
                 mp.setOnCompletionListener(listener);
                 gradientDrawable = new GradientDrawable(
                         GradientDrawable.Orientation.TOP_BOTTOM,
-                        new int[]{ContextCompat.getColor(getContext(), R.color.colorAccent),
+                        new int[]{ContextCompat.getColor(getContext(), R.color.fadedGray),
                                 ContextCompat.getColor(getContext(), R.color.colorFadedRed),
-                                ContextCompat.getColor(getContext(), R.color.colorFadedYellow),
-                                ContextCompat.getColor(getContext(), R.color.colorAccent)});
+                                ContextCompat.getColor(getContext(), R.color.fadedOrange),
+                                ContextCompat.getColor(getContext(), R.color.fadedGray)});
 
                 view.findViewById(R.id.layout_audio_player).setBackground(gradientDrawable);
-                img.setImageResource(R.mipmap.magnified_oh_lord_foreground);
+                img.setImageResource(R.mipmap.o_lord_grant_me_foreground);
                 txt.setText(prayerArray[10]);
                 trackCount = 7;
                 break;

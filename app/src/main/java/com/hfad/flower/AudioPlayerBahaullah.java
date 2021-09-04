@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
@@ -29,6 +30,8 @@ public class AudioPlayerBahaullah extends Fragment {
     private FloatingActionButton forwardBtn;
     private MediaPlayer.OnCompletionListener listener;
     private int trackNum = 0;
+    private String tr = "TRACK";
+    private Bundle bundle;
     private int numTracks = 1; //change later
     private int trackCount = 0;
     private GradientDrawable gradientDrawable;
@@ -58,10 +61,19 @@ public class AudioPlayerBahaullah extends Fragment {
         img = view.findViewById(R.id.audio_img);
         txt = view.findViewById(R.id.audio_txt);
 
-        Bundle bundle = this.getArguments();
+        bundle = this.getArguments();
+
+
+
         if (bundle != null) {
             track = bundle.getString("EXTRA", "");
             //Log.i("here", "onCreateView: " + position);
+        }
+
+        if (savedInstanceState != null) {
+
+            track = savedInstanceState.getString(tr, track);
+            Log.i("Audio Bahaullah", "onCreateView: " + track);
         }
 
         playTrack(track);
@@ -500,5 +512,15 @@ public class AudioPlayerBahaullah extends Fragment {
     public void onResume() {
         Log.i("Audio Bahaullah", "onResume: ");
         super.onResume();
+    }
+
+    @Override
+    public void onSaveInstanceState(@NonNull Bundle outState) {
+        // Make sure to call the super method so that the states of our views are saved
+        super.onSaveInstanceState(outState);
+        // Save our own state now
+        //outState.putInt(STATE_COUNTER, mCounter);
+        Log.i("Audio Bahaullah", "onSaveInstanceState: " + track);
+        outState.putString(tr, track);
     }
 }
