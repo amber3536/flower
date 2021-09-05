@@ -599,13 +599,13 @@ public class AudioPlayerAbdulBaha extends Fragment {
                 mp.setOnCompletionListener(listener);
                 gradientDrawable = new GradientDrawable(
                         GradientDrawable.Orientation.TOP_BOTTOM,
-                        new int[]{ContextCompat.getColor(getContext(), R.color.colorAccent),
-                                ContextCompat.getColor(getContext(), R.color.colorFadedRed),
-                                ContextCompat.getColor(getContext(), R.color.colorFadedYellow),
-                                ContextCompat.getColor(getContext(), R.color.colorAccent)});
+                        new int[]{ContextCompat.getColor(getContext(), R.color.fadedGray),
+                                ContextCompat.getColor(getContext(), R.color.fadedNavy),
+                                ContextCompat.getColor(getContext(), R.color.fadedTurquoise),
+                                ContextCompat.getColor(getContext(), R.color.fadedGray)});
 
                 view.findViewById(R.id.layout_audio_player).setBackground(gradientDrawable);
-                img.setImageResource(R.mipmap.magnified_oh_lord_foreground);
+                img.setImageResource(R.mipmap.o_divine_providence_foreground);
                 txt.setText(prayerArray[12]);
                 trackCount = 7;
                 break;

@@ -91,7 +91,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toTopOf="@id/audio_img"
-        android:layout_marginBottom="20dp"
+        android:layout_marginBottom="15dp"
+
         android:gravity="center"
         />
 
