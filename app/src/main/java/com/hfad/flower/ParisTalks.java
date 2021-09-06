@@ -55,7 +55,7 @@ public class ParisTalks extends Fragment {
                 }, null, Shader.TileMode.CLAMP);
         txt.getPaint().setShader(textShader);
 
-        txt.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(getActivity(), R.color.colorAccent)));
+        //txt.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(getActivity(), R.color.colorAccent)));
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext(),
                 android.R.layout.simple_list_item_1, mobileArray);

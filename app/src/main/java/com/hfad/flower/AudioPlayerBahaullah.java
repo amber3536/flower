@@ -306,18 +306,19 @@ public class AudioPlayerBahaullah extends Fragment {
     private void playAll(int num) {
         switch (num) {
             case 0:
-                mp = MediaPlayer.create(getActivity().getApplicationContext(), R.raw.marian);
-                mp.setOnCompletionListener(listener);
-                gradientDrawable = new GradientDrawable(
-                        GradientDrawable.Orientation.TOP_BOTTOM,
-                        new int[]{ContextCompat.getColor(getContext(), R.color.colorAccent),
-                                ContextCompat.getColor(getContext(), R.color.colorFadedYellow),
-                                ContextCompat.getColor(getContext(), R.color.colorFadedPink),
-                                ContextCompat.getColor(getContext(), R.color.colorAccent)});
-
-                view.findViewById(R.id.layout_audio_player).setBackground(gradientDrawable);
-                img.setImageResource(R.mipmap.attract_photo_foreground);
-                txt.setText(prayerArray[0]);
+//                mp = MediaPlayer.create(getActivity().getApplicationContext(), R.raw.marian);
+//                mp.setOnCompletionListener(listener);
+//                gradientDrawable = new GradientDrawable(
+//                        GradientDrawable.Orientation.TOP_BOTTOM,
+//                        new int[]{ContextCompat.getColor(getContext(), R.color.colorAccent),
+//                                ContextCompat.getColor(getContext(), R.color.colorFadedYellow),
+//                                ContextCompat.getColor(getContext(), R.color.colorFadedPink),
+//                                ContextCompat.getColor(getContext(), R.color.colorAccent)});
+//
+//                view.findViewById(R.id.layout_audio_player).setBackground(gradientDrawable);
+//                img.setImageResource(R.mipmap.attract_photo_foreground);
+//                txt.setText(prayerArray[0]);
+                playTrack(prayerArray[0]);
                 pauseBtn.setVisibility(View.VISIBLE);
                 playBtn.setVisibility(View.INVISIBLE);
                 mp.start();
@@ -378,8 +379,8 @@ public class AudioPlayerBahaullah extends Fragment {
                 gradientDrawable = new GradientDrawable(
                         GradientDrawable.Orientation.TOP_BOTTOM,
                         new int[]{ContextCompat.getColor(getContext(), R.color.colorAccent),
-                                ContextCompat.getColor(getContext(), R.color.fadedBlue),
-                                ContextCompat.getColor(getContext(), R.color.fadedGreen),
+                                ContextCompat.getColor(getContext(), R.color.fadedOlive),
+                                ContextCompat.getColor(getContext(), R.color.fadedForestGreen),
                                 ContextCompat.getColor(getContext(), R.color.colorAccent)});
 
                 view.findViewById(R.id.layout_audio_player).setBackground(gradientDrawable);

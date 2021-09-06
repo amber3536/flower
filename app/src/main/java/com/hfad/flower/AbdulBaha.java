@@ -60,7 +60,7 @@ public class AbdulBaha extends Fragment {
                 }, null, Shader.TileMode.CLAMP);
         txt.getPaint().setShader(textShader);
 
-        txt.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(getActivity(), R.color.colorAccent)));
+        //txt.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(getActivity(), R.color.colorAccent)));
         //tv.setTypeface(null, Typeface.BOLD);
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext(),

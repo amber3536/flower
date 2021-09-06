@@ -85,7 +85,7 @@ public class AudioPlayerTheBab extends Fragment {
             @Override
             public void onClick(View v) {
                 pauseBtn.setVisibility(View.VISIBLE);
-                playBtn.setVisibility(View.GONE);
+                playBtn.setVisibility(View.INVISIBLE);
 
                 if (playAllOn == 1) {
                     playAllOn = 0;
@@ -392,7 +392,7 @@ public class AudioPlayerTheBab extends Fragment {
                 img.setImageResource(R.mipmap.attract_photo_foreground);
                 txt.setText(prayerArray[0]);
                 pauseBtn.setVisibility(View.VISIBLE);
-                playBtn.setVisibility(View.GONE);
+                playBtn.setVisibility(View.INVISIBLE);
                 mp.start();
                 break;
             case 1:
@@ -432,10 +432,10 @@ public class AudioPlayerTheBab extends Fragment {
                 mp.setOnCompletionListener(listener);
                 gradientDrawable = new GradientDrawable(
                         GradientDrawable.Orientation.TOP_BOTTOM,
-                        new int[]{ContextCompat.getColor(getContext(), R.color.fadedBlue),
+                        new int[]{ContextCompat.getColor(getContext(), R.color.fadedTurquoise),
                                 ContextCompat.getColor(getContext(), R.color.fadedForestGreen),
-                                ContextCompat.getColor(getContext(), R.color.fadedGreen),
-                                ContextCompat.getColor(getContext(), R.color.fadedBlue)});
+                                ContextCompat.getColor(getContext(), R.color.fadedOlive),
+                                ContextCompat.getColor(getContext(), R.color.fadedTurquoise)});
 
                 view.findViewById(R.id.layout_audio_player).setBackground(gradientDrawable);
                 img.setImageResource(R.mipmap.it_is_better_to_guide_foreground);
@@ -474,8 +474,8 @@ public class AudioPlayerTheBab extends Fragment {
                 mp.setOnCompletionListener(listener);
                 gradientDrawable = new GradientDrawable(
                         GradientDrawable.Orientation.TOP_BOTTOM,
-                        new int[]{ContextCompat.getColor(getContext(), R.color.fadedNavy),
-                                ContextCompat.getColor(getContext(), R.color.colorFadedRed),
+                        new int[]{ContextCompat.getColor(getContext(), R.color.colorFadedDarkPurple),
+                                ContextCompat.getColor(getContext(), R.color.fadedGray),
                                 ContextCompat.getColor(getContext(), R.color.colorFadedPink),
                                 ContextCompat.getColor(getContext(), R.color.fadedNavy)});
 

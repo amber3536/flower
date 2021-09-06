@@ -308,7 +308,7 @@ public class AudioPlayerParisTalks extends Fragment {
                                 ContextCompat.getColor(getContext(), R.color.colorAccent)});
 
                 view.findViewById(R.id.layout_audio_player).setBackground(gradientDrawable);
-                img.setImageResource(R.mipmap.attract_photo_foreground);
+                img.setImageResource(R.mipmap.the_pitiful_causes_foreground);
                 txt.setText(prayerArray[0]);
                 trackCount = 0;
                 break;
