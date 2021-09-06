@@ -50,16 +50,17 @@ public class TheBab extends Fragment {
 
         Shader textShader = new LinearGradient(0, 0, width, txt.getTextSize(),
                 new int[]{
-                        ContextCompat.getColor(getContext(), R.color.red),
-                        ContextCompat.getColor(getContext(), R.color.orange),
-
-                        ContextCompat.getColor(getContext(), R.color.green),
+//                        ContextCompat.getColor(getContext(), R.color.red),
+//                        ContextCompat.getColor(getContext(), R.color.orange),
+//
+//                        ContextCompat.getColor(getContext(), R.color.green),
                         ContextCompat.getColor(getContext(), R.color.blue),
                         ContextCompat.getColor(getContext(), R.color.violet)
                 }, null, Shader.TileMode.CLAMP);
         txt.getPaint().setShader(textShader);
 
-        txt.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(getActivity(), R.color.colorAccent)));
+        //txt.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(getActivity(), R.color.colorAccent)));
+
         //txt.setTypeface(, Typeface.BOLD);
 //        Typeface font = Typeface.createFromAsset(
 //                getContext().getAssets(),

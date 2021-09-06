@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">flower</string>
+    <string name="play_all">Play All</string>
 </resources>

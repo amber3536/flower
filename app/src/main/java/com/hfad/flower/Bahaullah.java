@@ -49,16 +49,17 @@ public class Bahaullah extends Fragment {
 
         Shader textShader = new LinearGradient(0, 0, width, txt.getTextSize(),
                 new int[]{
-                        ContextCompat.getColor(getContext(), R.color.red),
-                        ContextCompat.getColor(getContext(), R.color.orange),
-
-                        ContextCompat.getColor(getContext(), R.color.green),
+//                        ContextCompat.getColor(getContext(), R.color.red),
+//                        ContextCompat.getColor(getContext(), R.color.orange),
+//
+//                        ContextCompat.getColor(getContext(), R.color.green),
                         ContextCompat.getColor(getContext(), R.color.blue),
                         ContextCompat.getColor(getContext(), R.color.violet)
                 }, null, Shader.TileMode.CLAMP);
         txt.getPaint().setShader(textShader);
 
         txt.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(getActivity(), R.color.colorAccent)));
+
         //tv.setTypeface(null, Typeface.BOLD);
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext(),
