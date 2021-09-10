@@ -31,10 +31,10 @@
 
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintRight_toLeftOf="@id/fab_forward"
-
+        android:layout_marginRight="6dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:backgroundTint="#CCD6DD"
-        app:fabCustomSize="75dp"
+        app:backgroundTint="#cdcdc5"
+        app:fabCustomSize="90dp"
         app:srcCompat="@android:drawable/ic_media_play" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -44,11 +44,11 @@
         android:clickable="true"
         android:focusable="true"
         app:layout_constraintEnd_toEndOf="parent"
-
+        android:layout_marginEnd="5dp"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:backgroundTint="#CCD6DD"
-        app:fabCustomSize="75dp"
+        app:backgroundTint="#cdcdc5"
+        app:fabCustomSize="70dp"
         app:srcCompat="@android:drawable/ic_media_next" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -57,12 +57,12 @@
         android:layout_height="wrap_content"
         android:clickable="true"
         android:focusable="true"
-
+        android:layout_marginRight="6dp"
         app:layout_constraintRight_toLeftOf="@id/fab_play"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:backgroundTint="#CCD6DD"
-        app:fabCustomSize="75dp"
+        app:backgroundTint="#cdcdc5"
+        app:fabCustomSize="70dp"
         app:srcCompat="@android:drawable/ic_media_previous" />
 
 
@@ -78,8 +78,8 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintRight_toLeftOf="@id/fab_forward"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:backgroundTint="#CCD6DD"
-        app:fabCustomSize="75dp" />
+        app:backgroundTint="#cdcdc5"
+        app:fabCustomSize="90dp" />
 
     <TextView
         android:id="@+id/audio_txt"

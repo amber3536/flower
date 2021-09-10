@@ -79,8 +79,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/audio_img"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:backgroundTint="#CCD6DD"
-        app:fabCustomSize="75dp" />
+        app:backgroundTint="#cdcdc5"
+        app:fabCustomSize="90dp"/>
 
     <TextView
         android:id="@+id/audio_txt"
