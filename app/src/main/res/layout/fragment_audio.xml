@@ -33,8 +33,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/audio_img"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:backgroundTint="#b0c4de"
-        app:fabCustomSize="85dp"
+        app:backgroundTint="#cdcdc5"
+        app:fabCustomSize="90dp"
         app:srcCompat="@android:drawable/ic_media_play" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -43,13 +43,13 @@
         android:layout_height="wrap_content"
         android:clickable="true"
         android:focusable="true"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginStart="20dp"
         app:layout_constraintStart_toEndOf="@id/fab_play"
 
         app:layout_constraintTop_toBottomOf="@id/audio_img"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:backgroundTint="#b0c4de"
-        app:fabCustomSize="75dp"
+        app:backgroundTint="#cdcdc5"
+        app:fabCustomSize="70dp"
         app:srcCompat="@android:drawable/ic_media_next" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -59,12 +59,12 @@
         android:clickable="true"
         android:focusable="true"
 
-        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginEnd="20dp"
         app:layout_constraintEnd_toStartOf="@id/fab_play"
         app:layout_constraintTop_toBottomOf="@id/audio_img"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:backgroundTint="#b0c4de"
-        app:fabCustomSize="75dp"
+        app:backgroundTint="#cdcdc5"
+        app:fabCustomSize="70dp"
         app:srcCompat="@android:drawable/ic_media_previous" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
