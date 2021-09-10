@@ -408,10 +408,10 @@ public class AudioPlayerBahaullah extends Fragment {
                 mp.setOnCompletionListener(listener);
                 gradientDrawable = new GradientDrawable(
                         GradientDrawable.Orientation.TOP_BOTTOM,
-                        new int[]{ContextCompat.getColor(getContext(), R.color.fadedBlue),
-                                ContextCompat.getColor(getContext(), R.color.colorAccent),
-                                ContextCompat.getColor(getContext(), R.color.lightBlue),
-                                ContextCompat.getColor(getContext(), R.color.fadedBlue)});
+                        new int[]{ContextCompat.getColor(getContext(), R.color.colorAccent),
+                                ContextCompat.getColor(getContext(), R.color.colorFadedPink),
+                                ContextCompat.getColor(getContext(), R.color.fadedGray),
+                                ContextCompat.getColor(getContext(), R.color.colorAccent)});
 
                 view.findViewById(R.id.layout_audio_player).setBackground(gradientDrawable);
                 img.setImageResource(R.mipmap.create_in_me_a_pure_photo_foreground);

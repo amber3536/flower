@@ -318,12 +318,12 @@ public class AudioPlayerParisTalks extends Fragment {
                 gradientDrawable = new GradientDrawable(
                         GradientDrawable.Orientation.TOP_BOTTOM,
                         new int[]{ContextCompat.getColor(getContext(), R.color.colorAccent),
-                                ContextCompat.getColor(getContext(), R.color.colorFadedYellow),
-                                ContextCompat.getColor(getContext(), R.color.colorFadedPink),
+                                ContextCompat.getColor(getContext(), R.color.fadedOlive),
+                                ContextCompat.getColor(getContext(), R.color.fadedGray),
                                 ContextCompat.getColor(getContext(), R.color.colorAccent)});
 
                 view.findViewById(R.id.layout_audio_player).setBackground(gradientDrawable);
-                img.setImageResource(R.mipmap.lauded_photo_foreground);
+                img.setImageResource(R.mipmap.an_indian_said_foreground);
                 txt.setText(prayerArray[1]);
                 trackCount = 1;
                 break;
@@ -333,12 +333,12 @@ public class AudioPlayerParisTalks extends Fragment {
                 gradientDrawable = new GradientDrawable(
                         GradientDrawable.Orientation.TOP_BOTTOM,
                         new int[]{ContextCompat.getColor(getContext(), R.color.colorAccent),
-                                ContextCompat.getColor(getContext(), R.color.fadedBlue),
-                                ContextCompat.getColor(getContext(), R.color.fadedGreen),
-                                ContextCompat.getColor(getContext(), R.color.colorAccent)});
+                                ContextCompat.getColor(getContext(), R.color.colorFadedPink),
+                                ContextCompat.getColor(getContext(), R.color.colorAccent),
+                                ContextCompat.getColor(getContext(), R.color.fadedOlive)});
 
                 view.findViewById(R.id.layout_audio_player).setBackground(gradientDrawable);
-                img.setImageResource(R.mipmap.glorified_art_thou_photo_foreground);
+                img.setImageResource(R.mipmap.beauty_and_harmony_foreground);
                 txt.setText(prayerArray[2]);
                 trackCount = 2;
                 break;
@@ -353,7 +353,7 @@ public class AudioPlayerParisTalks extends Fragment {
                                 ContextCompat.getColor(getContext(), R.color.fadedBlue)});
 
                 view.findViewById(R.id.layout_audio_player).setBackground(gradientDrawable);
-                img.setImageResource(R.mipmap.from_the_sweet_scented_photo_foreground);
+                img.setImageResource(R.mipmap.lecture_given_at_foreground);
                 txt.setText(prayerArray[3]);
                 trackCount = 3;
                 break;
