@@ -68,7 +68,7 @@ public class TheBab extends Fragment {
 //        txt.setTypeface(font, );
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext(),
-                android.R.layout.simple_list_item_1, mobileArray);
+                R.layout.activity_listview, mobileArray);
 
         final ListView listView = (ListView) view.findViewById(R.id.prayer_list);
         listView.setAdapter(adapter);
