@@ -181,7 +181,7 @@ public class MainFragment extends Fragment {
 //                img8.clearAnimation();
 //                img9.clearAnimation();
 
-                loadFragment(new AbdulBaha());
+                loadFragment(new HiddenWords());
                 // hideView();
             }
         });
