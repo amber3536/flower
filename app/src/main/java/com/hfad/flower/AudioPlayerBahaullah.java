@@ -32,7 +32,7 @@ public class AudioPlayerBahaullah extends Fragment {
     private int trackNum = 0;
     private String tr = "TRACK";
     private Bundle bundle;
-    private int numTracks = 1; //change later
+    private int numTracks = 7;
     private int trackCount = 0;
     private GradientDrawable gradientDrawable;
     final String prayer1 = "Attract the hearts of men...";
@@ -288,6 +288,7 @@ public class AudioPlayerBahaullah extends Fragment {
                     playAllOn = 1;
                     playBtn.setVisibility(View.VISIBLE);
                     pauseBtn.setVisibility(View.GONE);
+                    playTrack(prayerArray[0]);
                 }
                 else {
                     playBtn.setVisibility(View.VISIBLE);
@@ -327,10 +328,7 @@ public class AudioPlayerBahaullah extends Fragment {
                // mp.release();
                // mp.stop();
                // mp.reset();
-                mp = MediaPlayer.create(getActivity().getApplicationContext(), R.raw.brooklyn_bridge);
-                mp.setOnCompletionListener(listener);
-                txt.setText(prayerArray[1]);
-                img.setImageResource(R.mipmap.lauded_photo_foreground);
+                playTrack(prayerArray[1]);
                 pauseBtn.setVisibility(View.VISIBLE);
                 playBtn.setVisibility(View.INVISIBLE);
                 //trackNum = 0; //don't forget to reset this on last track
@@ -344,7 +342,7 @@ public class AudioPlayerBahaullah extends Fragment {
 
         switch(track) {
             case prayer1:
-                mp = MediaPlayer.create(getActivity().getApplicationContext(), R.raw.o_thou_whose_face2);
+                mp = MediaPlayer.create(getActivity().getApplicationContext(), R.raw.brooklyn_bridge);
                 mp.setOnCompletionListener(listener);
                 gradientDrawable = new GradientDrawable(
                         GradientDrawable.Orientation.TOP_BOTTOM,
@@ -374,7 +372,7 @@ public class AudioPlayerBahaullah extends Fragment {
                 trackCount = 1;
                 break;
             case prayer3:
-                mp = MediaPlayer.create(getActivity().getApplicationContext(), R.raw.marian);
+                mp = MediaPlayer.create(getActivity().getApplicationContext(), R.raw.brooklyn_bridge);
                 mp.setOnCompletionListener(listener);
                 gradientDrawable = new GradientDrawable(
                         GradientDrawable.Orientation.TOP_BOTTOM,
@@ -389,7 +387,7 @@ public class AudioPlayerBahaullah extends Fragment {
                 trackCount = 2;
                 break;
             case prayer4:
-                mp = MediaPlayer.create(getActivity().getApplicationContext(), R.raw.from_the_sweet_scented);
+                mp = MediaPlayer.create(getActivity().getApplicationContext(), R.raw.marian);
                 mp.setOnCompletionListener(listener);
                 gradientDrawable = new GradientDrawable(
                         GradientDrawable.Orientation.TOP_BOTTOM,
@@ -404,7 +402,7 @@ public class AudioPlayerBahaullah extends Fragment {
                 trackCount = 3;
                 break;
             case prayer5:
-                mp = MediaPlayer.create(getActivity().getApplicationContext(), R.raw.from_the_sweet_scented);
+                mp = MediaPlayer.create(getActivity().getApplicationContext(), R.raw.brooklyn_bridge);
                 mp.setOnCompletionListener(listener);
                 gradientDrawable = new GradientDrawable(
                         GradientDrawable.Orientation.TOP_BOTTOM,
@@ -419,7 +417,7 @@ public class AudioPlayerBahaullah extends Fragment {
                 trackCount = 4;
                 break;
             case prayer6:
-                mp = MediaPlayer.create(getActivity().getApplicationContext(), R.raw.from_the_sweet_scented);
+                mp = MediaPlayer.create(getActivity().getApplicationContext(), R.raw.marian);
                 mp.setOnCompletionListener(listener);
                 gradientDrawable = new GradientDrawable(
                         GradientDrawable.Orientation.TOP_BOTTOM,
