@@ -1,5 +1,6 @@
 package com.hfad.flower;
 
+import android.content.res.Configuration;
 import android.graphics.drawable.GradientDrawable;
 import android.media.MediaPlayer;
 import android.os.Bundle;
@@ -32,8 +33,10 @@ public class AudioPlayerBahaullah extends Fragment {
     private int trackNum = 0;
     private String tr = "TRACK";
     private Bundle bundle;
+    private int pos = 0;
     private int numTracks = 7;
     private int trackCount = 0;
+    private int continuePlay = 0;
     private GradientDrawable gradientDrawable;
     final String prayer1 = "Attract the hearts of men...";
     final String prayer2 = "Lauded be Thy name...";
@@ -62,6 +65,7 @@ public class AudioPlayerBahaullah extends Fragment {
         txt = view.findViewById(R.id.audio_txt);
 
         bundle = this.getArguments();
+        //setRetainInstance(true);
 
 
 
@@ -71,6 +75,9 @@ public class AudioPlayerBahaullah extends Fragment {
         }
 
         if (savedInstanceState != null) {
+//            continuePlay = 1;
+            pos = savedInstanceState.getInt("position");
+//            mp.seekTo(pos);
 
             track = savedInstanceState.getString(tr, track);
             Log.i("Audio Bahaullah", "onCreateView: " + track);
@@ -319,16 +326,102 @@ public class AudioPlayerBahaullah extends Fragment {
 //                view.findViewById(R.id.layout_audio_player).setBackground(gradientDrawable);
 //                img.setImageResource(R.mipmap.attract_photo_foreground);
 //                txt.setText(prayerArray[0]);
-                playTrack(prayerArray[0]);
-                pauseBtn.setVisibility(View.VISIBLE);
-                playBtn.setVisibility(View.INVISIBLE);
-                mp.start();
+               // if (mp == null && !mp.isPlaying()) {
+                if (continuePlay == 0) {
+                    playTrack(prayerArray[0]);
+                    pauseBtn.setVisibility(View.VISIBLE);
+                    playBtn.setVisibility(View.INVISIBLE);
+                    mp.start();
+                }
+
+
+
                 break;
             case 1:
                // mp.release();
                // mp.stop();
                // mp.reset();
-                playTrack(prayerArray[1]);
+                if (continuePlay == 0) {
+                    playTrack(prayerArray[1]);
+                    pauseBtn.setVisibility(View.VISIBLE);
+                    playBtn.setVisibility(View.INVISIBLE);
+                    //trackNum = 0; //don't forget to reset this on last track
+                    //mp.setLooping(false);
+                    mp.start();
+                }
+
+                break;
+            case 2:
+                // mp.release();
+                // mp.stop();
+                // mp.reset();
+                playTrack(prayerArray[2]);
+                pauseBtn.setVisibility(View.VISIBLE);
+                playBtn.setVisibility(View.INVISIBLE);
+                //trackNum = 0; //don't forget to reset this on last track
+                //mp.setLooping(false);
+                mp.start();
+                break;
+            case 3:
+                // mp.release();
+                // mp.stop();
+                // mp.reset();
+                playTrack(prayerArray[3]);
+                pauseBtn.setVisibility(View.VISIBLE);
+                playBtn.setVisibility(View.INVISIBLE);
+                //trackNum = 0; //don't forget to reset this on last track
+                //mp.setLooping(false);
+                mp.start();
+                break;
+            case 4:
+                // mp.release();
+                // mp.stop();
+                // mp.reset();
+                playTrack(prayerArray[4]);
+                pauseBtn.setVisibility(View.VISIBLE);
+                playBtn.setVisibility(View.INVISIBLE);
+                //trackNum = 0; //don't forget to reset this on last track
+                //mp.setLooping(false);
+                mp.start();
+                break;
+            case 5:
+                // mp.release();
+                // mp.stop();
+                // mp.reset();
+                playTrack(prayerArray[5]);
+                pauseBtn.setVisibility(View.VISIBLE);
+                playBtn.setVisibility(View.INVISIBLE);
+                //trackNum = 0; //don't forget to reset this on last track
+                //mp.setLooping(false);
+                mp.start();
+                break;
+            case 6:
+                // mp.release();
+                // mp.stop();
+                // mp.reset();
+                playTrack(prayerArray[6]);
+                pauseBtn.setVisibility(View.VISIBLE);
+                playBtn.setVisibility(View.INVISIBLE);
+                //trackNum = 0; //don't forget to reset this on last track
+                //mp.setLooping(false);
+                mp.start();
+                break;
+            case 7:
+                // mp.release();
+                // mp.stop();
+                // mp.reset();
+                playTrack(prayerArray[7]);
+                pauseBtn.setVisibility(View.VISIBLE);
+                playBtn.setVisibility(View.INVISIBLE);
+                //trackNum = 0; //don't forget to reset this on last track
+                //mp.setLooping(false);
+                mp.start();
+                break;
+            case 8:
+                // mp.release();
+                // mp.stop();
+                // mp.reset();
+                playTrack(prayerArray[8]);
                 pauseBtn.setVisibility(View.VISIBLE);
                 playBtn.setVisibility(View.INVISIBLE);
                 //trackNum = 0; //don't forget to reset this on last track
@@ -342,7 +435,13 @@ public class AudioPlayerBahaullah extends Fragment {
 
         switch(track) {
             case prayer1:
-                mp = MediaPlayer.create(getActivity().getApplicationContext(), R.raw.brooklyn_bridge);
+                mp = MediaPlayer.create(getContext(), R.raw.from_the_sweet_scented);
+                if (pos != 0) {
+                   mp.seekTo(pos);
+                   pos = 0;
+                   mp.start();
+                }
+
                 mp.setOnCompletionListener(listener);
                 gradientDrawable = new GradientDrawable(
                         GradientDrawable.Orientation.TOP_BOTTOM,
@@ -357,7 +456,12 @@ public class AudioPlayerBahaullah extends Fragment {
                 trackCount = 0;
                 break;
             case prayer2:
-                mp = MediaPlayer.create(getActivity().getApplicationContext(), R.raw.marian);
+                mp = MediaPlayer.create(getContext(), R.raw.marian);
+                if (pos != 0) {
+                    mp.seekTo(pos);
+                    pos = 0;
+                    mp.start();
+                }
                 mp.setOnCompletionListener(listener);
                 gradientDrawable = new GradientDrawable(
                         GradientDrawable.Orientation.TOP_BOTTOM,
@@ -372,7 +476,12 @@ public class AudioPlayerBahaullah extends Fragment {
                 trackCount = 1;
                 break;
             case prayer3:
-                mp = MediaPlayer.create(getActivity().getApplicationContext(), R.raw.brooklyn_bridge);
+                mp = MediaPlayer.create(getContext(), R.raw.brooklyn_bridge);
+                if (pos != 0) {
+                    mp.seekTo(pos);
+                    pos = 0;
+                    mp.start();
+                }
                 mp.setOnCompletionListener(listener);
                 gradientDrawable = new GradientDrawable(
                         GradientDrawable.Orientation.TOP_BOTTOM,
@@ -387,7 +496,12 @@ public class AudioPlayerBahaullah extends Fragment {
                 trackCount = 2;
                 break;
             case prayer4:
-                mp = MediaPlayer.create(getActivity().getApplicationContext(), R.raw.marian);
+                mp = MediaPlayer.create(getContext(), R.raw.marian);
+                if (pos != 0) {
+                    mp.seekTo(pos);
+                    pos = 0;
+                    mp.start();
+                }
                 mp.setOnCompletionListener(listener);
                 gradientDrawable = new GradientDrawable(
                         GradientDrawable.Orientation.TOP_BOTTOM,
@@ -402,7 +516,12 @@ public class AudioPlayerBahaullah extends Fragment {
                 trackCount = 3;
                 break;
             case prayer5:
-                mp = MediaPlayer.create(getActivity().getApplicationContext(), R.raw.brooklyn_bridge);
+                mp = MediaPlayer.create(getContext(), R.raw.brooklyn_bridge);
+                if (pos != 0) {
+                    mp.seekTo(pos);
+                    pos = 0;
+                    mp.start();
+                }
                 mp.setOnCompletionListener(listener);
                 gradientDrawable = new GradientDrawable(
                         GradientDrawable.Orientation.TOP_BOTTOM,
@@ -417,7 +536,12 @@ public class AudioPlayerBahaullah extends Fragment {
                 trackCount = 4;
                 break;
             case prayer6:
-                mp = MediaPlayer.create(getActivity().getApplicationContext(), R.raw.marian);
+                mp = MediaPlayer.create(getContext(), R.raw.marian);
+                if (pos != 0) {
+                    mp.seekTo(pos);
+                    pos = 0;
+                    mp.start();
+                }
                 mp.setOnCompletionListener(listener);
                 gradientDrawable = new GradientDrawable(
                         GradientDrawable.Orientation.TOP_BOTTOM,
@@ -432,7 +556,12 @@ public class AudioPlayerBahaullah extends Fragment {
                 trackCount = 5;
                 break;
             case prayer7:
-                mp = MediaPlayer.create(getActivity().getApplicationContext(), R.raw.from_the_sweet_scented);
+                mp = MediaPlayer.create(getContext(), R.raw.marian);
+                if (pos != 0) {
+                    mp.seekTo(pos);
+                    pos = 0;
+                    mp.start();
+                }
                 mp.setOnCompletionListener(listener);
                 gradientDrawable = new GradientDrawable(
                         GradientDrawable.Orientation.TOP_BOTTOM,
@@ -447,7 +576,12 @@ public class AudioPlayerBahaullah extends Fragment {
                 trackCount = 6;
                 break;
             case prayer8:
-                mp = MediaPlayer.create(getActivity().getApplicationContext(), R.raw.from_the_sweet_scented);
+                mp = MediaPlayer.create(getContext(), R.raw.brooklyn_bridge);
+                if (pos != 0) {
+                    mp.seekTo(pos);
+                    pos = 0;
+                    mp.start();
+                }
                 mp.setOnCompletionListener(listener);
                 gradientDrawable = new GradientDrawable(
                         GradientDrawable.Orientation.TOP_BOTTOM,
@@ -516,10 +650,46 @@ public class AudioPlayerBahaullah extends Fragment {
     @Override
     public void onSaveInstanceState(@NonNull Bundle outState) {
         // Make sure to call the super method so that the states of our views are saved
+
         super.onSaveInstanceState(outState);
         // Save our own state now
         //outState.putInt(STATE_COUNTER, mCounter);
+        if (mp.isPlaying()) {
+            outState.putInt("position", mp.getCurrentPosition());
+            mp.pause();
+        }
+
         Log.i("Audio Bahaullah", "onSaveInstanceState: " + track);
         outState.putString(tr, track);
     }
+
+//    @Override
+//    public void onConfigurationChanged(Configuration newConfig) {
+//        super.onConfigurationChanged(newConfig);
+//
+////        Configuration config=getResources().getConfiguration();
+////        if(config.orientation == Configuration.ORIENTATION_PORTRAIT)
+////        {
+////            view.setContentView(R.layout.fragment_audio);
+////        }
+////        else if(config.orientation == Configuration.ORIENTATION_LANDSCAPE)
+////        {
+////            setContentView(R.layout.fragment_audio);
+////        }
+//    }
+
+
+//    @Override
+//    public void onRestoreInstanceState(Bundle savedInstanceState) {
+//
+//        super.onRestoreInstanceState(savedInstanceState);
+//
+////        position = savedInstanceState.getInt("Position");
+////        mediaPlayer.seekTo(position);
+////        if (savedInstanceState.getBoolean("isplaying"))
+////            mediaPlayer.start();
+////
+////
+////
+//    }
 }
