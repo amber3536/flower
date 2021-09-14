@@ -1,8 +1,13 @@
 package com.hfad.flower;
 
+import android.content.ComponentName;
+import android.content.Context;
+import android.content.Intent;
+import android.content.ServiceConnection;
 import android.graphics.drawable.GradientDrawable;
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.os.IBinder;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -25,10 +30,13 @@ public class AudioPlayerAbdulBaha extends Fragment {
     private String track;
     private ImageView img;
     private TextView txt;
+
     private int playAllOn = 0;
     private FloatingActionButton backBtn;
     private FloatingActionButton forwardBtn;
     private MediaPlayer.OnCompletionListener listener;
+    private BackgroundSoundService bgSound;
+    private Intent intent;
     private int trackNum = 0;
     private int numTracks = 1; //change later
     private int trackCount = 0;
@@ -78,6 +86,9 @@ public class AudioPlayerAbdulBaha extends Fragment {
             Log.i("Audio Abdul Baha", "onCreateView: " + track);
         }
 
+
+        intent = new Intent(getActivity(),BackgroundSoundService.class);
+        requireActivity().bindService(intent, serviceConnection, Context.BIND_AUTO_CREATE);
         playTrack(track);
 
 
@@ -90,14 +101,16 @@ public class AudioPlayerAbdulBaha extends Fragment {
 
                 pauseBtn.setVisibility(View.VISIBLE);
                 playBtn.setVisibility(View.INVISIBLE);
-                if (playAllOn == 1) {
-                    playAllOn = 0;
-                    playAll(trackNum);
-                }
-                else {
-                    mp.start();
-                }
-//                  playTrack(track);
+               // requireActivity().bindService(intent, serviceConnection, Context.BIND_AUTO_CREATE);
+                requireActivity().startService(intent);
+//                if (playAllOn == 1) {
+//                    playAllOn = 0;
+//                    playAll(trackNum);
+//                }
+//                else {
+//                    mp.start();
+//                }
+
 
             }
         });
@@ -108,7 +121,7 @@ public class AudioPlayerAbdulBaha extends Fragment {
                 playBtn.setVisibility(View.VISIBLE);
                 pauseBtn.setVisibility(View.GONE);
 
-                mp.pause();
+                bgSound.pause();
             }
         });
 
@@ -344,31 +357,31 @@ public class AudioPlayerAbdulBaha extends Fragment {
 //            }
 //        });
 
-        mp.setOnCompletionListener(listener = new MediaPlayer.OnCompletionListener() {
-
-            @Override
-            public void onCompletion(MediaPlayer mp) {
-                //performOnEnd();
-                // mp.release();
-                Log.i("Audio Bahaullah", "onCompletion: " + trackNum);
-                if (track.equals("all") && trackNum < numTracks) {
-                    trackNum++;
-                    playAll(trackNum);
-                }
-                else if (track.equals("all") && trackNum == numTracks) {
-                    trackNum = 0;
-                    playAllOn = 1;
-                    playBtn.setVisibility(View.VISIBLE);
-                    pauseBtn.setVisibility(View.GONE);
-                }
-                else {
-                    playBtn.setVisibility(View.VISIBLE);
-                    pauseBtn.setVisibility(View.GONE);
-                }
-
-            }
-
-        });
+//        mp.setOnCompletionListener(listener = new MediaPlayer.OnCompletionListener() {
+//
+//            @Override
+//            public void onCompletion(MediaPlayer mp) {
+//                //performOnEnd();
+//                // mp.release();
+//                Log.i("Audio Bahaullah", "onCompletion: " + trackNum);
+//                if (track.equals("all") && trackNum < numTracks) {
+//                    trackNum++;
+//                    playAll(trackNum);
+//                }
+//                else if (track.equals("all") && trackNum == numTracks) {
+//                    trackNum = 0;
+//                    playAllOn = 1;
+//                    playBtn.setVisibility(View.VISIBLE);
+//                    pauseBtn.setVisibility(View.GONE);
+//                }
+//                else {
+//                    playBtn.setVisibility(View.VISIBLE);
+//                    pauseBtn.setVisibility(View.GONE);
+//                }
+//
+//            }
+//
+//        });
 
 
 
@@ -415,8 +428,11 @@ public class AudioPlayerAbdulBaha extends Fragment {
 
         switch(track) {
             case prayer1:
-                mp = MediaPlayer.create(getActivity().getApplicationContext(), R.raw.o_thou_whose_face2);
-                mp.setOnCompletionListener(listener);
+//                mp = MediaPlayer.create(getActivity().getApplicationContext(), R.raw.o_thou_whose_face2);
+//                mp.setOnCompletionListener(listener);
+               // intent = new Intent(getActivity(), BackgroundSoundService.class);
+                intent.putExtra("track", R.raw.brooklyn_bridge);
+
                 gradientDrawable = new GradientDrawable(
                         GradientDrawable.Orientation.TOP_BOTTOM,
                         new int[]{ContextCompat.getColor(getContext(), R.color.colorAccent),
@@ -646,10 +662,28 @@ public class AudioPlayerAbdulBaha extends Fragment {
 //        txt.setText(prayerArray[1]);
 //        mp.start();
 
+    private ServiceConnection serviceConnection = new ServiceConnection() {
+        @Override
+        public void onServiceConnected(ComponentName name, IBinder service) {
+            // We've bound to LocalService, cast the IBinder and get LocalService instance
+            BackgroundSoundService.MyBinder binder = (BackgroundSoundService.MyBinder) service;
+            bgSound = binder.getService();
+            bgSound.setListener(AudioPlayerAbdulBaha.this);
+            Log.i("Main Activity", "onServiceConnected: ");
+            //serviceBound = true;
+        }
+
+        @Override
+        public void onServiceDisconnected(ComponentName name) {
+            //serviceBound = false;
+        }
+    };
+
 
     @Override
     public void onDestroy() {
-        mp.stop();
+//        mp.stop();
+        bgSound.stop();
         Log.i("Audio Abdul Baha", "onDestroy: ");
 
         super.onDestroy();
@@ -670,4 +704,8 @@ public class AudioPlayerAbdulBaha extends Fragment {
         outState.putString(tr, track);
     }
 
+    public void resetButtons() {
+        playBtn.setVisibility(View.VISIBLE);
+        pauseBtn.setVisibility(View.GONE);
+    }
 }

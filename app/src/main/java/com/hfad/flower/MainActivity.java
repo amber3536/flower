@@ -3,9 +3,13 @@ package com.hfad.flower;
 //import android.support.v7.app.AppCompatActivity;
 import android.app.Activity;
 import android.app.Instrumentation;
+import android.content.ComponentName;
 import android.content.Intent;
+import android.content.ServiceConnection;
 import android.os.Bundle;
-        import android.view.View;
+import android.os.IBinder;
+import android.util.Log;
+import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
@@ -18,7 +22,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 public class MainActivity extends AppCompatActivity  {
-
+    private BackgroundSoundService bgSound;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +51,8 @@ public class MainActivity extends AppCompatActivity  {
 //            }
 //        });
     }
+
+
 
     @Override
     public void onRestoreInstanceState(Bundle savedInstanceState) {
