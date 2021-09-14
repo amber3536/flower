@@ -41,7 +41,7 @@ public class AudioPlayerBahaullah extends Fragment {
     private String tr = "TRACK";
     private BackgroundSoundService bgSound;
     private Bundle bundle;
-    private int pos = 0;
+    private float pos = 0;
     private String tag = "Audio Bahaullah";
     private int numTracks = 7;
     private int trackCount = 0;
@@ -94,7 +94,7 @@ public class AudioPlayerBahaullah extends Fragment {
 
         if (savedInstanceState != null) {
 //            continuePlay = 1;
-            pos = savedInstanceState.getInt("position");
+            pos = savedInstanceState.getFloat("position");
 //            mp.seekTo(pos);
 
             track = savedInstanceState.getString(tr, track);
@@ -137,7 +137,8 @@ public class AudioPlayerBahaullah extends Fragment {
                 playBtn.setVisibility(View.VISIBLE);
                 pauseBtn.setVisibility(View.GONE);
 
-                bgSound.pause();
+                if (bgSound.isPlaying())
+                    bgSound.pause();
                 //requireActivity().stopService(intent);
                 //.pause();
             }
@@ -148,56 +149,64 @@ public class AudioPlayerBahaullah extends Fragment {
             public void onClick(View v) {
                switch (track) {
                    case prayer1:
-                       bgSound.pause();
+                       if (bgSound.isPlaying())
+                            bgSound.pause();
                        playBtn.setVisibility(View.VISIBLE);
                        pauseBtn.setVisibility(View.GONE);
                        track = prayer2;
                        playTrack(track);
                        break;
                    case prayer2:
-                       bgSound.pause();
+                       if (bgSound.isPlaying())
+                            bgSound.pause();
                        playBtn.setVisibility(View.VISIBLE);
                        pauseBtn.setVisibility(View.GONE);
                        track = prayer3;
                        playTrack(track);
                        break;
                    case prayer3:
-                       bgSound.pause();
+                       if (bgSound.isPlaying())
+                            bgSound.pause();
                        playBtn.setVisibility(View.VISIBLE);
                        pauseBtn.setVisibility(View.GONE);
                        track = prayer4;
                        playTrack(track);
                        break;
                    case prayer4:
-                       bgSound.pause();
+                       if (bgSound.isPlaying())
+                            bgSound.pause();
                        playBtn.setVisibility(View.VISIBLE);
                        pauseBtn.setVisibility(View.GONE);
                        track = prayer5;
                        playTrack(track);
                        break;
                    case prayer5:
-                       bgSound.pause();
+                       if (bgSound.isPlaying())
+                            bgSound.pause();
                        playBtn.setVisibility(View.VISIBLE);
                        pauseBtn.setVisibility(View.GONE);
                        track = prayer6;
                        playTrack(track);
                        break;
                    case prayer6:
-                       bgSound.pause();
+                       if (bgSound.isPlaying())
+                            bgSound.pause();
                        playBtn.setVisibility(View.VISIBLE);
                        pauseBtn.setVisibility(View.GONE);
                        track = prayer7;
                        playTrack(track);
                        break;
                    case prayer7:
-                       bgSound.pause();
+                       if (bgSound.isPlaying())
+                            bgSound.pause();
                        playBtn.setVisibility(View.VISIBLE);
                        pauseBtn.setVisibility(View.GONE);
                        track = prayer8;
                        playTrack(track);
                        break;
                    case prayer8:
-                       bgSound.pause();
+                       if (bgSound.isPlaying())
+                            bgSound.pause();
                        playBtn.setVisibility(View.VISIBLE);
                        pauseBtn.setVisibility(View.GONE);
                        track = prayer1;
@@ -205,7 +214,8 @@ public class AudioPlayerBahaullah extends Fragment {
                        break;
                    case "all":
                        //playAllOn = 1;
-                       bgSound.pause();
+                       if (bgSound.isPlaying())
+                            bgSound.pause();
                        playBtn.setVisibility(View.VISIBLE);
                        pauseBtn.setVisibility(View.GONE);
                        if (trackNum == numTracks)
@@ -224,56 +234,64 @@ public class AudioPlayerBahaullah extends Fragment {
             public void onClick(View v) {
                 switch (track) {
                     case prayer1:
-                        bgSound.pause();
+                        if (bgSound.isPlaying())
+                            bgSound.pause();
                         playBtn.setVisibility(View.VISIBLE);
                         pauseBtn.setVisibility(View.GONE);
                         track = prayer8;
                         playTrack(track);
                         break;
                     case prayer2:
-                        bgSound.pause();
+                        if (bgSound.isPlaying())
+                            bgSound.pause();
                         playBtn.setVisibility(View.VISIBLE);
                         pauseBtn.setVisibility(View.GONE);
                         track = prayer1;
                         playTrack(track);
                         break;
                     case prayer3:
-                        bgSound.pause();
+                        if (bgSound.isPlaying())
+                            bgSound.pause();
                         playBtn.setVisibility(View.VISIBLE);
                         pauseBtn.setVisibility(View.GONE);
                         track = prayer2;
                         playTrack(track);
                         break;
                     case prayer4:
-                        bgSound.pause();
+                        if (bgSound.isPlaying())
+                            bgSound.pause();
                         playBtn.setVisibility(View.VISIBLE);
                         pauseBtn.setVisibility(View.GONE);
                         track = prayer3;
                         playTrack(track);
                         break;
                     case prayer5:
-                        bgSound.pause();
+                        if (bgSound.isPlaying())
+                            bgSound.pause();
                         playBtn.setVisibility(View.VISIBLE);
                         pauseBtn.setVisibility(View.GONE);
                         track = prayer4;
                         playTrack(track);
                         break;
                     case prayer6:
-                        bgSound.pause();
+                        if (bgSound.isPlaying())
+                            bgSound.pause();
                         playBtn.setVisibility(View.VISIBLE);
                         pauseBtn.setVisibility(View.GONE);
                         track = prayer5;
                         playTrack(track);
                         break;
                     case prayer7:
-                        bgSound.pause();
+                        if (bgSound.isPlaying())
+                            bgSound.pause();
                         playBtn.setVisibility(View.VISIBLE);
                         pauseBtn.setVisibility(View.GONE);
                         track = prayer6;
                         playTrack(track);
                         break;
                     case prayer8:
-                        bgSound.pause();
+                        if (bgSound.isPlaying())
+                            bgSound.pause();
                         playBtn.setVisibility(View.VISIBLE);
                         pauseBtn.setVisibility(View.GONE);
                         track = prayer7;
@@ -281,7 +299,8 @@ public class AudioPlayerBahaullah extends Fragment {
                         break;
                     case "all":
                         //playAllOn = 1;
-                        bgSound.pause();
+                        if (bgSound.isPlaying())
+                            bgSound.pause();
                         playBtn.setVisibility(View.VISIBLE);
                         pauseBtn.setVisibility(View.GONE);
                         if (trackNum == 0)
@@ -493,6 +512,12 @@ public class AudioPlayerBahaullah extends Fragment {
             case prayer2:
                // mp = MediaPlayer.create(getContext(), R.raw.marian);
                 intent.putExtra("track", R.raw.marian);
+                if (pos != 0) {
+                    intent.putExtra("pos", pos);
+                    requireActivity().startService(intent);
+                    pos = 0;
+
+                }
 //                if (pos != 0) {
 //                    mp.seekTo(pos);
 //                    pos = 0;
@@ -513,6 +538,12 @@ public class AudioPlayerBahaullah extends Fragment {
                 break;
             case prayer3:
                 intent.putExtra("track", R.raw.marian);
+                if (pos != 0) {
+                    intent.putExtra("pos", pos);
+                    requireActivity().startService(intent);
+                    pos = 0;
+
+                }
 //                mp = MediaPlayer.create(getContext(), R.raw.brooklyn_bridge);
 //                if (pos != 0) {
 //                    mp.seekTo(pos);
@@ -534,6 +565,12 @@ public class AudioPlayerBahaullah extends Fragment {
                 break;
             case prayer4:
                 intent.putExtra("track", R.raw.marian);
+                if (pos != 0) {
+                    intent.putExtra("pos", pos);
+                    requireActivity().startService(intent);
+                    pos = 0;
+
+                }
 //                mp = MediaPlayer.create(getContext(), R.raw.marian);
 //                if (pos != 0) {
 //                    mp.seekTo(pos);
@@ -555,6 +592,12 @@ public class AudioPlayerBahaullah extends Fragment {
                 break;
             case prayer5:
                 intent.putExtra("track", R.raw.marian);
+                if (pos != 0) {
+                    intent.putExtra("pos", pos);
+                    requireActivity().startService(intent);
+                    pos = 0;
+
+                }
 //                mp = MediaPlayer.create(getContext(), R.raw.brooklyn_bridge);
 //                if (pos != 0) {
 //                    mp.seekTo(pos);
@@ -576,6 +619,12 @@ public class AudioPlayerBahaullah extends Fragment {
                 break;
             case prayer6:
                 intent.putExtra("track", R.raw.marian);
+                if (pos != 0) {
+                    intent.putExtra("pos", pos);
+                    requireActivity().startService(intent);
+                    pos = 0;
+
+                }
 //                mp = MediaPlayer.create(getContext(), R.raw.marian);
 //                if (pos != 0) {
 //                    mp.seekTo(pos);
@@ -597,6 +646,12 @@ public class AudioPlayerBahaullah extends Fragment {
                 break;
             case prayer7:
                 intent.putExtra("track", R.raw.marian);
+                if (pos != 0) {
+                    intent.putExtra("pos", pos);
+                    requireActivity().startService(intent);
+                    pos = 0;
+
+                }
 //                mp = MediaPlayer.create(getContext(), R.raw.marian);
 //                if (pos != 0) {
 //                    mp.seekTo(pos);
@@ -618,6 +673,12 @@ public class AudioPlayerBahaullah extends Fragment {
                 break;
             case prayer8:
                 intent.putExtra("track", R.raw.marian);
+                if (pos != 0) {
+                    intent.putExtra("pos", pos);
+                    requireActivity().startService(intent);
+                    pos = 0;
+
+                }
 //                mp = MediaPlayer.create(getContext(), R.raw.brooklyn_bridge);
 //                if (pos != 0) {
 //                    mp.seekTo(pos);
@@ -715,9 +776,9 @@ public class AudioPlayerBahaullah extends Fragment {
         super.onSaveInstanceState(outState);
         // Save our own state now
         //outState.putInt(STATE_COUNTER, mCounter);
-        if (mp.isPlaying()) {
-            outState.putInt("position", mp.getCurrentPosition());
-            mp.pause();
+        if (bgSound.isPlaying()) {
+            outState.putFloat("position", bgSound.getCurrentPosition());
+            bgSound.pause();
         }
 
         Log.i("Audio Bahaullah", "onSaveInstanceState: " + track);

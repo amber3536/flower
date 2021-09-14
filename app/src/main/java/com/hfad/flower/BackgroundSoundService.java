@@ -94,6 +94,14 @@ public class BackgroundSoundService extends Service implements MediaPlayer.OnCom
         abdulBahaListener = listener;
     }
 
+    public boolean isPlaying() {
+        return mp.isPlaying();
+    }
+
+    public float getCurrentPosition() {
+        return mp.getCurrentPosition();
+    }
+
 
 //    @Override
 //    public void onCompletion(MediaPlayer mediaPlayer) {
