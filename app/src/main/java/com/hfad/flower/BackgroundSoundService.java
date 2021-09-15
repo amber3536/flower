@@ -30,9 +30,16 @@ public class BackgroundSoundService extends Service implements MediaPlayer.OnCom
     }
 
     @Override
+    public void onCreate() {
+        super.onCreate();
+
+    }
+
+    @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        int prayer = intent.getIntExtra("track", 0);
+
         position = intent.getIntExtra("pos", 0);
+        int prayer = intent.getIntExtra("track", 0);
         mp = MediaPlayer.create(this, prayer);
         mp.setOnCompletionListener(this);
         mp.seekTo(position);
@@ -81,7 +88,7 @@ public class BackgroundSoundService extends Service implements MediaPlayer.OnCom
     @Override
     public void onCompletion(MediaPlayer mediaPlayer) {
         if (bahaullahListener != null)
-            bahaullahListener.resetButtons();
+            bahaullahListener.trackEnded();
         else if (abdulBahaListener != null)
             abdulBahaListener.resetButtons();
     }
@@ -95,11 +102,17 @@ public class BackgroundSoundService extends Service implements MediaPlayer.OnCom
     }
 
     public boolean isPlaying() {
-        return mp.isPlaying();
+        if (mp == null)
+            return false;
+        else
+            return mp.isPlaying();
     }
 
     public float getCurrentPosition() {
-        return mp.getCurrentPosition();
+        if (mp != null)
+            return mp.getCurrentPosition();
+        else
+            return 0;
     }
 
 
@@ -123,11 +136,13 @@ public class BackgroundSoundService extends Service implements MediaPlayer.OnCom
     }
 
     public void pause() {
-        mp.pause();
+        if (mp != null)
+            mp.pause();
     }
 
     public void stop() {
-        mp.stop();
+        if (mp != null)
+            mp.stop();
     }
 
 

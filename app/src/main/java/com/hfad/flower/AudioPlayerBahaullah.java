@@ -377,12 +377,12 @@ public class AudioPlayerBahaullah extends Fragment {
 //                img.setImageResource(R.mipmap.attract_photo_foreground);
 //                txt.setText(prayerArray[0]);
                // if (mp == null && !mp.isPlaying()) {
-                if (continuePlay == 0) {
-                    playTrack(prayerArray[0]);
-                    pauseBtn.setVisibility(View.VISIBLE);
-                    playBtn.setVisibility(View.INVISIBLE);
-                    mp.start();
-                }
+               // if (continuePlay == 0) {
+                playTrack(prayerArray[0]);
+                pauseBtn.setVisibility(View.VISIBLE);
+                playBtn.setVisibility(View.INVISIBLE);
+                requireActivity().startService(intent);
+               // }
 
 
 
@@ -391,14 +391,14 @@ public class AudioPlayerBahaullah extends Fragment {
                // mp.release();
                // mp.stop();
                // mp.reset();
-                if (continuePlay == 0) {
-                    playTrack(prayerArray[1]);
-                    pauseBtn.setVisibility(View.VISIBLE);
-                    playBtn.setVisibility(View.INVISIBLE);
-                    //trackNum = 0; //don't forget to reset this on last track
-                    //mp.setLooping(false);
-                    mp.start();
-                }
+               // if (continuePlay == 0) {
+                playTrack(prayerArray[1]);
+                pauseBtn.setVisibility(View.VISIBLE);
+                playBtn.setVisibility(View.INVISIBLE);
+                //trackNum = 0; //don't forget to reset this on last track
+                //mp.setLooping(false);
+                requireActivity().startService(intent);
+             //   }
 
                 break;
             case 2:
@@ -410,7 +410,7 @@ public class AudioPlayerBahaullah extends Fragment {
                 playBtn.setVisibility(View.INVISIBLE);
                 //trackNum = 0; //don't forget to reset this on last track
                 //mp.setLooping(false);
-                mp.start();
+                requireActivity().startService(intent);
                 break;
             case 3:
                 // mp.release();
@@ -421,7 +421,7 @@ public class AudioPlayerBahaullah extends Fragment {
                 playBtn.setVisibility(View.INVISIBLE);
                 //trackNum = 0; //don't forget to reset this on last track
                 //mp.setLooping(false);
-                mp.start();
+                requireActivity().startService(intent);
                 break;
             case 4:
                 // mp.release();
@@ -432,7 +432,7 @@ public class AudioPlayerBahaullah extends Fragment {
                 playBtn.setVisibility(View.INVISIBLE);
                 //trackNum = 0; //don't forget to reset this on last track
                 //mp.setLooping(false);
-                mp.start();
+                requireActivity().startService(intent);
                 break;
             case 5:
                 // mp.release();
@@ -443,7 +443,7 @@ public class AudioPlayerBahaullah extends Fragment {
                 playBtn.setVisibility(View.INVISIBLE);
                 //trackNum = 0; //don't forget to reset this on last track
                 //mp.setLooping(false);
-                mp.start();
+                requireActivity().startService(intent);
                 break;
             case 6:
                 // mp.release();
@@ -454,7 +454,7 @@ public class AudioPlayerBahaullah extends Fragment {
                 playBtn.setVisibility(View.INVISIBLE);
                 //trackNum = 0; //don't forget to reset this on last track
                 //mp.setLooping(false);
-                mp.start();
+                requireActivity().startService(intent);
                 break;
             case 7:
                 // mp.release();
@@ -465,7 +465,7 @@ public class AudioPlayerBahaullah extends Fragment {
                 playBtn.setVisibility(View.INVISIBLE);
                 //trackNum = 0; //don't forget to reset this on last track
                 //mp.setLooping(false);
-                mp.start();
+                requireActivity().startService(intent);
                 break;
             case 8:
                 // mp.release();
@@ -476,7 +476,7 @@ public class AudioPlayerBahaullah extends Fragment {
                 playBtn.setVisibility(View.INVISIBLE);
                 //trackNum = 0; //don't forget to reset this on last track
                 //mp.setLooping(false);
-                mp.start();
+                requireActivity().startService(intent); 
                 break;
         }
     }
@@ -785,9 +785,24 @@ public class AudioPlayerBahaullah extends Fragment {
         outState.putString(tr, track);
     }
 
-    public void resetButtons() {
-        playBtn.setVisibility(View.VISIBLE);
-        pauseBtn.setVisibility(View.GONE);
+    public void trackEnded() {
+        if (track.equals("all") && trackNum < numTracks) {
+                    trackNum++;
+                    playAll(trackNum);
+                }
+                else if (track.equals("all") && trackNum == numTracks) {
+                    trackNum = 0;
+                    playAllOn = 1;
+                    playBtn.setVisibility(View.VISIBLE);
+                    pauseBtn.setVisibility(View.GONE);
+                    playTrack(prayerArray[0]);
+                }
+                else {
+                    playBtn.setVisibility(View.VISIBLE);
+                    pauseBtn.setVisibility(View.GONE);
+                }
+//        playBtn.setVisibility(View.VISIBLE);
+//        pauseBtn.setVisibility(View.GONE);
     }
 
 //    @Override
