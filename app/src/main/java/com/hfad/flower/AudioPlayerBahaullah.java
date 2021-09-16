@@ -60,14 +60,14 @@ public class AudioPlayerBahaullah extends Fragment {
             "Glory to Thee, O my God!", "Magnified, O Lord my God, be Thy name..."};
 
 
-    @Override
-    public void onCreate (Bundle savedInstanceState) {
-
-
-        Log.i(tag, "onCreate: " + "bla");
-        super.onCreate(savedInstanceState);
-
-    }
+//    @Override
+//    public void onCreate (Bundle savedInstanceState) {
+//
+//
+//        Log.i(tag, "onCreate: " + "bla");
+//        super.onCreate(savedInstanceState);
+//
+//    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -95,6 +95,7 @@ public class AudioPlayerBahaullah extends Fragment {
         if (savedInstanceState != null) {
 //            continuePlay = 1;
             pos = savedInstanceState.getFloat("position");
+            Log.i(tag, "onCreateView: " + pos);
 //            mp.seekTo(pos);
 
             track = savedInstanceState.getString(tr, track);
@@ -116,7 +117,7 @@ public class AudioPlayerBahaullah extends Fragment {
 
                   pauseBtn.setVisibility(View.VISIBLE);
                   playBtn.setVisibility(View.INVISIBLE);
-                      requireActivity().startService(intent);
+                  requireActivity().startService(intent);
 
 
 //                  if (playAllOn == 1) {
@@ -137,8 +138,12 @@ public class AudioPlayerBahaullah extends Fragment {
                 playBtn.setVisibility(View.VISIBLE);
                 pauseBtn.setVisibility(View.GONE);
 
-                if (bgSound.isPlaying())
+                if (bgSound.isPlaying()) {
+                    intent.putExtra("pos", bgSound.getCurrentPosition());
+                    Log.i(tag, "onClick: " + bgSound.getCurrentPosition());
                     bgSound.pause();
+                }
+
                 //requireActivity().stopService(intent);
                 //.pause();
             }
@@ -487,7 +492,7 @@ public class AudioPlayerBahaullah extends Fragment {
             case prayer1:
                 //requireActivity().startService(new Intent(getActivity(),BackgroundSoundService.class));
 
-                intent.putExtra("track", R.raw.marian);
+                intent.putExtra("track", R.raw.bahai_1);
 //                mp = MediaPlayer.create(getContext(), R.raw.from_the_sweet_scented);
                 if (pos != 0) {
                     intent.putExtra("pos", pos);
@@ -511,7 +516,7 @@ public class AudioPlayerBahaullah extends Fragment {
                 break;
             case prayer2:
                // mp = MediaPlayer.create(getContext(), R.raw.marian);
-                intent.putExtra("track", R.raw.marian);
+                intent.putExtra("track", R.raw.bahai_2);
                 if (pos != 0) {
                     intent.putExtra("pos", pos);
                     requireActivity().startService(intent);
@@ -537,7 +542,7 @@ public class AudioPlayerBahaullah extends Fragment {
                 trackCount = 1;
                 break;
             case prayer3:
-                intent.putExtra("track", R.raw.marian);
+                intent.putExtra("track", R.raw.bahai_3_copy);
                 if (pos != 0) {
                     intent.putExtra("pos", pos);
                     requireActivity().startService(intent);
@@ -564,7 +569,7 @@ public class AudioPlayerBahaullah extends Fragment {
                 trackCount = 2;
                 break;
             case prayer4:
-                intent.putExtra("track", R.raw.marian);
+                intent.putExtra("track", R.raw.bahai_4);
                 if (pos != 0) {
                     intent.putExtra("pos", pos);
                     requireActivity().startService(intent);
@@ -591,7 +596,7 @@ public class AudioPlayerBahaullah extends Fragment {
                 trackCount = 3;
                 break;
             case prayer5:
-                intent.putExtra("track", R.raw.marian);
+                intent.putExtra("track", R.raw.bahai_5_copy);
                 if (pos != 0) {
                     intent.putExtra("pos", pos);
                     requireActivity().startService(intent);
@@ -618,7 +623,7 @@ public class AudioPlayerBahaullah extends Fragment {
                 trackCount = 4;
                 break;
             case prayer6:
-                intent.putExtra("track", R.raw.marian);
+                intent.putExtra("track", R.raw.bahai_6);
                 if (pos != 0) {
                     intent.putExtra("pos", pos);
                     requireActivity().startService(intent);
@@ -645,7 +650,7 @@ public class AudioPlayerBahaullah extends Fragment {
                 trackCount = 5;
                 break;
             case prayer7:
-                intent.putExtra("track", R.raw.marian);
+                intent.putExtra("track", R.raw.bahai_7);
                 if (pos != 0) {
                     intent.putExtra("pos", pos);
                     requireActivity().startService(intent);
@@ -672,7 +677,7 @@ public class AudioPlayerBahaullah extends Fragment {
                 trackCount = 6;
                 break;
             case prayer8:
-                intent.putExtra("track", R.raw.marian);
+                intent.putExtra("track", R.raw.bahai_8_copy);
                 if (pos != 0) {
                     intent.putExtra("pos", pos);
                     requireActivity().startService(intent);

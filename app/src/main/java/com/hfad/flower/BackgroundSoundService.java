@@ -13,7 +13,7 @@ import androidx.annotation.Nullable;
 
 public class BackgroundSoundService extends Service implements MediaPlayer.OnCompletionListener {
     MediaPlayer mp;
-    private int position;
+    private float position;
     private String tag = "Background Sound Service";
     private AudioPlayerBahaullah bahaullahListener;
     private AudioPlayerAbdulBaha abdulBahaListener;
@@ -38,11 +38,12 @@ public class BackgroundSoundService extends Service implements MediaPlayer.OnCom
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
 
-        position = intent.getIntExtra("pos", 0);
+        position = intent.getFloatExtra("pos", 0);
+        Log.i(tag, "onStartCommand: " + position);
         int prayer = intent.getIntExtra("track", 0);
         mp = MediaPlayer.create(this, prayer);
         mp.setOnCompletionListener(this);
-        mp.seekTo(position);
+        mp.seekTo((int)position);
         mp.start();
 
 //        mp.setOnCompletionListener(listener = new MediaPlayer.OnCompletionListener() {
@@ -91,6 +92,8 @@ public class BackgroundSoundService extends Service implements MediaPlayer.OnCom
             bahaullahListener.trackEnded();
         else if (abdulBahaListener != null)
             abdulBahaListener.resetButtons();
+        else if (theBabListener != null)
+            theBabListener.trackEnded();
     }
 
     public void setListener(AudioPlayerBahaullah listener) {
@@ -99,6 +102,10 @@ public class BackgroundSoundService extends Service implements MediaPlayer.OnCom
 
     public void setListener(AudioPlayerAbdulBaha listener) {
         abdulBahaListener = listener;
+    }
+
+    public void setListener(AudioPlayerTheBab listener) {
+        theBabListener = listener;
     }
 
     public boolean isPlaying() {
