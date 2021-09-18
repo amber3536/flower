@@ -452,6 +452,90 @@ public class AudioPlayerTheBab extends Fragment {
                 //mp.setLooping(false);
                 requireActivity().startService(intent);
                 break;
+            case 2:
+                playTrack(prayer3);
+                pauseBtn.setVisibility(View.VISIBLE);
+                playBtn.setVisibility(View.INVISIBLE);
+                //mp.setLooping(false);
+                requireActivity().startService(intent);
+                break;
+            case 3:
+                playTrack(prayer4);
+                pauseBtn.setVisibility(View.VISIBLE);
+                playBtn.setVisibility(View.INVISIBLE);
+                //mp.setLooping(false);
+                requireActivity().startService(intent);
+                break;
+            case 4:
+                playTrack(prayer5);
+                pauseBtn.setVisibility(View.VISIBLE);
+                playBtn.setVisibility(View.INVISIBLE);
+                //mp.setLooping(false);
+                requireActivity().startService(intent);
+                break;
+            case 5:
+                playTrack(prayer6);
+                pauseBtn.setVisibility(View.VISIBLE);
+                playBtn.setVisibility(View.INVISIBLE);
+                //mp.setLooping(false);
+                requireActivity().startService(intent);
+                break;
+            case 6:
+                playTrack(prayer7);
+                pauseBtn.setVisibility(View.VISIBLE);
+                playBtn.setVisibility(View.INVISIBLE);
+                //mp.setLooping(false);
+                requireActivity().startService(intent);
+                break;
+            case 7:
+                playTrack(prayer8);
+                pauseBtn.setVisibility(View.VISIBLE);
+                playBtn.setVisibility(View.INVISIBLE);
+                //mp.setLooping(false);
+                requireActivity().startService(intent);
+                break;
+            case 8:
+                playTrack(prayer9);
+                pauseBtn.setVisibility(View.VISIBLE);
+                playBtn.setVisibility(View.INVISIBLE);
+                //mp.setLooping(false);
+                requireActivity().startService(intent);
+                break;
+            case 9:
+                playTrack(prayer10);
+                pauseBtn.setVisibility(View.VISIBLE);
+                playBtn.setVisibility(View.INVISIBLE);
+                //mp.setLooping(false);
+                requireActivity().startService(intent);
+                break;
+            case 10:
+                playTrack(prayer11);
+                pauseBtn.setVisibility(View.VISIBLE);
+                playBtn.setVisibility(View.INVISIBLE);
+                //mp.setLooping(false);
+                requireActivity().startService(intent);
+                break;
+            case 11:
+                playTrack(prayer12);
+                pauseBtn.setVisibility(View.VISIBLE);
+                playBtn.setVisibility(View.INVISIBLE);
+                //mp.setLooping(false);
+                requireActivity().startService(intent);
+                break;
+            case 12:
+                playTrack(prayer13);
+                pauseBtn.setVisibility(View.VISIBLE);
+                playBtn.setVisibility(View.INVISIBLE);
+                //mp.setLooping(false);
+                requireActivity().startService(intent);
+                break;
+            case 13:
+                playTrack(prayer14);
+                pauseBtn.setVisibility(View.VISIBLE);
+                playBtn.setVisibility(View.INVISIBLE);
+                //mp.setLooping(false);
+                requireActivity().startService(intent);
+                break;
         }
     }
 

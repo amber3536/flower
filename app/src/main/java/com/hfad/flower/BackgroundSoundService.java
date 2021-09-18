@@ -96,7 +96,7 @@ public class BackgroundSoundService extends Service implements MediaPlayer.OnCom
         Log.i(tag, "onCompletion: figure " + figure);
         Log.i(tag, "onCompletion: " + abdulBahaListener);
         if (figure == 0)
-            bahaullahListener.trackEnded();
+            bahaullahListener.trackEndedBahaullah();
         else if (figure == 2)
             abdulBahaListener.trackEndedAbdulBaha();
         else if (figure == 1)

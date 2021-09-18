@@ -765,7 +765,7 @@ public class AudioPlayerBahaullah extends Fragment {
         outState.putString(tr, track);
     }
 
-    public void trackEnded() {
+    public void trackEndedBahaullah() {
         if (track.equals("all") && trackNum < numTracks) {
                     trackNum++;
                     playAll(trackNum);
