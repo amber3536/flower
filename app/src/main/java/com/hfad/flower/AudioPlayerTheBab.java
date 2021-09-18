@@ -420,34 +420,37 @@ public class AudioPlayerTheBab extends Fragment {
     private void playAll(int num) {
         switch (num) {
             case 0:
-                mp = MediaPlayer.create(getActivity().getApplicationContext(), R.raw.marian);
-                mp.setOnCompletionListener(listener);
-                gradientDrawable = new GradientDrawable(
-                        GradientDrawable.Orientation.TOP_BOTTOM,
-                        new int[]{ContextCompat.getColor(getContext(), R.color.colorAccent),
-                                ContextCompat.getColor(getContext(), R.color.colorFadedYellow),
-                                ContextCompat.getColor(getContext(), R.color.colorFadedPink),
-                                ContextCompat.getColor(getContext(), R.color.colorAccent)});
-
-                view.findViewById(R.id.layout_audio_player).setBackground(gradientDrawable);
-                img.setImageResource(R.mipmap.attract_photo_foreground);
-                txt.setText(prayerArray[0]);
+//                mp = MediaPlayer.create(getActivity().getApplicationContext(), R.raw.marian);
+//                mp.setOnCompletionListener(listener);
+//                gradientDrawable = new GradientDrawable(
+//                        GradientDrawable.Orientation.TOP_BOTTOM,
+//                        new int[]{ContextCompat.getColor(getContext(), R.color.colorAccent),
+//                                ContextCompat.getColor(getContext(), R.color.colorFadedYellow),
+//                                ContextCompat.getColor(getContext(), R.color.colorFadedPink),
+//                                ContextCompat.getColor(getContext(), R.color.colorAccent)});
+//
+//                view.findViewById(R.id.layout_audio_player).setBackground(gradientDrawable);
+//                img.setImageResource(R.mipmap.attract_photo_foreground);
+//                txt.setText(prayerArray[0]);
+                playTrack(prayer1);
                 pauseBtn.setVisibility(View.VISIBLE);
                 playBtn.setVisibility(View.INVISIBLE);
-                mp.start();
+                requireActivity().startService(intent);
+               // mp.start();
                 break;
             case 1:
                 // mp.release();
                 // mp.stop();
                 // mp.reset();
-                mp = MediaPlayer.create(getActivity().getApplicationContext(), R.raw.brooklyn_bridge);
-                mp.setOnCompletionListener(listener);
-                txt.setText(prayerArray[1]);
-                img.setImageResource(R.mipmap.lauded_photo_foreground);
+//                mp = MediaPlayer.create(getActivity().getApplicationContext(), R.raw.brooklyn_bridge);
+//                mp.setOnCompletionListener(listener);
+//                txt.setText(prayerArray[1]);
+//                img.setImageResource(R.mipmap.lauded_photo_foreground);
+                playTrack(prayer2);
                 pauseBtn.setVisibility(View.VISIBLE);
                 playBtn.setVisibility(View.INVISIBLE);
                 //mp.setLooping(false);
-                mp.start();
+                requireActivity().startService(intent);
                 break;
         }
     }
@@ -455,8 +458,17 @@ public class AudioPlayerTheBab extends Fragment {
     private void playTrack(String track) {
         switch(track) {
             case prayer1:
-                mp = MediaPlayer.create(getActivity().getApplicationContext(), R.raw.o_thou_whose_face2);
-                mp.setOnCompletionListener(listener);
+//                mp = MediaPlayer.create(getActivity().getApplicationContext(), R.raw.o_thou_whose_face2);
+//                mp.setOnCompletionListener(listener);
+                intent.putExtra("track", R.raw.marian);
+                Log.i(tag, "playTrack: made it here");
+//                mp = MediaPlayer.create(getContext(), R.raw.from_the_sweet_scented);
+                if (pos != 0) {
+                    intent.putExtra("pos", pos);
+                    requireActivity().startService(intent);
+                    pos = 0;
+
+                }
                 gradientDrawable = new GradientDrawable(
                         GradientDrawable.Orientation.TOP_BOTTOM,
                         new int[]{ContextCompat.getColor(getContext(), R.color.fadedGreen),
@@ -469,8 +481,16 @@ public class AudioPlayerTheBab extends Fragment {
                 txt.setText(prayerArray[0]);
                 break;
             case prayer2:
-                mp = MediaPlayer.create(getActivity().getApplicationContext(), R.raw.marian);
-                mp.setOnCompletionListener(listener);
+                intent.putExtra("track", R.raw.marian);
+//                mp = MediaPlayer.create(getContext(), R.raw.from_the_sweet_scented);
+                if (pos != 0) {
+                    intent.putExtra("pos", pos);
+                    requireActivity().startService(intent);
+                    pos = 0;
+
+                }
+//                mp = MediaPlayer.create(getActivity().getApplicationContext(), R.raw.marian);
+//                mp.setOnCompletionListener(listener);
                 gradientDrawable = new GradientDrawable(
                         GradientDrawable.Orientation.TOP_BOTTOM,
                         new int[]{ContextCompat.getColor(getContext(), R.color.fadedTurquoise),
@@ -483,8 +503,14 @@ public class AudioPlayerTheBab extends Fragment {
                 txt.setText(prayerArray[1]);
                 break;
             case prayer3:
-                mp = MediaPlayer.create(getActivity().getApplicationContext(), R.raw.marian);
-                mp.setOnCompletionListener(listener);
+                intent.putExtra("track", R.raw.marian);
+//                mp = MediaPlayer.create(getContext(), R.raw.from_the_sweet_scented);
+                if (pos != 0) {
+                    intent.putExtra("pos", pos);
+                    requireActivity().startService(intent);
+                    pos = 0;
+
+                }
                 gradientDrawable = new GradientDrawable(
                         GradientDrawable.Orientation.TOP_BOTTOM,
                         new int[]{ContextCompat.getColor(getContext(), R.color.fadedNavy),
@@ -497,8 +523,14 @@ public class AudioPlayerTheBab extends Fragment {
                 txt.setText(prayerArray[2]);
                 break;
             case prayer4:
-                mp = MediaPlayer.create(getActivity().getApplicationContext(), R.raw.from_the_sweet_scented);
-                mp.setOnCompletionListener(listener);
+                intent.putExtra("track", R.raw.marian);
+//                mp = MediaPlayer.create(getContext(), R.raw.from_the_sweet_scented);
+                if (pos != 0) {
+                    intent.putExtra("pos", pos);
+                    requireActivity().startService(intent);
+                    pos = 0;
+
+                }
                 gradientDrawable = new GradientDrawable(
                         GradientDrawable.Orientation.TOP_BOTTOM,
                         new int[]{ContextCompat.getColor(getContext(), R.color.fadedGray),
@@ -511,8 +543,14 @@ public class AudioPlayerTheBab extends Fragment {
                 txt.setText(prayerArray[3]);
                 break;
             case prayer5:
-                mp = MediaPlayer.create(getActivity().getApplicationContext(), R.raw.from_the_sweet_scented);
-                mp.setOnCompletionListener(listener);
+                intent.putExtra("track", R.raw.marian);
+//                mp = MediaPlayer.create(getContext(), R.raw.from_the_sweet_scented);
+                if (pos != 0) {
+                    intent.putExtra("pos", pos);
+                    requireActivity().startService(intent);
+                    pos = 0;
+
+                }
                 gradientDrawable = new GradientDrawable(
                         GradientDrawable.Orientation.TOP_BOTTOM,
                         new int[]{ContextCompat.getColor(getContext(), R.color.colorFadedDarkPurple),
@@ -525,8 +563,14 @@ public class AudioPlayerTheBab extends Fragment {
                 txt.setText(prayerArray[4]);
                 break;
             case prayer6:
-                mp = MediaPlayer.create(getActivity().getApplicationContext(), R.raw.from_the_sweet_scented);
-                mp.setOnCompletionListener(listener);
+                intent.putExtra("track", R.raw.marian);
+//                mp = MediaPlayer.create(getContext(), R.raw.from_the_sweet_scented);
+                if (pos != 0) {
+                    intent.putExtra("pos", pos);
+                    requireActivity().startService(intent);
+                    pos = 0;
+
+                }
                 gradientDrawable = new GradientDrawable(
                         GradientDrawable.Orientation.TOP_BOTTOM,
                         new int[]{ContextCompat.getColor(getContext(), R.color.fadedGray),
@@ -539,8 +583,14 @@ public class AudioPlayerTheBab extends Fragment {
                 txt.setText(prayerArray[5]);
                 break;
             case prayer7:
-                mp = MediaPlayer.create(getActivity().getApplicationContext(), R.raw.from_the_sweet_scented);
-                mp.setOnCompletionListener(listener);
+                intent.putExtra("track", R.raw.marian);
+//                mp = MediaPlayer.create(getContext(), R.raw.from_the_sweet_scented);
+                if (pos != 0) {
+                    intent.putExtra("pos", pos);
+                    requireActivity().startService(intent);
+                    pos = 0;
+
+                }
                 gradientDrawable = new GradientDrawable(
                         GradientDrawable.Orientation.TOP_BOTTOM,
                         new int[]{ContextCompat.getColor(getContext(), R.color.fadedGray),
@@ -553,8 +603,14 @@ public class AudioPlayerTheBab extends Fragment {
                 txt.setText(prayerArray[6]);
                 break;
             case prayer8:
-                mp = MediaPlayer.create(getActivity().getApplicationContext(), R.raw.from_the_sweet_scented);
-                mp.setOnCompletionListener(listener);
+                intent.putExtra("track", R.raw.marian);
+//                mp = MediaPlayer.create(getContext(), R.raw.from_the_sweet_scented);
+                if (pos != 0) {
+                    intent.putExtra("pos", pos);
+                    requireActivity().startService(intent);
+                    pos = 0;
+
+                }
                 gradientDrawable = new GradientDrawable(
                         GradientDrawable.Orientation.TOP_BOTTOM,
                         new int[]{ContextCompat.getColor(getContext(), R.color.colorAccent),
@@ -568,8 +624,14 @@ public class AudioPlayerTheBab extends Fragment {
                 break;
 
             case prayer9:
-                mp = MediaPlayer.create(getActivity().getApplicationContext(), R.raw.paris_talks20);
-                mp.setOnCompletionListener(listener);
+                intent.putExtra("track", R.raw.marian);
+//                mp = MediaPlayer.create(getContext(), R.raw.from_the_sweet_scented);
+                if (pos != 0) {
+                    intent.putExtra("pos", pos);
+                    requireActivity().startService(intent);
+                    pos = 0;
+
+                }
                 gradientDrawable = new GradientDrawable(
                         GradientDrawable.Orientation.TOP_BOTTOM,
                         new int[]{ContextCompat.getColor(getContext(), R.color.colorAccent),
@@ -582,8 +644,14 @@ public class AudioPlayerTheBab extends Fragment {
                 txt.setText(prayerArray[8]);
                 break;
             case prayer10:
-                mp = MediaPlayer.create(getActivity().getApplicationContext(), R.raw.paris_talks20);
-                mp.setOnCompletionListener(listener);
+                intent.putExtra("track", R.raw.marian);
+//                mp = MediaPlayer.create(getContext(), R.raw.from_the_sweet_scented);
+                if (pos != 0) {
+                    intent.putExtra("pos", pos);
+                    requireActivity().startService(intent);
+                    pos = 0;
+
+                }
                 gradientDrawable = new GradientDrawable(
                         GradientDrawable.Orientation.TOP_BOTTOM,
                         new int[]{ContextCompat.getColor(getContext(), R.color.colorAccent),
@@ -596,8 +664,14 @@ public class AudioPlayerTheBab extends Fragment {
                 txt.setText(prayerArray[9]);
                 break;
             case prayer11:
-                mp = MediaPlayer.create(getActivity().getApplicationContext(), R.raw.paris_talks20);
-                mp.setOnCompletionListener(listener);
+                intent.putExtra("track", R.raw.marian);
+//                mp = MediaPlayer.create(getContext(), R.raw.from_the_sweet_scented);
+                if (pos != 0) {
+                    intent.putExtra("pos", pos);
+                    requireActivity().startService(intent);
+                    pos = 0;
+
+                }
                 gradientDrawable = new GradientDrawable(
                         GradientDrawable.Orientation.TOP_BOTTOM,
                         new int[]{ContextCompat.getColor(getContext(), R.color.colorFadedPurple),
@@ -610,8 +684,14 @@ public class AudioPlayerTheBab extends Fragment {
                 txt.setText(prayerArray[10]);
                 break;
             case prayer12:
-                mp = MediaPlayer.create(getActivity().getApplicationContext(), R.raw.paris_talks20);
-                mp.setOnCompletionListener(listener);
+                intent.putExtra("track", R.raw.marian);
+//                mp = MediaPlayer.create(getContext(), R.raw.from_the_sweet_scented);
+                if (pos != 0) {
+                    intent.putExtra("pos", pos);
+                    requireActivity().startService(intent);
+                    pos = 0;
+
+                }
                 gradientDrawable = new GradientDrawable(
                         GradientDrawable.Orientation.TOP_BOTTOM,
                         new int[]{ContextCompat.getColor(getContext(), R.color.fadedGray),
@@ -624,8 +704,14 @@ public class AudioPlayerTheBab extends Fragment {
                 txt.setText(prayerArray[11]);
                 break;
             case prayer13:
-                mp = MediaPlayer.create(getActivity().getApplicationContext(), R.raw.paris_talks20);
-                mp.setOnCompletionListener(listener);
+                intent.putExtra("track", R.raw.marian);
+//                mp = MediaPlayer.create(getContext(), R.raw.from_the_sweet_scented);
+                if (pos != 0) {
+                    intent.putExtra("pos", pos);
+                    requireActivity().startService(intent);
+                    pos = 0;
+
+                }
                 gradientDrawable = new GradientDrawable(
                         GradientDrawable.Orientation.TOP_BOTTOM,
                         new int[]{ContextCompat.getColor(getContext(), R.color.fadedGray),
@@ -638,8 +724,14 @@ public class AudioPlayerTheBab extends Fragment {
                 txt.setText(prayerArray[12]);
                 break;
             case prayer14:
-                mp = MediaPlayer.create(getActivity().getApplicationContext(), R.raw.paris_talks20);
-                mp.setOnCompletionListener(listener);
+                intent.putExtra("track", R.raw.marian);
+//                mp = MediaPlayer.create(getContext(), R.raw.from_the_sweet_scented);
+                if (pos != 0) {
+                    intent.putExtra("pos", pos);
+                    requireActivity().startService(intent);
+                    pos = 0;
+
+                }
                 gradientDrawable = new GradientDrawable(
                         GradientDrawable.Orientation.TOP_BOTTOM,
                         new int[]{ContextCompat.getColor(getContext(), R.color.fadedOrange),
@@ -667,7 +759,7 @@ public class AudioPlayerTheBab extends Fragment {
             BackgroundSoundService.MyBinder binder = (BackgroundSoundService.MyBinder) service;
             bgSound = binder.getService();
             bgSound.setListener(AudioPlayerTheBab.this);
-            Log.i("Main Activity", "onServiceConnected: ");
+            Log.i(tag, "onServiceConnected: ");
             //serviceBound = true;
         }
 
@@ -696,7 +788,9 @@ public class AudioPlayerTheBab extends Fragment {
 
     @Override
     public void onDestroy() {
-        mp.stop();
+        //mp.stop();
+        if (bgSound != null)
+            bgSound.stop();
         Log.i("Audio The Bab", "onDestroy: ");
 
         super.onDestroy();
@@ -714,6 +808,10 @@ public class AudioPlayerTheBab extends Fragment {
         super.onSaveInstanceState(outState);
         // Save our own state now
         //outState.putInt(STATE_COUNTER, mCounter);
+        if (bgSound.isPlaying()) {
+            outState.putFloat("position", bgSound.getCurrentPosition());
+            bgSound.pause();
+        }
         Log.i("Audio The Bab", "onSaveInstanceState: " + track);
         outState.putString(tr, track);
     }

@@ -4,7 +4,6 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
-import android.content.res.Configuration;
 import android.graphics.drawable.GradientDrawable;
 import android.media.MediaPlayer;
 import android.os.Bundle;
@@ -19,7 +18,6 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Lifecycle;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -44,7 +42,6 @@ public class AudioPlayerBahaullah extends Fragment {
     private float pos = 0;
     private String tag = "Audio Bahaullah";
     private int numTracks = 7;
-    private int trackCount = 0;
     private int continuePlay = 0;
     private GradientDrawable gradientDrawable;
     final String prayer1 = "Attract the hearts of men...";
@@ -154,64 +151,56 @@ public class AudioPlayerBahaullah extends Fragment {
             public void onClick(View v) {
                switch (track) {
                    case prayer1:
-                       if (bgSound.isPlaying())
-                            bgSound.pause();
+                       bgSound.pause();
                        playBtn.setVisibility(View.VISIBLE);
                        pauseBtn.setVisibility(View.GONE);
                        track = prayer2;
                        playTrack(track);
                        break;
                    case prayer2:
-                       if (bgSound.isPlaying())
-                            bgSound.pause();
+                       bgSound.pause();
                        playBtn.setVisibility(View.VISIBLE);
                        pauseBtn.setVisibility(View.GONE);
                        track = prayer3;
                        playTrack(track);
                        break;
                    case prayer3:
-                       if (bgSound.isPlaying())
-                            bgSound.pause();
+                       bgSound.pause();
                        playBtn.setVisibility(View.VISIBLE);
                        pauseBtn.setVisibility(View.GONE);
                        track = prayer4;
                        playTrack(track);
                        break;
                    case prayer4:
-                       if (bgSound.isPlaying())
-                            bgSound.pause();
+                       bgSound.pause();
                        playBtn.setVisibility(View.VISIBLE);
                        pauseBtn.setVisibility(View.GONE);
                        track = prayer5;
                        playTrack(track);
                        break;
                    case prayer5:
-                       if (bgSound.isPlaying())
-                            bgSound.pause();
+                       bgSound.pause();
                        playBtn.setVisibility(View.VISIBLE);
                        pauseBtn.setVisibility(View.GONE);
                        track = prayer6;
                        playTrack(track);
                        break;
                    case prayer6:
-                       if (bgSound.isPlaying())
-                            bgSound.pause();
+                       bgSound.pause();
                        playBtn.setVisibility(View.VISIBLE);
                        pauseBtn.setVisibility(View.GONE);
                        track = prayer7;
                        playTrack(track);
                        break;
                    case prayer7:
-                       if (bgSound.isPlaying())
-                            bgSound.pause();
+                       bgSound.pause();
                        playBtn.setVisibility(View.VISIBLE);
                        pauseBtn.setVisibility(View.GONE);
                        track = prayer8;
                        playTrack(track);
                        break;
                    case prayer8:
-                       if (bgSound.isPlaying())
-                            bgSound.pause();
+                       bgSound.pause();
                        playBtn.setVisibility(View.VISIBLE);
                        pauseBtn.setVisibility(View.GONE);
                        track = prayer1;
@@ -219,8 +208,7 @@ public class AudioPlayerBahaullah extends Fragment {
                        break;
                    case "all":
                        //playAllOn = 1;
-                       if (bgSound.isPlaying())
-                            bgSound.pause();
+                       bgSound.pause();
                        playBtn.setVisibility(View.VISIBLE);
                        pauseBtn.setVisibility(View.GONE);
                        if (trackNum == numTracks)
@@ -239,64 +227,56 @@ public class AudioPlayerBahaullah extends Fragment {
             public void onClick(View v) {
                 switch (track) {
                     case prayer1:
-                        if (bgSound.isPlaying())
-                            bgSound.pause();
+                        bgSound.pause();
                         playBtn.setVisibility(View.VISIBLE);
                         pauseBtn.setVisibility(View.GONE);
                         track = prayer8;
                         playTrack(track);
                         break;
                     case prayer2:
-                        if (bgSound.isPlaying())
-                            bgSound.pause();
+                        bgSound.pause();
                         playBtn.setVisibility(View.VISIBLE);
                         pauseBtn.setVisibility(View.GONE);
                         track = prayer1;
                         playTrack(track);
                         break;
                     case prayer3:
-                        if (bgSound.isPlaying())
-                            bgSound.pause();
+                        bgSound.pause();
                         playBtn.setVisibility(View.VISIBLE);
                         pauseBtn.setVisibility(View.GONE);
                         track = prayer2;
                         playTrack(track);
                         break;
                     case prayer4:
-                        if (bgSound.isPlaying())
-                            bgSound.pause();
+                        bgSound.pause();
                         playBtn.setVisibility(View.VISIBLE);
                         pauseBtn.setVisibility(View.GONE);
                         track = prayer3;
                         playTrack(track);
                         break;
                     case prayer5:
-                        if (bgSound.isPlaying())
-                            bgSound.pause();
+                        bgSound.pause();
                         playBtn.setVisibility(View.VISIBLE);
                         pauseBtn.setVisibility(View.GONE);
                         track = prayer4;
                         playTrack(track);
                         break;
                     case prayer6:
-                        if (bgSound.isPlaying())
-                            bgSound.pause();
+                        bgSound.pause();
                         playBtn.setVisibility(View.VISIBLE);
                         pauseBtn.setVisibility(View.GONE);
                         track = prayer5;
                         playTrack(track);
                         break;
                     case prayer7:
-                        if (bgSound.isPlaying())
-                            bgSound.pause();
+                        bgSound.pause();
                         playBtn.setVisibility(View.VISIBLE);
                         pauseBtn.setVisibility(View.GONE);
                         track = prayer6;
                         playTrack(track);
                         break;
                     case prayer8:
-                        if (bgSound.isPlaying())
-                            bgSound.pause();
+                        bgSound.pause();
                         playBtn.setVisibility(View.VISIBLE);
                         pauseBtn.setVisibility(View.GONE);
                         track = prayer7;
@@ -304,8 +284,7 @@ public class AudioPlayerBahaullah extends Fragment {
                         break;
                     case "all":
                         //playAllOn = 1;
-                        if (bgSound.isPlaying())
-                            bgSound.pause();
+                        bgSound.pause();
                         playBtn.setVisibility(View.VISIBLE);
                         pauseBtn.setVisibility(View.GONE);
                         if (trackNum == 0)
@@ -472,17 +451,17 @@ public class AudioPlayerBahaullah extends Fragment {
                 //mp.setLooping(false);
                 requireActivity().startService(intent);
                 break;
-            case 8:
-                // mp.release();
-                // mp.stop();
-                // mp.reset();
-                playTrack(prayerArray[8]);
-                pauseBtn.setVisibility(View.VISIBLE);
-                playBtn.setVisibility(View.INVISIBLE);
-                //trackNum = 0; //don't forget to reset this on last track
-                //mp.setLooping(false);
-                requireActivity().startService(intent); 
-                break;
+//            case 8:
+//                // mp.release();
+//                // mp.stop();
+//                // mp.reset();
+//                playTrack(prayerArray[8]);
+//                pauseBtn.setVisibility(View.VISIBLE);
+//                playBtn.setVisibility(View.INVISIBLE);
+//                //trackNum = 0; //don't forget to reset this on last track
+//                //mp.setLooping(false);
+//                requireActivity().startService(intent);
+//                break;
         }
     }
 
@@ -512,7 +491,6 @@ public class AudioPlayerBahaullah extends Fragment {
                 view.findViewById(R.id.layout_audio_player).setBackground(gradientDrawable);
                 img.setImageResource(R.mipmap.attract_photo_foreground);
                 txt.setText(prayerArray[0]);
-                trackCount = 0;
                 break;
             case prayer2:
                // mp = MediaPlayer.create(getContext(), R.raw.marian);
@@ -539,7 +517,6 @@ public class AudioPlayerBahaullah extends Fragment {
                 view.findViewById(R.id.layout_audio_player).setBackground(gradientDrawable);
                 img.setImageResource(R.mipmap.lauded_photo_foreground);
                 txt.setText(prayerArray[1]);
-                trackCount = 1;
                 break;
             case prayer3:
                 intent.putExtra("track", R.raw.bahai_3_copy);
@@ -566,7 +543,6 @@ public class AudioPlayerBahaullah extends Fragment {
                 view.findViewById(R.id.layout_audio_player).setBackground(gradientDrawable);
                 img.setImageResource(R.mipmap.glorified_art_thou_photo_foreground);
                 txt.setText(prayerArray[2]);
-                trackCount = 2;
                 break;
             case prayer4:
                 intent.putExtra("track", R.raw.bahai_4);
@@ -593,7 +569,6 @@ public class AudioPlayerBahaullah extends Fragment {
                 view.findViewById(R.id.layout_audio_player).setBackground(gradientDrawable);
                 img.setImageResource(R.mipmap.from_the_sweet_scented_photo_foreground);
                 txt.setText(prayerArray[3]);
-                trackCount = 3;
                 break;
             case prayer5:
                 intent.putExtra("track", R.raw.bahai_5_copy);
@@ -620,7 +595,6 @@ public class AudioPlayerBahaullah extends Fragment {
                 view.findViewById(R.id.layout_audio_player).setBackground(gradientDrawable);
                 img.setImageResource(R.mipmap.create_in_me_a_pure_photo_foreground);
                 txt.setText(prayerArray[4]);
-                trackCount = 4;
                 break;
             case prayer6:
                 intent.putExtra("track", R.raw.bahai_6);
@@ -647,7 +621,6 @@ public class AudioPlayerBahaullah extends Fragment {
                 view.findViewById(R.id.layout_audio_player).setBackground(gradientDrawable);
                 img.setImageResource(R.mipmap.he_is_the_gracious_photo_foreground);
                 txt.setText(prayerArray[5]);
-                trackCount = 5;
                 break;
             case prayer7:
                 intent.putExtra("track", R.raw.bahai_7);
@@ -674,7 +647,6 @@ public class AudioPlayerBahaullah extends Fragment {
                 view.findViewById(R.id.layout_audio_player).setBackground(gradientDrawable);
                 img.setImageResource(R.mipmap.glory_to_thee_photo_foreground);
                 txt.setText(prayerArray[6]);
-                trackCount = 6;
                 break;
             case prayer8:
                 intent.putExtra("track", R.raw.bahai_8_copy);
@@ -701,24 +673,23 @@ public class AudioPlayerBahaullah extends Fragment {
                 view.findViewById(R.id.layout_audio_player).setBackground(gradientDrawable);
                 img.setImageResource(R.mipmap.magnified_oh_lord_foreground);
                 txt.setText(prayerArray[7]);
-                trackCount = 7;
                 break;
             case "all":
                 //playAllOn = 1;
                 playAll(trackNum);
                 //txt.setText(prayerArray[0]);
                 break;
-            case "The Evolution of Matter and Development of the Soul":
-                mp = MediaPlayer.create(getActivity().getApplicationContext(), R.raw.paris_talks20);
-                gradientDrawable = new GradientDrawable(
-                        GradientDrawable.Orientation.TOP_BOTTOM,
-                        new int[]{ContextCompat.getColor(getContext(), R.color.colorAccent),
-                                ContextCompat.getColor(getContext(), R.color.colorFadedRed),
-                                ContextCompat.getColor(getContext(), R.color.colorFadedPink),
-                                ContextCompat.getColor(getContext(), R.color.colorAccent)});
-
-                view.findViewById(R.id.layout_audio_player).setBackground(gradientDrawable);
-                break;
+//            case "The Evolution of Matter and Development of the Soul":
+//                mp = MediaPlayer.create(getActivity().getApplicationContext(), R.raw.paris_talks20);
+//                gradientDrawable = new GradientDrawable(
+//                        GradientDrawable.Orientation.TOP_BOTTOM,
+//                        new int[]{ContextCompat.getColor(getContext(), R.color.colorAccent),
+//                                ContextCompat.getColor(getContext(), R.color.colorFadedRed),
+//                                ContextCompat.getColor(getContext(), R.color.colorFadedPink),
+//                                ContextCompat.getColor(getContext(), R.color.colorAccent)});
+//
+//                view.findViewById(R.id.layout_audio_player).setBackground(gradientDrawable);
+//                break;
 
 
         }
@@ -731,7 +702,7 @@ public class AudioPlayerBahaullah extends Fragment {
             BackgroundSoundService.MyBinder binder = (BackgroundSoundService.MyBinder) service;
             bgSound = binder.getService();
             bgSound.setListener(AudioPlayerBahaullah.this);
-            Log.i("Main Activity", "onServiceConnected: ");
+            Log.i(tag, "onServiceConnected: ");
             //serviceBound = true;
         }
 
@@ -763,6 +734,10 @@ public class AudioPlayerBahaullah extends Fragment {
     public void onDestroy() {
        // mp.stop();
         bgSound.stop();
+        //bgSound.unbindService(serviceConnection);
+        //bgSound.onDestroy();
+       // bgSound = null;
+       // bgSound.unbindService(serviceConnection);
         Log.i("Audio Bahaullah", "onDestroy: ");
 
         super.onDestroy();

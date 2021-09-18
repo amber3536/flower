@@ -18,6 +18,7 @@ public class BackgroundSoundService extends Service implements MediaPlayer.OnCom
     private AudioPlayerBahaullah bahaullahListener;
     private AudioPlayerAbdulBaha abdulBahaListener;
     private AudioPlayerTheBab theBabListener;
+    private int figure;
     //private AudioPlayerBahaullah bahaullah = new AudioPlayerBahaullah();
     private final IBinder mBinder = new MyBinder();
    // private IPla listener = null;
@@ -41,6 +42,7 @@ public class BackgroundSoundService extends Service implements MediaPlayer.OnCom
         position = intent.getFloatExtra("pos", 0);
         Log.i(tag, "onStartCommand: " + position);
         int prayer = intent.getIntExtra("track", 0);
+        Log.i(tag, "onStartCommand: " + this);
         mp = MediaPlayer.create(this, prayer);
         mp.setOnCompletionListener(this);
         mp.seekTo((int)position);
@@ -82,22 +84,28 @@ public class BackgroundSoundService extends Service implements MediaPlayer.OnCom
     @Override
     public void onDestroy() {
         super.onDestroy();
-
-        mp.stop();
+        Log.i(tag, "onDestroy: stopSelf");
+        stopSelf();
+        bahaullahListener = null;
+//        if (mp != null)
+//            mp.stop();
     }
 
     @Override
     public void onCompletion(MediaPlayer mediaPlayer) {
-        if (bahaullahListener != null)
+        Log.i(tag, "onCompletion: figure " + figure);
+        Log.i(tag, "onCompletion: " + abdulBahaListener);
+        if (figure == 0)
             bahaullahListener.trackEnded();
-        else if (abdulBahaListener != null)
-            abdulBahaListener.resetButtons();
-        else if (theBabListener != null)
+        else if (figure == 2)
+            abdulBahaListener.trackEndedAbdulBaha();
+        else if (figure == 1)
             theBabListener.trackEnded();
     }
 
     public void setListener(AudioPlayerBahaullah listener) {
         bahaullahListener = listener;
+        figure = 0;
     }
 
     public void setListener(AudioPlayerAbdulBaha listener) {
@@ -106,6 +114,7 @@ public class BackgroundSoundService extends Service implements MediaPlayer.OnCom
 
     public void setListener(AudioPlayerTheBab listener) {
         theBabListener = listener;
+        figure = 1;
     }
 
     public boolean isPlaying() {
