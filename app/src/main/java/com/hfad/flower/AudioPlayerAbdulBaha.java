@@ -499,7 +499,7 @@ public class AudioPlayerAbdulBaha extends Fragment {
 //                mp = MediaPlayer.create(getActivity().getApplicationContext(), R.raw.o_thou_whose_face2);
 //                mp.setOnCompletionListener(listener);
                // intent = new Intent(getActivity(), BackgroundSoundService.class);
-                intent.putExtra("track", R.raw.brooklyn_bridge);
+                intent.putExtra("track", R.raw.bahai_9);
                 if (pos != 0) {
                     intent.putExtra("pos", pos);
                     requireActivity().startService(intent);
@@ -519,7 +519,7 @@ public class AudioPlayerAbdulBaha extends Fragment {
                 trackCount = 0;
                 break;
             case prayer2:
-                intent.putExtra("track", R.raw.brooklyn_bridge);
+                intent.putExtra("track", R.raw.bahai_10);
                 if (pos != 0) {
                     intent.putExtra("pos", pos);
                     requireActivity().startService(intent);
@@ -539,7 +539,7 @@ public class AudioPlayerAbdulBaha extends Fragment {
                 trackCount = 1;
                 break;
             case prayer3:
-                intent.putExtra("track", R.raw.brooklyn_bridge);
+                intent.putExtra("track", R.raw.bahai_11);
                 if (pos != 0) {
                     intent.putExtra("pos", pos);
                     requireActivity().startService(intent);
@@ -559,7 +559,7 @@ public class AudioPlayerAbdulBaha extends Fragment {
                 trackCount = 2;
                 break;
             case prayer4:
-                intent.putExtra("track", R.raw.brooklyn_bridge);
+                intent.putExtra("track", R.raw.bahai_12);
                 if (pos != 0) {
                     intent.putExtra("pos", pos);
                     requireActivity().startService(intent);
@@ -579,7 +579,7 @@ public class AudioPlayerAbdulBaha extends Fragment {
                 trackCount = 3;
                 break;
             case prayer5:
-                intent.putExtra("track", R.raw.brooklyn_bridge);
+                intent.putExtra("track", R.raw.bahai_13);
                 if (pos != 0) {
                     intent.putExtra("pos", pos);
                     requireActivity().startService(intent);
@@ -599,7 +599,7 @@ public class AudioPlayerAbdulBaha extends Fragment {
                 trackCount = 4;
                 break;
             case prayer6:
-                intent.putExtra("track", R.raw.brooklyn_bridge);
+                intent.putExtra("track", R.raw.bahai_14);
                 if (pos != 0) {
                     intent.putExtra("pos", pos);
                     requireActivity().startService(intent);
@@ -619,7 +619,7 @@ public class AudioPlayerAbdulBaha extends Fragment {
                 trackCount = 5;
                 break;
             case prayer7:
-                intent.putExtra("track", R.raw.brooklyn_bridge);
+                intent.putExtra("track", R.raw.bahai_15);
                 if (pos != 0) {
                     intent.putExtra("pos", pos);
                     requireActivity().startService(intent);
@@ -639,7 +639,7 @@ public class AudioPlayerAbdulBaha extends Fragment {
                 trackCount = 6;
                 break;
             case prayer8:
-                intent.putExtra("track", R.raw.brooklyn_bridge);
+                intent.putExtra("track", R.raw.bahai_16);
                 if (pos != 0) {
                     intent.putExtra("pos", pos);
                     requireActivity().startService(intent);
@@ -659,7 +659,7 @@ public class AudioPlayerAbdulBaha extends Fragment {
                 trackCount = 7;
                 break;
             case prayer9:
-                intent.putExtra("track", R.raw.brooklyn_bridge);
+                intent.putExtra("track", R.raw.bahai_17);
                 if (pos != 0) {
                     intent.putExtra("pos", pos);
                     requireActivity().startService(intent);
@@ -679,7 +679,7 @@ public class AudioPlayerAbdulBaha extends Fragment {
                 trackCount = 7;
                 break;
             case prayer10:
-                intent.putExtra("track", R.raw.brooklyn_bridge);
+                intent.putExtra("track", R.raw.bahai_18);
                 if (pos != 0) {
                     intent.putExtra("pos", pos);
                     requireActivity().startService(intent);
@@ -699,7 +699,7 @@ public class AudioPlayerAbdulBaha extends Fragment {
                 trackCount = 7;
                 break;
             case prayer11:
-                intent.putExtra("track", R.raw.brooklyn_bridge);
+                intent.putExtra("track", R.raw.bahai_19);
                 if (pos != 0) {
                     intent.putExtra("pos", pos);
                     requireActivity().startService(intent);
@@ -719,7 +719,7 @@ public class AudioPlayerAbdulBaha extends Fragment {
                 trackCount = 7;
                 break;
             case prayer12:
-                intent.putExtra("track", R.raw.brooklyn_bridge);
+                intent.putExtra("track", R.raw.bahai_20);
                 if (pos != 0) {
                     intent.putExtra("pos", pos);
                     requireActivity().startService(intent);
@@ -739,7 +739,7 @@ public class AudioPlayerAbdulBaha extends Fragment {
                 trackCount = 7;
                 break;
             case prayer13:
-                intent.putExtra("track", R.raw.brooklyn_bridge);
+                intent.putExtra("track", R.raw.bahai_21);
                 if (pos != 0) {
                     intent.putExtra("pos", pos);
                     requireActivity().startService(intent);

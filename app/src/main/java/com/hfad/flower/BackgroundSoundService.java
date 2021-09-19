@@ -5,9 +5,11 @@ import android.content.Intent;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Binder;
+import android.os.Handler;
 import android.os.IBinder;
 import android.util.Log;
 import android.view.View;
+import android.widget.SeekBar;
 
 import androidx.annotation.Nullable;
 
@@ -18,6 +20,7 @@ public class BackgroundSoundService extends Service implements MediaPlayer.OnCom
     private AudioPlayerBahaullah bahaullahListener;
     private AudioPlayerAbdulBaha abdulBahaListener;
     private AudioPlayerTheBab theBabListener;
+    private SeekBar seekBar;
     private int figure;
     //private AudioPlayerBahaullah bahaullah = new AudioPlayerBahaullah();
     private final IBinder mBinder = new MyBinder();
@@ -34,19 +37,45 @@ public class BackgroundSoundService extends Service implements MediaPlayer.OnCom
     public void onCreate() {
         super.onCreate();
 
+
     }
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
+
 
         position = intent.getFloatExtra("pos", 0);
         Log.i(tag, "onStartCommand: " + position);
         int prayer = intent.getIntExtra("track", 0);
         Log.i(tag, "onStartCommand: " + this);
         mp = MediaPlayer.create(this, prayer);
+
+        //seekBar.setMax(mp.getDuration());
+
         mp.setOnCompletionListener(this);
         mp.seekTo((int)position);
+        //mSeekbarUpdateHandler.postDelayed(mUpdateSeekbar, 0);
+
         mp.start();
+
+//        seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+//            @Override
+//            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+//                if (fromUser)
+//                    mp.seekTo(progress);
+//            }
+//
+//            @Override
+//            public void onStartTrackingTouch(SeekBar seekBar) {
+//
+//            }
+//
+//            @Override
+//            public void onStopTrackingTouch(SeekBar seekBar) {
+//
+//            }
+//        });
+
 
 //        mp.setOnCompletionListener(listener = new MediaPlayer.OnCompletionListener() {
 //
@@ -80,6 +109,15 @@ public class BackgroundSoundService extends Service implements MediaPlayer.OnCom
 
         return START_STICKY;
     }
+
+//    private Handler mSeekbarUpdateHandler = new Handler();
+//    private Runnable mUpdateSeekbar = new Runnable() {
+//        @Override
+//        public void run() {
+//            seekBar.setProgress(mp.getCurrentPosition());
+//            mSeekbarUpdateHandler.postDelayed(this, 50);
+//        }
+//    };
 
     @Override
     public void onDestroy() {
@@ -124,11 +162,22 @@ public class BackgroundSoundService extends Service implements MediaPlayer.OnCom
             return mp.isPlaying();
     }
 
+    public int getDuration() {
+        if (mp != null)
+            return mp.getDuration();
+       // Log.i(tag, "getDuration: " + mp.getDuration());
+        return 0;
+    }
+
     public float getCurrentPosition() {
         if (mp != null)
             return mp.getCurrentPosition();
         else
             return 0;
+    }
+
+    public void seekTo(int progress)  {
+        mp.seekTo(progress);
     }
 
 
@@ -154,6 +203,7 @@ public class BackgroundSoundService extends Service implements MediaPlayer.OnCom
     public void pause() {
         if (mp != null)
             mp.pause();
+       // mSeekbarUpdateHandler.removeCallbacks(mUpdateSeekbar);
     }
 
     public void stop() {

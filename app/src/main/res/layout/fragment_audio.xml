@@ -96,4 +96,13 @@
         android:gravity="center"
         />
 
+    <SeekBar
+        android:id="@+id/seekBar1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="@id/audio_img"
+        app:layout_constraintStart_toStartOf="@id/audio_img"
+        app:layout_constraintTop_toBottomOf="@id/audio_img"
+         />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

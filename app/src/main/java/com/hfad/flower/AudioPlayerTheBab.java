@@ -544,7 +544,7 @@ public class AudioPlayerTheBab extends Fragment {
             case prayer1:
 //                mp = MediaPlayer.create(getActivity().getApplicationContext(), R.raw.o_thou_whose_face2);
 //                mp.setOnCompletionListener(listener);
-                intent.putExtra("track", R.raw.marian);
+                intent.putExtra("track", R.raw.bahai_9);
                 Log.i(tag, "playTrack: made it here");
 //                mp = MediaPlayer.create(getContext(), R.raw.from_the_sweet_scented);
                 if (pos != 0) {
@@ -565,7 +565,7 @@ public class AudioPlayerTheBab extends Fragment {
                 txt.setText(prayerArray[0]);
                 break;
             case prayer2:
-                intent.putExtra("track", R.raw.marian);
+                intent.putExtra("track", R.raw.bahai_10);
 //                mp = MediaPlayer.create(getContext(), R.raw.from_the_sweet_scented);
                 if (pos != 0) {
                     intent.putExtra("pos", pos);
@@ -587,7 +587,7 @@ public class AudioPlayerTheBab extends Fragment {
                 txt.setText(prayerArray[1]);
                 break;
             case prayer3:
-                intent.putExtra("track", R.raw.marian);
+                intent.putExtra("track", R.raw.bahai_11);
 //                mp = MediaPlayer.create(getContext(), R.raw.from_the_sweet_scented);
                 if (pos != 0) {
                     intent.putExtra("pos", pos);
@@ -607,7 +607,7 @@ public class AudioPlayerTheBab extends Fragment {
                 txt.setText(prayerArray[2]);
                 break;
             case prayer4:
-                intent.putExtra("track", R.raw.marian);
+                intent.putExtra("track", R.raw.bahai_12);
 //                mp = MediaPlayer.create(getContext(), R.raw.from_the_sweet_scented);
                 if (pos != 0) {
                     intent.putExtra("pos", pos);
@@ -627,7 +627,7 @@ public class AudioPlayerTheBab extends Fragment {
                 txt.setText(prayerArray[3]);
                 break;
             case prayer5:
-                intent.putExtra("track", R.raw.marian);
+                intent.putExtra("track", R.raw.bahai_13);
 //                mp = MediaPlayer.create(getContext(), R.raw.from_the_sweet_scented);
                 if (pos != 0) {
                     intent.putExtra("pos", pos);
@@ -647,7 +647,7 @@ public class AudioPlayerTheBab extends Fragment {
                 txt.setText(prayerArray[4]);
                 break;
             case prayer6:
-                intent.putExtra("track", R.raw.marian);
+                intent.putExtra("track", R.raw.bahai_14);
 //                mp = MediaPlayer.create(getContext(), R.raw.from_the_sweet_scented);
                 if (pos != 0) {
                     intent.putExtra("pos", pos);
@@ -667,7 +667,7 @@ public class AudioPlayerTheBab extends Fragment {
                 txt.setText(prayerArray[5]);
                 break;
             case prayer7:
-                intent.putExtra("track", R.raw.marian);
+                intent.putExtra("track", R.raw.bahai_15);
 //                mp = MediaPlayer.create(getContext(), R.raw.from_the_sweet_scented);
                 if (pos != 0) {
                     intent.putExtra("pos", pos);
@@ -687,7 +687,7 @@ public class AudioPlayerTheBab extends Fragment {
                 txt.setText(prayerArray[6]);
                 break;
             case prayer8:
-                intent.putExtra("track", R.raw.marian);
+                intent.putExtra("track", R.raw.bahai_16);
 //                mp = MediaPlayer.create(getContext(), R.raw.from_the_sweet_scented);
                 if (pos != 0) {
                     intent.putExtra("pos", pos);
@@ -708,7 +708,7 @@ public class AudioPlayerTheBab extends Fragment {
                 break;
 
             case prayer9:
-                intent.putExtra("track", R.raw.marian);
+                intent.putExtra("track", R.raw.bahai_17);
 //                mp = MediaPlayer.create(getContext(), R.raw.from_the_sweet_scented);
                 if (pos != 0) {
                     intent.putExtra("pos", pos);
@@ -728,7 +728,7 @@ public class AudioPlayerTheBab extends Fragment {
                 txt.setText(prayerArray[8]);
                 break;
             case prayer10:
-                intent.putExtra("track", R.raw.marian);
+                intent.putExtra("track", R.raw.bahai_18);
 //                mp = MediaPlayer.create(getContext(), R.raw.from_the_sweet_scented);
                 if (pos != 0) {
                     intent.putExtra("pos", pos);
@@ -748,7 +748,7 @@ public class AudioPlayerTheBab extends Fragment {
                 txt.setText(prayerArray[9]);
                 break;
             case prayer11:
-                intent.putExtra("track", R.raw.marian);
+                intent.putExtra("track", R.raw.bahai_19);
 //                mp = MediaPlayer.create(getContext(), R.raw.from_the_sweet_scented);
                 if (pos != 0) {
                     intent.putExtra("pos", pos);
@@ -768,7 +768,7 @@ public class AudioPlayerTheBab extends Fragment {
                 txt.setText(prayerArray[10]);
                 break;
             case prayer12:
-                intent.putExtra("track", R.raw.marian);
+                intent.putExtra("track", R.raw.bahai_20);
 //                mp = MediaPlayer.create(getContext(), R.raw.from_the_sweet_scented);
                 if (pos != 0) {
                     intent.putExtra("pos", pos);
@@ -788,7 +788,7 @@ public class AudioPlayerTheBab extends Fragment {
                 txt.setText(prayerArray[11]);
                 break;
             case prayer13:
-                intent.putExtra("track", R.raw.marian);
+                intent.putExtra("track", R.raw.bahai_21);
 //                mp = MediaPlayer.create(getContext(), R.raw.from_the_sweet_scented);
                 if (pos != 0) {
                     intent.putExtra("pos", pos);

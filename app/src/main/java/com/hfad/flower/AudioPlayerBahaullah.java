@@ -7,12 +7,14 @@ import android.content.ServiceConnection;
 import android.graphics.drawable.GradientDrawable;
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.os.Handler;
 import android.os.IBinder;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.SeekBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -28,6 +30,7 @@ public class AudioPlayerBahaullah extends Fragment {
     private FloatingActionButton playBtn;
     private FloatingActionButton pauseBtn;
     private String track;
+    private SeekBar seekBar;
     private ImageView img;
     private TextView txt;
     private Intent intent;
@@ -56,6 +59,9 @@ public class AudioPlayerBahaullah extends Fragment {
             "From the sweet-scented streams...", "Create in me a pure heart...", "He is the Gracious, the All-Bountiful...",
             "Glory to Thee, O my God!", "Magnified, O Lord my God, be Thy name..."};
 
+//    public AudioPlayerBahaullah(SeekBar seekBar) {
+//    }
+
 
 //    @Override
 //    public void onCreate (Bundle savedInstanceState) {
@@ -68,7 +74,7 @@ public class AudioPlayerBahaullah extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+                             final Bundle savedInstanceState) {
 
         view = inflater.inflate(R.layout.fragment_audio, container, false);
 
@@ -78,6 +84,7 @@ public class AudioPlayerBahaullah extends Fragment {
         backBtn = view.findViewById(R.id.fab_back);
         img = view.findViewById(R.id.audio_img);
         txt = view.findViewById(R.id.audio_txt);
+        //seekBar = view.findViewById(seekBar1);
 
         bundle = this.getArguments();
         //setRetainInstance(true);
@@ -101,8 +108,30 @@ public class AudioPlayerBahaullah extends Fragment {
 
         intent = new Intent(getActivity(),BackgroundSoundService.class);
         requireActivity().bindService(intent, serviceConnection, Context.BIND_AUTO_CREATE);
+
+        seekBar = (SeekBar) view.findViewById(R.id.seekBar1);
         playTrack(track);
 
+
+
+
+        seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                if (fromUser)
+                    bgSound.seekTo(progress * 1000);
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+            }
+        });
 
 
 
@@ -117,6 +146,9 @@ public class AudioPlayerBahaullah extends Fragment {
                   requireActivity().startService(intent);
 
 
+
+                  mSeekbarUpdateHandler.postDelayed(mUpdateSeekbar, 1000);
+                  //mSeekbarUpdateHandler.postDelayed(mUpdateSeekbar, 0);
 //                  if (playAllOn == 1) {
 //                      playAllOn = 0;
 //                      playAll(trackNum);
@@ -134,6 +166,7 @@ public class AudioPlayerBahaullah extends Fragment {
             public void onClick(View v) {
                 playBtn.setVisibility(View.VISIBLE);
                 pauseBtn.setVisibility(View.GONE);
+                mSeekbarUpdateHandler.removeCallbacks(mUpdateSeekbar);
 
                 if (bgSound.isPlaying()) {
                     intent.putExtra("pos", bgSound.getCurrentPosition());
@@ -343,7 +376,18 @@ public class AudioPlayerBahaullah extends Fragment {
     return view;
     }
 
-
+    private Handler mSeekbarUpdateHandler = new Handler();
+    private Runnable mUpdateSeekbar = new Runnable() {
+        @Override
+        public void run() {
+            seekBar.setMax(bgSound.getDuration());
+            Log.i(tag, "onClick: bgSound.getDuration " + bgSound.getDuration());
+            //seekBar.setProgress((int)(bgSound.getCurrentPosition()/1000));
+            seekBar.setProgress((int)bgSound.getCurrentPosition());
+            Log.i(tag, "run: bgSound.getCurrentPos " + bgSound.getCurrentPosition());
+            mSeekbarUpdateHandler.postDelayed(mUpdateSeekbar, 1000);
+        }
+    };
 
     private void playAll(int num) {
         switch (num) {
