@@ -119,7 +119,7 @@ public class AudioPlayerBahaullah extends Fragment {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 if (fromUser)
-                    bgSound.seekTo(progress * 1000);
+                    bgSound.seekTo(progress);
             }
 
             @Override
@@ -143,11 +143,18 @@ public class AudioPlayerBahaullah extends Fragment {
 
                   pauseBtn.setVisibility(View.VISIBLE);
                   playBtn.setVisibility(View.INVISIBLE);
-                  requireActivity().startService(intent);
+                 // requireActivity().startService(intent);
 
+                      if (playAllOn == 1) {
+                          playAllOn = 0;
+                          playAll(trackNum);
+                      }
+                      else {
+                          requireActivity().startService(intent);
+                          //mp.start();
+                      }
 
-
-                  mSeekbarUpdateHandler.postDelayed(mUpdateSeekbar, 1000);
+                  mSeekbarUpdateHandler.postDelayed(mUpdateSeekbar, 500);
                   //mSeekbarUpdateHandler.postDelayed(mUpdateSeekbar, 0);
 //                  if (playAllOn == 1) {
 //                      playAllOn = 0;
@@ -385,7 +392,7 @@ public class AudioPlayerBahaullah extends Fragment {
             //seekBar.setProgress((int)(bgSound.getCurrentPosition()/1000));
             seekBar.setProgress((int)bgSound.getCurrentPosition());
             Log.i(tag, "run: bgSound.getCurrentPos " + bgSound.getCurrentPosition());
-            mSeekbarUpdateHandler.postDelayed(mUpdateSeekbar, 1000);
+            mSeekbarUpdateHandler.postDelayed(mUpdateSeekbar, 500);
         }
     };
 
@@ -777,7 +784,8 @@ public class AudioPlayerBahaullah extends Fragment {
     @Override
     public void onDestroy() {
        // mp.stop();
-        bgSound.stop();
+        if (bgSound != null)
+            bgSound.stop();
         //bgSound.unbindService(serviceConnection);
         //bgSound.onDestroy();
        // bgSound = null;

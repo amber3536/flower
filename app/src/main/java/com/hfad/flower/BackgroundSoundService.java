@@ -138,7 +138,7 @@ public class BackgroundSoundService extends Service implements MediaPlayer.OnCom
         else if (figure == 2)
             abdulBahaListener.trackEndedAbdulBaha();
         else if (figure == 1)
-            theBabListener.trackEnded();
+            theBabListener.trackEndedTheBab();
     }
 
     public void setListener(AudioPlayerBahaullah listener) {
