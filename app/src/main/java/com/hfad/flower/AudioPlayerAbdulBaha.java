@@ -7,12 +7,14 @@ import android.content.ServiceConnection;
 import android.graphics.drawable.GradientDrawable;
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.os.Handler;
 import android.os.IBinder;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.SeekBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -30,6 +32,7 @@ public class AudioPlayerAbdulBaha extends Fragment {
     private String track;
     private ImageView img;
     private TextView txt;
+    private SeekBar seekBar;
     private float pos = 0;
     private int playAllOn = 0;
     private FloatingActionButton backBtn;
@@ -39,7 +42,6 @@ public class AudioPlayerAbdulBaha extends Fragment {
     private Intent intent;
     private int trackNum = 0;
     private int numTracks = 1; //change later
-    private int trackCount = 0;
     private String tr = "TRACK";
     private String tag = "Audio Abdul Baha";
     private GradientDrawable gradientDrawable;
@@ -91,9 +93,27 @@ public class AudioPlayerAbdulBaha extends Fragment {
 
         intent = new Intent(getActivity(),BackgroundSoundService.class);
         requireActivity().bindService(intent, serviceConnection, Context.BIND_AUTO_CREATE);
+
+        seekBar = view.findViewById(R.id.seekBar1);
         playTrack(track);
 
+        seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                if (fromUser)
+                    bgSound.seekTo(progress);
+            }
 
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+            }
+        });
 
         playBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -104,7 +124,7 @@ public class AudioPlayerAbdulBaha extends Fragment {
                 pauseBtn.setVisibility(View.VISIBLE);
                 playBtn.setVisibility(View.INVISIBLE);
                // requireActivity().bindService(intent, serviceConnection, Context.BIND_AUTO_CREATE);
-                requireActivity().startService(intent);
+                //requireActivity().startService(intent);
 //                if (playAllOn == 1) {
 //                    playAllOn = 0;
 //                    playAll(trackNum);
@@ -112,6 +132,16 @@ public class AudioPlayerAbdulBaha extends Fragment {
 //                else {
 //                    mp.start();
 //                }
+                if (playAllOn == 1) {
+                    playAllOn = 0;
+                    playAll(trackNum);
+                }
+                else {
+                    requireActivity().startService(intent);
+                    //mp.start();
+                }
+
+                mSeekbarUpdateHandler.postDelayed(mUpdateSeekbar, 500);
 
 
             }
@@ -122,6 +152,7 @@ public class AudioPlayerAbdulBaha extends Fragment {
             public void onClick(View v) {
                 playBtn.setVisibility(View.VISIBLE);
                 pauseBtn.setVisibility(View.GONE);
+                mSeekbarUpdateHandler.removeCallbacks(mUpdateSeekbar);
 
                 if (bgSound.isPlaying()) {
                     intent.putExtra("pos", bgSound.getCurrentPosition());
@@ -394,6 +425,20 @@ public class AudioPlayerAbdulBaha extends Fragment {
         return view;
     }
 
+    private Handler mSeekbarUpdateHandler = new Handler();
+    private Runnable mUpdateSeekbar = new Runnable() {
+        @Override
+        public void run() {
+            seekBar.setMax(bgSound.getDuration());
+            Log.i(tag, "onClick: bgSound.getDuration " + bgSound.getDuration());
+            //seekBar.setProgress((int)(bgSound.getCurrentPosition()/1000));
+            seekBar.setProgress((int)bgSound.getCurrentPosition());
+            Log.i(tag, "run: bgSound.getCurrentPos " + bgSound.getCurrentPosition());
+            mSeekbarUpdateHandler.postDelayed(mUpdateSeekbar, 500);
+        }
+    };
+
+
     private void playAll(int num) {
         switch (num) {
             case 0:
@@ -516,7 +561,6 @@ public class AudioPlayerAbdulBaha extends Fragment {
                 view.findViewById(R.id.layout_audio_player).setBackground(gradientDrawable);
                 img.setImageResource(R.mipmap.make_firm_our_steps_foreground);
                 txt.setText(prayerArray[0]);
-                trackCount = 0;
                 break;
             case prayer2:
                 intent.putExtra("track", R.raw.bahai_10);
@@ -536,7 +580,6 @@ public class AudioPlayerAbdulBaha extends Fragment {
                 view.findViewById(R.id.layout_audio_player).setBackground(gradientDrawable);
                 img.setImageResource(R.mipmap.o_compassionate_god_foreground);
                 txt.setText(prayerArray[1]);
-                trackCount = 1;
                 break;
             case prayer3:
                 intent.putExtra("track", R.raw.bahai_11);
@@ -556,7 +599,6 @@ public class AudioPlayerAbdulBaha extends Fragment {
                 view.findViewById(R.id.layout_audio_player).setBackground(gradientDrawable);
                 img.setImageResource(R.mipmap.o_thou_beloved_foreground);
                 txt.setText(prayerArray[2]);
-                trackCount = 2;
                 break;
             case prayer4:
                 intent.putExtra("track", R.raw.bahai_12);
@@ -576,7 +618,6 @@ public class AudioPlayerAbdulBaha extends Fragment {
                 view.findViewById(R.id.layout_audio_player).setBackground(gradientDrawable);
                 img.setImageResource(R.mipmap.o_thou_compassionate_lord_foreground);
                 txt.setText(prayerArray[3]);
-                trackCount = 3;
                 break;
             case prayer5:
                 intent.putExtra("track", R.raw.bahai_13);
@@ -596,7 +637,6 @@ public class AudioPlayerAbdulBaha extends Fragment {
                 view.findViewById(R.id.layout_audio_player).setBackground(gradientDrawable);
                 img.setImageResource(R.mipmap.o_my_lord_thou_knowest_foreground);
                 txt.setText(prayerArray[4]);
-                trackCount = 4;
                 break;
             case prayer6:
                 intent.putExtra("track", R.raw.bahai_14);
@@ -616,7 +656,6 @@ public class AudioPlayerAbdulBaha extends Fragment {
                 view.findViewById(R.id.layout_audio_player).setBackground(gradientDrawable);
                 img.setImageResource(R.mipmap.lord_pitiful_are_we_foreground);
                 txt.setText(prayerArray[5]);
-                trackCount = 5;
                 break;
             case prayer7:
                 intent.putExtra("track", R.raw.bahai_15);
@@ -636,7 +675,6 @@ public class AudioPlayerAbdulBaha extends Fragment {
                 view.findViewById(R.id.layout_audio_player).setBackground(gradientDrawable);
                 img.setImageResource(R.mipmap.o_thou_kind_lord_foreground);
                 txt.setText(prayerArray[6]);
-                trackCount = 6;
                 break;
             case prayer8:
                 intent.putExtra("track", R.raw.bahai_16);
@@ -656,7 +694,6 @@ public class AudioPlayerAbdulBaha extends Fragment {
                 view.findViewById(R.id.layout_audio_player).setBackground(gradientDrawable);
                 img.setImageResource(R.mipmap.o_my_merciful_lord_foreground);
                 txt.setText(prayerArray[7]);
-                trackCount = 7;
                 break;
             case prayer9:
                 intent.putExtra("track", R.raw.bahai_17);
@@ -676,7 +713,6 @@ public class AudioPlayerAbdulBaha extends Fragment {
                 view.findViewById(R.id.layout_audio_player).setBackground(gradientDrawable);
                 img.setImageResource(R.mipmap.he_is_the_most_holy_foreground);
                 txt.setText(prayerArray[8]);
-                trackCount = 7;
                 break;
             case prayer10:
                 intent.putExtra("track", R.raw.bahai_18);
@@ -696,7 +732,6 @@ public class AudioPlayerAbdulBaha extends Fragment {
                 view.findViewById(R.id.layout_audio_player).setBackground(gradientDrawable);
                 img.setImageResource(R.mipmap.o_god_of_mercy_foreground);
                 txt.setText(prayerArray[9]);
-                trackCount = 7;
                 break;
             case prayer11:
                 intent.putExtra("track", R.raw.bahai_19);
@@ -716,7 +751,6 @@ public class AudioPlayerAbdulBaha extends Fragment {
                 view.findViewById(R.id.layout_audio_player).setBackground(gradientDrawable);
                 img.setImageResource(R.mipmap.o_lord_grant_me_foreground);
                 txt.setText(prayerArray[10]);
-                trackCount = 7;
                 break;
             case prayer12:
                 intent.putExtra("track", R.raw.bahai_20);
@@ -736,7 +770,6 @@ public class AudioPlayerAbdulBaha extends Fragment {
                 view.findViewById(R.id.layout_audio_player).setBackground(gradientDrawable);
                 img.setImageResource(R.mipmap.o_god_refresh_and_foreground);
                 txt.setText(prayerArray[11]);
-                trackCount = 7;
                 break;
             case prayer13:
                 intent.putExtra("track", R.raw.bahai_21);
@@ -756,7 +789,6 @@ public class AudioPlayerAbdulBaha extends Fragment {
                 view.findViewById(R.id.layout_audio_player).setBackground(gradientDrawable);
                 img.setImageResource(R.mipmap.o_divine_providence_foreground);
                 txt.setText(prayerArray[12]);
-                trackCount = 7;
                 break;
             case "all":
                 //playAllOn = 1;
