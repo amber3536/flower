@@ -339,6 +339,33 @@ public class AudioPlayerParisTalks extends Fragment {
                 playBtn.setVisibility(View.INVISIBLE);
                 requireActivity().startService(intent);
                 break;
+            case 2:
+                // mp.release();
+                // mp.stop();
+                // mp.reset();
+                playTrack(prayerArray[2]);
+                pauseBtn.setVisibility(View.VISIBLE);
+                playBtn.setVisibility(View.INVISIBLE);
+                requireActivity().startService(intent);
+                break;
+            case 3:
+                // mp.release();
+                // mp.stop();
+                // mp.reset();
+                playTrack(prayerArray[3]);
+                pauseBtn.setVisibility(View.VISIBLE);
+                playBtn.setVisibility(View.INVISIBLE);
+                requireActivity().startService(intent);
+                break;
+            case 4:
+                // mp.release();
+                // mp.stop();
+                // mp.reset();
+                playTrack(prayerArray[4]);
+                pauseBtn.setVisibility(View.VISIBLE);
+                playBtn.setVisibility(View.INVISIBLE);
+                requireActivity().startService(intent);
+                break;
         }
     }
 
@@ -346,7 +373,7 @@ public class AudioPlayerParisTalks extends Fragment {
 
         switch(track) {
             case prayer1:
-                intent.putExtra("track", R.raw.bahai_1);
+                intent.putExtra("track", R.raw.bahai_26);
 //                mp = MediaPlayer.create(getContext(), R.raw.from_the_sweet_scented);
                 if (pos != 0) {
                     intent.putExtra("pos", pos);
@@ -366,7 +393,7 @@ public class AudioPlayerParisTalks extends Fragment {
                 txt.setText(prayerArray[0]);
                 break;
             case prayer2:
-                intent.putExtra("track", R.raw.bahai_1);
+                intent.putExtra("track", R.raw.bahai_27_copy);
 //                mp = MediaPlayer.create(getContext(), R.raw.from_the_sweet_scented);
                 if (pos != 0) {
                     intent.putExtra("pos", pos);
@@ -386,7 +413,7 @@ public class AudioPlayerParisTalks extends Fragment {
                 txt.setText(prayerArray[1]);
                 break;
             case prayer3:
-                intent.putExtra("track", R.raw.bahai_1);
+                intent.putExtra("track", R.raw.bahai_28);
 //                mp = MediaPlayer.create(getContext(), R.raw.from_the_sweet_scented);
                 if (pos != 0) {
                     intent.putExtra("pos", pos);
@@ -406,7 +433,7 @@ public class AudioPlayerParisTalks extends Fragment {
                 txt.setText(prayerArray[2]);
                 break;
             case prayer4:
-                intent.putExtra("track", R.raw.bahai_1);
+                intent.putExtra("track", R.raw.bahai_29);
 //                mp = MediaPlayer.create(getContext(), R.raw.from_the_sweet_scented);
                 if (pos != 0) {
                     intent.putExtra("pos", pos);
@@ -426,7 +453,7 @@ public class AudioPlayerParisTalks extends Fragment {
                 txt.setText(prayerArray[3]);
                 break;
             case prayer5:
-                intent.putExtra("track", R.raw.bahai_1);
+                intent.putExtra("track", R.raw.bahai_30);
 //                mp = MediaPlayer.create(getContext(), R.raw.from_the_sweet_scented);
                 if (pos != 0) {
                     intent.putExtra("pos", pos);
