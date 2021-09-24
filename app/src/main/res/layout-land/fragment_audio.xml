@@ -99,4 +99,15 @@
         android:gravity="right"
         />
 
+    <SeekBar
+        android:id="@+id/seekBar1"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        app:layout_constraintEnd_toEndOf="@id/fab_forward"
+        app:layout_constraintStart_toStartOf="@id/fab_back"
+        app:layout_constraintBottom_toTopOf="@id/fab_play"
+        />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

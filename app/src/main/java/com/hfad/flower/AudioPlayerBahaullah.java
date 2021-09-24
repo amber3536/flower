@@ -47,8 +47,8 @@ public class AudioPlayerBahaullah extends Fragment {
     private int numTracks = 7;
     private int continuePlay = 0;
     private GradientDrawable gradientDrawable;
-    final String prayer1 = "Attract the hearts of men...";
-    final String prayer2 = "Lauded be Thy name...";
+    private final String prayer1 = "Attract the hearts of men...";
+    private final String prayer2 = "Lauded be Thy name...";
     final String prayer3 = "Glorified art Thou, O Lord my God...";
     final String prayer4 = "From the sweet-scented streams...";
     final String prayer5 = "Create in me a pure heart...";
@@ -691,8 +691,8 @@ public class AudioPlayerBahaullah extends Fragment {
                 gradientDrawable = new GradientDrawable(
                         GradientDrawable.Orientation.TOP_BOTTOM,
                         new int[]{ContextCompat.getColor(getContext(), R.color.colorAccent),
-                                ContextCompat.getColor(getContext(), R.color.colorFadedRed),
                                 ContextCompat.getColor(getContext(), R.color.colorFadedPink),
+                                ContextCompat.getColor(getContext(), R.color.colorFadedRed),
                                 ContextCompat.getColor(getContext(), R.color.colorAccent)});
 
                 view.findViewById(R.id.layout_audio_player).setBackground(gradientDrawable);

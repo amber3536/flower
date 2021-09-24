@@ -74,6 +74,7 @@ public class MainFragment extends Fragment {
         selections = view.findViewById(R.id.selectionsAbdulBaha);
         parisTalks = view.findViewById(R.id.parisTalks);
         lightOfTheWorld = view.findViewById(R.id.lightOfTheWorld);
+        prayers = view.findViewById(R.id.prayers);
 
         GradientDrawable gradientDrawable = new GradientDrawable(
                 GradientDrawable.Orientation.TOP_BOTTOM,
@@ -222,6 +223,16 @@ public class MainFragment extends Fragment {
 
 
                 loadFragment(new Bahaullah());
+                //hideView();
+            }
+        });
+
+        prayers.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+                loadFragment(new AudioPlayerPrayers());
                 //hideView();
             }
         });

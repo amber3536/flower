@@ -20,6 +20,8 @@ public class BackgroundSoundService extends Service implements MediaPlayer.OnCom
     private AudioPlayerBahaullah bahaullahListener;
     private AudioPlayerAbdulBaha abdulBahaListener;
     private AudioPlayerTheBab theBabListener;
+    private AudioPlayerPrayers prayersListener;
+    private AudioPlayerHiddenWords hiddenWordsListener;
     private AudioPlayerParisTalks parisTalksListener;
     private SeekBar seekBar;
     private int figure;
@@ -142,6 +144,10 @@ public class BackgroundSoundService extends Service implements MediaPlayer.OnCom
             theBabListener.trackEndedTheBab();
         else if (figure == 3)
             parisTalksListener.trackEndedParisTalks();
+        else if (figure == 4)
+            hiddenWordsListener.trackEndedHiddenWords();
+        else if (figure == 5)
+            prayersListener.trackEndedPrayers();
     }
 
     public void setListener(AudioPlayerBahaullah listener) {
@@ -161,6 +167,16 @@ public class BackgroundSoundService extends Service implements MediaPlayer.OnCom
     public void setListener(AudioPlayerParisTalks listener) {
         parisTalksListener = listener;
         figure = 3;
+    }
+
+    public void setListener(AudioPlayerHiddenWords listener) {
+        hiddenWordsListener = listener;
+        figure = 4;
+    }
+
+    public void setListener(AudioPlayerPrayers listener) {
+        prayersListener = listener;
+        figure = 5;
     }
 
     public boolean isPlaying() {
