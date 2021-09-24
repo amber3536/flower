@@ -46,6 +46,7 @@ public class AudioPlayerPrayers extends Fragment {
     private float pos = 0;
     private String tag = "Audio Bahaullah";
     private int numTracks = 7;
+    private Random rand = new Random();
     private int continuePlay = 0;
     private GradientDrawable gradientDrawable;
     private final String prayer1 = "Attract the hearts of men...";
@@ -111,6 +112,7 @@ public class AudioPlayerPrayers extends Fragment {
         requireActivity().bindService(intent, serviceConnection, Context.BIND_AUTO_CREATE);
 
         seekBar = (SeekBar) view.findViewById(R.id.seekBar1);
+
         playTrack(track);
 
 
@@ -727,10 +729,10 @@ public class AudioPlayerPrayers extends Fragment {
                 txt.setText(prayerArray[7]);
                 break;
             case "all":
-                Random rand = new Random();
+
 
                 //playAllOn = 1;
-                playAll(rand.nextInt(8));
+                playAll(rand.nextInt(numTracks+1));
                 //txt.setText(prayerArray[0]);
                 break;
 //            case "The Evolution of Matter and Development of the Soul":
@@ -822,8 +824,8 @@ public class AudioPlayerPrayers extends Fragment {
 
     public void trackEndedPrayers() {
         if (track.equals("all") && trackNum < numTracks) {
-            trackNum++;
-            playAll(trackNum);
+            //trackNum++;
+            playAll(rand.nextInt(numTracks+1));
         }
         else if (track.equals("all") && trackNum == numTracks) {
             trackNum = 0;

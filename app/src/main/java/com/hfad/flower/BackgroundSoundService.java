@@ -126,7 +126,7 @@ public class BackgroundSoundService extends Service implements MediaPlayer.OnCom
     public void onDestroy() {
         super.onDestroy();
         Log.i(tag, "onDestroy: stopSelf");
-        stopSelf();
+        //stopSelf();
         //bahaullahListener = null;
 //        if (mp != null)
 //            mp.stop();
@@ -228,6 +228,11 @@ public class BackgroundSoundService extends Service implements MediaPlayer.OnCom
         if (mp != null)
             mp.pause();
        // mSeekbarUpdateHandler.removeCallbacks(mUpdateSeekbar);
+    }
+
+    public void start() {
+        if (mp != null)
+            mp.start();
     }
 
     public void stop() {

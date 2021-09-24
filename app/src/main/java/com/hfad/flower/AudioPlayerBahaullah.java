@@ -39,12 +39,14 @@ public class AudioPlayerBahaullah extends Fragment {
     private FloatingActionButton forwardBtn;
     private MediaPlayer.OnCompletionListener listener;
     private int trackNum = 0;
+    private int alreadyPlaying = 0;
     private String tr = "TRACK";
     private BackgroundSoundService bgSound;
     private Bundle bundle;
     private float pos = 0;
     private String tag = "Audio Bahaullah";
     private int numTracks = 7;
+    private int isPlaying = 0;
     private int continuePlay = 0;
     private GradientDrawable gradientDrawable;
     private final String prayer1 = "Attract the hearts of men...";
@@ -103,7 +105,14 @@ public class AudioPlayerBahaullah extends Fragment {
 //            mp.seekTo(pos);
 
             track = savedInstanceState.getString(tr, track);
+
+            isPlaying = savedInstanceState.getInt("playing");
+
+            //bgSound.seekTo((int)pos);
             Log.i("Audio Bahaullah", "onCreateView: " + track);
+//            seekBar.setProgress((int)bgSound.getCurrentPosition());
+//            Log.i(tag, "run: bgSound.getCurrentPos " + bgSound.getCurrentPosition());
+            //mSeekbarUpdateHandler.postDelayed(mUpdateSeekbar, 500);
         }
 
         intent = new Intent(getActivity(),BackgroundSoundService.class);
@@ -111,6 +120,7 @@ public class AudioPlayerBahaullah extends Fragment {
 
         seekBar = (SeekBar) view.findViewById(R.id.seekBar1);
         playTrack(track);
+        //seekBar.setProgress();
 
 
 
@@ -179,6 +189,7 @@ public class AudioPlayerBahaullah extends Fragment {
                     intent.putExtra("pos", bgSound.getCurrentPosition());
                     Log.i(tag, "onClick: " + bgSound.getCurrentPosition());
                     bgSound.pause();
+                    alreadyPlaying = 0;
                 }
 
                 //requireActivity().stopService(intent);
@@ -416,7 +427,10 @@ public class AudioPlayerBahaullah extends Fragment {
                 playTrack(prayerArray[0]);
                 pauseBtn.setVisibility(View.VISIBLE);
                 playBtn.setVisibility(View.INVISIBLE);
-                requireActivity().startService(intent);
+                if (alreadyPlaying == 0) {
+                    requireActivity().startService(intent);
+                }
+                mSeekbarUpdateHandler.postDelayed(mUpdateSeekbar, 500);
                // }
 
 
@@ -432,7 +446,11 @@ public class AudioPlayerBahaullah extends Fragment {
                 playBtn.setVisibility(View.INVISIBLE);
                 //trackNum = 0; //don't forget to reset this on last track
                 //mp.setLooping(false);
-                requireActivity().startService(intent);
+                if (!bgSound.isPlaying()) {
+                    requireActivity().startService(intent);
+                }
+
+                mSeekbarUpdateHandler.postDelayed(mUpdateSeekbar, 500);
              //   }
 
                 break;
@@ -446,6 +464,7 @@ public class AudioPlayerBahaullah extends Fragment {
                 //trackNum = 0; //don't forget to reset this on last track
                 //mp.setLooping(false);
                 requireActivity().startService(intent);
+                mSeekbarUpdateHandler.postDelayed(mUpdateSeekbar, 500);
                 break;
             case 3:
                 // mp.release();
@@ -457,6 +476,7 @@ public class AudioPlayerBahaullah extends Fragment {
                 //trackNum = 0; //don't forget to reset this on last track
                 //mp.setLooping(false);
                 requireActivity().startService(intent);
+                mSeekbarUpdateHandler.postDelayed(mUpdateSeekbar, 500);
                 break;
             case 4:
                 // mp.release();
@@ -468,6 +488,7 @@ public class AudioPlayerBahaullah extends Fragment {
                 //trackNum = 0; //don't forget to reset this on last track
                 //mp.setLooping(false);
                 requireActivity().startService(intent);
+                mSeekbarUpdateHandler.postDelayed(mUpdateSeekbar, 500);
                 break;
             case 5:
                 // mp.release();
@@ -479,6 +500,7 @@ public class AudioPlayerBahaullah extends Fragment {
                 //trackNum = 0; //don't forget to reset this on last track
                 //mp.setLooping(false);
                 requireActivity().startService(intent);
+                mSeekbarUpdateHandler.postDelayed(mUpdateSeekbar, 500);
                 break;
             case 6:
                 // mp.release();
@@ -490,6 +512,7 @@ public class AudioPlayerBahaullah extends Fragment {
                 //trackNum = 0; //don't forget to reset this on last track
                 //mp.setLooping(false);
                 requireActivity().startService(intent);
+                mSeekbarUpdateHandler.postDelayed(mUpdateSeekbar, 500);
                 break;
             case 7:
                 // mp.release();
@@ -501,6 +524,7 @@ public class AudioPlayerBahaullah extends Fragment {
                 //trackNum = 0; //don't forget to reset this on last track
                 //mp.setLooping(false);
                 requireActivity().startService(intent);
+                mSeekbarUpdateHandler.postDelayed(mUpdateSeekbar, 500);
                 break;
 //            case 8:
 //                // mp.release();
@@ -526,8 +550,25 @@ public class AudioPlayerBahaullah extends Fragment {
 //                mp = MediaPlayer.create(getContext(), R.raw.from_the_sweet_scented);
                 if (pos != 0) {
                     intent.putExtra("pos", pos);
-                    requireActivity().startService(intent);
-                   pos = 0;
+                    int dist = (int) pos;
+                   // seekBar.setProgress((int)pos);
+                    if (isPlaying == 1) {
+                        requireActivity().startService(intent);
+                        pauseBtn.setVisibility(View.VISIBLE);
+                        playBtn.setVisibility(View.INVISIBLE);
+
+                    }
+
+
+                    mSeekbarUpdateHandler.postDelayed(mUpdateSeekbar, 500);
+                   // bgSound.seekTo(dist);
+                    //bgSound.start();
+//                    intent.putExtra("pos", pos);
+//                    requireActivity().startService(intent);
+                    alreadyPlaying = 1;
+
+
+                    pos = 0;
 
                 }
 //
@@ -549,6 +590,7 @@ public class AudioPlayerBahaullah extends Fragment {
                 if (pos != 0) {
                     intent.putExtra("pos", pos);
                     requireActivity().startService(intent);
+                    alreadyPlaying = 1;
                     pos = 0;
 
                 }
@@ -809,9 +851,16 @@ public class AudioPlayerBahaullah extends Fragment {
         // Save our own state now
         //outState.putInt(STATE_COUNTER, mCounter);
         if (bgSound.isPlaying()) {
-            outState.putFloat("position", bgSound.getCurrentPosition());
-            bgSound.pause();
+            outState.putInt("playing", 1);
         }
+            Log.i(tag, "onSaveInstanceState: bgSound playing");
+            outState.putFloat("position", bgSound.getCurrentPosition());
+//            playBtn.setVisibility(View.VISIBLE);
+//            pauseBtn.setVisibility(View.GONE);
+//            bgSound.pause();
+//            mSeekbarUpdateHandler.removeCallbacks(mUpdateSeekbar);
+
+      //  }
 
         Log.i("Audio Bahaullah", "onSaveInstanceState: " + track);
         outState.putString(tr, track);
@@ -833,6 +882,7 @@ public class AudioPlayerBahaullah extends Fragment {
                     playBtn.setVisibility(View.VISIBLE);
                     pauseBtn.setVisibility(View.GONE);
                 }
+                alreadyPlaying = 0;
 //        playBtn.setVisibility(View.VISIBLE);
 //        pauseBtn.setVisibility(View.GONE);
     }
