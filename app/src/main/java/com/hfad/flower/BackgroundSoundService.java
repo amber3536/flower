@@ -201,7 +201,8 @@ public class BackgroundSoundService extends Service implements MediaPlayer.OnCom
     }
 
     public void seekTo(int progress)  {
-        mp.seekTo(progress);
+        if (mp != null)
+            mp.seekTo(progress);
     }
 
 

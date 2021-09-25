@@ -39,7 +39,7 @@ public class AudioPlayerBahaullah extends Fragment {
     private FloatingActionButton forwardBtn;
     private MediaPlayer.OnCompletionListener listener;
     private int trackNum = 0;
-    private int midSong = 0;
+    private int playAllCtrl = 0;
     private String tr = "TRACK";
     private BackgroundSoundService bgSound;
     private Bundle bundle;
@@ -189,7 +189,7 @@ public class AudioPlayerBahaullah extends Fragment {
                     intent.putExtra("pos", bgSound.getCurrentPosition());
                     Log.i(tag, "onClick: " + bgSound.getCurrentPosition());
                     bgSound.pause();
-                    midSong = 0;
+                    //midSong = 0;
                 }
 
                 //requireActivity().stopService(intent);
@@ -206,6 +206,10 @@ public class AudioPlayerBahaullah extends Fragment {
                        playBtn.setVisibility(View.VISIBLE);
                        pauseBtn.setVisibility(View.GONE);
                        track = prayer2;
+                       pos = 0;
+                       bgSound.seekTo(0);
+                       seekBar.setProgress(0);
+                       intent.putExtra("pos", bgSound.getCurrentPosition());
                        playTrack(track);
                        break;
                    case prayer2:
@@ -213,6 +217,10 @@ public class AudioPlayerBahaullah extends Fragment {
                        playBtn.setVisibility(View.VISIBLE);
                        pauseBtn.setVisibility(View.GONE);
                        track = prayer3;
+                       pos = 0;
+                       bgSound.seekTo(0);
+                       seekBar.setProgress(0);
+                       intent.putExtra("pos", bgSound.getCurrentPosition());
                        playTrack(track);
                        break;
                    case prayer3:
@@ -220,6 +228,10 @@ public class AudioPlayerBahaullah extends Fragment {
                        playBtn.setVisibility(View.VISIBLE);
                        pauseBtn.setVisibility(View.GONE);
                        track = prayer4;
+                       pos = 0;
+                       bgSound.seekTo(0);
+                       seekBar.setProgress(0);
+                       intent.putExtra("pos", bgSound.getCurrentPosition());
                        playTrack(track);
                        break;
                    case prayer4:
@@ -227,6 +239,10 @@ public class AudioPlayerBahaullah extends Fragment {
                        playBtn.setVisibility(View.VISIBLE);
                        pauseBtn.setVisibility(View.GONE);
                        track = prayer5;
+                       pos = 0;
+                       bgSound.seekTo(0);
+                       seekBar.setProgress(0);
+                       intent.putExtra("pos", bgSound.getCurrentPosition());
                        playTrack(track);
                        break;
                    case prayer5:
@@ -234,6 +250,10 @@ public class AudioPlayerBahaullah extends Fragment {
                        playBtn.setVisibility(View.VISIBLE);
                        pauseBtn.setVisibility(View.GONE);
                        track = prayer6;
+                       pos = 0;
+                       bgSound.seekTo(0);
+                       seekBar.setProgress(0);
+                       intent.putExtra("pos", bgSound.getCurrentPosition());
                        playTrack(track);
                        break;
                    case prayer6:
@@ -241,6 +261,10 @@ public class AudioPlayerBahaullah extends Fragment {
                        playBtn.setVisibility(View.VISIBLE);
                        pauseBtn.setVisibility(View.GONE);
                        track = prayer7;
+                       pos = 0;
+                       bgSound.seekTo(0);
+                       seekBar.setProgress(0);
+                       intent.putExtra("pos", bgSound.getCurrentPosition());
                        playTrack(track);
                        break;
                    case prayer7:
@@ -248,6 +272,10 @@ public class AudioPlayerBahaullah extends Fragment {
                        playBtn.setVisibility(View.VISIBLE);
                        pauseBtn.setVisibility(View.GONE);
                        track = prayer8;
+                       pos = 0;
+                       bgSound.seekTo(0);
+                       seekBar.setProgress(0);
+                       intent.putExtra("pos", bgSound.getCurrentPosition());
                        playTrack(track);
                        break;
                    case prayer8:
@@ -255,11 +283,18 @@ public class AudioPlayerBahaullah extends Fragment {
                        playBtn.setVisibility(View.VISIBLE);
                        pauseBtn.setVisibility(View.GONE);
                        track = prayer1;
+                       pos = 0;
+                       bgSound.seekTo(0);
+                       seekBar.setProgress(0);
+                       intent.putExtra("pos", bgSound.getCurrentPosition());
                        playTrack(track);
                        break;
                    case "all":
                        //playAllOn = 1;
-                       midSong = 0;
+                       if (bgSound.isPlaying())
+                           playAllCtrl = 0;
+                       else
+                            playAllCtrl = 1;
                        bgSound.pause();
                        playBtn.setVisibility(View.VISIBLE);
                        pauseBtn.setVisibility(View.GONE);
@@ -267,7 +302,14 @@ public class AudioPlayerBahaullah extends Fragment {
                            trackNum = 0;
                        else
                            trackNum++;
+                       pos = 0;
+                       bgSound.seekTo(0);
+                       seekBar.setProgress(0);
+                       intent.putExtra("pos", bgSound.getCurrentPosition());
                        playAll(trackNum);
+//                       bgSound.pause();
+//                       playBtn.setVisibility(View.VISIBLE);
+//                       pauseBtn.setVisibility(View.GONE);
                        //txt.setText(prayerArray[0]);
                        break;
                }
@@ -283,182 +325,350 @@ public class AudioPlayerBahaullah extends Fragment {
 //                        playBtn.setVisibility(View.VISIBLE);
 //                        pauseBtn.setVisibility(View.GONE);
                         if (bgSound.getCurrentPosition() < 2000) {
-                            track = prayer8;
+                            if (!bgSound.isPlaying()) {
+                                bgSound.pause();
+                                track = prayer8;
+                                bgSound.seekTo(0);
+                                seekBar.setProgress(0);
+                                pos = 0;
+                                playTrack(track);
+                            }
+                            else {
+                                bgSound.seekTo(0);
+                                seekBar.setProgress(0);
+                                pos = 0;
+                                bgSound.pause();
+                                track = prayer8;
+                                playTrack(track);
+                                requireActivity().startService(intent);
+                            }
+
                         }
                         else {
                             if (bgSound.isPlaying()) {
                                 bgSound.pause();
                                 bgSound.seekTo(0);
                                 seekBar.setProgress(0);
+                                pos = 0;
                                 bgSound.start();
                             }
                             else {
-                                bgSound.pause();
-                                playBtn.setVisibility(View.VISIBLE);
-                                pauseBtn.setVisibility(View.GONE);
-                                mSeekbarUpdateHandler.removeCallbacks(mUpdateSeekbar);
+                                Log.i(tag, "onClick: paused in prayer1");
+//                                bgSound.pause();
+//                                playBtn.setVisibility(View.VISIBLE);
+//                                pauseBtn.setVisibility(View.GONE);
+//                                mSeekbarUpdateHandler.removeCallbacks(mUpdateSeekbar);
                                 seekBar.setProgress(0);
                                 bgSound.seekTo(0);
                                 pos = 0;
+                                intent.putExtra("pos", bgSound.getCurrentPosition());
                             }
-
+                            //playTrack(track);
                         }
-                        playTrack(track);
+
                         Log.i(tag, "onClick: pos " + pos);
                         break;
                     case prayer2:
                         if (bgSound.getCurrentPosition() < 2000) {
-                            track = prayer1;
+                            if (!bgSound.isPlaying()) {
+                                bgSound.pause();
+                                track = prayer1;
+                                bgSound.seekTo(0);
+                                seekBar.setProgress(0);
+                                pos = 0;
+                                playTrack(track);
+                            }
+                            else {
+                                bgSound.seekTo(0);
+                                seekBar.setProgress(0);
+                                pos = 0;
+                                bgSound.pause();
+                                track = prayer1;
+                                playTrack(track);
+                                requireActivity().startService(intent);
+                            }
+
                         }
                         else {
                             if (bgSound.isPlaying()) {
                                 bgSound.pause();
                                 bgSound.seekTo(0);
                                 seekBar.setProgress(0);
+                                pos = 0;
                                 bgSound.start();
-                            } else {
-                                bgSound.pause();
-                                playBtn.setVisibility(View.VISIBLE);
-                                pauseBtn.setVisibility(View.GONE);
-                                mSeekbarUpdateHandler.removeCallbacks(mUpdateSeekbar);
+                            }
+                            else {
+                                Log.i(tag, "onClick: paused in prayer1");
+//                                bgSound.pause();
+//                                playBtn.setVisibility(View.VISIBLE);
+//                                pauseBtn.setVisibility(View.GONE);
+//                                mSeekbarUpdateHandler.removeCallbacks(mUpdateSeekbar);
                                 seekBar.setProgress(0);
                                 bgSound.seekTo(0);
                                 pos = 0;
+                                intent.putExtra("pos", bgSound.getCurrentPosition());
                             }
+                            //playTrack(track);
                         }
-                        playTrack(track);
                         break;
                     case prayer3:
                         if (bgSound.getCurrentPosition() < 2000) {
-                            track = prayer2;
+                            if (!bgSound.isPlaying()) {
+                                bgSound.pause();
+                                track = prayer2;
+                                bgSound.seekTo(0);
+                                seekBar.setProgress(0);
+                                pos = 0;
+                                playTrack(track);
+                            }
+                            else {
+                                bgSound.seekTo(0);
+                                seekBar.setProgress(0);
+                                pos = 0;
+                                bgSound.pause();
+                                track = prayer2;
+                                playTrack(track);
+                                requireActivity().startService(intent);
+                            }
+
                         }
                         else {
                             if (bgSound.isPlaying()) {
                                 bgSound.pause();
                                 bgSound.seekTo(0);
                                 seekBar.setProgress(0);
+                                pos = 0;
                                 bgSound.start();
-                            } else {
-                                bgSound.pause();
-                                playBtn.setVisibility(View.VISIBLE);
-                                pauseBtn.setVisibility(View.GONE);
-                                mSeekbarUpdateHandler.removeCallbacks(mUpdateSeekbar);
+                            }
+                            else {
+                                Log.i(tag, "onClick: paused in prayer1");
+//                                bgSound.pause();
+//                                playBtn.setVisibility(View.VISIBLE);
+//                                pauseBtn.setVisibility(View.GONE);
+//                                mSeekbarUpdateHandler.removeCallbacks(mUpdateSeekbar);
                                 seekBar.setProgress(0);
                                 bgSound.seekTo(0);
                                 pos = 0;
+                                intent.putExtra("pos", bgSound.getCurrentPosition());
                             }
+                            //playTrack(track);
                         }
-                        playTrack(track);
                         break;
                     case prayer4:
                         if (bgSound.getCurrentPosition() < 2000) {
-                            track = prayer3;
+                            if (!bgSound.isPlaying()) {
+                                bgSound.pause();
+                                track = prayer3;
+                                bgSound.seekTo(0);
+                                seekBar.setProgress(0);
+                                pos = 0;
+                                playTrack(track);
+                            }
+                            else {
+                                bgSound.seekTo(0);
+                                seekBar.setProgress(0);
+                                pos = 0;
+                                bgSound.pause();
+                                track = prayer3;
+                                playTrack(track);
+                                Log.i(tag, "onClick: idk");
+                                requireActivity().startService(intent);
+                            }
+
                         }
                         else {
                             if (bgSound.isPlaying()) {
                                 bgSound.pause();
                                 bgSound.seekTo(0);
                                 seekBar.setProgress(0);
+                                pos = 0;
                                 bgSound.start();
-                            } else {
-                                bgSound.pause();
-                                playBtn.setVisibility(View.VISIBLE);
-                                pauseBtn.setVisibility(View.GONE);
-                                mSeekbarUpdateHandler.removeCallbacks(mUpdateSeekbar);
+                            }
+                            else {
+                                Log.i(tag, "onClick: paused in prayer1");
+//                                bgSound.pause();
+//                                playBtn.setVisibility(View.VISIBLE);
+//                                pauseBtn.setVisibility(View.GONE);
+//                                mSeekbarUpdateHandler.removeCallbacks(mUpdateSeekbar);
                                 seekBar.setProgress(0);
                                 bgSound.seekTo(0);
                                 pos = 0;
+                                intent.putExtra("pos", bgSound.getCurrentPosition());
                             }
-                        };
-                        playTrack(track);
+                            //playTrack(track);
+                        }
                         break;
                     case prayer5:
                         if (bgSound.getCurrentPosition() < 2000) {
-                            track = prayer4;
+                            if (!bgSound.isPlaying()) {
+                                bgSound.pause();
+                                track = prayer4;
+                                bgSound.seekTo(0);
+                                seekBar.setProgress(0);
+                                pos = 0;
+                                playTrack(track);
+                            }
+                            else {
+                                bgSound.seekTo(0);
+                                seekBar.setProgress(0);
+                                pos = 0;
+                                bgSound.pause();
+                                track = prayer4;
+                                playTrack(track);
+                                requireActivity().startService(intent);
+                            }
+
                         }
                         else {
                             if (bgSound.isPlaying()) {
                                 bgSound.pause();
                                 bgSound.seekTo(0);
                                 seekBar.setProgress(0);
+                                pos = 0;
                                 bgSound.start();
-                            } else {
-                                bgSound.pause();
-                                playBtn.setVisibility(View.VISIBLE);
-                                pauseBtn.setVisibility(View.GONE);
-                                mSeekbarUpdateHandler.removeCallbacks(mUpdateSeekbar);
+                            }
+                            else {
+                                Log.i(tag, "onClick: paused in prayer1");
+//                                bgSound.pause();
+//                                playBtn.setVisibility(View.VISIBLE);
+//                                pauseBtn.setVisibility(View.GONE);
+//                                mSeekbarUpdateHandler.removeCallbacks(mUpdateSeekbar);
                                 seekBar.setProgress(0);
                                 bgSound.seekTo(0);
                                 pos = 0;
+                                intent.putExtra("pos", bgSound.getCurrentPosition());
                             }
+                            //playTrack(track);
                         }
-                        playTrack(track);
                         break;
                     case prayer6:
                         if (bgSound.getCurrentPosition() < 2000) {
-                            track = prayer5;
+                            if (!bgSound.isPlaying()) {
+                                bgSound.pause();
+                                track = prayer5;
+                                bgSound.seekTo(0);
+                                seekBar.setProgress(0);
+                                pos = 0;
+                                playTrack(track);
+                            }
+                            else {
+                                bgSound.seekTo(0);
+                                seekBar.setProgress(0);
+                                pos = 0;
+                                bgSound.pause();
+                                track = prayer5;
+                                playTrack(track);
+                                requireActivity().startService(intent);
+                            }
+
                         }
                         else {
                             if (bgSound.isPlaying()) {
                                 bgSound.pause();
                                 bgSound.seekTo(0);
                                 seekBar.setProgress(0);
+                                pos = 0;
                                 bgSound.start();
-                            } else {
-                                bgSound.pause();
-                                playBtn.setVisibility(View.VISIBLE);
-                                pauseBtn.setVisibility(View.GONE);
-                                mSeekbarUpdateHandler.removeCallbacks(mUpdateSeekbar);
+                            }
+                            else {
+                                Log.i(tag, "onClick: paused in prayer1");
+//                                bgSound.pause();
+//                                playBtn.setVisibility(View.VISIBLE);
+//                                pauseBtn.setVisibility(View.GONE);
+//                                mSeekbarUpdateHandler.removeCallbacks(mUpdateSeekbar);
                                 seekBar.setProgress(0);
                                 bgSound.seekTo(0);
                                 pos = 0;
+                                intent.putExtra("pos", bgSound.getCurrentPosition());
                             }
+                            //playTrack(track);
                         }
-                        playTrack(track);
                         break;
                     case prayer7:
                         if (bgSound.getCurrentPosition() < 2000) {
-                            track = prayer6;
+                            if (!bgSound.isPlaying()) {
+                                bgSound.pause();
+                                track = prayer6;
+                                bgSound.seekTo(0);
+                                seekBar.setProgress(0);
+                                pos = 0;
+                                playTrack(track);
+                            }
+                            else {
+                                bgSound.seekTo(0);
+                                seekBar.setProgress(0);
+                                pos = 0;
+                                bgSound.pause();
+                                track = prayer6;
+                                playTrack(track);
+                                requireActivity().startService(intent);
+                            }
+
                         }
                         else {
                             if (bgSound.isPlaying()) {
                                 bgSound.pause();
                                 bgSound.seekTo(0);
                                 seekBar.setProgress(0);
+                                pos = 0;
                                 bgSound.start();
-                            } else {
-                                bgSound.pause();
-                                playBtn.setVisibility(View.VISIBLE);
-                                pauseBtn.setVisibility(View.GONE);
-                                mSeekbarUpdateHandler.removeCallbacks(mUpdateSeekbar);
+                            }
+                            else {
+                                Log.i(tag, "onClick: paused in prayer1");
+//                                bgSound.pause();
+//                                playBtn.setVisibility(View.VISIBLE);
+//                                pauseBtn.setVisibility(View.GONE);
+//                                mSeekbarUpdateHandler.removeCallbacks(mUpdateSeekbar);
                                 seekBar.setProgress(0);
                                 bgSound.seekTo(0);
                                 pos = 0;
+                                intent.putExtra("pos", bgSound.getCurrentPosition());
                             }
+                            //playTrack(track);
                         }
-                        playTrack(track);
                         break;
                     case prayer8:
                         if (bgSound.getCurrentPosition() < 2000) {
-                            track = prayer7;
+                            if (!bgSound.isPlaying()) {
+                                bgSound.pause();
+                                track = prayer7;
+                                bgSound.seekTo(0);
+                                seekBar.setProgress(0);
+                                pos = 0;
+                                playTrack(track);
+                            }
+                            else {
+                                bgSound.seekTo(0);
+                                seekBar.setProgress(0);
+                                pos = 0;
+                                bgSound.pause();
+                                track = prayer7;
+                                playTrack(track);
+                                requireActivity().startService(intent);
+                            }
+
                         }
                         else {
                             if (bgSound.isPlaying()) {
                                 bgSound.pause();
                                 bgSound.seekTo(0);
                                 seekBar.setProgress(0);
+                                pos = 0;
                                 bgSound.start();
-                            } else {
-                                bgSound.pause();
-                                playBtn.setVisibility(View.VISIBLE);
-                                pauseBtn.setVisibility(View.GONE);
-                                mSeekbarUpdateHandler.removeCallbacks(mUpdateSeekbar);
+                            }
+                            else {
+                                Log.i(tag, "onClick: paused in prayer1");
+//                                bgSound.pause();
+//                                playBtn.setVisibility(View.VISIBLE);
+//                                pauseBtn.setVisibility(View.GONE);
+//                                mSeekbarUpdateHandler.removeCallbacks(mUpdateSeekbar);
                                 seekBar.setProgress(0);
                                 bgSound.seekTo(0);
                                 pos = 0;
+                                intent.putExtra("pos", bgSound.getCurrentPosition());
                             }
+                            //playTrack(track);
                         }
-                        playTrack(track);
                         break;
                     case "all":
                         if (bgSound.getCurrentPosition() < 2000) {
@@ -466,22 +676,43 @@ public class AudioPlayerBahaullah extends Fragment {
                                 trackNum = numTracks;
                             else
                                 trackNum--;
+
+                            if (!bgSound.isPlaying()) {
+                                bgSound.pause();
+                                //track = prayer8;
+                                bgSound.seekTo(0);
+                                seekBar.setProgress(0);
+                                pos = 0;
+                                intent.putExtra("pos", bgSound.getCurrentPosition());
+                                //playTrack(track);
+                                //midSong = 1;
+                                //playAll(trackNum);
+                                //bgSound.pause();
+                            }
+                            else {
+                                bgSound.stop();
+                                //track = prayer8;
+                                //playTrack(track);
+                                //bgSound.start();
+                                playAll(trackNum);
+                            }
                         }
                         else {
                             if (bgSound.isPlaying()) {
-                                midSong = 1;
+                                playAllCtrl = 1;
                                 bgSound.pause();
                                 bgSound.seekTo(0);
                                 seekBar.setProgress(0);
                                 bgSound.start();
                             } else {
-                                bgSound.pause();
-                                playBtn.setVisibility(View.VISIBLE);
-                                pauseBtn.setVisibility(View.GONE);
-                                mSeekbarUpdateHandler.removeCallbacks(mUpdateSeekbar);
+//                                bgSound.pause();
+//                                playBtn.setVisibility(View.VISIBLE);
+//                                pauseBtn.setVisibility(View.GONE);
+//                                mSeekbarUpdateHandler.removeCallbacks(mUpdateSeekbar);
                                 seekBar.setProgress(0);
                                 bgSound.seekTo(0);
-                                midSong = 1;
+                                intent.putExtra("pos", bgSound.getCurrentPosition());
+                                playAllCtrl = 0;
                                 pos = 0;
                             }
                         }
@@ -491,7 +722,7 @@ public class AudioPlayerBahaullah extends Fragment {
 //                        pauseBtn.setVisibility(View.GONE);
 
 
-                        playAll(trackNum);
+                        //playAll(trackNum);
                         //txt.setText(prayerArray[0]);
                         break;
                 }
@@ -548,10 +779,10 @@ public class AudioPlayerBahaullah extends Fragment {
         @Override
         public void run() {
             seekBar.setMax(bgSound.getDuration());
-            Log.i(tag, "onClick: bgSound.getDuration " + bgSound.getDuration());
+            //Log.i(tag, "onClick: bgSound.getDuration " + bgSound.getDuration());
             //seekBar.setProgress((int)(bgSound.getCurrentPosition()/1000));
             seekBar.setProgress((int)bgSound.getCurrentPosition());
-            Log.i(tag, "run: bgSound.getCurrentPos " + bgSound.getCurrentPosition());
+            //Log.i(tag, "run: bgSound.getCurrentPos " + bgSound.getCurrentPosition());
             mSeekbarUpdateHandler.postDelayed(mUpdateSeekbar, 500);
         }
     };
@@ -560,9 +791,10 @@ public class AudioPlayerBahaullah extends Fragment {
         switch (num) {
             case 0:
                 playTrack(prayerArray[0]);
-                pauseBtn.setVisibility(View.VISIBLE);
-                playBtn.setVisibility(View.INVISIBLE);
-                if (midSong == 0) {
+
+                if (playAllCtrl == 0) {
+                    pauseBtn.setVisibility(View.VISIBLE);
+                    playBtn.setVisibility(View.INVISIBLE);
                     requireActivity().startService(intent);
                 }
                 mSeekbarUpdateHandler.postDelayed(mUpdateSeekbar, 500);
@@ -573,11 +805,12 @@ public class AudioPlayerBahaullah extends Fragment {
                // mp.reset();
                // if (continuePlay == 0) {
                 playTrack(prayerArray[1]);
-                pauseBtn.setVisibility(View.VISIBLE);
-                playBtn.setVisibility(View.INVISIBLE);
+
                 //trackNum = 0; //don't forget to reset this on last track
                 //mp.setLooping(false);
-                if (!bgSound.isPlaying()) {
+                if (playAllCtrl == 0) {
+                    pauseBtn.setVisibility(View.VISIBLE);
+                    playBtn.setVisibility(View.INVISIBLE);
                     requireActivity().startService(intent);
                 }
 
@@ -590,11 +823,14 @@ public class AudioPlayerBahaullah extends Fragment {
                 // mp.stop();
                 // mp.reset();
                 playTrack(prayerArray[2]);
-                pauseBtn.setVisibility(View.VISIBLE);
-                playBtn.setVisibility(View.INVISIBLE);
+
                 //trackNum = 0; //don't forget to reset this on last track
                 //mp.setLooping(false);
-                requireActivity().startService(intent);
+                if (playAllCtrl == 0) {
+                    pauseBtn.setVisibility(View.VISIBLE);
+                    playBtn.setVisibility(View.INVISIBLE);
+                    requireActivity().startService(intent);
+                }
                 mSeekbarUpdateHandler.postDelayed(mUpdateSeekbar, 500);
                 break;
             case 3:
@@ -602,11 +838,14 @@ public class AudioPlayerBahaullah extends Fragment {
                 // mp.stop();
                 // mp.reset();
                 playTrack(prayerArray[3]);
-                pauseBtn.setVisibility(View.VISIBLE);
-                playBtn.setVisibility(View.INVISIBLE);
+
                 //trackNum = 0; //don't forget to reset this on last track
                 //mp.setLooping(false);
-                requireActivity().startService(intent);
+                if (playAllCtrl == 0) {
+                    pauseBtn.setVisibility(View.VISIBLE);
+                    playBtn.setVisibility(View.INVISIBLE);
+                    requireActivity().startService(intent);
+                }
                 mSeekbarUpdateHandler.postDelayed(mUpdateSeekbar, 500);
                 break;
             case 4:
@@ -614,11 +853,14 @@ public class AudioPlayerBahaullah extends Fragment {
                 // mp.stop();
                 // mp.reset();
                 playTrack(prayerArray[4]);
-                pauseBtn.setVisibility(View.VISIBLE);
-                playBtn.setVisibility(View.INVISIBLE);
+
                 //trackNum = 0; //don't forget to reset this on last track
                 //mp.setLooping(false);
-                requireActivity().startService(intent);
+                if (playAllCtrl == 0) {
+                    pauseBtn.setVisibility(View.VISIBLE);
+                    playBtn.setVisibility(View.INVISIBLE);
+                    requireActivity().startService(intent);
+                }
                 mSeekbarUpdateHandler.postDelayed(mUpdateSeekbar, 500);
                 break;
             case 5:
@@ -626,11 +868,14 @@ public class AudioPlayerBahaullah extends Fragment {
                 // mp.stop();
                 // mp.reset();
                 playTrack(prayerArray[5]);
-                pauseBtn.setVisibility(View.VISIBLE);
-                playBtn.setVisibility(View.INVISIBLE);
+
                 //trackNum = 0; //don't forget to reset this on last track
                 //mp.setLooping(false);
-                requireActivity().startService(intent);
+                if (playAllCtrl == 0) {
+                    pauseBtn.setVisibility(View.VISIBLE);
+                    playBtn.setVisibility(View.INVISIBLE);
+                    requireActivity().startService(intent);
+                }
                 mSeekbarUpdateHandler.postDelayed(mUpdateSeekbar, 500);
                 break;
             case 6:
@@ -638,11 +883,14 @@ public class AudioPlayerBahaullah extends Fragment {
                 // mp.stop();
                 // mp.reset();
                 playTrack(prayerArray[6]);
-                pauseBtn.setVisibility(View.VISIBLE);
-                playBtn.setVisibility(View.INVISIBLE);
+
                 //trackNum = 0; //don't forget to reset this on last track
                 //mp.setLooping(false);
-                requireActivity().startService(intent);
+                if (playAllCtrl == 0) {
+                    pauseBtn.setVisibility(View.VISIBLE);
+                    playBtn.setVisibility(View.INVISIBLE);
+                    requireActivity().startService(intent);
+                }
                 mSeekbarUpdateHandler.postDelayed(mUpdateSeekbar, 500);
                 break;
             case 7:
@@ -650,11 +898,14 @@ public class AudioPlayerBahaullah extends Fragment {
                 // mp.stop();
                 // mp.reset();
                 playTrack(prayerArray[7]);
-                pauseBtn.setVisibility(View.VISIBLE);
-                playBtn.setVisibility(View.INVISIBLE);
+
                 //trackNum = 0; //don't forget to reset this on last track
                 //mp.setLooping(false);
-                requireActivity().startService(intent);
+                if (playAllCtrl == 0) {
+                    pauseBtn.setVisibility(View.VISIBLE);
+                    playBtn.setVisibility(View.INVISIBLE);
+                    requireActivity().startService(intent);
+                }
                 mSeekbarUpdateHandler.postDelayed(mUpdateSeekbar, 500);
                 break;
 //            case 8:
@@ -685,6 +936,7 @@ public class AudioPlayerBahaullah extends Fragment {
                     if (isPlaying == 1) {
                         requireActivity().startService(intent);
                         pauseBtn.setVisibility(View.VISIBLE);
+                        Log.i(tag, "playTrack: oops");
                         playBtn.setVisibility(View.INVISIBLE);
                         isPlaying = 0;
                     }
@@ -693,7 +945,7 @@ public class AudioPlayerBahaullah extends Fragment {
                     //bgSound.start();
 //                    intent.putExtra("pos", pos);
 //                    requireActivity().startService(intent);
-                    midSong = 1;
+                    playAllCtrl = 1;
 
 
                     pos = 0;
@@ -724,7 +976,7 @@ public class AudioPlayerBahaullah extends Fragment {
 
                     }
                     mSeekbarUpdateHandler.postDelayed(mUpdateSeekbar, 500);
-                    midSong = 1;
+                    playAllCtrl = 1;
                     pos = 0;
                 }
                 gradientDrawable = new GradientDrawable(
@@ -748,7 +1000,7 @@ public class AudioPlayerBahaullah extends Fragment {
                         playBtn.setVisibility(View.INVISIBLE);
                     }
                     mSeekbarUpdateHandler.postDelayed(mUpdateSeekbar, 500);
-                    midSong = 1;
+                    playAllCtrl = 1;
                     pos = 0;
                 }
                 gradientDrawable = new GradientDrawable(
@@ -772,7 +1024,7 @@ public class AudioPlayerBahaullah extends Fragment {
                         playBtn.setVisibility(View.INVISIBLE);
                     }
                     mSeekbarUpdateHandler.postDelayed(mUpdateSeekbar, 500);
-                    midSong = 1;
+                    playAllCtrl = 1;
                     pos = 0;
                 }
                 gradientDrawable = new GradientDrawable(
@@ -796,7 +1048,7 @@ public class AudioPlayerBahaullah extends Fragment {
                         playBtn.setVisibility(View.INVISIBLE);
                     }
                     mSeekbarUpdateHandler.postDelayed(mUpdateSeekbar, 500);
-                    midSong = 1;
+                    playAllCtrl = 1;
                     pos = 0;
                 }
                 gradientDrawable = new GradientDrawable(
@@ -820,7 +1072,7 @@ public class AudioPlayerBahaullah extends Fragment {
                         playBtn.setVisibility(View.INVISIBLE);
                     }
                     mSeekbarUpdateHandler.postDelayed(mUpdateSeekbar, 500);
-                    midSong = 1;
+                    playAllCtrl = 1;
                     pos = 0;
                 }
                 gradientDrawable = new GradientDrawable(
@@ -844,7 +1096,7 @@ public class AudioPlayerBahaullah extends Fragment {
                         playBtn.setVisibility(View.INVISIBLE);
                     }
                     mSeekbarUpdateHandler.postDelayed(mUpdateSeekbar, 500);
-                    midSong = 1;
+                    playAllCtrl = 1;
                     pos = 0;
                 }
                 gradientDrawable = new GradientDrawable(
@@ -868,7 +1120,7 @@ public class AudioPlayerBahaullah extends Fragment {
                         playBtn.setVisibility(View.INVISIBLE);
                     }
                     mSeekbarUpdateHandler.postDelayed(mUpdateSeekbar, 500);
-                    midSong = 1;
+                    playAllCtrl = 1;
                     pos = 0;
                 }
                 gradientDrawable = new GradientDrawable(
@@ -982,6 +1234,7 @@ public class AudioPlayerBahaullah extends Fragment {
     }
 
     public void trackEndedBahaullah() {
+        playAllCtrl = 0;
         if (track.equals("all") && trackNum < numTracks) {
                     trackNum++;
                     playAll(trackNum);
@@ -997,7 +1250,7 @@ public class AudioPlayerBahaullah extends Fragment {
                     playBtn.setVisibility(View.VISIBLE);
                     pauseBtn.setVisibility(View.GONE);
                 }
-                midSong = 0;
+
 //        playBtn.setVisibility(View.VISIBLE);
 //        pauseBtn.setVisibility(View.GONE);
     }
