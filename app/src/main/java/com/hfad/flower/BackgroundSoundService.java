@@ -124,6 +124,7 @@ public class BackgroundSoundService extends Service implements MediaPlayer.OnCom
 
     @Override
     public void onDestroy() {
+        mp.release();
         super.onDestroy();
         Log.i(tag, "onDestroy: stopSelf");
         //stopSelf();
