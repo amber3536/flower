@@ -201,92 +201,28 @@ public class AudioPlayerBahaullah extends Fragment {
             public void onClick(View v) {
                switch (track) {
                    case prayer1:
-                       bgSound.pause();
-                       playBtn.setVisibility(View.VISIBLE);
-                       pauseBtn.setVisibility(View.GONE);
-                       track = prayer2;
-                       pos = 0;
-                       bgSound.seekTo(0);
-                       seekBar.setProgress(0);
-                       intent.putExtra("pos", bgSound.getCurrentPosition());
-                       playTrack(track);
+                       forwardTrack(prayer2);
                        break;
                    case prayer2:
-                       bgSound.pause();
-                       playBtn.setVisibility(View.VISIBLE);
-                       pauseBtn.setVisibility(View.GONE);
-                       track = prayer3;
-                       pos = 0;
-                       bgSound.seekTo(0);
-                       seekBar.setProgress(0);
-                       intent.putExtra("pos", bgSound.getCurrentPosition());
-                       playTrack(track);
+                       forwardTrack(prayer3);
                        break;
                    case prayer3:
-                       bgSound.pause();
-                       playBtn.setVisibility(View.VISIBLE);
-                       pauseBtn.setVisibility(View.GONE);
-                       track = prayer4;
-                       pos = 0;
-                       bgSound.seekTo(0);
-                       seekBar.setProgress(0);
-                       intent.putExtra("pos", bgSound.getCurrentPosition());
-                       playTrack(track);
+                       forwardTrack(prayer4);
                        break;
                    case prayer4:
-                       bgSound.pause();
-                       playBtn.setVisibility(View.VISIBLE);
-                       pauseBtn.setVisibility(View.GONE);
-                       track = prayer5;
-                       pos = 0;
-                       bgSound.seekTo(0);
-                       seekBar.setProgress(0);
-                       intent.putExtra("pos", bgSound.getCurrentPosition());
-                       playTrack(track);
+                       forwardTrack(prayer5);
                        break;
                    case prayer5:
-                       bgSound.pause();
-                       playBtn.setVisibility(View.VISIBLE);
-                       pauseBtn.setVisibility(View.GONE);
-                       track = prayer6;
-                       pos = 0;
-                       bgSound.seekTo(0);
-                       seekBar.setProgress(0);
-                       intent.putExtra("pos", bgSound.getCurrentPosition());
-                       playTrack(track);
+                       forwardTrack(prayer6);
                        break;
                    case prayer6:
-                       bgSound.pause();
-                       playBtn.setVisibility(View.VISIBLE);
-                       pauseBtn.setVisibility(View.GONE);
-                       track = prayer7;
-                       pos = 0;
-                       bgSound.seekTo(0);
-                       seekBar.setProgress(0);
-                       intent.putExtra("pos", bgSound.getCurrentPosition());
-                       playTrack(track);
+                       forwardTrack(prayer7);
                        break;
                    case prayer7:
-                       bgSound.pause();
-                       playBtn.setVisibility(View.VISIBLE);
-                       pauseBtn.setVisibility(View.GONE);
-                       track = prayer8;
-                       pos = 0;
-                       bgSound.seekTo(0);
-                       seekBar.setProgress(0);
-                       intent.putExtra("pos", bgSound.getCurrentPosition());
-                       playTrack(track);
+                       forwardTrack(prayer8);
                        break;
                    case prayer8:
-                       bgSound.pause();
-                       playBtn.setVisibility(View.VISIBLE);
-                       pauseBtn.setVisibility(View.GONE);
-                       track = prayer1;
-                       pos = 0;
-                       bgSound.seekTo(0);
-                       seekBar.setProgress(0);
-                       intent.putExtra("pos", bgSound.getCurrentPosition());
-                       playTrack(track);
+                       forwardTrack(prayer1);
                        break;
                    case "all":
                        //playAllOn = 1;
@@ -320,354 +256,34 @@ public class AudioPlayerBahaullah extends Fragment {
             public void onClick(View v) {
                 switch (track) {
                     case prayer1:
+                        backTrack(prayer8);
 //                        bgSound.pause();
 //                        playBtn.setVisibility(View.VISIBLE);
 //                        pauseBtn.setVisibility(View.GONE);
-                        if (bgSound.getCurrentPosition() < 2000) {
-                            if (!bgSound.isPlaying()) {
-                                bgSound.pause();
-                                track = prayer8;
-                                bgSound.seekTo(0);
-                                seekBar.setProgress(0);
-                                pos = 0;
-                                playTrack(track);
-                            }
-                            else {
-                                bgSound.seekTo(0);
-                                seekBar.setProgress(0);
-                                pos = 0;
-                                bgSound.pause();
-                                track = prayer8;
-                                playTrack(track);
-                                requireActivity().startService(intent);
-                            }
 
-                        }
-                        else {
-                            if (bgSound.isPlaying()) {
-                                bgSound.pause();
-                                bgSound.seekTo(0);
-                                seekBar.setProgress(0);
-                                pos = 0;
-                                bgSound.start();
-                            }
-                            else {
-                                Log.i(tag, "onClick: paused in prayer1");
-//                                bgSound.pause();
-//                                playBtn.setVisibility(View.VISIBLE);
-//                                pauseBtn.setVisibility(View.GONE);
-//                                mSeekbarUpdateHandler.removeCallbacks(mUpdateSeekbar);
-                                seekBar.setProgress(0);
-                                bgSound.seekTo(0);
-                                pos = 0;
-                                intent.putExtra("pos", bgSound.getCurrentPosition());
-                            }
-                            //playTrack(track);
-                        }
 
                         Log.i(tag, "onClick: pos " + pos);
                         break;
                     case prayer2:
-                        if (bgSound.getCurrentPosition() < 2000) {
-                            if (!bgSound.isPlaying()) {
-                                bgSound.pause();
-                                track = prayer1;
-                                bgSound.seekTo(0);
-                                seekBar.setProgress(0);
-                                pos = 0;
-                                playTrack(track);
-                            }
-                            else {
-                                bgSound.seekTo(0);
-                                seekBar.setProgress(0);
-                                pos = 0;
-                                bgSound.pause();
-                                track = prayer1;
-                                playTrack(track);
-                                requireActivity().startService(intent);
-                            }
-
-                        }
-                        else {
-                            if (bgSound.isPlaying()) {
-                                bgSound.pause();
-                                bgSound.seekTo(0);
-                                seekBar.setProgress(0);
-                                pos = 0;
-                                bgSound.start();
-                            }
-                            else {
-                                Log.i(tag, "onClick: paused in prayer1");
-//                                bgSound.pause();
-//                                playBtn.setVisibility(View.VISIBLE);
-//                                pauseBtn.setVisibility(View.GONE);
-//                                mSeekbarUpdateHandler.removeCallbacks(mUpdateSeekbar);
-                                seekBar.setProgress(0);
-                                bgSound.seekTo(0);
-                                pos = 0;
-                                intent.putExtra("pos", bgSound.getCurrentPosition());
-                            }
-                            //playTrack(track);
-                        }
+                        backTrack(prayer1);
                         break;
                     case prayer3:
-                        if (bgSound.getCurrentPosition() < 2000) {
-                            if (!bgSound.isPlaying()) {
-                                bgSound.pause();
-                                track = prayer2;
-                                bgSound.seekTo(0);
-                                seekBar.setProgress(0);
-                                pos = 0;
-                                playTrack(track);
-                            }
-                            else {
-                                bgSound.seekTo(0);
-                                seekBar.setProgress(0);
-                                pos = 0;
-                                bgSound.pause();
-                                track = prayer2;
-                                playTrack(track);
-                                requireActivity().startService(intent);
-                            }
-
-                        }
-                        else {
-                            if (bgSound.isPlaying()) {
-                                bgSound.pause();
-                                bgSound.seekTo(0);
-                                seekBar.setProgress(0);
-                                pos = 0;
-                                bgSound.start();
-                            }
-                            else {
-                                Log.i(tag, "onClick: paused in prayer1");
-//                                bgSound.pause();
-//                                playBtn.setVisibility(View.VISIBLE);
-//                                pauseBtn.setVisibility(View.GONE);
-//                                mSeekbarUpdateHandler.removeCallbacks(mUpdateSeekbar);
-                                seekBar.setProgress(0);
-                                bgSound.seekTo(0);
-                                pos = 0;
-                                intent.putExtra("pos", bgSound.getCurrentPosition());
-                            }
-                            //playTrack(track);
-                        }
+                        backTrack(prayer2);
                         break;
                     case prayer4:
-                        if (bgSound.getCurrentPosition() < 2000) {
-                            if (!bgSound.isPlaying()) {
-                                bgSound.pause();
-                                track = prayer3;
-                                bgSound.seekTo(0);
-                                seekBar.setProgress(0);
-                                pos = 0;
-                                playTrack(track);
-                            }
-                            else {
-                                bgSound.seekTo(0);
-                                seekBar.setProgress(0);
-                                pos = 0;
-                                bgSound.pause();
-                                track = prayer3;
-                                playTrack(track);
-                                Log.i(tag, "onClick: idk");
-                                requireActivity().startService(intent);
-                            }
-
-                        }
-                        else {
-                            if (bgSound.isPlaying()) {
-                                bgSound.pause();
-                                bgSound.seekTo(0);
-                                seekBar.setProgress(0);
-                                pos = 0;
-                                bgSound.start();
-                            }
-                            else {
-                                Log.i(tag, "onClick: paused in prayer1");
-//                                bgSound.pause();
-//                                playBtn.setVisibility(View.VISIBLE);
-//                                pauseBtn.setVisibility(View.GONE);
-//                                mSeekbarUpdateHandler.removeCallbacks(mUpdateSeekbar);
-                                seekBar.setProgress(0);
-                                bgSound.seekTo(0);
-                                pos = 0;
-                                intent.putExtra("pos", bgSound.getCurrentPosition());
-                            }
-                            //playTrack(track);
-                        }
+                        backTrack(prayer3);
                         break;
                     case prayer5:
-                        if (bgSound.getCurrentPosition() < 2000) {
-                            if (!bgSound.isPlaying()) {
-                                bgSound.pause();
-                                track = prayer4;
-                                bgSound.seekTo(0);
-                                seekBar.setProgress(0);
-                                pos = 0;
-                                playTrack(track);
-                            }
-                            else {
-                                bgSound.seekTo(0);
-                                seekBar.setProgress(0);
-                                pos = 0;
-                                bgSound.pause();
-                                track = prayer4;
-                                playTrack(track);
-                                requireActivity().startService(intent);
-                            }
-
-                        }
-                        else {
-                            if (bgSound.isPlaying()) {
-                                bgSound.pause();
-                                bgSound.seekTo(0);
-                                seekBar.setProgress(0);
-                                pos = 0;
-                                bgSound.start();
-                            }
-                            else {
-                                Log.i(tag, "onClick: paused in prayer1");
-//                                bgSound.pause();
-//                                playBtn.setVisibility(View.VISIBLE);
-//                                pauseBtn.setVisibility(View.GONE);
-//                                mSeekbarUpdateHandler.removeCallbacks(mUpdateSeekbar);
-                                seekBar.setProgress(0);
-                                bgSound.seekTo(0);
-                                pos = 0;
-                                intent.putExtra("pos", bgSound.getCurrentPosition());
-                            }
-                            //playTrack(track);
-                        }
+                        backTrack(prayer4);
                         break;
                     case prayer6:
-                        if (bgSound.getCurrentPosition() < 2000) {
-                            if (!bgSound.isPlaying()) {
-                                bgSound.pause();
-                                track = prayer5;
-                                bgSound.seekTo(0);
-                                seekBar.setProgress(0);
-                                pos = 0;
-                                playTrack(track);
-                            }
-                            else {
-                                bgSound.seekTo(0);
-                                seekBar.setProgress(0);
-                                pos = 0;
-                                bgSound.pause();
-                                track = prayer5;
-                                playTrack(track);
-                                requireActivity().startService(intent);
-                            }
-
-                        }
-                        else {
-                            if (bgSound.isPlaying()) {
-                                bgSound.pause();
-                                bgSound.seekTo(0);
-                                seekBar.setProgress(0);
-                                pos = 0;
-                                bgSound.start();
-                            }
-                            else {
-                                Log.i(tag, "onClick: paused in prayer1");
-//                                bgSound.pause();
-//                                playBtn.setVisibility(View.VISIBLE);
-//                                pauseBtn.setVisibility(View.GONE);
-//                                mSeekbarUpdateHandler.removeCallbacks(mUpdateSeekbar);
-                                seekBar.setProgress(0);
-                                bgSound.seekTo(0);
-                                pos = 0;
-                                intent.putExtra("pos", bgSound.getCurrentPosition());
-                            }
-                            //playTrack(track);
-                        }
+                        backTrack(prayer5);
                         break;
                     case prayer7:
-                        if (bgSound.getCurrentPosition() < 2000) {
-                            if (!bgSound.isPlaying()) {
-                                bgSound.pause();
-                                track = prayer6;
-                                bgSound.seekTo(0);
-                                seekBar.setProgress(0);
-                                pos = 0;
-                                playTrack(track);
-                            }
-                            else {
-                                bgSound.seekTo(0);
-                                seekBar.setProgress(0);
-                                pos = 0;
-                                bgSound.pause();
-                                track = prayer6;
-                                playTrack(track);
-                                requireActivity().startService(intent);
-                            }
-
-                        }
-                        else {
-                            if (bgSound.isPlaying()) {
-                                bgSound.pause();
-                                bgSound.seekTo(0);
-                                seekBar.setProgress(0);
-                                pos = 0;
-                                bgSound.start();
-                            }
-                            else {
-                                Log.i(tag, "onClick: paused in prayer1");
-//                                bgSound.pause();
-//                                playBtn.setVisibility(View.VISIBLE);
-//                                pauseBtn.setVisibility(View.GONE);
-//                                mSeekbarUpdateHandler.removeCallbacks(mUpdateSeekbar);
-                                seekBar.setProgress(0);
-                                bgSound.seekTo(0);
-                                pos = 0;
-                                intent.putExtra("pos", bgSound.getCurrentPosition());
-                            }
-                            //playTrack(track);
-                        }
+                        backTrack(prayer6);
                         break;
                     case prayer8:
-                        if (bgSound.getCurrentPosition() < 2000) {
-                            if (!bgSound.isPlaying()) {
-                                bgSound.pause();
-                                track = prayer7;
-                                bgSound.seekTo(0);
-                                seekBar.setProgress(0);
-                                pos = 0;
-                                playTrack(track);
-                            }
-                            else {
-                                bgSound.seekTo(0);
-                                seekBar.setProgress(0);
-                                pos = 0;
-                                bgSound.pause();
-                                track = prayer7;
-                                playTrack(track);
-                                requireActivity().startService(intent);
-                            }
-
-                        }
-                        else {
-                            if (bgSound.isPlaying()) {
-                                bgSound.pause();
-                                bgSound.seekTo(0);
-                                seekBar.setProgress(0);
-                                pos = 0;
-                                bgSound.start();
-                            }
-                            else {
-                                Log.i(tag, "onClick: paused in prayer1");
-//                                bgSound.pause();
-//                                playBtn.setVisibility(View.VISIBLE);
-//                                pauseBtn.setVisibility(View.GONE);
-//                                mSeekbarUpdateHandler.removeCallbacks(mUpdateSeekbar);
-                                seekBar.setProgress(0);
-                                bgSound.seekTo(0);
-                                pos = 0;
-                                intent.putExtra("pos", bgSound.getCurrentPosition());
-                            }
-                            //playTrack(track);
-                        }
+                        backTrack(prayer7);
                         break;
                     case "all":
                         if (bgSound.getCurrentPosition() < 2000) {
@@ -785,6 +401,62 @@ public class AudioPlayerBahaullah extends Fragment {
             mSeekbarUpdateHandler.postDelayed(mUpdateSeekbar, 500);
         }
     };
+
+    private void forwardTrack(String curr) {
+        bgSound.pause();
+        playBtn.setVisibility(View.VISIBLE);
+        pauseBtn.setVisibility(View.GONE);
+        pos = 0;
+        track = curr;
+        bgSound.seekTo(0);
+        seekBar.setProgress(0);
+        intent.putExtra("pos", bgSound.getCurrentPosition());
+        playTrack(curr);
+    }
+
+    private void backTrack(String curr) {
+        if (bgSound.getCurrentPosition() < 2000) {
+            if (!bgSound.isPlaying()) {
+                bgSound.pause();
+                track = curr;
+                bgSound.seekTo(0);
+                seekBar.setProgress(0);
+                pos = 0;
+                playTrack(track);
+            }
+            else {
+                bgSound.seekTo(0);
+                seekBar.setProgress(0);
+                pos = 0;
+                bgSound.pause();
+                track = curr;
+                playTrack(track);
+                requireActivity().startService(intent);
+            }
+
+        }
+        else {
+            if (bgSound.isPlaying()) {
+                bgSound.pause();
+                bgSound.seekTo(0);
+                seekBar.setProgress(0);
+                pos = 0;
+                bgSound.start();
+            }
+            else {
+                Log.i(tag, "onClick: paused in prayer1");
+//                                bgSound.pause();
+//                                playBtn.setVisibility(View.VISIBLE);
+//                                pauseBtn.setVisibility(View.GONE);
+//                                mSeekbarUpdateHandler.removeCallbacks(mUpdateSeekbar);
+                seekBar.setProgress(0);
+                bgSound.seekTo(0);
+                pos = 0;
+                intent.putExtra("pos", bgSound.getCurrentPosition());
+            }
+            //playTrack(track);
+        }
+    }
 
     private void playAll(int num) {
         switch (num) {
@@ -939,15 +611,8 @@ public class AudioPlayerBahaullah extends Fragment {
                         isPlaying = 0;
                     }
                     mSeekbarUpdateHandler.postDelayed(mUpdateSeekbar, 500);
-                   // bgSound.seekTo(dist);
-                    //bgSound.start();
-//                    intent.putExtra("pos", pos);
-//                    requireActivity().startService(intent);
                     playAllCtrl = 1;
-
-
                     pos = 0;
-
                 }
 //
 //                mp.setOnCompletionListener(listener);
