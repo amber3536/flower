@@ -1026,6 +1026,7 @@ public class AudioPlayerAbdulBaha extends Fragment {
     }
 
     public void trackEndedAbdulBaha() {
+        playAllCtrl = 0;
         if (track.equals("all") && trackNum < numTracks) {
             trackNum++;
             playAll(trackNum);
