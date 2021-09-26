@@ -47,7 +47,6 @@ public class AudioPlayerBahaullah extends Fragment {
     private String tag = "Audio Bahaullah";
     private int numTracks = 7;
     private int isPlaying = 0;
-    private int continuePlay = 0;
     private GradientDrawable gradientDrawable;
     private final String prayer1 = "Attract the hearts of men...";
     private final String prayer2 = "Lauded be Thy name...";
@@ -936,7 +935,6 @@ public class AudioPlayerBahaullah extends Fragment {
                     if (isPlaying == 1) {
                         requireActivity().startService(intent);
                         pauseBtn.setVisibility(View.VISIBLE);
-                        Log.i(tag, "playTrack: oops");
                         playBtn.setVisibility(View.INVISIBLE);
                         isPlaying = 0;
                     }
