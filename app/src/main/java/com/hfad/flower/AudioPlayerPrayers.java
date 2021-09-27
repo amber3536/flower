@@ -23,6 +23,8 @@ import androidx.fragment.app.Fragment;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 public class AudioPlayerPrayers extends Fragment {
@@ -39,13 +41,16 @@ public class AudioPlayerPrayers extends Fragment {
     private FloatingActionButton backBtn;
     private FloatingActionButton forwardBtn;
     private MediaPlayer.OnCompletionListener listener;
-    private int trackNum = 0;
+    private int trackNum = -1;
+
     private String tr = "TRACK";
     private BackgroundSoundService bgSound;
     private Bundle bundle;
     private float pos = 0;
     private String tag = "Audio Bahaullah";
     private int numTracks = 7;
+    private List<Integer> intList = new ArrayList<>();
+    private int count = 0;
     private int playAllCtrl = 0;
     private int isPlaying = 0;
     private Random rand = new Random();
@@ -108,6 +113,9 @@ public class AudioPlayerPrayers extends Fragment {
             isPlaying = savedInstanceState.getInt("playing");
 
             track = savedInstanceState.getString(tr, track);
+
+            trackNum = savedInstanceState.getInt("all");
+
             Log.i("Audio Bahaullah", "onCreateView: " + track);
         }
 
@@ -588,7 +596,7 @@ public class AudioPlayerPrayers extends Fragment {
             case prayer1:
                 //requireActivity().startService(new Intent(getActivity(),BackgroundSoundService.class));
 
-                intent.putExtra("track", R.raw.bahai_1);
+                intent.putExtra("track", R.raw.marian);
                 intent.putExtra("pos", pos);
 //                mp = MediaPlayer.create(getContext(), R.raw.from_the_sweet_scented);
                 if (pos != 0) {
@@ -618,7 +626,7 @@ public class AudioPlayerPrayers extends Fragment {
                 break;
             case prayer2:
                 // mp = MediaPlayer.create(getContext(), R.raw.marian);
-                intent.putExtra("track", R.raw.bahai_2);
+                intent.putExtra("track", R.raw.brooklyn_bridge);
                 intent.putExtra("pos", pos);
 //                mp = MediaPlayer.create(getContext(), R.raw.from_the_sweet_scented);
                 if (pos != 0) {
@@ -645,7 +653,7 @@ public class AudioPlayerPrayers extends Fragment {
                 txt.setText(prayerArray[1]);
                 break;
             case prayer3:
-                intent.putExtra("track", R.raw.bahai_3_copy);
+                intent.putExtra("track", R.raw.marian);
                 intent.putExtra("pos", pos);
 //                mp = MediaPlayer.create(getContext(), R.raw.from_the_sweet_scented);
                 if (pos != 0) {
@@ -672,7 +680,7 @@ public class AudioPlayerPrayers extends Fragment {
                 txt.setText(prayerArray[2]);
                 break;
             case prayer4:
-                intent.putExtra("track", R.raw.bahai_4);
+                intent.putExtra("track", R.raw.brooklyn_bridge);
                 intent.putExtra("pos", pos);
 //                mp = MediaPlayer.create(getContext(), R.raw.from_the_sweet_scented);
                 if (pos != 0) {
@@ -699,7 +707,7 @@ public class AudioPlayerPrayers extends Fragment {
                 txt.setText(prayerArray[3]);
                 break;
             case prayer5:
-                intent.putExtra("track", R.raw.bahai_5_copy);
+                intent.putExtra("track", R.raw.marian);
                 intent.putExtra("pos", pos);
 //                mp = MediaPlayer.create(getContext(), R.raw.from_the_sweet_scented);
                 if (pos != 0) {
@@ -726,7 +734,7 @@ public class AudioPlayerPrayers extends Fragment {
                 txt.setText(prayerArray[4]);
                 break;
             case prayer6:
-                intent.putExtra("track", R.raw.bahai_6);
+                intent.putExtra("track", R.raw.brooklyn_bridge);
                 intent.putExtra("pos", pos);
 //                mp = MediaPlayer.create(getContext(), R.raw.from_the_sweet_scented);
                 if (pos != 0) {
@@ -753,7 +761,7 @@ public class AudioPlayerPrayers extends Fragment {
                 txt.setText(prayerArray[5]);
                 break;
             case prayer7:
-                intent.putExtra("track", R.raw.bahai_7);
+                intent.putExtra("track", R.raw.marian);
                 intent.putExtra("pos", pos);
 //                mp = MediaPlayer.create(getContext(), R.raw.from_the_sweet_scented);
                 if (pos != 0) {
@@ -780,7 +788,7 @@ public class AudioPlayerPrayers extends Fragment {
                 txt.setText(prayerArray[6]);
                 break;
             case prayer8:
-                intent.putExtra("track", R.raw.bahai_8_copy);
+                intent.putExtra("track", R.raw.brooklyn_bridge);
                 intent.putExtra("pos", pos);
 //                mp = MediaPlayer.create(getContext(), R.raw.from_the_sweet_scented);
                 if (pos != 0) {
@@ -807,10 +815,10 @@ public class AudioPlayerPrayers extends Fragment {
                 txt.setText(prayerArray[7]);
                 break;
             case "all":
-
-
+                if (trackNum == -1)
+                    trackNum = rand.nextInt(numTracks+1);
                 //playAllOn = 1;
-                playAll(rand.nextInt(numTracks+1));
+                playAll(trackNum);
                 //txt.setText(prayerArray[0]);
                 break;
 //            case "The Evolution of Matter and Development of the Soul":
@@ -904,21 +912,41 @@ public class AudioPlayerPrayers extends Fragment {
 
     public void trackEndedPrayers() {
         playAllCtrl = 0;
-        if (track.equals("all") && trackNum < numTracks) {
-            //trackNum++;
-            playAll(rand.nextInt(numTracks+1));
-        }
-        else if (track.equals("all") && trackNum == numTracks) {
-            trackNum = 0;
-            playAllOn = 1;
-            playBtn.setVisibility(View.VISIBLE);
-            pauseBtn.setVisibility(View.GONE);
-            playTrack(prayerArray[0]);
+
+        if (count < numTracks) {
+            count++;
+            intList.add(trackNum);
+
+            while (intList.contains(trackNum)) {
+                trackNum = rand.nextInt(numTracks+1);
+            }
+            playAll(trackNum);
+
+//            intArray[count] = trackNum;
+//            while (intArray.contains[trackNum])
         }
         else {
             playBtn.setVisibility(View.VISIBLE);
             pauseBtn.setVisibility(View.GONE);
+            intList.clear();
+            count = 0;
+            playAllOn = 1;
         }
+//        if (track.equals("all") && trackNum < numTracks) {
+//            //trackNum++;
+//            playAll(rand.nextInt(numTracks+1));
+//        }
+//        else if (track.equals("all") && trackNum == numTracks) {
+//            trackNum = 0;
+//            playAllOn = 1;
+//            playBtn.setVisibility(View.VISIBLE);
+//            pauseBtn.setVisibility(View.GONE);
+//            playTrack(prayerArray[0]);
+//        }
+//        else {
+//            playBtn.setVisibility(View.VISIBLE);
+//            pauseBtn.setVisibility(View.GONE);
+//        }
 //        playBtn.setVisibility(View.VISIBLE);
 //        pauseBtn.setVisibility(View.GONE);
     }
