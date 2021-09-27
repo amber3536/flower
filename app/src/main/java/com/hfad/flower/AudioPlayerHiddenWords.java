@@ -84,6 +84,10 @@ public class AudioPlayerHiddenWords extends Fragment {
             pos = savedInstanceState.getFloat("position");
             track = savedInstanceState.getString(tr, track);
             isPlaying = savedInstanceState.getInt("playing");
+
+            if (track.equals("all")) {
+                trackNum = savedInstanceState.getInt("all");
+            }
             Log.i(tag, "onCreateView: " + track);
         }
 
@@ -630,6 +634,7 @@ public class AudioPlayerHiddenWords extends Fragment {
         }
         Log.i(tag, "onSaveInstanceState: bgSound playing");
         outState.putFloat("position", bgSound.getCurrentPosition());
+        outState.putInt("all", trackNum);
         // Save our own state now
         //outState.putInt(STATE_COUNTER, mCounter);
         Log.i(tag, "onSaveInstanceState: " + track);

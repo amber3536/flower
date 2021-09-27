@@ -104,8 +104,11 @@ public class AudioPlayerBahaullah extends Fragment {
 //            mp.seekTo(pos);
 
             track = savedInstanceState.getString(tr, track);
-
             isPlaying = savedInstanceState.getInt("playing");
+
+            if (track.equals("all")) {
+                trackNum = savedInstanceState.getInt("all");
+            }
 
             //bgSound.seekTo((int)pos);
             Log.i("Audio Bahaullah", "onCreateView: " + track);
@@ -883,14 +886,9 @@ public class AudioPlayerBahaullah extends Fragment {
         if (bgSound.isPlaying()) {
             outState.putInt("playing", 1);
         }
-            Log.i(tag, "onSaveInstanceState: bgSound playing");
-            outState.putFloat("position", bgSound.getCurrentPosition());
-//            playBtn.setVisibility(View.VISIBLE);
-//            pauseBtn.setVisibility(View.GONE);
-//            bgSound.pause();
-//            mSeekbarUpdateHandler.removeCallbacks(mUpdateSeekbar);
-
-      //  }
+        Log.i(tag, "onSaveInstanceState: bgSound playing");
+        outState.putFloat("position", bgSound.getCurrentPosition());
+        outState.putInt("all", trackNum);
 
         Log.i("Audio Bahaullah", "onSaveInstanceState: " + track);
         outState.putString(tr, track);

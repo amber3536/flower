@@ -85,6 +85,10 @@ public class AudioPlayerParisTalks extends Fragment {
             pos = savedInstanceState.getFloat("position");
             track = savedInstanceState.getString(tr, track);
             isPlaying = savedInstanceState.getInt("playing");
+
+            if (track.equals("all")) {
+                trackNum = savedInstanceState.getInt("all");
+            }
             Log.i("Audio Paris", "onCreateView: " + track);
         }
 
@@ -675,6 +679,7 @@ public class AudioPlayerParisTalks extends Fragment {
         }
         Log.i(tag, "onSaveInstanceState: bgSound playing");
         outState.putFloat("position", bgSound.getCurrentPosition());
+        outState.putInt("all", trackNum);
 
         Log.i("Audio Paris", "onSaveInstanceState: " + track);
         outState.putString(tr, track);

@@ -91,6 +91,11 @@ public class AudioPlayerAbdulBaha extends Fragment {
             track = savedInstanceState.getString(tr, track);
             isPlaying = savedInstanceState.getInt("playing");
             Log.i("Audio Abdul Baha", "onCreateView: " + track);
+
+            if (track.equals("all")) {
+                trackNum = savedInstanceState.getInt("all");
+            }
+
         }
 
 
@@ -1022,6 +1027,7 @@ public class AudioPlayerAbdulBaha extends Fragment {
         }
         Log.i(tag, "onSaveInstanceState: bgSound playing");
         outState.putFloat("position", bgSound.getCurrentPosition());
+        outState.putInt("all", trackNum);
         outState.putString(tr, track);
     }
 
