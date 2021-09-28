@@ -602,7 +602,8 @@ public class AudioPlayerBahaullah extends Fragment {
             case prayer1:
                 //requireActivity().startService(new Intent(getActivity(),BackgroundSoundService.class));
 
-                intent.putExtra("track", R.raw.bahai_1);
+                //intent.putExtra("track", R.raw.bahai_1);
+                intent.putExtra("track", R.raw.marian);
                 intent.putExtra("pos", pos);
 //                mp = MediaPlayer.create(getContext(), R.raw.from_the_sweet_scented);
                 if (pos != 0) {
@@ -906,10 +907,14 @@ public class AudioPlayerBahaullah extends Fragment {
                     playBtn.setVisibility(View.VISIBLE);
                     pauseBtn.setVisibility(View.GONE);
                     playTrack(prayerArray[0]);
+                    bgSound.seekTo(0);
+                    seekBar.setProgress(0);
                 }
                 else {
                     playBtn.setVisibility(View.VISIBLE);
                     pauseBtn.setVisibility(View.GONE);
+                    bgSound.seekTo(0);
+                    seekBar.setProgress(0);
                 }
 
 //        playBtn.setVisibility(View.VISIBLE);

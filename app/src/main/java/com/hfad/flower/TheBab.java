@@ -29,7 +29,7 @@ public class TheBab extends Fragment {
     private FloatingActionButton playBtn;
     private Button btn;
     private TextView txt;
-    String[] mobileArray = {"Lauded be Thy name...", "It is better to guide...", "God loveth those who are...",
+    String[] mobileArray = {"Lauded be Thy name, O Lord...", "It is better to guide...", "God loveth those who are...",
             "God hath, at all times...", "Rid thou thyself...", "He--glorified be His mention...",
             "Say: Praise be to God", "Glory be unto Thee...", "I beg Thee to forgive me...", "Glory be to Thee, O God!",
             "O Lord! Enable all the peoples...", "Throughout eternity Thou hast been...", "I adjure Thee by Thy might...",

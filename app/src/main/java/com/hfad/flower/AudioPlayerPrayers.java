@@ -48,7 +48,7 @@ public class AudioPlayerPrayers extends Fragment {
     private Bundle bundle;
     private float pos = 0;
     private String tag = "Audio Bahaullah";
-    private int numTracks = 7;
+    private int numTracks = 21;
     private List<Integer> intList = new ArrayList<>();
     private int count = 0;
     private int playAllCtrl = 0;
@@ -64,6 +64,20 @@ public class AudioPlayerPrayers extends Fragment {
     final String prayer6 = "He is the Gracious, the All-Bountiful...";
     final String prayer7 = "Glory to Thee, O my God!";
     final String prayer8 = "Magnified, O Lord my God, be Thy name...";
+    final String prayer9 = "Lauded be Thy name, O Lord...";
+    final String prayer10 = "It is better to guide...";
+    final String prayer11 = "God loveth those who are...";
+    final String prayer12 = "God hath, at all times...";
+    final String prayer13 = "Rid thou thyself...";
+    final String prayer14 = "He--glorified be His mention...";
+    final String prayer15 = "Say: Praise be to God";
+    final String prayer16 = "Glory be unto Thee...";
+    final String prayer17 = "I beg Thee to forgive me...";
+    final String prayer18 = "Glory be to Thee, O God!";
+    final String prayer19 = "O Lord! Enable all the peoples...";
+    final String prayer20 = "Throughout eternity Thou hast been...";
+    final String prayer21 = "I adjure Thee by Thy might...";
+    final String prayer22 = "Praise be to Thee...";
     String[] prayerArray = {"Attract the hearts of men...", "Lauded be Thy name...", "Glorified art Thou, O Lord my God...",
             "From the sweet-scented streams...", "Create in me a pure heart...", "He is the Gracious, the All-Bountiful...",
             "Glory to Thee, O my God!", "Magnified, O Lord my God, be Thy name..."};
@@ -161,7 +175,7 @@ public class AudioPlayerPrayers extends Fragment {
 
                 if (playAllOn == 1) {
                     playAllOn = 0;
-                    playAll(trackNum);
+                    playTrack(track);
                 }
                 else {
                     requireActivity().startService(intent);
@@ -814,6 +828,374 @@ public class AudioPlayerPrayers extends Fragment {
                 img.setImageResource(R.mipmap.magnified_oh_lord_foreground);
                 txt.setText(prayerArray[7]);
                 break;
+
+            case prayer9:
+//                mp = MediaPlayer.create(getActivity().getApplicationContext(), R.raw.o_thou_whose_face2);
+//                mp.setOnCompletionListener(listener);
+                intent.putExtra("track", R.raw.bahai_31);
+                intent.putExtra("pos", pos);
+
+                if (pos != 0) {
+                    if (isPlaying == 1) {
+                        requireActivity().startService(intent);
+                        pauseBtn.setVisibility(View.VISIBLE);
+                        playBtn.setVisibility(View.INVISIBLE);
+                        isPlaying = 0;
+                    }
+                    mSeekbarUpdateHandler.postDelayed(mUpdateSeekbar, 500);
+                    playAllCtrl = 1;
+                    pos = 0;
+                }
+                gradientDrawable = new GradientDrawable(
+                        GradientDrawable.Orientation.TOP_BOTTOM,
+                        new int[]{ContextCompat.getColor(getContext(), R.color.fadedGreen),
+                                ContextCompat.getColor(getContext(), R.color.colorFadedYellow),
+                                ContextCompat.getColor(getContext(), R.color.fadedTurquoise),
+                                ContextCompat.getColor(getContext(), R.color.fadedNavy)});
+
+                view.findViewById(R.id.layout_audio_player).setBackground(gradientDrawable);
+                img.setImageResource(R.mipmap.lauded_be_thy_name_foreground);
+                txt.setText(prayer9);
+                break;
+            case prayer10:
+                intent.putExtra("track", R.raw.bahai_32);
+                intent.putExtra("pos", pos);
+
+                if (pos != 0) {
+                    if (isPlaying == 1) {
+                        requireActivity().startService(intent);
+                        pauseBtn.setVisibility(View.VISIBLE);
+                        playBtn.setVisibility(View.INVISIBLE);
+                        isPlaying = 0;
+                    }
+                    mSeekbarUpdateHandler.postDelayed(mUpdateSeekbar, 500);
+                    playAllCtrl = 1;
+                    pos = 0;
+                }
+                gradientDrawable = new GradientDrawable(
+                        GradientDrawable.Orientation.TOP_BOTTOM,
+                        new int[]{ContextCompat.getColor(getContext(), R.color.fadedTurquoise),
+                                ContextCompat.getColor(getContext(), R.color.fadedForestGreen),
+                                ContextCompat.getColor(getContext(), R.color.fadedOlive),
+                                ContextCompat.getColor(getContext(), R.color.fadedTurquoise)});
+
+                view.findViewById(R.id.layout_audio_player).setBackground(gradientDrawable);
+                img.setImageResource(R.mipmap.it_is_better_to_guide_foreground);
+                txt.setText(prayer10);
+                break;
+            case prayer11:
+                intent.putExtra("track", R.raw.bahai_33);
+                intent.putExtra("pos", pos);
+
+                if (pos != 0) {
+                    if (isPlaying == 1) {
+                        requireActivity().startService(intent);
+                        pauseBtn.setVisibility(View.VISIBLE);
+                        playBtn.setVisibility(View.INVISIBLE);
+                        isPlaying = 0;
+                    }
+                    mSeekbarUpdateHandler.postDelayed(mUpdateSeekbar, 500);
+                    playAllCtrl = 1;
+                    pos = 0;
+                }
+                gradientDrawable = new GradientDrawable(
+                        GradientDrawable.Orientation.TOP_BOTTOM,
+                        new int[]{ContextCompat.getColor(getContext(), R.color.fadedNavy),
+                                ContextCompat.getColor(getContext(), R.color.fadedTurquoise),
+                                ContextCompat.getColor(getContext(), R.color.fadedNavy),
+                                ContextCompat.getColor(getContext(), R.color.fadedGray)});
+
+                view.findViewById(R.id.layout_audio_player).setBackground(gradientDrawable);
+                img.setImageResource(R.mipmap.god_loveth_those_who_are_foreground);
+                txt.setText(prayer11);
+                break;
+            case prayer12:
+                intent.putExtra("track", R.raw.bahai_34);
+                intent.putExtra("pos", pos);
+
+                if (pos != 0) {
+                    if (isPlaying == 1) {
+                        requireActivity().startService(intent);
+                        pauseBtn.setVisibility(View.VISIBLE);
+                        playBtn.setVisibility(View.INVISIBLE);
+                        isPlaying = 0;
+                    }
+                    mSeekbarUpdateHandler.postDelayed(mUpdateSeekbar, 500);
+                    playAllCtrl = 1;
+                    pos = 0;
+                }
+                gradientDrawable = new GradientDrawable(
+                        GradientDrawable.Orientation.TOP_BOTTOM,
+                        new int[]{ContextCompat.getColor(getContext(), R.color.fadedGray),
+                                ContextCompat.getColor(getContext(), R.color.fadedForestGreen),
+                                ContextCompat.getColor(getContext(), R.color.colorFadedRed),
+                                ContextCompat.getColor(getContext(), R.color.fadedGray)});
+
+                view.findViewById(R.id.layout_audio_player).setBackground(gradientDrawable);
+                img.setImageResource(R.mipmap.god_hath_at_all_times_foreground);
+                txt.setText(prayer12);
+                break;
+            case prayer13:
+                intent.putExtra("track", R.raw.bahai_35);
+                intent.putExtra("pos", pos);
+
+                if (pos != 0) {
+                    if (isPlaying == 1) {
+                        requireActivity().startService(intent);
+                        pauseBtn.setVisibility(View.VISIBLE);
+                        playBtn.setVisibility(View.INVISIBLE);
+                        isPlaying = 0;
+                    }
+                    mSeekbarUpdateHandler.postDelayed(mUpdateSeekbar, 500);
+                    playAllCtrl = 1;
+                    pos = 0;
+                }
+                gradientDrawable = new GradientDrawable(
+                        GradientDrawable.Orientation.TOP_BOTTOM,
+                        new int[]{ContextCompat.getColor(getContext(), R.color.colorFadedDarkPurple),
+                                ContextCompat.getColor(getContext(), R.color.fadedGray),
+                                ContextCompat.getColor(getContext(), R.color.colorFadedPink),
+                                ContextCompat.getColor(getContext(), R.color.fadedNavy)});
+
+                view.findViewById(R.id.layout_audio_player).setBackground(gradientDrawable);
+                img.setImageResource(R.mipmap.rid_thou_thyself_foreground);
+                txt.setText(prayer13);
+                break;
+            case prayer14:
+                intent.putExtra("track", R.raw.bahai_36);
+                intent.putExtra("pos", pos);
+
+                if (pos != 0) {
+                    if (isPlaying == 1) {
+                        requireActivity().startService(intent);
+                        pauseBtn.setVisibility(View.VISIBLE);
+                        playBtn.setVisibility(View.INVISIBLE);
+                        isPlaying = 0;
+                    }
+                    mSeekbarUpdateHandler.postDelayed(mUpdateSeekbar, 500);
+                    playAllCtrl = 1;
+                    pos = 0;
+                }
+                gradientDrawable = new GradientDrawable(
+                        GradientDrawable.Orientation.TOP_BOTTOM,
+                        new int[]{ContextCompat.getColor(getContext(), R.color.fadedGray),
+                                ContextCompat.getColor(getContext(), R.color.fadedOrange),
+                                ContextCompat.getColor(getContext(), R.color.fadedGray),
+                                ContextCompat.getColor(getContext(), R.color.fadedOrange)});
+
+                view.findViewById(R.id.layout_audio_player).setBackground(gradientDrawable);
+                img.setImageResource(R.mipmap.he_glorified_be_his_mention_foreground);
+                txt.setText(prayer14);
+                break;
+            case prayer15:
+                intent.putExtra("track", R.raw.bahai_37);
+                intent.putExtra("pos", pos);
+
+                if (pos != 0) {
+                    if (isPlaying == 1) {
+                        requireActivity().startService(intent);
+                        pauseBtn.setVisibility(View.VISIBLE);
+                        playBtn.setVisibility(View.INVISIBLE);
+                        isPlaying = 0;
+                    }
+                    mSeekbarUpdateHandler.postDelayed(mUpdateSeekbar, 500);
+                    playAllCtrl = 1;
+                    pos = 0;
+                }
+                gradientDrawable = new GradientDrawable(
+                        GradientDrawable.Orientation.TOP_BOTTOM,
+                        new int[]{ContextCompat.getColor(getContext(), R.color.fadedGray),
+                                ContextCompat.getColor(getContext(), R.color.colorFadedRed),
+                                ContextCompat.getColor(getContext(), R.color.fadedNavy),
+                                ContextCompat.getColor(getContext(), R.color.colorFadedYellow)});
+
+                view.findViewById(R.id.layout_audio_player).setBackground(gradientDrawable);
+                img.setImageResource(R.mipmap.say_praise_be_to_god_foreground);
+                txt.setText(prayer15);
+                break;
+            case prayer16:
+                intent.putExtra("track", R.raw.bahai_38);
+                intent.putExtra("pos", pos);
+
+                if (pos != 0) {
+                    if (isPlaying == 1) {
+                        requireActivity().startService(intent);
+                        pauseBtn.setVisibility(View.VISIBLE);
+                        playBtn.setVisibility(View.INVISIBLE);
+                        isPlaying = 0;
+                    }
+                    mSeekbarUpdateHandler.postDelayed(mUpdateSeekbar, 500);
+                    playAllCtrl = 1;
+                    pos = 0;
+                }
+                gradientDrawable = new GradientDrawable(
+                        GradientDrawable.Orientation.TOP_BOTTOM,
+                        new int[]{ContextCompat.getColor(getContext(), R.color.colorAccent),
+                                ContextCompat.getColor(getContext(), R.color.colorFadedPurple),
+                                ContextCompat.getColor(getContext(), R.color.colorFadedDarkPurple),
+                                ContextCompat.getColor(getContext(), R.color.colorAccent)});
+
+                view.findViewById(R.id.layout_audio_player).setBackground(gradientDrawable);
+                img.setImageResource(R.mipmap.glory_be_unto_thee_foreground);
+                txt.setText(prayer16);
+                break;
+
+            case prayer17:
+                intent.putExtra("track", R.raw.bahai_39);
+                intent.putExtra("pos", pos);
+
+                if (pos != 0) {
+                    if (isPlaying == 1) {
+                        requireActivity().startService(intent);
+                        pauseBtn.setVisibility(View.VISIBLE);
+                        playBtn.setVisibility(View.INVISIBLE);
+                        isPlaying = 0;
+                    }
+                    mSeekbarUpdateHandler.postDelayed(mUpdateSeekbar, 500);
+                    playAllCtrl = 1;
+                    pos = 0;
+                }
+                gradientDrawable = new GradientDrawable(
+                        GradientDrawable.Orientation.TOP_BOTTOM,
+                        new int[]{ContextCompat.getColor(getContext(), R.color.colorAccent),
+                                ContextCompat.getColor(getContext(), R.color.colorFadedRed),
+                                ContextCompat.getColor(getContext(), R.color.colorFadedPink),
+                                ContextCompat.getColor(getContext(), R.color.colorAccent)});
+
+                view.findViewById(R.id.layout_audio_player).setBackground(gradientDrawable);
+                img.setImageResource(R.mipmap.i_beg_thee_to_forgive_me_foreground);
+                txt.setText(prayer17);
+                break;
+            case prayer18:
+                intent.putExtra("track", R.raw.bahai_40);
+                intent.putExtra("pos", pos);
+
+                if (pos != 0) {
+                    if (isPlaying == 1) {
+                        requireActivity().startService(intent);
+                        pauseBtn.setVisibility(View.VISIBLE);
+                        playBtn.setVisibility(View.INVISIBLE);
+                        isPlaying = 0;
+                    }
+                    mSeekbarUpdateHandler.postDelayed(mUpdateSeekbar, 500);
+                    playAllCtrl = 1;
+                    pos = 0;
+                }
+                gradientDrawable = new GradientDrawable(
+                        GradientDrawable.Orientation.TOP_BOTTOM,
+                        new int[]{ContextCompat.getColor(getContext(), R.color.colorAccent),
+                                ContextCompat.getColor(getContext(), R.color.fadedGray),
+                                ContextCompat.getColor(getContext(), R.color.fadedNavy),
+                                ContextCompat.getColor(getContext(), R.color.colorAccent)});
+
+                view.findViewById(R.id.layout_audio_player).setBackground(gradientDrawable);
+                img.setImageResource(R.mipmap.glory_be_to_thee_o_god_foreground);
+                txt.setText(prayer18);
+                break;
+            case prayer19:
+                intent.putExtra("track", R.raw.bahai_41);
+                intent.putExtra("pos", pos);
+
+                if (pos != 0) {
+                    if (isPlaying == 1) {
+                        requireActivity().startService(intent);
+                        pauseBtn.setVisibility(View.VISIBLE);
+                        playBtn.setVisibility(View.INVISIBLE);
+                        isPlaying = 0;
+                    }
+                    mSeekbarUpdateHandler.postDelayed(mUpdateSeekbar, 500);
+                    playAllCtrl = 1;
+                    pos = 0;
+                }
+                gradientDrawable = new GradientDrawable(
+                        GradientDrawable.Orientation.TOP_BOTTOM,
+                        new int[]{ContextCompat.getColor(getContext(), R.color.colorFadedPurple),
+                                ContextCompat.getColor(getContext(), R.color.colorFadedRed),
+                                ContextCompat.getColor(getContext(), R.color.colorFadedPink),
+                                ContextCompat.getColor(getContext(), R.color.colorFadedYellow)});
+
+                view.findViewById(R.id.layout_audio_player).setBackground(gradientDrawable);
+                img.setImageResource(R.mipmap.o_lord_enable_all_the_peoples_foreground);
+                txt.setText(prayer19);
+                break;
+            case prayer20:
+                intent.putExtra("track", R.raw.bahai_42);
+                intent.putExtra("pos", pos);
+
+                if (pos != 0) {
+                    if (isPlaying == 1) {
+                        requireActivity().startService(intent);
+                        pauseBtn.setVisibility(View.VISIBLE);
+                        playBtn.setVisibility(View.INVISIBLE);
+                        isPlaying = 0;
+                    }
+                    mSeekbarUpdateHandler.postDelayed(mUpdateSeekbar, 500);
+                    playAllCtrl = 1;
+                    pos = 0;
+                }
+                gradientDrawable = new GradientDrawable(
+                        GradientDrawable.Orientation.TOP_BOTTOM,
+                        new int[]{ContextCompat.getColor(getContext(), R.color.fadedGray),
+                                ContextCompat.getColor(getContext(), R.color.fadedOrange),
+                                ContextCompat.getColor(getContext(), R.color.fadedForestGreen),
+                                ContextCompat.getColor(getContext(), R.color.fadedGray)});
+
+                view.findViewById(R.id.layout_audio_player).setBackground(gradientDrawable);
+                img.setImageResource(R.mipmap.throughout_eternity_thou_hast_been_foreground);
+                txt.setText(prayer20);
+                break;
+            case prayer21:
+                intent.putExtra("track", R.raw.bahai_43);
+                intent.putExtra("pos", pos);
+
+                if (pos != 0) {
+                    if (isPlaying == 1) {
+                        requireActivity().startService(intent);
+                        pauseBtn.setVisibility(View.VISIBLE);
+                        playBtn.setVisibility(View.INVISIBLE);
+                        isPlaying = 0;
+                    }
+                    mSeekbarUpdateHandler.postDelayed(mUpdateSeekbar, 500);
+                    playAllCtrl = 1;
+                    pos = 0;
+                }
+                gradientDrawable = new GradientDrawable(
+                        GradientDrawable.Orientation.TOP_BOTTOM,
+                        new int[]{ContextCompat.getColor(getContext(), R.color.fadedGray),
+                                ContextCompat.getColor(getContext(), R.color.colorAccent),
+                                ContextCompat.getColor(getContext(), R.color.fadedForestGreen),
+                                ContextCompat.getColor(getContext(), R.color.fadedGray)});
+
+                view.findViewById(R.id.layout_audio_player).setBackground(gradientDrawable);
+                img.setImageResource(R.mipmap.i_adjure_thee_by_thy_might_foreground);
+                txt.setText(prayer21);
+                break;
+            case prayer22:
+                intent.putExtra("track", R.raw.bahai_44);
+                intent.putExtra("pos", pos);
+
+                if (pos != 0) {
+                    if (isPlaying == 1) {
+                        requireActivity().startService(intent);
+                        pauseBtn.setVisibility(View.VISIBLE);
+                        playBtn.setVisibility(View.INVISIBLE);
+                        isPlaying = 0;
+                    }
+                    mSeekbarUpdateHandler.postDelayed(mUpdateSeekbar, 500);
+                    playAllCtrl = 1;
+                    pos = 0;
+                }
+                gradientDrawable = new GradientDrawable(
+                        GradientDrawable.Orientation.TOP_BOTTOM,
+                        new int[]{ContextCompat.getColor(getContext(), R.color.fadedOrange),
+                                ContextCompat.getColor(getContext(), R.color.colorFadedPink),
+                                ContextCompat.getColor(getContext(), R.color.fadedGray),
+                                ContextCompat.getColor(getContext(), R.color.colorAccent)});
+
+                view.findViewById(R.id.layout_audio_player).setBackground(gradientDrawable);
+                img.setImageResource(R.mipmap.praise_be_to_thee_foreground);
+                txt.setText(prayer22);
+                break;
             case "all":
                 if (trackNum == -1)
                     trackNum = rand.nextInt(numTracks+1);
@@ -931,6 +1313,8 @@ public class AudioPlayerPrayers extends Fragment {
             intList.clear();
             count = 0;
             playAllOn = 1;
+            trackNum = -1;
+
         }
 //        if (track.equals("all") && trackNum < numTracks) {
 //            //trackNum++;

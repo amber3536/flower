@@ -46,7 +46,7 @@ public class AudioPlayerTheBab extends Fragment {
     private MediaPlayer.OnCompletionListener listener;
     private int trackNum = 0;
     private GradientDrawable gradientDrawable;
-    final String prayer1 = "Lauded be Thy name...";
+    final String prayer1 = "Lauded be Thy name, O Lord...";
     final String prayer2 = "It is better to guide...";
     final String prayer3 = "God loveth those who are...";
     final String prayer4 = "God hath, at all times...";
