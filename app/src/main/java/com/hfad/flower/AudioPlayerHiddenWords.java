@@ -231,6 +231,8 @@ public class AudioPlayerHiddenWords extends Fragment {
                                 seekBar.setProgress(0);
                                 pos = 0;
                                 intent.putExtra("pos", bgSound.getCurrentPosition());
+                                playAllCtrl = 1;
+                                playAll(numTracks);
                                 //playTrack(track);
                                 //midSong = 1;
                                 //playAll(trackNum);
@@ -238,6 +240,7 @@ public class AudioPlayerHiddenWords extends Fragment {
                             }
                             else {
                                 bgSound.stop();
+                                playAllCtrl = 0;
                                 //track = prayer8;
                                 //playTrack(track);
                                 //bgSound.start();
@@ -246,7 +249,7 @@ public class AudioPlayerHiddenWords extends Fragment {
                         }
                         else {
                             if (bgSound.isPlaying()) {
-                                playAllCtrl = 1;
+                                //playAllCtrl = 1;
                                 bgSound.pause();
                                 bgSound.seekTo(0);
                                 seekBar.setProgress(0);
@@ -259,7 +262,7 @@ public class AudioPlayerHiddenWords extends Fragment {
                                 seekBar.setProgress(0);
                                 bgSound.seekTo(0);
                                 intent.putExtra("pos", bgSound.getCurrentPosition());
-                                playAllCtrl = 0;
+                                //playAllCtrl = 0;
                                 pos = 0;
                             }
                         }

@@ -237,6 +237,16 @@ public class MainFragment extends Fragment {
             }
         });
 
+        meditations.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+                loadFragment(new AudioPlayerMeditations());
+                //hideView();
+            }
+        });
+
         theBab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

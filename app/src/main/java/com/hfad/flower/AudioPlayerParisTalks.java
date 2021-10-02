@@ -45,7 +45,7 @@ public class AudioPlayerParisTalks extends Fragment {
     private Bundle bundle;
     private float pos = 0;
     private String tag = "Audio Paris Talks";
-    private int numTracks = 1; //change later
+    private int numTracks = 4; //change later
     private GradientDrawable gradientDrawable;
     final String prayer1 = "The Pitiful Causes of War, and the Duty of Everyone to Strive for Peace";
     final String prayer2 = "The Universal Love";
@@ -236,6 +236,8 @@ public class AudioPlayerParisTalks extends Fragment {
                                 seekBar.setProgress(0);
                                 pos = 0;
                                 intent.putExtra("pos", bgSound.getCurrentPosition());
+                                playAllCtrl = 1;
+                                playAll(numTracks);
                                 //playTrack(track);
                                 //midSong = 1;
                                 //playAll(trackNum);
@@ -243,6 +245,7 @@ public class AudioPlayerParisTalks extends Fragment {
                             }
                             else {
                                 bgSound.stop();
+                                playAllCtrl = 0;
                                 //track = prayer8;
                                 //playTrack(track);
                                 //bgSound.start();
@@ -251,7 +254,7 @@ public class AudioPlayerParisTalks extends Fragment {
                         }
                         else {
                             if (bgSound.isPlaying()) {
-                                playAllCtrl = 1;
+                                //playAllCtrl = 1;
                                 bgSound.pause();
                                 bgSound.seekTo(0);
                                 seekBar.setProgress(0);
@@ -264,7 +267,7 @@ public class AudioPlayerParisTalks extends Fragment {
                                 seekBar.setProgress(0);
                                 bgSound.seekTo(0);
                                 intent.putExtra("pos", bgSound.getCurrentPosition());
-                                playAllCtrl = 0;
+                                //playAllCtrl = 0;
                                 pos = 0;
                             }
                         }

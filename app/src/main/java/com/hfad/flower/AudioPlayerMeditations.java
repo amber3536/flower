@@ -23,8 +23,11 @@ import androidx.fragment.app.Fragment;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-public class AudioPlayerAbdulBaha extends Fragment {
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 
+public class AudioPlayerMeditations extends Fragment {
     private View view;
     public MediaPlayer mp;
     private FloatingActionButton playBtn;
@@ -32,38 +35,34 @@ public class AudioPlayerAbdulBaha extends Fragment {
     private String track;
     private ImageView img;
     private TextView txt;
-    private SeekBar seekBar;
-    private float pos = 0;
     private int playAllOn = 0;
+    private int count = 0;
     private FloatingActionButton backBtn;
     private FloatingActionButton forwardBtn;
     private MediaPlayer.OnCompletionListener listener;
-    private BackgroundSoundService bgSound;
+    private int trackNum = -1;
+    private SeekBar seekBar;
+    private Intent intent;
     private int playAllCtrl = 0;
     private int isPlaying = 0;
-    private Intent intent;
-    private int trackNum = 0;
-    private int numTracks = 12;
+    private BackgroundSoundService bgSound;
+    private List<Integer> intList = new ArrayList<>();
+    private Random rand = new Random();
     private String tr = "TRACK";
-    private String tag = "Audio Abdul Baha";
+    private Bundle bundle;
+    private float pos = 0;
+    private String tag = "Audio Paris Talks";
+    private int numTracks = 4; //change later
     private GradientDrawable gradientDrawable;
-    final String prayer1 = "Make firm our steps...";
-    final String prayer2 = "O compassionate God!";
-    final String prayer3 = "O Thou beloved of my heart...";
-    final String prayer4 = "O Thou compassionate Lord...";
-    final String prayer5 = "O my Lord! Thou knowest...";
-    final String prayer6 = "Lord! Pitiful are we...";
-    final String prayer7 = "O Thou kind Lord!";
-    final String prayer8 = "O my merciful Lord!";
-    final String prayer9 = "He is the Most Holy...";
-    final String prayer10 = "O God of Mercy!";
-    final String prayer11 = "O Lord! Grant me a measure...";
-    final String prayer12 = "O God! Refresh and gladden...";
-    final String prayer13 = "O Divine Providence!";
-    String[] prayerArray = {"Make firm our steps...", "O compassionate God!", "O Thou beloved of my heart...",
-            "O Thou compassionate Lord...", "O my Lord! Thou knowest...", "Lord! Pitiful are we...",
-            "O Thou kind Lord!", "O my merciful Lord!", "He is the Most Holy...", "O God of Mercy!",
-            "O Lord! Grant me a measure...", "O God! Refresh and gladden...", "O Divine Providence!"};
+    final String prayer1 = "The Pitiful Causes of War, and the Duty of Everyone to Strive for Peace";
+    final String prayer2 = "The Universal Love";
+    final String prayer3 = "Beauty and Harmony in Diversity";
+    final String prayer4 = "Lecture Given at a Studio in Paris";
+    final String prayer5 = "Pain and Sorrow";
+
+    String[] prayerArray = {"The Pitiful Causes of War, and the Duty of Everyone to Strive for Peace",
+            "The Universal Love", "Beauty and Harmony in Diversity", "Lecture Given at a Studio in Paris",
+            "Pain and Sorrow"};
 
 
     @Override
@@ -79,30 +78,31 @@ public class AudioPlayerAbdulBaha extends Fragment {
         img = view.findViewById(R.id.audio_img);
         txt = view.findViewById(R.id.audio_txt);
 
-        final Bundle bundle = this.getArguments();
-        if (bundle != null) {
-            track = bundle.getString("EXTRA", "");
-            //Log.i("here", "onCreateView: " + position);
-        }
+        bundle = this.getArguments();
+
+        track = "all";
+
+//        if (bundle != null) {
+//            track = bundle.getString("EXTRA", "");
+//            //Log.i("here", "onCreateView: " + position);
+//        }
 
         if (savedInstanceState != null) {
 
             pos = savedInstanceState.getFloat("position");
             track = savedInstanceState.getString(tr, track);
             isPlaying = savedInstanceState.getInt("playing");
-            Log.i("Audio Abdul Baha", "onCreateView: " + track);
 
-            if (track.equals("all")) {
-                trackNum = savedInstanceState.getInt("all");
-            }
-
+//            if (track.equals("all")) {
+            trackNum = savedInstanceState.getInt("all");
+           // }
+            Log.i("Audio Paris", "onCreateView: " + track);
         }
-
 
         intent = new Intent(getActivity(),BackgroundSoundService.class);
         requireActivity().bindService(intent, serviceConnection, Context.BIND_AUTO_CREATE);
 
-        seekBar = view.findViewById(R.id.seekBar1);
+        seekBar = (SeekBar) view.findViewById(R.id.seekBar1);
         playTrack(track);
 
         seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
@@ -126,31 +126,21 @@ public class AudioPlayerAbdulBaha extends Fragment {
         playBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.i("Audio Bahaullah", "onClick: in playBtn");
+                Log.i("Audio Paris", "onClick: in playBtn");
 
 
                 pauseBtn.setVisibility(View.VISIBLE);
                 playBtn.setVisibility(View.INVISIBLE);
-               // requireActivity().bindService(intent, serviceConnection, Context.BIND_AUTO_CREATE);
-                //requireActivity().startService(intent);
-//                if (playAllOn == 1) {
-//                    playAllOn = 0;
-//                    playAll(trackNum);
-//                }
-//                else {
-//                    mp.start();
-//                }
                 if (playAllOn == 1) {
                     playAllOn = 0;
                     playAll(trackNum);
                 }
                 else {
                     requireActivity().startService(intent);
-                    //mp.start();
                 }
 
                 mSeekbarUpdateHandler.postDelayed(mUpdateSeekbar, 500);
-
+//                  playTrack(track);
 
             }
         });
@@ -187,30 +177,6 @@ public class AudioPlayerAbdulBaha extends Fragment {
                         forwardTrack(prayer5);
                         break;
                     case prayer5:
-                        forwardTrack(prayer6);
-                        break;
-                    case prayer6:
-                        forwardTrack(prayer7);
-                        break;
-                    case prayer7:
-                        forwardTrack(prayer8);
-                        break;
-                    case prayer8:
-                        forwardTrack(prayer9);
-                        break;
-                    case prayer9:
-                        forwardTrack(prayer10);
-                        break;
-                    case prayer10:
-                        forwardTrack(prayer11);
-                        break;
-                    case prayer11:
-                        forwardTrack(prayer12);
-                        break;
-                    case prayer12:
-                        forwardTrack(prayer13);
-                        break;
-                    case prayer13:
                         forwardTrack(prayer1);
                         break;
                     case "all":
@@ -242,7 +208,7 @@ public class AudioPlayerAbdulBaha extends Fragment {
             public void onClick(View v) {
                 switch (track) {
                     case prayer1:
-                        backTrack(prayer13);
+                        backTrack(prayer5);
 //                        bgSound.pause();
 //                        playBtn.setVisibility(View.VISIBLE);
 //                        pauseBtn.setVisibility(View.GONE);
@@ -262,30 +228,6 @@ public class AudioPlayerAbdulBaha extends Fragment {
                     case prayer5:
                         backTrack(prayer4);
                         break;
-                    case prayer6:
-                        backTrack(prayer5);
-                        break;
-                    case prayer7:
-                        backTrack(prayer6);
-                        break;
-                    case prayer8:
-                        backTrack(prayer7);
-                        break;
-                    case prayer9:
-                        backTrack(prayer8);
-                        break;
-                    case prayer10:
-                       backTrack(prayer9);
-                        break;
-                    case prayer11:
-                        backTrack(prayer10);
-                        break;
-                    case prayer12:
-                        backTrack(prayer11);
-                        break;
-                    case prayer13:
-                        backTrack(prayer12);
-                        break;
                     case "all":
                         //playAllOn = 1;
                         if (bgSound.getCurrentPosition() < 2000) {
@@ -301,8 +243,6 @@ public class AudioPlayerAbdulBaha extends Fragment {
                                 seekBar.setProgress(0);
                                 pos = 0;
                                 intent.putExtra("pos", bgSound.getCurrentPosition());
-                                playAllCtrl = 1;
-                                playAll(numTracks);
                                 //playTrack(track);
                                 //midSong = 1;
                                 //playAll(trackNum);
@@ -310,7 +250,6 @@ public class AudioPlayerAbdulBaha extends Fragment {
                             }
                             else {
                                 bgSound.stop();
-                                playAllCtrl = 0;
                                 //track = prayer8;
                                 //playTrack(track);
                                 //bgSound.start();
@@ -319,7 +258,7 @@ public class AudioPlayerAbdulBaha extends Fragment {
                         }
                         else {
                             if (bgSound.isPlaying()) {
-                                //playAllCtrl = 1;
+                                playAllCtrl = 1;
                                 bgSound.pause();
                                 bgSound.seekTo(0);
                                 seekBar.setProgress(0);
@@ -332,7 +271,7 @@ public class AudioPlayerAbdulBaha extends Fragment {
                                 seekBar.setProgress(0);
                                 bgSound.seekTo(0);
                                 intent.putExtra("pos", bgSound.getCurrentPosition());
-                                //playAllCtrl = 0;
+                                playAllCtrl = 0;
                                 pos = 0;
                             }
                         }
@@ -452,8 +391,6 @@ public class AudioPlayerAbdulBaha extends Fragment {
         }
     }
 
-
-
     private void playAll(int num) {
         switch (num) {
             case 0:
@@ -462,12 +399,12 @@ public class AudioPlayerAbdulBaha extends Fragment {
 //                gradientDrawable = new GradientDrawable(
 //                        GradientDrawable.Orientation.TOP_BOTTOM,
 //                        new int[]{ContextCompat.getColor(getContext(), R.color.colorAccent),
-//                                ContextCompat.getColor(getContext(), R.color.fadedNavy),
-//                                ContextCompat.getColor(getContext(), R.color.fadedForestGreen),
+//                                ContextCompat.getColor(getContext(), R.color.colorFadedYellow),
+//                                ContextCompat.getColor(getContext(), R.color.colorFadedPink),
 //                                ContextCompat.getColor(getContext(), R.color.colorAccent)});
 //
 //                view.findViewById(R.id.layout_audio_player).setBackground(gradientDrawable);
-//                img.setImageResource(R.mipmap.make_firm_our_steps_foreground);
+//                img.setImageResource(R.mipmap.attract_photo_foreground);
 //                txt.setText(prayerArray[0]);
                 playTrack(prayerArray[0]);
                 if (playAllCtrl == 0) {
@@ -490,6 +427,9 @@ public class AudioPlayerAbdulBaha extends Fragment {
                 mSeekbarUpdateHandler.postDelayed(mUpdateSeekbar, 500);
                 break;
             case 2:
+                // mp.release();
+                // mp.stop();
+                // mp.reset();
                 playTrack(prayerArray[2]);
                 if (playAllCtrl == 0) {
                     pauseBtn.setVisibility(View.VISIBLE);
@@ -499,6 +439,9 @@ public class AudioPlayerAbdulBaha extends Fragment {
                 mSeekbarUpdateHandler.postDelayed(mUpdateSeekbar, 500);
                 break;
             case 3:
+                // mp.release();
+                // mp.stop();
+                // mp.reset();
                 playTrack(prayerArray[3]);
                 if (playAllCtrl == 0) {
                     pauseBtn.setVisibility(View.VISIBLE);
@@ -508,79 +451,10 @@ public class AudioPlayerAbdulBaha extends Fragment {
                 mSeekbarUpdateHandler.postDelayed(mUpdateSeekbar, 500);
                 break;
             case 4:
+                // mp.release();
+                // mp.stop();
+                // mp.reset();
                 playTrack(prayerArray[4]);
-                if (playAllCtrl == 0) {
-                    pauseBtn.setVisibility(View.VISIBLE);
-                    playBtn.setVisibility(View.INVISIBLE);
-                    requireActivity().startService(intent);
-                }
-                mSeekbarUpdateHandler.postDelayed(mUpdateSeekbar, 500);
-                break;
-            case 5:
-                playTrack(prayerArray[5]);
-                if (playAllCtrl == 0) {
-                    pauseBtn.setVisibility(View.VISIBLE);
-                    playBtn.setVisibility(View.INVISIBLE);
-                    requireActivity().startService(intent);
-                }
-                mSeekbarUpdateHandler.postDelayed(mUpdateSeekbar, 500);
-                break;
-            case 6:
-                playTrack(prayerArray[6]);
-                if (playAllCtrl == 0) {
-                    pauseBtn.setVisibility(View.VISIBLE);
-                    playBtn.setVisibility(View.INVISIBLE);
-                    requireActivity().startService(intent);
-                }
-                mSeekbarUpdateHandler.postDelayed(mUpdateSeekbar, 500);
-                break;
-            case 7:
-                playTrack(prayerArray[7]);
-                if (playAllCtrl == 0) {
-                    pauseBtn.setVisibility(View.VISIBLE);
-                    playBtn.setVisibility(View.INVISIBLE);
-                    requireActivity().startService(intent);
-                }
-                mSeekbarUpdateHandler.postDelayed(mUpdateSeekbar, 500);
-                break;
-            case 8:
-                playTrack(prayerArray[8]);
-                if (playAllCtrl == 0) {
-                    pauseBtn.setVisibility(View.VISIBLE);
-                    playBtn.setVisibility(View.INVISIBLE);
-                    requireActivity().startService(intent);
-                }
-                mSeekbarUpdateHandler.postDelayed(mUpdateSeekbar, 500);
-                break;
-            case 9:
-                playTrack(prayerArray[9]);
-                if (playAllCtrl == 0) {
-                    pauseBtn.setVisibility(View.VISIBLE);
-                    playBtn.setVisibility(View.INVISIBLE);
-                    requireActivity().startService(intent);
-                }
-                mSeekbarUpdateHandler.postDelayed(mUpdateSeekbar, 500);
-                break;
-            case 10:
-                playTrack(prayerArray[10]);
-                if (playAllCtrl == 0) {
-                    pauseBtn.setVisibility(View.VISIBLE);
-                    playBtn.setVisibility(View.INVISIBLE);
-                    requireActivity().startService(intent);
-                }
-                mSeekbarUpdateHandler.postDelayed(mUpdateSeekbar, 500);;
-                break;
-            case 11:
-                playTrack(prayerArray[11]);
-                if (playAllCtrl == 0) {
-                    pauseBtn.setVisibility(View.VISIBLE);
-                    playBtn.setVisibility(View.INVISIBLE);
-                    requireActivity().startService(intent);
-                }
-                mSeekbarUpdateHandler.postDelayed(mUpdateSeekbar, 500);
-                break;
-            case 12:
-                playTrack(prayerArray[12]);
                 if (playAllCtrl == 0) {
                     pauseBtn.setVisibility(View.VISIBLE);
                     playBtn.setVisibility(View.INVISIBLE);
@@ -595,10 +469,7 @@ public class AudioPlayerAbdulBaha extends Fragment {
 
         switch(track) {
             case prayer1:
-//                mp = MediaPlayer.create(getActivity().getApplicationContext(), R.raw.o_thou_whose_face2);
-//                mp.setOnCompletionListener(listener);
-               // intent = new Intent(getActivity(), BackgroundSoundService.class);
-                intent.putExtra("track", R.raw.bahai_9);
+                intent.putExtra("track", R.raw.bahai_26);
                 intent.putExtra("pos", pos);
 //                mp = MediaPlayer.create(getContext(), R.raw.from_the_sweet_scented);
                 if (pos != 0) {
@@ -613,19 +484,20 @@ public class AudioPlayerAbdulBaha extends Fragment {
                     playAllCtrl = 1;
                     pos = 0;
                 }
+
                 gradientDrawable = new GradientDrawable(
                         GradientDrawable.Orientation.TOP_BOTTOM,
-                        new int[]{ContextCompat.getColor(getContext(), R.color.colorAccent),
-                                ContextCompat.getColor(getContext(), R.color.fadedNavy),
-                                ContextCompat.getColor(getContext(), R.color.fadedForestGreen),
+                        new int[]{ContextCompat.getColor(getContext(), R.color.fadedNavy),
+                                ContextCompat.getColor(getContext(), R.color.colorAccent),
+                                ContextCompat.getColor(getContext(), R.color.fadedGray),
                                 ContextCompat.getColor(getContext(), R.color.colorAccent)});
 
                 view.findViewById(R.id.layout_audio_player).setBackground(gradientDrawable);
-                img.setImageResource(R.mipmap.make_firm_our_steps_foreground);
+                img.setImageResource(R.mipmap.the_pitiful_causes_foreground);
                 txt.setText(prayerArray[0]);
                 break;
             case prayer2:
-                intent.putExtra("track", R.raw.bahai_10);
+                intent.putExtra("track", R.raw.bahai_27_copy);
                 intent.putExtra("pos", pos);
 //                mp = MediaPlayer.create(getContext(), R.raw.from_the_sweet_scented);
                 if (pos != 0) {
@@ -640,19 +512,20 @@ public class AudioPlayerAbdulBaha extends Fragment {
                     playAllCtrl = 1;
                     pos = 0;
                 }
+
                 gradientDrawable = new GradientDrawable(
                         GradientDrawable.Orientation.TOP_BOTTOM,
                         new int[]{ContextCompat.getColor(getContext(), R.color.colorAccent),
-                                ContextCompat.getColor(getContext(), R.color.fadedForestGreen),
-                                ContextCompat.getColor(getContext(), R.color.colorFadedPink),
+                                ContextCompat.getColor(getContext(), R.color.fadedOlive),
+                                ContextCompat.getColor(getContext(), R.color.fadedGray),
                                 ContextCompat.getColor(getContext(), R.color.colorAccent)});
 
                 view.findViewById(R.id.layout_audio_player).setBackground(gradientDrawable);
-                img.setImageResource(R.mipmap.o_compassionate_god_foreground);
+                img.setImageResource(R.mipmap.an_indian_said_foreground);
                 txt.setText(prayerArray[1]);
                 break;
             case prayer3:
-                intent.putExtra("track", R.raw.bahai_11);
+                intent.putExtra("track", R.raw.bahai_28);
                 intent.putExtra("pos", pos);
 //                mp = MediaPlayer.create(getContext(), R.raw.from_the_sweet_scented);
                 if (pos != 0) {
@@ -670,16 +543,16 @@ public class AudioPlayerAbdulBaha extends Fragment {
                 gradientDrawable = new GradientDrawable(
                         GradientDrawable.Orientation.TOP_BOTTOM,
                         new int[]{ContextCompat.getColor(getContext(), R.color.colorAccent),
-                                ContextCompat.getColor(getContext(), R.color.colorFadedYellow),
                                 ContextCompat.getColor(getContext(), R.color.colorFadedPink),
-                                ContextCompat.getColor(getContext(), R.color.colorAccent)});
+                                ContextCompat.getColor(getContext(), R.color.colorAccent),
+                                ContextCompat.getColor(getContext(), R.color.fadedOlive)});
 
                 view.findViewById(R.id.layout_audio_player).setBackground(gradientDrawable);
-                img.setImageResource(R.mipmap.o_thou_beloved_foreground);
+                img.setImageResource(R.mipmap.beauty_and_harmony_foreground);
                 txt.setText(prayerArray[2]);
                 break;
             case prayer4:
-                intent.putExtra("track", R.raw.bahai_12);
+                intent.putExtra("track", R.raw.bahai_29);
                 intent.putExtra("pos", pos);
 //                mp = MediaPlayer.create(getContext(), R.raw.from_the_sweet_scented);
                 if (pos != 0) {
@@ -696,17 +569,17 @@ public class AudioPlayerAbdulBaha extends Fragment {
                 }
                 gradientDrawable = new GradientDrawable(
                         GradientDrawable.Orientation.TOP_BOTTOM,
-                        new int[]{ContextCompat.getColor(getContext(), R.color.colorAccent),
-                                ContextCompat.getColor(getContext(), R.color.fadedForestGreen),
-                                ContextCompat.getColor(getContext(), R.color.fadedGray),
-                                ContextCompat.getColor(getContext(), R.color.fadedForestGreen)});
+                        new int[]{ContextCompat.getColor(getContext(), R.color.fadedBlue),
+                                ContextCompat.getColor(getContext(), R.color.colorFadedYellow),
+                                ContextCompat.getColor(getContext(), R.color.colorFadedPink),
+                                ContextCompat.getColor(getContext(), R.color.fadedBlue)});
 
                 view.findViewById(R.id.layout_audio_player).setBackground(gradientDrawable);
-                img.setImageResource(R.mipmap.o_thou_compassionate_lord_foreground);
+                img.setImageResource(R.mipmap.lecture_given_at_foreground);
                 txt.setText(prayerArray[3]);
                 break;
             case prayer5:
-                intent.putExtra("track", R.raw.bahai_13);
+                intent.putExtra("track", R.raw.bahai_30);
                 intent.putExtra("pos", pos);
 //                mp = MediaPlayer.create(getContext(), R.raw.from_the_sweet_scented);
                 if (pos != 0) {
@@ -724,237 +597,24 @@ public class AudioPlayerAbdulBaha extends Fragment {
                 gradientDrawable = new GradientDrawable(
                         GradientDrawable.Orientation.TOP_BOTTOM,
                         new int[]{ContextCompat.getColor(getContext(), R.color.fadedGray),
-                                ContextCompat.getColor(getContext(), R.color.colorFadedRed),
-                                ContextCompat.getColor(getContext(), R.color.colorFadedYellow),
-                                ContextCompat.getColor(getContext(), R.color.fadedGray)});
+                                ContextCompat.getColor(getContext(), R.color.colorAccent),
+                                ContextCompat.getColor(getContext(), R.color.colorFadedPink),
+                                ContextCompat.getColor(getContext(), R.color.fadedBlue)});
 
                 view.findViewById(R.id.layout_audio_player).setBackground(gradientDrawable);
-                img.setImageResource(R.mipmap.o_my_lord_thou_knowest_foreground);
+                img.setImageResource(R.mipmap.pain_and_sorrow_foreground);
                 txt.setText(prayerArray[4]);
                 break;
-            case prayer6:
-                intent.putExtra("track", R.raw.bahai_14);
-                intent.putExtra("pos", pos);
-//                mp = MediaPlayer.create(getContext(), R.raw.from_the_sweet_scented);
-                if (pos != 0) {
-                    // seekBar.setProgress((int)pos);
-                    if (isPlaying == 1) {
-                        requireActivity().startService(intent);
-                        pauseBtn.setVisibility(View.VISIBLE);
-                        playBtn.setVisibility(View.INVISIBLE);
-                        isPlaying = 0;
-                    }
-                    mSeekbarUpdateHandler.postDelayed(mUpdateSeekbar, 500);
-                    playAllCtrl = 1;
-                    pos = 0;
-                }
-                gradientDrawable = new GradientDrawable(
-                        GradientDrawable.Orientation.TOP_BOTTOM,
-                        new int[]{ContextCompat.getColor(getContext(), R.color.fadedNavy),
-                                ContextCompat.getColor(getContext(), R.color.colorFadedYellow),
-                                ContextCompat.getColor(getContext(), R.color.fadedBlue),
-                                ContextCompat.getColor(getContext(), R.color.fadedForestGreen)});
 
-                view.findViewById(R.id.layout_audio_player).setBackground(gradientDrawable);
-                img.setImageResource(R.mipmap.lord_pitiful_are_we_foreground);
-                txt.setText(prayerArray[5]);
-                break;
-            case prayer7:
-                intent.putExtra("track", R.raw.bahai_15);
-                intent.putExtra("pos", pos);
-//                mp = MediaPlayer.create(getContext(), R.raw.from_the_sweet_scented);
-                if (pos != 0) {
-                    // seekBar.setProgress((int)pos);
-                    if (isPlaying == 1) {
-                        requireActivity().startService(intent);
-                        pauseBtn.setVisibility(View.VISIBLE);
-                        playBtn.setVisibility(View.INVISIBLE);
-                        isPlaying = 0;
-                    }
-                    mSeekbarUpdateHandler.postDelayed(mUpdateSeekbar, 500);
-                    playAllCtrl = 1;
-                    pos = 0;
-                }
-                gradientDrawable = new GradientDrawable(
-                        GradientDrawable.Orientation.TOP_BOTTOM,
-                        new int[]{ContextCompat.getColor(getContext(), R.color.colorAccent),
-                                ContextCompat.getColor(getContext(), R.color.fadedNavy),
-                                ContextCompat.getColor(getContext(), R.color.fadedGray),
-                                ContextCompat.getColor(getContext(), R.color.colorAccent)});
-
-                view.findViewById(R.id.layout_audio_player).setBackground(gradientDrawable);
-                img.setImageResource(R.mipmap.o_thou_kind_lord_foreground);
-                txt.setText(prayerArray[6]);
-                break;
-            case prayer8:
-                intent.putExtra("track", R.raw.bahai_16);
-                intent.putExtra("pos", pos);
-//                mp = MediaPlayer.create(getContext(), R.raw.from_the_sweet_scented);
-                if (pos != 0) {
-                    // seekBar.setProgress((int)pos);
-                    if (isPlaying == 1) {
-                        requireActivity().startService(intent);
-                        pauseBtn.setVisibility(View.VISIBLE);
-                        playBtn.setVisibility(View.INVISIBLE);
-                        isPlaying = 0;
-                    }
-                    mSeekbarUpdateHandler.postDelayed(mUpdateSeekbar, 500);
-                    playAllCtrl = 1;
-                    pos = 0;
-                }
-                gradientDrawable = new GradientDrawable(
-                        GradientDrawable.Orientation.TOP_BOTTOM,
-                        new int[]{ContextCompat.getColor(getContext(), R.color.colorAccent),
-                                ContextCompat.getColor(getContext(), R.color.colorFadedDarkPurple),
-                                ContextCompat.getColor(getContext(), R.color.fadedForestGreen),
-                                ContextCompat.getColor(getContext(), R.color.fadedGreen)});
-
-                view.findViewById(R.id.layout_audio_player).setBackground(gradientDrawable);
-                img.setImageResource(R.mipmap.o_my_merciful_lord_foreground);
-                txt.setText(prayerArray[7]);
-                break;
-            case prayer9:
-                intent.putExtra("track", R.raw.bahai_17);
-                intent.putExtra("pos", pos);
-//                mp = MediaPlayer.create(getContext(), R.raw.from_the_sweet_scented);
-                if (pos != 0) {
-                    // seekBar.setProgress((int)pos);
-                    if (isPlaying == 1) {
-                        requireActivity().startService(intent);
-                        pauseBtn.setVisibility(View.VISIBLE);
-                        playBtn.setVisibility(View.INVISIBLE);
-                        isPlaying = 0;
-                    }
-                    mSeekbarUpdateHandler.postDelayed(mUpdateSeekbar, 500);
-                    playAllCtrl = 1;
-                    pos = 0;
-                }
-                gradientDrawable = new GradientDrawable(
-                        GradientDrawable.Orientation.TOP_BOTTOM,
-                        new int[]{ContextCompat.getColor(getContext(), R.color.colorAccent),
-                                ContextCompat.getColor(getContext(), R.color.fadedForestGreen),
-                                ContextCompat.getColor(getContext(), R.color.fadedGray),
-                                ContextCompat.getColor(getContext(), R.color.colorAccent)});
-
-                view.findViewById(R.id.layout_audio_player).setBackground(gradientDrawable);
-                img.setImageResource(R.mipmap.he_is_the_most_holy_foreground);
-                txt.setText(prayerArray[8]);
-                break;
-            case prayer10:
-                intent.putExtra("track", R.raw.bahai_18);
-                intent.putExtra("pos", pos);
-//                mp = MediaPlayer.create(getContext(), R.raw.from_the_sweet_scented);
-                if (pos != 0) {
-                    // seekBar.setProgress((int)pos);
-                    if (isPlaying == 1) {
-                        requireActivity().startService(intent);
-                        pauseBtn.setVisibility(View.VISIBLE);
-                        playBtn.setVisibility(View.INVISIBLE);
-                        isPlaying = 0;
-                    }
-                    mSeekbarUpdateHandler.postDelayed(mUpdateSeekbar, 500);
-                    playAllCtrl = 1;
-                    pos = 0;
-                }
-                gradientDrawable = new GradientDrawable(
-                        GradientDrawable.Orientation.TOP_BOTTOM,
-                        new int[]{ContextCompat.getColor(getContext(), R.color.fadedNavy),
-                                ContextCompat.getColor(getContext(), R.color.colorFadedRed),
-                                ContextCompat.getColor(getContext(), R.color.colorFadedYellow),
-                                ContextCompat.getColor(getContext(), R.color.fadedNavy)});
-
-                view.findViewById(R.id.layout_audio_player).setBackground(gradientDrawable);
-                img.setImageResource(R.mipmap.o_god_of_mercy_foreground);
-                txt.setText(prayerArray[9]);
-                break;
-            case prayer11:
-                intent.putExtra("track", R.raw.bahai_19);
-                intent.putExtra("pos", pos);
-//                mp = MediaPlayer.create(getContext(), R.raw.from_the_sweet_scented);
-                if (pos != 0) {
-                    // seekBar.setProgress((int)pos);
-                    if (isPlaying == 1) {
-                        requireActivity().startService(intent);
-                        pauseBtn.setVisibility(View.VISIBLE);
-                        playBtn.setVisibility(View.INVISIBLE);
-                        isPlaying = 0;
-                    }
-                    mSeekbarUpdateHandler.postDelayed(mUpdateSeekbar, 500);
-                    playAllCtrl = 1;
-                    pos = 0;
-                }
-                gradientDrawable = new GradientDrawable(
-                        GradientDrawable.Orientation.TOP_BOTTOM,
-                        new int[]{ContextCompat.getColor(getContext(), R.color.fadedGray),
-                                ContextCompat.getColor(getContext(), R.color.colorFadedRed),
-                                ContextCompat.getColor(getContext(), R.color.fadedOrange),
-                                ContextCompat.getColor(getContext(), R.color.fadedGray)});
-
-                view.findViewById(R.id.layout_audio_player).setBackground(gradientDrawable);
-                img.setImageResource(R.mipmap.o_lord_grant_me_foreground);
-                txt.setText(prayerArray[10]);
-                break;
-            case prayer12:
-                intent.putExtra("track", R.raw.bahai_20);
-                intent.putExtra("pos", pos);
-//                mp = MediaPlayer.create(getContext(), R.raw.from_the_sweet_scented);
-                if (pos != 0) {
-                    // seekBar.setProgress((int)pos);
-                    if (isPlaying == 1) {
-                        requireActivity().startService(intent);
-                        pauseBtn.setVisibility(View.VISIBLE);
-                        playBtn.setVisibility(View.INVISIBLE);
-                        isPlaying = 0;
-                    }
-                    mSeekbarUpdateHandler.postDelayed(mUpdateSeekbar, 500);
-                    playAllCtrl = 1;
-                    pos = 0;
-                }
-                gradientDrawable = new GradientDrawable(
-                        GradientDrawable.Orientation.TOP_BOTTOM,
-                        new int[]{ContextCompat.getColor(getContext(), R.color.fadedForestGreen),
-                                ContextCompat.getColor(getContext(), R.color.colorFadedYellow),
-                                ContextCompat.getColor(getContext(), R.color.fadedGray),
-                                ContextCompat.getColor(getContext(), R.color.colorAccent)});
-
-                view.findViewById(R.id.layout_audio_player).setBackground(gradientDrawable);
-                img.setImageResource(R.mipmap.o_god_refresh_and_foreground);
-                txt.setText(prayerArray[11]);
-                break;
-            case prayer13:
-                intent.putExtra("track", R.raw.bahai_21);
-                intent.putExtra("pos", pos);
-//                mp = MediaPlayer.create(getContext(), R.raw.from_the_sweet_scented);
-                if (pos != 0) {
-                    // seekBar.setProgress((int)pos);
-                    if (isPlaying == 1) {
-                        requireActivity().startService(intent);
-                        pauseBtn.setVisibility(View.VISIBLE);
-                        playBtn.setVisibility(View.INVISIBLE);
-                        isPlaying = 0;
-                    }
-                    mSeekbarUpdateHandler.postDelayed(mUpdateSeekbar, 500);
-                    playAllCtrl = 1;
-                    pos = 0;
-                }
-                gradientDrawable = new GradientDrawable(
-                        GradientDrawable.Orientation.TOP_BOTTOM,
-                        new int[]{ContextCompat.getColor(getContext(), R.color.fadedGray),
-                                ContextCompat.getColor(getContext(), R.color.fadedNavy),
-                                ContextCompat.getColor(getContext(), R.color.fadedTurquoise),
-                                ContextCompat.getColor(getContext(), R.color.fadedGray)});
-
-                view.findViewById(R.id.layout_audio_player).setBackground(gradientDrawable);
-                img.setImageResource(R.mipmap.o_divine_providence_foreground);
-                txt.setText(prayerArray[12]);
-                break;
             case "all":
                 //playAllOn = 1;
+                if (trackNum == -1)
+                    trackNum = rand.nextInt(numTracks+1);
                 playAll(trackNum);
                 //txt.setText(prayerArray[0]);
                 break;
 //            case "The Evolution of Matter and Development of the Soul":
-//               // mp = MediaPlayer.create(getActivity().getApplicationContext(), R.raw.paris_talks20);
+//                mp = MediaPlayer.create(getActivity().getApplicationContext(), R.raw.paris_talks20);
 //                gradientDrawable = new GradientDrawable(
 //                        GradientDrawable.Orientation.TOP_BOTTOM,
 //                        new int[]{ContextCompat.getColor(getContext(), R.color.colorAccent),
@@ -991,8 +651,8 @@ public class AudioPlayerAbdulBaha extends Fragment {
             // We've bound to LocalService, cast the IBinder and get LocalService instance
             BackgroundSoundService.MyBinder binder = (BackgroundSoundService.MyBinder) service;
             bgSound = binder.getService();
-            bgSound.setListener(AudioPlayerAbdulBaha.this);
-            Log.i("Main Activity", "onServiceConnected: ");
+            bgSound.setListener(AudioPlayerMeditations.this);
+            Log.i(tag, "onServiceConnected: ");
             //serviceBound = true;
         }
 
@@ -1002,58 +662,61 @@ public class AudioPlayerAbdulBaha extends Fragment {
         }
     };
 
-
     @Override
     public void onDestroy() {
-//        mp.stop();
-
-        bgSound.stop();
-        Log.i("Audio Abdul Baha", "onDestroy: ");
+        if (bgSound != null)
+            bgSound.stop();
+        Log.i("Audio Paris", "onDestroy: ");
 
         super.onDestroy();
     }
 
     @Override
     public void onResume() {
-        Log.i("Audio Abdul Baha", "onResume: ");
+        Log.i("Audio Paris", "onResume: ");
         super.onResume();
     }
+
     @Override
     public void onSaveInstanceState(@NonNull Bundle outState) {
         // Make sure to call the super method so that the states of our views are saved
         super.onSaveInstanceState(outState);
         // Save our own state now
         //outState.putInt(STATE_COUNTER, mCounter);
-        Log.i("Audio Abdul Baha", "onSaveInstanceState: " + track);
         if (bgSound.isPlaying()) {
             outState.putInt("playing", 1);
         }
         Log.i(tag, "onSaveInstanceState: bgSound playing");
         outState.putFloat("position", bgSound.getCurrentPosition());
         outState.putInt("all", trackNum);
+
+        Log.i("Audio Paris", "onSaveInstanceState: " + track);
         outState.putString(tr, track);
     }
 
-    public void trackEndedAbdulBaha() {
+    public void trackEndedMeditations() {
         playAllCtrl = 0;
-        if (track.equals("all") && trackNum < numTracks) {
-            trackNum++;
+
+        if (count < numTracks) {
+            count++;
+            intList.add(trackNum);
+
+            while (intList.contains(trackNum)) {
+                trackNum = rand.nextInt(numTracks + 1);
+            }
             playAll(trackNum);
-        }
-        else if (track.equals("all") && trackNum == numTracks) {
-            trackNum = 0;
+
+//            intArray[count] = trackNum;
+//            while (intArray.contains[trackNum])
+        } else {
+            playBtn.setVisibility(View.VISIBLE);
+            pauseBtn.setVisibility(View.GONE);
+            intList.clear();
+            count = 0;
             playAllOn = 1;
-            playBtn.setVisibility(View.VISIBLE);
-            pauseBtn.setVisibility(View.GONE);
-            playTrack(prayerArray[0]);
+            trackNum = -1;
+
         }
-        else {
-            playBtn.setVisibility(View.VISIBLE);
-            pauseBtn.setVisibility(View.GONE);
-        }
-//        playBtn.setVisibility(View.VISIBLE);
-//        pauseBtn.setVisibility(View.GONE);
     }
 
 }
-
