@@ -131,6 +131,7 @@ public class AudioPlayerAbdulBaha extends Fragment {
 
                 pauseBtn.setVisibility(View.VISIBLE);
                 playBtn.setVisibility(View.INVISIBLE);
+                playAllCtrl = 0;
                // requireActivity().bindService(intent, serviceConnection, Context.BIND_AUTO_CREATE);
                 //requireActivity().startService(intent);
 //                if (playAllOn == 1) {
