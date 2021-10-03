@@ -25,6 +25,8 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.PriorityQueue;
+import java.util.Queue;
 import java.util.Random;
 
 public class AudioPlayerPrayers extends Fragment {
@@ -49,7 +51,7 @@ public class AudioPlayerPrayers extends Fragment {
     private float pos = 0;
     private String tag = "Audio Bahaullah";
     private int numTracks = 21;
-    private List<Integer> intList = new ArrayList<>();
+    private Queue<Integer> pq = new PriorityQueue<>();
     private int count = 0;
     private int playAllCtrl = 0;
     private int isPlaying = 0;
@@ -266,10 +268,18 @@ public class AudioPlayerPrayers extends Fragment {
                         bgSound.pause();
                         playBtn.setVisibility(View.VISIBLE);
                         pauseBtn.setVisibility(View.GONE);
-                        if (trackNum == numTracks)
-                            trackNum = 0;
-                        else
-                            trackNum++;
+//                        if (trackNum == numTracks)
+//                            trackNum = 0;
+//                        else
+//                            trackNum++;
+                        pq.add(trackNum);
+                        //intList.add(trackNum);
+
+                        //while (intList.contains(trackNum)) {
+                        while (pq.contains(trackNum)) {
+                            trackNum = rand.nextInt(numTracks+1);
+                        }
+
                         pos = 0;
                         bgSound.seekTo(0);
                         seekBar.setProgress(0);
@@ -320,10 +330,13 @@ public class AudioPlayerPrayers extends Fragment {
                         break;
                     case "all":
                         if (bgSound.getCurrentPosition() < 2000) {
-                            if (trackNum == 0)
-                                trackNum = numTracks;
-                            else {
-                                trackNum--;
+//                            if (trackNum == 0)
+//                                trackNum = numTracks;
+//                            else {
+//                                trackNum--;
+//                            }
+                            if (!pq.isEmpty()) {
+                                trackNum = pq.poll();
                             }
 
                             if (!bgSound.isPlaying()) {
@@ -334,7 +347,7 @@ public class AudioPlayerPrayers extends Fragment {
                                 pos = 0;
                                 intent.putExtra("pos", bgSound.getCurrentPosition());
                                 playAllCtrl = 1;
-                                playAll(numTracks);
+                                playAll(trackNum);
                                 //playTrack(track);
                                 //midSong = 1;
                                 //playAll(trackNum);
@@ -1993,9 +2006,11 @@ public class AudioPlayerPrayers extends Fragment {
 
         if (count < numTracks) {
             count++;
-            intList.add(trackNum);
+            pq.add(trackNum);
+            //intList.add(trackNum);
 
-            while (intList.contains(trackNum)) {
+            //while (intList.contains(trackNum)) {
+            while (pq.contains(trackNum)) {
                 trackNum = rand.nextInt(numTracks+1);
             }
             playAll(trackNum);
@@ -2006,7 +2021,7 @@ public class AudioPlayerPrayers extends Fragment {
         else {
             playBtn.setVisibility(View.VISIBLE);
             pauseBtn.setVisibility(View.GONE);
-            intList.clear();
+            pq.clear();
             count = 0;
             playAllOn = 1;
             trackNum = -1;
