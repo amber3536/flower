@@ -27,7 +27,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public class AudioPlayerMeditations extends Fragment {
+public class AudioPlayerMysticalWords extends Fragment {
     private View view;
     public MediaPlayer mp;
     private FloatingActionButton playBtn;
@@ -36,33 +36,32 @@ public class AudioPlayerMeditations extends Fragment {
     private ImageView img;
     private TextView txt;
     private int playAllOn = 0;
-    private int count = 0;
+
     private FloatingActionButton backBtn;
     private FloatingActionButton forwardBtn;
     private MediaPlayer.OnCompletionListener listener;
     private int trackNum = -1;
+    private Random rand = new Random();
     private SeekBar seekBar;
-    private Intent intent;
+    private String tr = "TRACK";
+    private String tag = "Audio Hidden Words";
+    private Bundle bundle;
     private int playAllCtrl = 0;
     private int isPlaying = 0;
+    private Intent intent;
     private BackgroundSoundService bgSound;
-    private List<Integer> intList = new ArrayList<>();
-    private Random rand = new Random();
-    private String tr = "TRACK";
-    private Bundle bundle;
     private float pos = 0;
-    private String tag = "Audio Paris Talks";
-    private int numTracks = 4; //change later
+    private int numTracks = 3; //change later
+    private List<Integer> intList = new ArrayList<>();
+    private int count = 0;
     private GradientDrawable gradientDrawable;
-    final String prayer1 = "The Pitiful Causes of War, and the Duty of Everyone to Strive for Peace";
-    final String prayer2 = "The Universal Love";
-    final String prayer3 = "Beauty and Harmony in Diversity";
-    final String prayer4 = "Lecture Given at a Studio in Paris";
-    final String prayer5 = "Pain and Sorrow";
+    final String prayer1 = "From the Arabic: 1-20";
+    final String prayer2 = "From the Arabic: 21-40";
+    final String prayer3 = "From the Arabic: 41-59";
+    final String prayer4 = "From the Arabic: 60-71";
 
-    String[] prayerArray = {"The Pitiful Causes of War, and the Duty of Everyone to Strive for Peace",
-            "The Universal Love", "Beauty and Harmony in Diversity", "Lecture Given at a Studio in Paris",
-            "Pain and Sorrow"};
+    String[] prayerArray = {"From the Arabic: 1-20", "From the Arabic: 21-40",
+            "From the Arabic: 41-59", "From the Arabic: 60-71"};
 
 
     @Override
@@ -83,20 +82,20 @@ public class AudioPlayerMeditations extends Fragment {
         track = "all";
 
 //        if (bundle != null) {
+//
 //            track = bundle.getString("EXTRA", "");
 //            //Log.i("here", "onCreateView: " + position);
 //        }
 
         if (savedInstanceState != null) {
-
             pos = savedInstanceState.getFloat("position");
             track = savedInstanceState.getString(tr, track);
             isPlaying = savedInstanceState.getInt("playing");
 
-//            if (track.equals("all")) {
+
             trackNum = savedInstanceState.getInt("all");
-           // }
-            Log.i("Audio Paris", "onCreateView: " + track);
+
+            Log.i(tag, "onCreateView: " + track);
         }
 
         intent = new Intent(getActivity(),BackgroundSoundService.class);
@@ -104,6 +103,7 @@ public class AudioPlayerMeditations extends Fragment {
 
         seekBar = (SeekBar) view.findViewById(R.id.seekBar1);
         playTrack(track);
+
 
         seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
@@ -126,7 +126,7 @@ public class AudioPlayerMeditations extends Fragment {
         playBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.i("Audio Paris", "onClick: in playBtn");
+                Log.i(tag, "onClick: in playBtn");
 
 
                 pauseBtn.setVisibility(View.VISIBLE);
@@ -140,9 +140,9 @@ public class AudioPlayerMeditations extends Fragment {
                 else {
                     requireActivity().startService(intent);
                 }
+//                  playTrack(track);
 
                 mSeekbarUpdateHandler.postDelayed(mUpdateSeekbar, 500);
-//                  playTrack(track);
 
             }
         });
@@ -152,6 +152,7 @@ public class AudioPlayerMeditations extends Fragment {
             public void onClick(View v) {
                 playBtn.setVisibility(View.VISIBLE);
                 pauseBtn.setVisibility(View.GONE);
+
                 mSeekbarUpdateHandler.removeCallbacks(mUpdateSeekbar);
 
                 if (bgSound.isPlaying()) {
@@ -176,11 +177,9 @@ public class AudioPlayerMeditations extends Fragment {
                         forwardTrack(prayer4);
                         break;
                     case prayer4:
-                        forwardTrack(prayer5);
-                        break;
-                    case prayer5:
                         forwardTrack(prayer1);
                         break;
+
                     case "all":
                         //playAllOn = 1;
                         if (bgSound.isPlaying())
@@ -210,7 +209,7 @@ public class AudioPlayerMeditations extends Fragment {
             public void onClick(View v) {
                 switch (track) {
                     case prayer1:
-                        backTrack(prayer5);
+                        backTrack(prayer4);
 //                        bgSound.pause();
 //                        playBtn.setVisibility(View.VISIBLE);
 //                        pauseBtn.setVisibility(View.GONE);
@@ -227,11 +226,7 @@ public class AudioPlayerMeditations extends Fragment {
                     case prayer4:
                         backTrack(prayer3);
                         break;
-                    case prayer5:
-                        backTrack(prayer4);
-                        break;
                     case "all":
-                        //playAllOn = 1;
                         if (bgSound.getCurrentPosition() < 2000) {
                             if (trackNum == 0)
                                 trackNum = numTracks;
@@ -245,6 +240,8 @@ public class AudioPlayerMeditations extends Fragment {
                                 seekBar.setProgress(0);
                                 pos = 0;
                                 intent.putExtra("pos", bgSound.getCurrentPosition());
+                                playAllCtrl = 1;
+                                playAll(numTracks);
                                 //playTrack(track);
                                 //midSong = 1;
                                 //playAll(trackNum);
@@ -252,6 +249,7 @@ public class AudioPlayerMeditations extends Fragment {
                             }
                             else {
                                 bgSound.stop();
+                                playAllCtrl = 0;
                                 //track = prayer8;
                                 //playTrack(track);
                                 //bgSound.start();
@@ -260,7 +258,7 @@ public class AudioPlayerMeditations extends Fragment {
                         }
                         else {
                             if (bgSound.isPlaying()) {
-                                playAllCtrl = 1;
+                                //playAllCtrl = 1;
                                 bgSound.pause();
                                 bgSound.seekTo(0);
                                 seekBar.setProgress(0);
@@ -273,7 +271,7 @@ public class AudioPlayerMeditations extends Fragment {
                                 seekBar.setProgress(0);
                                 bgSound.seekTo(0);
                                 intent.putExtra("pos", bgSound.getCurrentPosition());
-                                playAllCtrl = 0;
+                                //playAllCtrl = 0;
                                 pos = 0;
                             }
                         }
@@ -299,7 +297,7 @@ public class AudioPlayerMeditations extends Fragment {
 //            public void onCompletion(MediaPlayer mp) {
 //                //performOnEnd();
 //                // mp.release();
-//                Log.i("Audio Bahaullah", "onCompletion: " + trackNum);
+//                Log.i(tag, "onCompletion: " + trackNum);
 //                if (track.equals("all") && trackNum < numTracks) {
 //                    trackNum++;
 //                    playAll(trackNum);
@@ -393,6 +391,7 @@ public class AudioPlayerMeditations extends Fragment {
         }
     }
 
+
     private void playAll(int num) {
         switch (num) {
             case 0:
@@ -429,9 +428,6 @@ public class AudioPlayerMeditations extends Fragment {
                 mSeekbarUpdateHandler.postDelayed(mUpdateSeekbar, 500);
                 break;
             case 2:
-                // mp.release();
-                // mp.stop();
-                // mp.reset();
                 playTrack(prayerArray[2]);
                 if (playAllCtrl == 0) {
                     pauseBtn.setVisibility(View.VISIBLE);
@@ -441,9 +437,6 @@ public class AudioPlayerMeditations extends Fragment {
                 mSeekbarUpdateHandler.postDelayed(mUpdateSeekbar, 500);
                 break;
             case 3:
-                // mp.release();
-                // mp.stop();
-                // mp.reset();
                 playTrack(prayerArray[3]);
                 if (playAllCtrl == 0) {
                     pauseBtn.setVisibility(View.VISIBLE);
@@ -452,18 +445,12 @@ public class AudioPlayerMeditations extends Fragment {
                 }
                 mSeekbarUpdateHandler.postDelayed(mUpdateSeekbar, 500);
                 break;
-            case 4:
-                // mp.release();
-                // mp.stop();
-                // mp.reset();
-                playTrack(prayerArray[4]);
-                if (playAllCtrl == 0) {
-                    pauseBtn.setVisibility(View.VISIBLE);
-                    playBtn.setVisibility(View.INVISIBLE);
-                    requireActivity().startService(intent);
-                }
-                mSeekbarUpdateHandler.postDelayed(mUpdateSeekbar, 500);
-                break;
+//            case 4:
+//                playTrack(prayerArray[4]);
+//                pauseBtn.setVisibility(View.VISIBLE);
+//                playBtn.setVisibility(View.INVISIBLE);
+//                requireActivity().startService(intent);
+//                break;
         }
     }
 
@@ -471,7 +458,7 @@ public class AudioPlayerMeditations extends Fragment {
 
         switch(track) {
             case prayer1:
-                intent.putExtra("track", R.raw.bahai_26);
+                intent.putExtra("track", R.raw.bahai_22);
                 intent.putExtra("pos", pos);
 //                mp = MediaPlayer.create(getContext(), R.raw.from_the_sweet_scented);
                 if (pos != 0) {
@@ -486,20 +473,19 @@ public class AudioPlayerMeditations extends Fragment {
                     playAllCtrl = 1;
                     pos = 0;
                 }
-
                 gradientDrawable = new GradientDrawable(
                         GradientDrawable.Orientation.TOP_BOTTOM,
-                        new int[]{ContextCompat.getColor(getContext(), R.color.fadedNavy),
-                                ContextCompat.getColor(getContext(), R.color.colorAccent),
+                        new int[]{ContextCompat.getColor(getContext(), R.color.colorFadedYellow),
                                 ContextCompat.getColor(getContext(), R.color.fadedGray),
-                                ContextCompat.getColor(getContext(), R.color.colorAccent)});
+                                ContextCompat.getColor(getContext(), R.color.colorAccent),
+                                ContextCompat.getColor(getContext(), R.color.colorFadedYellow)});
 
                 view.findViewById(R.id.layout_audio_player).setBackground(gradientDrawable);
-                img.setImageResource(R.mipmap.the_pitiful_causes_foreground);
+                img.setImageResource(R.mipmap.hidden_words_1_foreground);
                 txt.setText(prayerArray[0]);
                 break;
             case prayer2:
-                intent.putExtra("track", R.raw.bahai_27_copy);
+                intent.putExtra("track", R.raw.bahai_23);
                 intent.putExtra("pos", pos);
 //                mp = MediaPlayer.create(getContext(), R.raw.from_the_sweet_scented);
                 if (pos != 0) {
@@ -514,47 +500,46 @@ public class AudioPlayerMeditations extends Fragment {
                     playAllCtrl = 1;
                     pos = 0;
                 }
+                gradientDrawable = new GradientDrawable(
+                        GradientDrawable.Orientation.TOP_BOTTOM,
+                        new int[]{ContextCompat.getColor(getContext(), R.color.colorAccent),
+                                ContextCompat.getColor(getContext(), R.color.colorFadedYellow),
+                                ContextCompat.getColor(getContext(), R.color.colorAccent),
+                                ContextCompat.getColor(getContext(), R.color.fadedGray)});
 
+                view.findViewById(R.id.layout_audio_player).setBackground(gradientDrawable);
+                img.setImageResource(R.mipmap.hidden_words_2_foreground);
+                txt.setText(prayerArray[1]);
+                break;
+            case prayer3:
+                intent.putExtra("track", R.raw.bahai_24);
+                intent.putExtra("pos", pos);
+//                mp = MediaPlayer.create(getContext(), R.raw.from_the_sweet_scented);
+                if (pos != 0) {
+                    // seekBar.setProgress((int)pos);
+                    if (isPlaying == 1) {
+                        requireActivity().startService(intent);
+                        pauseBtn.setVisibility(View.VISIBLE);
+                        playBtn.setVisibility(View.INVISIBLE);
+                        isPlaying = 0;
+                    }
+                    mSeekbarUpdateHandler.postDelayed(mUpdateSeekbar, 500);
+                    playAllCtrl = 1;
+                    pos = 0;
+                }
                 gradientDrawable = new GradientDrawable(
                         GradientDrawable.Orientation.TOP_BOTTOM,
                         new int[]{ContextCompat.getColor(getContext(), R.color.colorAccent),
                                 ContextCompat.getColor(getContext(), R.color.fadedOlive),
-                                ContextCompat.getColor(getContext(), R.color.fadedGray),
+                                ContextCompat.getColor(getContext(), R.color.fadedForestGreen),
                                 ContextCompat.getColor(getContext(), R.color.colorAccent)});
 
                 view.findViewById(R.id.layout_audio_player).setBackground(gradientDrawable);
-                img.setImageResource(R.mipmap.an_indian_said_foreground);
-                txt.setText(prayerArray[1]);
-                break;
-            case prayer3:
-                intent.putExtra("track", R.raw.bahai_28);
-                intent.putExtra("pos", pos);
-//                mp = MediaPlayer.create(getContext(), R.raw.from_the_sweet_scented);
-                if (pos != 0) {
-                    // seekBar.setProgress((int)pos);
-                    if (isPlaying == 1) {
-                        requireActivity().startService(intent);
-                        pauseBtn.setVisibility(View.VISIBLE);
-                        playBtn.setVisibility(View.INVISIBLE);
-                        isPlaying = 0;
-                    }
-                    mSeekbarUpdateHandler.postDelayed(mUpdateSeekbar, 500);
-                    playAllCtrl = 1;
-                    pos = 0;
-                }
-                gradientDrawable = new GradientDrawable(
-                        GradientDrawable.Orientation.TOP_BOTTOM,
-                        new int[]{ContextCompat.getColor(getContext(), R.color.colorAccent),
-                                ContextCompat.getColor(getContext(), R.color.colorFadedPink),
-                                ContextCompat.getColor(getContext(), R.color.colorAccent),
-                                ContextCompat.getColor(getContext(), R.color.fadedOlive)});
-
-                view.findViewById(R.id.layout_audio_player).setBackground(gradientDrawable);
-                img.setImageResource(R.mipmap.beauty_and_harmony_foreground);
+                img.setImageResource(R.mipmap.hidden_words_3_foreground);
                 txt.setText(prayerArray[2]);
                 break;
             case prayer4:
-                intent.putExtra("track", R.raw.bahai_29);
+                intent.putExtra("track", R.raw.bahai_25_copy);
                 intent.putExtra("pos", pos);
 //                mp = MediaPlayer.create(getContext(), R.raw.from_the_sweet_scented);
                 if (pos != 0) {
@@ -577,41 +562,14 @@ public class AudioPlayerMeditations extends Fragment {
                                 ContextCompat.getColor(getContext(), R.color.fadedBlue)});
 
                 view.findViewById(R.id.layout_audio_player).setBackground(gradientDrawable);
-                img.setImageResource(R.mipmap.lecture_given_at_foreground);
+                img.setImageResource(R.mipmap.hidden_words_4_foreground);
                 txt.setText(prayerArray[3]);
-                break;
-            case prayer5:
-                intent.putExtra("track", R.raw.bahai_30);
-                intent.putExtra("pos", pos);
-//                mp = MediaPlayer.create(getContext(), R.raw.from_the_sweet_scented);
-                if (pos != 0) {
-                    // seekBar.setProgress((int)pos);
-                    if (isPlaying == 1) {
-                        requireActivity().startService(intent);
-                        pauseBtn.setVisibility(View.VISIBLE);
-                        playBtn.setVisibility(View.INVISIBLE);
-                        isPlaying = 0;
-                    }
-                    mSeekbarUpdateHandler.postDelayed(mUpdateSeekbar, 500);
-                    playAllCtrl = 1;
-                    pos = 0;
-                }
-                gradientDrawable = new GradientDrawable(
-                        GradientDrawable.Orientation.TOP_BOTTOM,
-                        new int[]{ContextCompat.getColor(getContext(), R.color.fadedGray),
-                                ContextCompat.getColor(getContext(), R.color.colorAccent),
-                                ContextCompat.getColor(getContext(), R.color.colorFadedPink),
-                                ContextCompat.getColor(getContext(), R.color.fadedBlue)});
-
-                view.findViewById(R.id.layout_audio_player).setBackground(gradientDrawable);
-                img.setImageResource(R.mipmap.pain_and_sorrow_foreground);
-                txt.setText(prayerArray[4]);
                 break;
 
             case "all":
-                //playAllOn = 1;
                 if (trackNum == -1)
                     trackNum = rand.nextInt(numTracks+1);
+                //playAllOn = 1;
                 playAll(trackNum);
                 //txt.setText(prayerArray[0]);
                 break;
@@ -631,6 +589,23 @@ public class AudioPlayerMeditations extends Fragment {
         }
     }
 
+    private ServiceConnection serviceConnection = new ServiceConnection() {
+        @Override
+        public void onServiceConnected(ComponentName name, IBinder service) {
+            // We've bound to LocalService, cast the IBinder and get LocalService instance
+            BackgroundSoundService.MyBinder binder = (BackgroundSoundService.MyBinder) service;
+            bgSound = binder.getService();
+            bgSound.setListener(AudioPlayerMysticalWords.this);
+            Log.i(tag, "onServiceConnected: ");
+            //serviceBound = true;
+        }
+
+        @Override
+        public void onServiceDisconnected(ComponentName name) {
+            //serviceBound = false;
+        }
+    };
+
 
 //        mp = MediaPlayer.create(getActivity().getApplicationContext(), R.raw.brooklyn_bridge);
 //        GradientDrawable gd = new GradientDrawable(
@@ -647,35 +622,19 @@ public class AudioPlayerMeditations extends Fragment {
 //        txt.setText(prayerArray[1]);
 //        mp.start();
 
-    private ServiceConnection serviceConnection = new ServiceConnection() {
-        @Override
-        public void onServiceConnected(ComponentName name, IBinder service) {
-            // We've bound to LocalService, cast the IBinder and get LocalService instance
-            BackgroundSoundService.MyBinder binder = (BackgroundSoundService.MyBinder) service;
-            bgSound = binder.getService();
-            bgSound.setListener(AudioPlayerMeditations.this);
-            Log.i(tag, "onServiceConnected: ");
-            //serviceBound = true;
-        }
-
-        @Override
-        public void onServiceDisconnected(ComponentName name) {
-            //serviceBound = false;
-        }
-    };
 
     @Override
     public void onDestroy() {
         if (bgSound != null)
             bgSound.stop();
-        Log.i("Audio Paris", "onDestroy: ");
+        Log.i(tag, "onDestroy: ");
 
         super.onDestroy();
     }
 
     @Override
     public void onResume() {
-        Log.i("Audio Paris", "onResume: ");
+        Log.i(tag, "onResume: ");
         super.onResume();
     }
 
@@ -683,34 +642,34 @@ public class AudioPlayerMeditations extends Fragment {
     public void onSaveInstanceState(@NonNull Bundle outState) {
         // Make sure to call the super method so that the states of our views are saved
         super.onSaveInstanceState(outState);
-        // Save our own state now
-        //outState.putInt(STATE_COUNTER, mCounter);
+
         if (bgSound.isPlaying()) {
             outState.putInt("playing", 1);
         }
         Log.i(tag, "onSaveInstanceState: bgSound playing");
         outState.putFloat("position", bgSound.getCurrentPosition());
         outState.putInt("all", trackNum);
-
-        Log.i("Audio Paris", "onSaveInstanceState: " + track);
+        // Save our own state now
+        //outState.putInt(STATE_COUNTER, mCounter);
+        Log.i(tag, "onSaveInstanceState: " + track);
         outState.putString(tr, track);
     }
 
-    public void trackEndedMeditations() {
+    public void trackEndedMysticalWords() {
         playAllCtrl = 0;
-
         if (count < numTracks) {
             count++;
             intList.add(trackNum);
 
             while (intList.contains(trackNum)) {
-                trackNum = rand.nextInt(numTracks + 1);
+                trackNum = rand.nextInt(numTracks+1);
             }
             playAll(trackNum);
 
 //            intArray[count] = trackNum;
 //            while (intArray.contains[trackNum])
-        } else {
+        }
+        else {
             playBtn.setVisibility(View.VISIBLE);
             pauseBtn.setVisibility(View.GONE);
             intList.clear();
@@ -719,6 +678,8 @@ public class AudioPlayerMeditations extends Fragment {
             trackNum = -1;
 
         }
+//        playBtn.setVisibility(View.VISIBLE);
+//        pauseBtn.setVisibility(View.GONE);
     }
 
 }

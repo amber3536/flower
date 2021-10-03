@@ -184,6 +184,7 @@ public class AudioPlayerPrayers extends Fragment {
 
                 pauseBtn.setVisibility(View.VISIBLE);
                 playBtn.setVisibility(View.INVISIBLE);
+                playAllCtrl = 0;
                 // requireActivity().startService(intent);
 
                 if (playAllOn == 1) {

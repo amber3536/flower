@@ -125,7 +125,7 @@ public class AudioPlayerParisTalks extends Fragment {
                 pauseBtn.setVisibility(View.VISIBLE);
                 playBtn.setVisibility(View.INVISIBLE);
                 playAllCtrl = 0;
-                
+
                 if (playAllOn == 1) {
                     playAllOn = 0;
                     playAll(trackNum);

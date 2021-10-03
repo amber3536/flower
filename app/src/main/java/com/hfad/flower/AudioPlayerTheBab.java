@@ -40,7 +40,7 @@ public class AudioPlayerTheBab extends Fragment {
     private BackgroundSoundService bgSound;
     private String tr = "TRACK";
     private int playAllOn = 0;
-    private int numTracks = 13; //change later
+    private int numTracks = 13;
     private int isPlaying = 0;
     private int playAllCtrl = 0;
     private MediaPlayer.OnCompletionListener listener;

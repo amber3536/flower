@@ -46,7 +46,7 @@ public class AudioPlayerHiddenWords extends Fragment {
     private Intent intent;
     private BackgroundSoundService bgSound;
     private float pos = 0;
-    private int numTracks = 1; //change later
+    private int numTracks = 3; //change later
     private GradientDrawable gradientDrawable;
     final String prayer1 = "From the Arabic: 1-20";
     final String prayer2 = "From the Arabic: 21-40";
