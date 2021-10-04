@@ -25,6 +25,8 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.PriorityQueue;
+import java.util.Queue;
 import java.util.Random;
 
 public class AudioPlayerMysticalWords extends Fragment {
@@ -52,7 +54,7 @@ public class AudioPlayerMysticalWords extends Fragment {
     private BackgroundSoundService bgSound;
     private float pos = 0;
     private int numTracks = 3; //change later
-    private List<Integer> intList = new ArrayList<>();
+    private Queue<Integer> pq = new PriorityQueue<>();
     private int count = 0;
     private GradientDrawable gradientDrawable;
     final String prayer1 = "From the Arabic: 1-20";
@@ -189,10 +191,11 @@ public class AudioPlayerMysticalWords extends Fragment {
                         bgSound.pause();
                         playBtn.setVisibility(View.VISIBLE);
                         pauseBtn.setVisibility(View.GONE);
-                        if (trackNum == numTracks)
-                            trackNum = 0;
-                        else
-                            trackNum++;
+                        pq.add(trackNum);
+                        while (pq.contains(trackNum)) {
+                            trackNum = rand.nextInt(numTracks+1);
+                        }
+
                         pos = 0;
                         bgSound.seekTo(0);
                         seekBar.setProgress(0);
@@ -228,10 +231,9 @@ public class AudioPlayerMysticalWords extends Fragment {
                         break;
                     case "all":
                         if (bgSound.getCurrentPosition() < 2000) {
-                            if (trackNum == 0)
-                                trackNum = numTracks;
-                            else
-                                trackNum--;
+                            if (!pq.isEmpty()) {
+                                trackNum = pq.poll();
+                            }
 
                             if (!bgSound.isPlaying()) {
                                 bgSound.pause();
@@ -659,9 +661,11 @@ public class AudioPlayerMysticalWords extends Fragment {
         playAllCtrl = 0;
         if (count < numTracks) {
             count++;
-            intList.add(trackNum);
+            pq.add(trackNum);
+            //intList.add(trackNum);
 
-            while (intList.contains(trackNum)) {
+            //while (intList.contains(trackNum)) {
+            while (pq.contains(trackNum)) {
                 trackNum = rand.nextInt(numTracks+1);
             }
             playAll(trackNum);
@@ -672,7 +676,7 @@ public class AudioPlayerMysticalWords extends Fragment {
         else {
             playBtn.setVisibility(View.VISIBLE);
             pauseBtn.setVisibility(View.GONE);
-            intList.clear();
+            pq.clear();
             count = 0;
             playAllOn = 1;
             trackNum = -1;

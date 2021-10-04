@@ -273,9 +273,6 @@ public class AudioPlayerPrayers extends Fragment {
 //                        else
 //                            trackNum++;
                         pq.add(trackNum);
-                        //intList.add(trackNum);
-
-                        //while (intList.contains(trackNum)) {
                         while (pq.contains(trackNum)) {
                             trackNum = rand.nextInt(numTracks+1);
                         }
@@ -965,7 +962,7 @@ public class AudioPlayerPrayers extends Fragment {
             case prayer1:
                 //requireActivity().startService(new Intent(getActivity(),BackgroundSoundService.class));
 
-                intent.putExtra("track", R.raw.marian);
+                intent.putExtra("track", R.raw.bahai_1);
                 intent.putExtra("pos", pos);
 //                mp = MediaPlayer.create(getContext(), R.raw.from_the_sweet_scented);
                 if (pos != 0) {
@@ -995,7 +992,7 @@ public class AudioPlayerPrayers extends Fragment {
                 break;
             case prayer2:
                 // mp = MediaPlayer.create(getContext(), R.raw.marian);
-                intent.putExtra("track", R.raw.brooklyn_bridge);
+                intent.putExtra("track", R.raw.bahai_2);
                 intent.putExtra("pos", pos);
 //                mp = MediaPlayer.create(getContext(), R.raw.from_the_sweet_scented);
                 if (pos != 0) {
@@ -1022,7 +1019,7 @@ public class AudioPlayerPrayers extends Fragment {
                 txt.setText(prayerArray[1]);
                 break;
             case prayer3:
-                intent.putExtra("track", R.raw.marian);
+                intent.putExtra("track", R.raw.bahai_3_copy);
                 intent.putExtra("pos", pos);
 //                mp = MediaPlayer.create(getContext(), R.raw.from_the_sweet_scented);
                 if (pos != 0) {
@@ -1049,7 +1046,7 @@ public class AudioPlayerPrayers extends Fragment {
                 txt.setText(prayerArray[2]);
                 break;
             case prayer4:
-                intent.putExtra("track", R.raw.brooklyn_bridge);
+                intent.putExtra("track", R.raw.bahai_4);
                 intent.putExtra("pos", pos);
 //                mp = MediaPlayer.create(getContext(), R.raw.from_the_sweet_scented);
                 if (pos != 0) {
@@ -1076,7 +1073,7 @@ public class AudioPlayerPrayers extends Fragment {
                 txt.setText(prayerArray[3]);
                 break;
             case prayer5:
-                intent.putExtra("track", R.raw.marian);
+                intent.putExtra("track", R.raw.bahai_5_copy);
                 intent.putExtra("pos", pos);
 //                mp = MediaPlayer.create(getContext(), R.raw.from_the_sweet_scented);
                 if (pos != 0) {
@@ -1103,7 +1100,7 @@ public class AudioPlayerPrayers extends Fragment {
                 txt.setText(prayerArray[4]);
                 break;
             case prayer6:
-                intent.putExtra("track", R.raw.brooklyn_bridge);
+                intent.putExtra("track", R.raw.bahai_6);
                 intent.putExtra("pos", pos);
 //                mp = MediaPlayer.create(getContext(), R.raw.from_the_sweet_scented);
                 if (pos != 0) {
@@ -1130,7 +1127,7 @@ public class AudioPlayerPrayers extends Fragment {
                 txt.setText(prayerArray[5]);
                 break;
             case prayer7:
-                intent.putExtra("track", R.raw.marian);
+                intent.putExtra("track", R.raw.bahai_7);
                 intent.putExtra("pos", pos);
 //                mp = MediaPlayer.create(getContext(), R.raw.from_the_sweet_scented);
                 if (pos != 0) {
@@ -1157,7 +1154,7 @@ public class AudioPlayerPrayers extends Fragment {
                 txt.setText(prayerArray[6]);
                 break;
             case prayer8:
-                intent.putExtra("track", R.raw.brooklyn_bridge);
+                intent.putExtra("track", R.raw.bahai_8_copy);
                 intent.putExtra("pos", pos);
 //                mp = MediaPlayer.create(getContext(), R.raw.from_the_sweet_scented);
                 if (pos != 0) {
