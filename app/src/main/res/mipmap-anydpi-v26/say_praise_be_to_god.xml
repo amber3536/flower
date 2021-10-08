@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<adaptive-icon xmlns:android="http://schemas.android.com/apk/res/android">
-    <background android:drawable="@drawable/say_praise_be_to_god_background"/>
-    <foreground android:drawable="@mipmap/say_praise_be_to_god_foreground"/>
-</adaptive-icon>

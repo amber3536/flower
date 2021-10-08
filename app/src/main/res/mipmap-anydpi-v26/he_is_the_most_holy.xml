@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<adaptive-icon xmlns:android="http://schemas.android.com/apk/res/android">
-    <background android:drawable="@drawable/he_is_the_most_holy_background"/>
-    <foreground android:drawable="@mipmap/he_is_the_most_holy_foreground"/>
-</adaptive-icon>
