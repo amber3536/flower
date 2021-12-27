@@ -23,6 +23,8 @@ import androidx.fragment.app.Fragment;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import java.util.concurrent.TimeUnit;
+
 
 public class AudioPlayerBahaullah extends Fragment {
     private View view;
@@ -33,6 +35,8 @@ public class AudioPlayerBahaullah extends Fragment {
     private SeekBar seekBar;
     private ImageView img;
     private TextView txt;
+    private TextView currTime;
+    private TextView endTime;
     private Intent intent;
     private int playAllOn = 0;
     private FloatingActionButton backBtn;
@@ -85,6 +89,8 @@ public class AudioPlayerBahaullah extends Fragment {
         backBtn = view.findViewById(R.id.fab_back);
         img = view.findViewById(R.id.audio_img);
         txt = view.findViewById(R.id.audio_txt);
+        currTime = view.findViewById(R.id.currTime);
+        endTime = view.findViewById(R.id.endTime);
         //seekBar = view.findViewById(seekBar1);
 
         bundle = this.getArguments();
@@ -118,10 +124,12 @@ public class AudioPlayerBahaullah extends Fragment {
         }
 
         intent = new Intent(getActivity(),BackgroundSoundService.class);
-        requireActivity().bindService(intent, serviceConnection, Context.BIND_AUTO_CREATE);
-
         seekBar = (SeekBar) view.findViewById(R.id.seekBar1);
+        Log.i(tag, "onCreateView: before bind");
         playTrack(track);
+        requireActivity().bindService(intent, serviceConnection, Context.BIND_AUTO_CREATE);
+        Log.i(tag, "onCreateView: after bind");
+
         //seekBar.setProgress();
 
 
@@ -400,10 +408,15 @@ public class AudioPlayerBahaullah extends Fragment {
     private Runnable mUpdateSeekbar = new Runnable() {
         @Override
         public void run() {
-            seekBar.setMax(bgSound.getDuration());
+            int totalTime = bgSound.getDuration();
+            seekBar.setMax(totalTime);
             //Log.i(tag, "onClick: bgSound.getDuration " + bgSound.getDuration());
             //seekBar.setProgress((int)(bgSound.getCurrentPosition()/1000));
-            seekBar.setProgress((int)bgSound.getCurrentPosition());
+            float timeElapsed = bgSound.getCurrentPosition();
+            seekBar.setProgress((int)timeElapsed);
+            currTime.setText(String.format("%02d:%02d", TimeUnit.MILLISECONDS.toMinutes((long) timeElapsed), TimeUnit.MILLISECONDS.toSeconds((long) timeElapsed) - TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes((long) timeElapsed))));
+
+            //currTime.setText((int) bgSound.getCurrentPosition());
             //Log.i(tag, "run: bgSound.getCurrentPos " + bgSound.getCurrentPosition());
             mSeekbarUpdateHandler.postDelayed(mUpdateSeekbar, 500);
         }
@@ -601,7 +614,7 @@ public class AudioPlayerBahaullah extends Fragment {
     }
 
     private void playTrack(String track) {
-
+        Log.i(tag, "playTrack: " + track);
         switch(track) {
             case prayer1:
                 //requireActivity().startService(new Intent(getActivity(),BackgroundSoundService.class));
@@ -833,6 +846,8 @@ public class AudioPlayerBahaullah extends Fragment {
             BackgroundSoundService.MyBinder binder = (BackgroundSoundService.MyBinder) service;
             bgSound = binder.getService();
             bgSound.setListener(AudioPlayerBahaullah.this);
+            bgSound.prep(intent);
+            setEndTime(bgSound.getDuration());
             Log.i(tag, "onServiceConnected: ");
             //serviceBound = true;
         }
@@ -897,6 +912,12 @@ public class AudioPlayerBahaullah extends Fragment {
 
         Log.i("Audio Bahaullah", "onSaveInstanceState: " + track);
         outState.putString(tr, track);
+    }
+
+    public void setEndTime(int totalTime) {
+        Log.i("Audio Bahaullah", "setEndTime: " + totalTime);
+        //endTime.setText(String.format("%02d", TimeUnit.MILLISECONDS.toSeconds( totalTime)) );
+        endTime.setText(String.format("%02d:%02d", TimeUnit.MILLISECONDS.toMinutes((long) totalTime), TimeUnit.MILLISECONDS.toSeconds((long) totalTime) - TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes((long) totalTime))));
     }
 
     public void trackEndedBahaullah() {

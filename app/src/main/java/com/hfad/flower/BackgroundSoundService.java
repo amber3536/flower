@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Binder;
+import android.os.Bundle;
 import android.os.Handler;
 import android.os.IBinder;
 import android.util.Log;
@@ -26,6 +27,8 @@ public class BackgroundSoundService extends Service implements MediaPlayer.OnCom
     private AudioPlayerParisTalks parisTalksListener;
     private AudioPlayerMysticalWords mysticalWordsListener;
     private SeekBar seekBar;
+    private Intent intent1;
+    private int prayer;
     private int figure;
     //private AudioPlayerBahaullah bahaullah = new AudioPlayerBahaullah();
     private final IBinder mBinder = new MyBinder();
@@ -34,34 +37,34 @@ public class BackgroundSoundService extends Service implements MediaPlayer.OnCom
     @Nullable
     @Override
     public IBinder onBind(Intent intent) {
+        Log.i(tag, "onBind: ");
 
         return mBinder;
     }
 
     @Override
     public void onCreate() {
+        Log.i(tag, "onCreate: ");
         super.onCreate();
-
-
+        //mp = MediaPlayer.create(this, prayer);
     }
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
 
 
-        position = intent.getFloatExtra("pos", 0);
-        Log.i(tag, "onStartCommand: " + position);
-        int prayer = intent.getIntExtra("track", 0);
-        Log.i(tag, "onStartCommand: " + this);
-        mp = MediaPlayer.create(this, prayer);
+        //setTime();
+
 
         //seekBar.setMax(mp.getDuration());
-
         mp.setOnCompletionListener(this);
+
         mp.seekTo((int)position);
+
         //mSeekbarUpdateHandler.postDelayed(mUpdateSeekbar, 0);
 
         mp.start();
+
 
 //        seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
 //            @Override
@@ -157,8 +160,36 @@ public class BackgroundSoundService extends Service implements MediaPlayer.OnCom
             mysticalWordsListener.trackEndedMysticalWords();
     }
 
+    public void prep(Intent intent) {
+        position = intent.getFloatExtra("pos", 0);
+        Log.i(tag, "onStartCommand: " + position);
+        prayer = intent.getIntExtra("track", 0);
+        Log.i(tag, "onStartCommand: " + prayer);
+        mp = MediaPlayer.create(this, prayer);
+    }
+
+    public void setTrack(Intent intent) {
+        prayer = intent.getIntExtra("track", 0);
+//        else if (figure == 2)
+//           // abdulBahaListener.setEndTime(getDuration());
+//        else if (figure == 1)
+//            theBabListener.trackEndedTheBab();
+//        else if (figure == 3)
+//            parisTalksListener.trackEndedParisTalks();
+//        else if (figure == 4)
+//            hiddenWordsListener.trackEndedHiddenWords();
+//        else if (figure == 5)
+//            prayersListener.trackEndedPrayers();
+//        else if (figure == 6)
+//            meditationsListener.trackEndedMeditations();
+//        else if (figure == 7)
+//            mysticalWordsListener.trackEndedMysticalWords();
+    }
+
+
     public void setListener(AudioPlayerBahaullah listener) {
         bahaullahListener = listener;
+        //bahaullahListener.setEndTime(getDuration());
         figure = 0;
     }
 
@@ -206,7 +237,7 @@ public class BackgroundSoundService extends Service implements MediaPlayer.OnCom
     public int getDuration() {
         if (mp != null)
             return mp.getDuration();
-       // Log.i(tag, "getDuration: " + mp.getDuration());
+        //Log.i(tag, "getDuration: " + mp.getDuration());
         return 0;
     }
 

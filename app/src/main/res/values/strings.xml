@@ -2,4 +2,15 @@
     <string name="app_name">flower</string>
     <string name="play_all">Play All</string>
     <string name="coming_soon">Coming soon!</string>
+    <string name="meditations">Meditations</string>
+    <string name="bahaullah">Bahá\'u\'lláh</string>
+    <string name="seven_valleys">Seven Valleys</string>
+    <string name="selections_from_abdulbaha">Selections From Abdu\'l Bahá</string>
+    <string name="paris_talks">Paris Talks</string>
+    <string name="four_valleys">Four Valleys</string>
+    <string name="hidden_words">Hidden Words</string>
+    <string name="mystical_words">Mystical Words</string>
+    <string name="prayers">Prayers</string>
+    <string name="abdulbaha">Abdu\'l Bahá</string>
+    <string name="the_bab">The Báb</string>
 </resources>
