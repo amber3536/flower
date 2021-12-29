@@ -55,7 +55,8 @@ public class BackgroundSoundService extends Service implements MediaPlayer.OnCom
 
         //setTime();
 
-
+        position = intent.getFloatExtra("pos", 0);
+        Log.i(tag, "onStartCommand: " + position);
         //seekBar.setMax(mp.getDuration());
         mp.setOnCompletionListener(this);
 
@@ -129,7 +130,8 @@ public class BackgroundSoundService extends Service implements MediaPlayer.OnCom
 
     @Override
     public void onDestroy() {
-        mp.release();
+        if (mp != null)
+            mp.release();
         super.onDestroy();
         Log.i(tag, "onDestroy: stopSelf");
         //stopSelf();
@@ -161,8 +163,7 @@ public class BackgroundSoundService extends Service implements MediaPlayer.OnCom
     }
 
     public void prep(Intent intent) {
-        position = intent.getFloatExtra("pos", 0);
-        Log.i(tag, "onStartCommand: " + position);
+
         prayer = intent.getIntExtra("track", 0);
         Log.i(tag, "onStartCommand: " + prayer);
         mp = MediaPlayer.create(this, prayer);
@@ -249,6 +250,7 @@ public class BackgroundSoundService extends Service implements MediaPlayer.OnCom
     }
 
     public void seekTo(int progress)  {
+        Log.i(tag, "seekTo: " + progress);
         if (mp != null)
             mp.seekTo(progress);
     }

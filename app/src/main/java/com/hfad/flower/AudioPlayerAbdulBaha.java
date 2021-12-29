@@ -23,6 +23,9 @@ import androidx.fragment.app.Fragment;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import java.util.Locale;
+import java.util.concurrent.TimeUnit;
+
 public class AudioPlayerAbdulBaha extends Fragment {
 
     private View view;
@@ -44,6 +47,8 @@ public class AudioPlayerAbdulBaha extends Fragment {
     private Intent intent;
     private int trackNum = 0;
     private int numTracks = 12;
+    private TextView currTime;
+    private TextView endTime;
     private String tr = "TRACK";
     private String tag = "Audio Abdul Baha";
     private GradientDrawable gradientDrawable;
@@ -78,6 +83,8 @@ public class AudioPlayerAbdulBaha extends Fragment {
         backBtn = view.findViewById(R.id.fab_back);
         img = view.findViewById(R.id.audio_img);
         txt = view.findViewById(R.id.audio_txt);
+        currTime = view.findViewById(R.id.currTime);
+        endTime = view.findViewById(R.id.endTime);
 
         final Bundle bundle = this.getArguments();
         if (bundle != null) {
@@ -388,10 +395,14 @@ public class AudioPlayerAbdulBaha extends Fragment {
     private Runnable mUpdateSeekbar = new Runnable() {
         @Override
         public void run() {
-            seekBar.setMax(bgSound.getDuration());
+            int totalTime = bgSound.getDuration();
+            seekBar.setMax(totalTime);
             Log.i(tag, "onClick: bgSound.getDuration " + bgSound.getDuration());
             //seekBar.setProgress((int)(bgSound.getCurrentPosition()/1000));
-            seekBar.setProgress((int)bgSound.getCurrentPosition());
+            float timeElapsed = bgSound.getCurrentPosition();
+            seekBar.setProgress((int)timeElapsed);
+            currTime.setText(String.format(Locale.US,"%02d:%02d", TimeUnit.MILLISECONDS.toMinutes((long) timeElapsed),
+                    TimeUnit.MILLISECONDS.toSeconds((long) timeElapsed) - TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes((long) timeElapsed))));
             Log.i(tag, "run: bgSound.getCurrentPos " + bgSound.getCurrentPosition());
             mSeekbarUpdateHandler.postDelayed(mUpdateSeekbar, 500);
         }
@@ -968,6 +979,10 @@ public class AudioPlayerAbdulBaha extends Fragment {
 
 
         }
+        if (bgSound != null) {
+            bgSound.prep(intent);
+            setEndTime(bgSound.getDuration());
+        }
     }
 
 
@@ -993,6 +1008,7 @@ public class AudioPlayerAbdulBaha extends Fragment {
             BackgroundSoundService.MyBinder binder = (BackgroundSoundService.MyBinder) service;
             bgSound = binder.getService();
             bgSound.setListener(AudioPlayerAbdulBaha.this);
+            playTrack(track);
             Log.i("Main Activity", "onServiceConnected: ");
             //serviceBound = true;
         }
@@ -1033,6 +1049,12 @@ public class AudioPlayerAbdulBaha extends Fragment {
         outState.putFloat("position", bgSound.getCurrentPosition());
         outState.putInt("all", trackNum);
         outState.putString(tr, track);
+    }
+
+    public void setEndTime(int totalTime) {
+        Log.i("Audio Bahaullah", "setEndTime: " + totalTime);
+        //endTime.setText(String.format("%02d", TimeUnit.MILLISECONDS.toSeconds( totalTime)) );
+        endTime.setText(String.format(Locale.US,"%02d:%02d", TimeUnit.MILLISECONDS.toMinutes((long) totalTime), TimeUnit.MILLISECONDS.toSeconds((long) totalTime) - TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes((long) totalTime))));
     }
 
     public void trackEndedAbdulBaha() {

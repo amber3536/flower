@@ -23,6 +23,7 @@ import androidx.fragment.app.Fragment;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 
 
@@ -138,8 +139,16 @@ public class AudioPlayerBahaullah extends Fragment {
         seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                if (fromUser)
+                if (fromUser) {
                     bgSound.seekTo(progress);
+                    intent.putExtra("pos", (float)progress);
+                    mSeekbarUpdateHandler.postDelayed(mUpdateSeekbar, 500);
+//                    bgSound.seekTo(progress);
+//                    float timeElapsed = bgSound.getCurrentPosition();
+//                    Log.i(tag, "onProgressChanged: " + timeElapsed);
+//                    intent.putExtra("pos", timeElapsed);
+//                    currTime.setText(String.format(Locale.US, "%02d:%02d", TimeUnit.MILLISECONDS.toMinutes((long) timeElapsed), TimeUnit.MILLISECONDS.toSeconds((long) timeElapsed) - TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes((long) timeElapsed))));
+                }
             }
 
             @Override
@@ -414,7 +423,7 @@ public class AudioPlayerBahaullah extends Fragment {
             //seekBar.setProgress((int)(bgSound.getCurrentPosition()/1000));
             float timeElapsed = bgSound.getCurrentPosition();
             seekBar.setProgress((int)timeElapsed);
-            currTime.setText(String.format("%02d:%02d", TimeUnit.MILLISECONDS.toMinutes((long) timeElapsed), TimeUnit.MILLISECONDS.toSeconds((long) timeElapsed) - TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes((long) timeElapsed))));
+            currTime.setText(String.format(Locale.US,"%02d:%02d", TimeUnit.MILLISECONDS.toMinutes((long) timeElapsed), TimeUnit.MILLISECONDS.toSeconds((long) timeElapsed) - TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes((long) timeElapsed))));
 
             //currTime.setText((int) bgSound.getCurrentPosition());
             //Log.i(tag, "run: bgSound.getCurrentPos " + bgSound.getCurrentPosition());
@@ -430,11 +439,14 @@ public class AudioPlayerBahaullah extends Fragment {
         track = curr;
         bgSound.seekTo(0);
         seekBar.setProgress(0);
+        currTime.setText("00:00");
         intent.putExtra("pos", bgSound.getCurrentPosition());
         playTrack(curr);
+        //bgSound.prep(intent);
     }
 
     private void backTrack(String curr) {
+        currTime.setText("00:00");
         if (bgSound.getCurrentPosition() < 2000) {
             if (!bgSound.isPlaying()) {
                 bgSound.pause();
@@ -835,8 +847,12 @@ public class AudioPlayerBahaullah extends Fragment {
 //                view.findViewById(R.id.layout_audio_player).setBackground(gradientDrawable);
 //                break;
 
-
         }
+        if (bgSound != null) {
+            bgSound.prep(intent);
+            setEndTime(bgSound.getDuration());
+        }
+
     }
 
     private ServiceConnection serviceConnection = new ServiceConnection() {
@@ -846,8 +862,8 @@ public class AudioPlayerBahaullah extends Fragment {
             BackgroundSoundService.MyBinder binder = (BackgroundSoundService.MyBinder) service;
             bgSound = binder.getService();
             bgSound.setListener(AudioPlayerBahaullah.this);
-            bgSound.prep(intent);
-            setEndTime(bgSound.getDuration());
+            playTrack(track);
+
             Log.i(tag, "onServiceConnected: ");
             //serviceBound = true;
         }
@@ -917,7 +933,7 @@ public class AudioPlayerBahaullah extends Fragment {
     public void setEndTime(int totalTime) {
         Log.i("Audio Bahaullah", "setEndTime: " + totalTime);
         //endTime.setText(String.format("%02d", TimeUnit.MILLISECONDS.toSeconds( totalTime)) );
-        endTime.setText(String.format("%02d:%02d", TimeUnit.MILLISECONDS.toMinutes((long) totalTime), TimeUnit.MILLISECONDS.toSeconds((long) totalTime) - TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes((long) totalTime))));
+        endTime.setText(String.format(Locale.US, "%02d:%02d", TimeUnit.MILLISECONDS.toMinutes((long) totalTime), TimeUnit.MILLISECONDS.toSeconds((long) totalTime) - TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes((long) totalTime))));
     }
 
     public void trackEndedBahaullah() {
