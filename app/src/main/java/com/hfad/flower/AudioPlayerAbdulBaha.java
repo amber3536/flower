@@ -115,8 +115,11 @@ public class AudioPlayerAbdulBaha extends Fragment {
         seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                if (fromUser)
+                if (fromUser) {
                     bgSound.seekTo(progress);
+                    intent.putExtra("pos", (float) progress);
+                    mSeekbarUpdateHandler.postDelayed(mUpdateSeekbar, 500);
+                }
             }
 
             @Override
@@ -139,15 +142,7 @@ public class AudioPlayerAbdulBaha extends Fragment {
                 pauseBtn.setVisibility(View.VISIBLE);
                 playBtn.setVisibility(View.INVISIBLE);
                 playAllCtrl = 0;
-               // requireActivity().bindService(intent, serviceConnection, Context.BIND_AUTO_CREATE);
-                //requireActivity().startService(intent);
-//                if (playAllOn == 1) {
-//                    playAllOn = 0;
-//                    playAll(trackNum);
-//                }
-//                else {
-//                    mp.start();
-//                }
+
                 if (playAllOn == 1) {
                     playAllOn = 0;
                     playAll(trackNum);
@@ -350,44 +345,6 @@ public class AudioPlayerAbdulBaha extends Fragment {
             }
         });
 
-//        forwardBtn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                pauseBtn.setVisibility(View.VISIBLE);
-//                playBtn.setVisibility(View.INVISIBLE);
-//
-//                mp.start();
-//            }
-//        });
-
-//        mp.setOnCompletionListener(listener = new MediaPlayer.OnCompletionListener() {
-//
-//            @Override
-//            public void onCompletion(MediaPlayer mp) {
-//                //performOnEnd();
-//                // mp.release();
-//                Log.i("Audio Bahaullah", "onCompletion: " + trackNum);
-//                if (track.equals("all") && trackNum < numTracks) {
-//                    trackNum++;
-//                    playAll(trackNum);
-//                }
-//                else if (track.equals("all") && trackNum == numTracks) {
-//                    trackNum = 0;
-//                    playAllOn = 1;
-//                    playBtn.setVisibility(View.VISIBLE);
-//                    pauseBtn.setVisibility(View.GONE);
-//                }
-//                else {
-//                    playBtn.setVisibility(View.VISIBLE);
-//                    pauseBtn.setVisibility(View.GONE);
-//                }
-//
-//            }
-//
-//        });
-
-
-
         return view;
     }
 
@@ -416,11 +373,13 @@ public class AudioPlayerAbdulBaha extends Fragment {
         track = curr;
         bgSound.seekTo(0);
         seekBar.setProgress(0);
+        currTime.setText("00:00");
         intent.putExtra("pos", bgSound.getCurrentPosition());
         playTrack(curr);
     }
 
     private void backTrack(String curr) {
+        currTime.setText("00:00");
         if (bgSound.getCurrentPosition() < 2000) {
             if (!bgSound.isPlaying()) {
                 bgSound.pause();
@@ -469,18 +428,6 @@ public class AudioPlayerAbdulBaha extends Fragment {
     private void playAll(int num) {
         switch (num) {
             case 0:
-//                mp = MediaPlayer.create(getActivity().getApplicationContext(), R.raw.marian);
-//                mp.setOnCompletionListener(listener);
-//                gradientDrawable = new GradientDrawable(
-//                        GradientDrawable.Orientation.TOP_BOTTOM,
-//                        new int[]{ContextCompat.getColor(getContext(), R.color.colorAccent),
-//                                ContextCompat.getColor(getContext(), R.color.fadedNavy),
-//                                ContextCompat.getColor(getContext(), R.color.fadedForestGreen),
-//                                ContextCompat.getColor(getContext(), R.color.colorAccent)});
-//
-//                view.findViewById(R.id.layout_audio_player).setBackground(gradientDrawable);
-//                img.setImageResource(R.mipmap.make_firm_our_steps_foreground);
-//                txt.setText(prayerArray[0]);
                 playTrack(prayerArray[0]);
                 if (playAllCtrl == 0) {
                     pauseBtn.setVisibility(View.VISIBLE);
@@ -965,41 +912,12 @@ public class AudioPlayerAbdulBaha extends Fragment {
                 playAll(trackNum);
                 //txt.setText(prayerArray[0]);
                 break;
-//            case "The Evolution of Matter and Development of the Soul":
-//               // mp = MediaPlayer.create(getActivity().getApplicationContext(), R.raw.paris_talks20);
-//                gradientDrawable = new GradientDrawable(
-//                        GradientDrawable.Orientation.TOP_BOTTOM,
-//                        new int[]{ContextCompat.getColor(getContext(), R.color.colorAccent),
-//                                ContextCompat.getColor(getContext(), R.color.colorFadedRed),
-//                                ContextCompat.getColor(getContext(), R.color.colorFadedPink),
-//                                ContextCompat.getColor(getContext(), R.color.colorAccent)});
-//
-//                view.findViewById(R.id.layout_audio_player).setBackground(gradientDrawable);
-//                break;
-
-
         }
         if (bgSound != null) {
             bgSound.prep(intent);
             setEndTime(bgSound.getDuration());
         }
     }
-
-
-//        mp = MediaPlayer.create(getActivity().getApplicationContext(), R.raw.brooklyn_bridge);
-//        GradientDrawable gd = new GradientDrawable(
-//                GradientDrawable.Orientation.TOP_BOTTOM,
-//                new int[]{ContextCompat.getColor(getContext(), R.color.colorAccent),
-//                        ContextCompat.getColor(getContext(), R.color.colorFadedYellow),
-//                        ContextCompat.getColor(getContext(), R.color.colorFadedPink),
-//                        ContextCompat.getColor(getContext(), R.color.colorAccent)});
-//
-//
-//
-//        view.findViewById(R.id.layout_audio_player).setBackground(gd);
-//        img.setImageResource(R.mipmap.lauded_photo_foreground);
-//        txt.setText(prayerArray[1]);
-//        mp.start();
 
     private ServiceConnection serviceConnection = new ServiceConnection() {
         @Override
@@ -1074,8 +992,6 @@ public class AudioPlayerAbdulBaha extends Fragment {
             playBtn.setVisibility(View.VISIBLE);
             pauseBtn.setVisibility(View.GONE);
         }
-//        playBtn.setVisibility(View.VISIBLE);
-//        pauseBtn.setVisibility(View.GONE);
     }
 
 }

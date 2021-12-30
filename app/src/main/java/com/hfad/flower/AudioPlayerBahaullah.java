@@ -65,19 +65,6 @@ public class AudioPlayerBahaullah extends Fragment {
             "From the sweet-scented streams...", "Create in me a pure heart...", "He is the Gracious, the All-Bountiful...",
             "Glory to Thee, O my God!", "Magnified, O Lord my God, be Thy name..."};
 
-//    public AudioPlayerBahaullah(SeekBar seekBar) {
-//    }
-
-
-//    @Override
-//    public void onCreate (Bundle savedInstanceState) {
-//
-//
-//        Log.i(tag, "onCreate: " + "bla");
-//        super.onCreate(savedInstanceState);
-//
-//    }
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              final Bundle savedInstanceState) {
@@ -185,16 +172,6 @@ public class AudioPlayerBahaullah extends Fragment {
                       }
 
                   mSeekbarUpdateHandler.postDelayed(mUpdateSeekbar, 500);
-                  //mSeekbarUpdateHandler.postDelayed(mUpdateSeekbar, 0);
-//                  if (playAllOn == 1) {
-//                      playAllOn = 0;
-//                      playAll(trackNum);
-//                  }
-//                  else {
-//                      mp.start();
-//                  }
-
-
                   }
         });
 
@@ -211,9 +188,6 @@ public class AudioPlayerBahaullah extends Fragment {
                     bgSound.pause();
                     //midSong = 0;
                 }
-
-                //requireActivity().stopService(intent);
-                //.pause();
             }
         });
 
@@ -367,48 +341,6 @@ public class AudioPlayerBahaullah extends Fragment {
                 }
             }
         });
-
-       // bgSound.mp.setOnCompletionListener();
-
-
-//        forwardBtn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                pauseBtn.setVisibility(View.VISIBLE);
-//                playBtn.setVisibility(View.INVISIBLE);
-//
-//                mp.start();
-//            }
-//        });
-
-//        bgSound.mp.setOnCompletionListener(listener = new MediaPlayer.OnCompletionListener() {
-//
-//            @Override
-//            public void onCompletion(MediaPlayer mp) {
-//                //performOnEnd();
-//                // mp.release();
-//                Log.i("Audio Bahaullah", "onCompletion: " + trackNum);
-//                if (track.equals("all") && trackNum < numTracks) {
-//                    trackNum++;
-//                    playAll(trackNum);
-//                }
-//                else if (track.equals("all") && trackNum == numTracks) {
-//                    trackNum = 0;
-//                    playAllOn = 1;
-//                    playBtn.setVisibility(View.VISIBLE);
-//                    pauseBtn.setVisibility(View.GONE);
-//                    playTrack(prayerArray[0]);
-//                }
-//                else {
-//                    playBtn.setVisibility(View.VISIBLE);
-//                    pauseBtn.setVisibility(View.GONE);
-//                }
-//
-//            }
-//
-//        });
-
-
 
     return view;
     }
@@ -597,13 +529,7 @@ public class AudioPlayerBahaullah extends Fragment {
                 mSeekbarUpdateHandler.postDelayed(mUpdateSeekbar, 500);
                 break;
             case 7:
-                // mp.release();
-                // mp.stop();
-                // mp.reset();
                 playTrack(prayerArray[7]);
-
-                //trackNum = 0; //don't forget to reset this on last track
-                //mp.setLooping(false);
                 if (playAllCtrl == 0) {
                     pauseBtn.setVisibility(View.VISIBLE);
                     playBtn.setVisibility(View.INVISIBLE);
@@ -611,17 +537,6 @@ public class AudioPlayerBahaullah extends Fragment {
                 }
                 mSeekbarUpdateHandler.postDelayed(mUpdateSeekbar, 500);
                 break;
-//            case 8:
-//                // mp.release();
-//                // mp.stop();
-//                // mp.reset();
-//                playTrack(prayerArray[8]);
-//                pauseBtn.setVisibility(View.VISIBLE);
-//                playBtn.setVisibility(View.INVISIBLE);
-//                //trackNum = 0; //don't forget to reset this on last track
-//                //mp.setLooping(false);
-//                requireActivity().startService(intent);
-//                break;
         }
     }
 
@@ -661,7 +576,6 @@ public class AudioPlayerBahaullah extends Fragment {
                 txt.setText(prayerArray[0]);
                 break;
             case prayer2:
-               // mp = MediaPlayer.create(getContext(), R.raw.marian);
                 intent.putExtra("track", R.raw.bahai_2);
                 if (pos != 0) {
                     intent.putExtra("pos", pos);
@@ -835,18 +749,6 @@ public class AudioPlayerBahaullah extends Fragment {
                 playAll(trackNum);
                 //txt.setText(prayerArray[0]);
                 break;
-//            case "The Evolution of Matter and Development of the Soul":
-//                mp = MediaPlayer.create(getActivity().getApplicationContext(), R.raw.paris_talks20);
-//                gradientDrawable = new GradientDrawable(
-//                        GradientDrawable.Orientation.TOP_BOTTOM,
-//                        new int[]{ContextCompat.getColor(getContext(), R.color.colorAccent),
-//                                ContextCompat.getColor(getContext(), R.color.colorFadedRed),
-//                                ContextCompat.getColor(getContext(), R.color.colorFadedPink),
-//                                ContextCompat.getColor(getContext(), R.color.colorAccent)});
-//
-//                view.findViewById(R.id.layout_audio_player).setBackground(gradientDrawable);
-//                break;
-
         }
         if (bgSound != null) {
             bgSound.prep(intent);
@@ -873,23 +775,6 @@ public class AudioPlayerBahaullah extends Fragment {
             //serviceBound = false;
         }
     };
-
-
-
-//        mp = MediaPlayer.create(getActivity().getApplicationContext(), R.raw.brooklyn_bridge);
-//        GradientDrawable gd = new GradientDrawable(
-//                GradientDrawable.Orientation.TOP_BOTTOM,
-//                new int[]{ContextCompat.getColor(getContext(), R.color.colorAccent),
-//                        ContextCompat.getColor(getContext(), R.color.colorFadedYellow),
-//                        ContextCompat.getColor(getContext(), R.color.colorFadedPink),
-//                        ContextCompat.getColor(getContext(), R.color.colorAccent)});
-//
-//
-//
-//        view.findViewById(R.id.layout_audio_player).setBackground(gd);
-//        img.setImageResource(R.mipmap.lauded_photo_foreground);
-//        txt.setText(prayerArray[1]);
-//        mp.start();
 
 
     @Override
