@@ -169,23 +169,6 @@ public class BackgroundSoundService extends Service implements MediaPlayer.OnCom
         mp = MediaPlayer.create(this, prayer);
     }
 
-    public void setTrack(Intent intent) {
-        prayer = intent.getIntExtra("track", 0);
-//        else if (figure == 2)
-//           // abdulBahaListener.setEndTime(getDuration());
-//        else if (figure == 1)
-//            theBabListener.trackEndedTheBab();
-//        else if (figure == 3)
-//            parisTalksListener.trackEndedParisTalks();
-//        else if (figure == 4)
-//            hiddenWordsListener.trackEndedHiddenWords();
-//        else if (figure == 5)
-//            prayersListener.trackEndedPrayers();
-//        else if (figure == 6)
-//            meditationsListener.trackEndedMeditations();
-//        else if (figure == 7)
-//            mysticalWordsListener.trackEndedMysticalWords();
-    }
 
 
     public void setListener(AudioPlayerBahaullah listener) {

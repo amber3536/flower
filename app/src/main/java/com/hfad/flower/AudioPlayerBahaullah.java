@@ -435,10 +435,6 @@ public class AudioPlayerBahaullah extends Fragment {
                 mSeekbarUpdateHandler.postDelayed(mUpdateSeekbar, 500);
                 break;
             case 1:
-               // mp.release();
-               // mp.stop();
-               // mp.reset();
-               // if (continuePlay == 0) {
                 playTrack(prayerArray[1]);
 
                 //trackNum = 0; //don't forget to reset this on last track
@@ -454,9 +450,6 @@ public class AudioPlayerBahaullah extends Fragment {
 
                 break;
             case 2:
-                // mp.release();
-                // mp.stop();
-                // mp.reset();
                 playTrack(prayerArray[2]);
 
                 //trackNum = 0; //don't forget to reset this on last track
@@ -514,9 +507,6 @@ public class AudioPlayerBahaullah extends Fragment {
                 mSeekbarUpdateHandler.postDelayed(mUpdateSeekbar, 500);
                 break;
             case 6:
-                // mp.release();
-                // mp.stop();
-                // mp.reset();
                 playTrack(prayerArray[6]);
 
                 //trackNum = 0; //don't forget to reset this on last track
@@ -782,10 +772,7 @@ public class AudioPlayerBahaullah extends Fragment {
        // mp.stop();
         if (bgSound != null)
             bgSound.stop();
-        //bgSound.unbindService(serviceConnection);
-        //bgSound.onDestroy();
-       // bgSound = null;
-       // bgSound.unbindService(serviceConnection);
+
         Log.i("Audio Bahaullah", "onDestroy: ");
 
         super.onDestroy();
@@ -824,56 +811,29 @@ public class AudioPlayerBahaullah extends Fragment {
     public void trackEndedBahaullah() {
         playAllCtrl = 0;
         if (track.equals("all") && trackNum < numTracks) {
-                    trackNum++;
-                    playAll(trackNum);
-                }
-                else if (track.equals("all") && trackNum == numTracks) {
-                    trackNum = 0;
-                    playAllOn = 1;
-                    playBtn.setVisibility(View.VISIBLE);
-                    pauseBtn.setVisibility(View.GONE);
-                    playTrack(prayerArray[0]);
-                    bgSound.seekTo(0);
-                    seekBar.setProgress(0);
-                }
-                else {
-                    playBtn.setVisibility(View.VISIBLE);
-                    pauseBtn.setVisibility(View.GONE);
-                    bgSound.seekTo(0);
-                    seekBar.setProgress(0);
-                }
-
-//        playBtn.setVisibility(View.VISIBLE);
-//        pauseBtn.setVisibility(View.GONE);
+            trackNum++;
+            playAll(trackNum);
+        }
+        else if (track.equals("all") && trackNum == numTracks) {
+            trackNum = 0;
+            playAllOn = 1;
+            playBtn.setVisibility(View.VISIBLE);
+            pauseBtn.setVisibility(View.GONE);
+            playTrack(prayerArray[0]);
+            bgSound.seekTo(0);
+            seekBar.setProgress(0);
+            currTime.setText("00:00");
+            mSeekbarUpdateHandler.removeCallbacks(mUpdateSeekbar);
+        }
+        else {
+            currTime.setText("00:00");
+            mSeekbarUpdateHandler.removeCallbacks(mUpdateSeekbar);
+            playBtn.setVisibility(View.VISIBLE);
+            pauseBtn.setVisibility(View.GONE);
+            bgSound.seekTo(0);
+            seekBar.setProgress(0);
+            intent.putExtra("pos", bgSound.getCurrentPosition());
+        }
     }
 
-//    @Override
-//    public void onConfigurationChanged(Configuration newConfig) {
-//        super.onConfigurationChanged(newConfig);
-//
-////        Configuration config=getResources().getConfiguration();
-////        if(config.orientation == Configuration.ORIENTATION_PORTRAIT)
-////        {
-////            view.setContentView(R.layout.fragment_audio);
-////        }
-////        else if(config.orientation == Configuration.ORIENTATION_LANDSCAPE)
-////        {
-////            setContentView(R.layout.fragment_audio);
-////        }
-//    }
-
-
-//    @Override
-//    public void onRestoreInstanceState(Bundle savedInstanceState) {
-//
-//        super.onRestoreInstanceState(savedInstanceState);
-//
-////        position = savedInstanceState.getInt("Position");
-////        mediaPlayer.seekTo(position);
-////        if (savedInstanceState.getBoolean("isplaying"))
-////            mediaPlayer.start();
-////
-////
-////
-//    }
 }

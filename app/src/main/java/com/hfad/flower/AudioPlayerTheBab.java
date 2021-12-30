@@ -23,6 +23,9 @@ import androidx.fragment.app.Fragment;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import java.util.Locale;
+import java.util.concurrent.TimeUnit;
+
 public class AudioPlayerTheBab extends Fragment {
     private View view;
     public MediaPlayer mp;
@@ -36,6 +39,8 @@ public class AudioPlayerTheBab extends Fragment {
     private Intent intent;
     private float pos = 0;
     private SeekBar seekBar;
+    private TextView currTime;
+    private TextView endTime;
     private String tag = "Audio The Bab";
     private BackgroundSoundService bgSound;
     private String tr = "TRACK";
@@ -78,6 +83,8 @@ public class AudioPlayerTheBab extends Fragment {
         backBtn = view.findViewById(R.id.fab_back);
         img = view.findViewById(R.id.audio_img);
         txt = view.findViewById(R.id.audio_txt);
+        currTime = view.findViewById(R.id.currTime);
+        endTime = view.findViewById(R.id.endTime);
 
         Bundle bundle = this.getArguments();
         if (bundle != null) {
@@ -109,8 +116,11 @@ public class AudioPlayerTheBab extends Fragment {
         seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                if (fromUser)
+                if (fromUser) {
                     bgSound.seekTo(progress);
+                    intent.putExtra("pos", (float) progress);
+                    mSeekbarUpdateHandler.postDelayed(mUpdateSeekbar, 500);
+                }
             }
 
             @Override
@@ -338,36 +348,6 @@ public class AudioPlayerTheBab extends Fragment {
             }
         });
 
-
-
-//        mp.setOnCompletionListener(listener = new MediaPlayer.OnCompletionListener() {
-//
-//            @Override
-//            public void onCompletion(MediaPlayer mp) {
-//                //performOnEnd();
-//                // mp.release();
-//                Log.i("Audio Bahaullah", "onCompletion: " + trackNum);
-//                if (track.equals("all") && trackNum < 1) {
-//                    trackNum++;
-//                    playAll(trackNum);
-//                }
-//                else if (track.equals("all") && trackNum == 1) {
-//                    trackNum = 0;
-//                    playAllOn = 1;
-//                    playBtn.setVisibility(View.VISIBLE);
-//                    pauseBtn.setVisibility(View.GONE);
-//                }
-//                else {
-//                    playBtn.setVisibility(View.VISIBLE);
-//                    pauseBtn.setVisibility(View.GONE);
-//                }
-//
-//            }
-//
-//        });
-
-
-
         return view;
     }
 
@@ -375,10 +355,13 @@ public class AudioPlayerTheBab extends Fragment {
     private Runnable mUpdateSeekbar = new Runnable() {
         @Override
         public void run() {
-            seekBar.setMax(bgSound.getDuration());
+            int totalTime = bgSound.getDuration();
+            seekBar.setMax(totalTime);
             Log.i(tag, "onClick: bgSound.getDuration " + bgSound.getDuration());
             //seekBar.setProgress((int)(bgSound.getCurrentPosition()/1000));
-            seekBar.setProgress((int)bgSound.getCurrentPosition());
+            float timeElapsed = bgSound.getCurrentPosition();
+            seekBar.setProgress((int)timeElapsed);
+            currTime.setText(String.format(Locale.US,"%02d:%02d", TimeUnit.MILLISECONDS.toMinutes((long) timeElapsed), TimeUnit.MILLISECONDS.toSeconds((long) timeElapsed) - TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes((long) timeElapsed))));
             Log.i(tag, "run: bgSound.getCurrentPos " + bgSound.getCurrentPosition());
             mSeekbarUpdateHandler.postDelayed(mUpdateSeekbar, 500);
         }
@@ -392,11 +375,13 @@ public class AudioPlayerTheBab extends Fragment {
         track = curr;
         bgSound.seekTo(0);
         seekBar.setProgress(0);
+        currTime.setText("00:00");
         intent.putExtra("pos", bgSound.getCurrentPosition());
         playTrack(curr);
     }
 
     private void backTrack(String curr) {
+        currTime.setText("00:00");
         if (bgSound.getCurrentPosition() < 2000) {
             if (!bgSound.isPlaying()) {
                 bgSound.pause();
@@ -443,18 +428,6 @@ public class AudioPlayerTheBab extends Fragment {
     private void playAll(int num) {
         switch (num) {
             case 0:
-//                mp = MediaPlayer.create(getActivity().getApplicationContext(), R.raw.marian);
-//                mp.setOnCompletionListener(listener);
-//                gradientDrawable = new GradientDrawable(
-//                        GradientDrawable.Orientation.TOP_BOTTOM,
-//                        new int[]{ContextCompat.getColor(getContext(), R.color.colorAccent),
-//                                ContextCompat.getColor(getContext(), R.color.colorFadedYellow),
-//                                ContextCompat.getColor(getContext(), R.color.colorFadedPink),
-//                                ContextCompat.getColor(getContext(), R.color.colorAccent)});
-//
-//                view.findViewById(R.id.layout_audio_player).setBackground(gradientDrawable);
-//                img.setImageResource(R.mipmap.attract_photo_foreground);
-//                txt.setText(prayerArray[0]);
                 playTrack(prayer1);
                 if (playAllCtrl == 0) {
                     pauseBtn.setVisibility(View.VISIBLE);
@@ -465,13 +438,6 @@ public class AudioPlayerTheBab extends Fragment {
                // mp.start();
                 break;
             case 1:
-                // mp.release();
-                // mp.stop();
-                // mp.reset();
-//                mp = MediaPlayer.create(getActivity().getApplicationContext(), R.raw.brooklyn_bridge);
-//                mp.setOnCompletionListener(listener);
-//                txt.setText(prayerArray[1]);
-//                img.setImageResource(R.mipmap.lauded_photo_foreground);
                 playTrack(prayer2);
                 if (playAllCtrl == 0) {
                     pauseBtn.setVisibility(View.VISIBLE);
@@ -594,8 +560,6 @@ public class AudioPlayerTheBab extends Fragment {
     private void playTrack(String track) {
         switch(track) {
             case prayer1:
-//                mp = MediaPlayer.create(getActivity().getApplicationContext(), R.raw.o_thou_whose_face2);
-//                mp.setOnCompletionListener(listener);
                 intent.putExtra("track", R.raw.bahai_31);
                 intent.putExtra("pos", pos);
 
@@ -966,7 +930,10 @@ public class AudioPlayerTheBab extends Fragment {
                 break;
 
         }
-
+        if (bgSound != null) {
+            bgSound.prep(intent);
+            setEndTime(bgSound.getDuration());
+        }
     }
 
     private ServiceConnection serviceConnection = new ServiceConnection() {
@@ -976,6 +943,7 @@ public class AudioPlayerTheBab extends Fragment {
             BackgroundSoundService.MyBinder binder = (BackgroundSoundService.MyBinder) service;
             bgSound = binder.getService();
             bgSound.setListener(AudioPlayerTheBab.this);
+            playTrack(track);
             Log.i(tag, "onServiceConnected: ");
             //serviceBound = true;
         }
@@ -985,22 +953,6 @@ public class AudioPlayerTheBab extends Fragment {
             //serviceBound = false;
         }
     };
-
-
-//        mp = MediaPlayer.create(getActivity().getApplicationContext(), R.raw.brooklyn_bridge);
-//        GradientDrawable gd = new GradientDrawable(
-//                GradientDrawable.Orientation.TOP_BOTTOM,
-//                new int[]{ContextCompat.getColor(getContext(), R.color.colorAccent),
-//                        ContextCompat.getColor(getContext(), R.color.colorFadedYellow),
-//                        ContextCompat.getColor(getContext(), R.color.colorFadedPink),
-//                        ContextCompat.getColor(getContext(), R.color.colorAccent)});
-//
-//
-//
-//        view.findViewById(R.id.layout_audio_player).setBackground(gd);
-//        img.setImageResource(R.mipmap.lauded_photo_foreground);
-//        txt.setText(prayerArray[1]);
-//        mp.start();
 
 
     @Override
@@ -1036,6 +988,12 @@ public class AudioPlayerTheBab extends Fragment {
         outState.putString(tr, track);
     }
 
+    public void setEndTime(int totalTime) {
+        Log.i("Audio The Bab", "setEndTime: " + totalTime);
+        //endTime.setText(String.format("%02d", TimeUnit.MILLISECONDS.toSeconds( totalTime)) );
+        endTime.setText(String.format(Locale.US, "%02d:%02d", TimeUnit.MILLISECONDS.toMinutes((long) totalTime), TimeUnit.MILLISECONDS.toSeconds((long) totalTime) - TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes((long) totalTime))));
+    }
+
     public void trackEndedTheBab() {
         playAllCtrl = 0;
         if (track.equals("all") && trackNum < numTracks) {
@@ -1048,10 +1006,19 @@ public class AudioPlayerTheBab extends Fragment {
             playBtn.setVisibility(View.VISIBLE);
             pauseBtn.setVisibility(View.GONE);
             playTrack(prayerArray[0]);
+            bgSound.seekTo(0);
+            seekBar.setProgress(0);
+            currTime.setText("00:00");
+            mSeekbarUpdateHandler.removeCallbacks(mUpdateSeekbar);
         }
         else {
+            currTime.setText("00:00");
+            mSeekbarUpdateHandler.removeCallbacks(mUpdateSeekbar);
             playBtn.setVisibility(View.VISIBLE);
             pauseBtn.setVisibility(View.GONE);
+            bgSound.seekTo(0);
+            seekBar.setProgress(0);
+            intent.putExtra("pos", bgSound.getCurrentPosition());
         }
 //        playBtn.setVisibility(View.VISIBLE);
 //        pauseBtn.setVisibility(View.GONE);

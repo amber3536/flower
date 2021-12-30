@@ -987,10 +987,19 @@ public class AudioPlayerAbdulBaha extends Fragment {
             playBtn.setVisibility(View.VISIBLE);
             pauseBtn.setVisibility(View.GONE);
             playTrack(prayerArray[0]);
+            bgSound.seekTo(0);
+            seekBar.setProgress(0);
+            currTime.setText("00:00");
+            mSeekbarUpdateHandler.removeCallbacks(mUpdateSeekbar);
         }
         else {
+            currTime.setText("00:00");
+            mSeekbarUpdateHandler.removeCallbacks(mUpdateSeekbar);
             playBtn.setVisibility(View.VISIBLE);
             pauseBtn.setVisibility(View.GONE);
+            bgSound.seekTo(0);
+            seekBar.setProgress(0);
+            intent.putExtra("pos", bgSound.getCurrentPosition());
         }
     }
 
