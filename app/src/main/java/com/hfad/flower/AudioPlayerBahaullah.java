@@ -520,8 +520,7 @@ public class AudioPlayerBahaullah extends Fragment {
                     playAllCtrl = 1;
                     pos = 0;
                 }
-//
-//                mp.setOnCompletionListener(listener);
+
                 gradientDrawable = new GradientDrawable(
                         GradientDrawable.Orientation.TOP_BOTTOM,
                         new int[]{ContextCompat.getColor(getContext(), R.color.fadedNavy),
@@ -703,9 +702,7 @@ public class AudioPlayerBahaullah extends Fragment {
                 txt.setText(prayerArray[7]);
                 break;
             case "all":
-                //playAllOn = 1;
                 playAll(trackNum);
-                //txt.setText(prayerArray[0]);
                 break;
         }
         if (bgSound != null) {
