@@ -137,7 +137,7 @@ public class AudioPlayerMeditations extends Fragment {
         playBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.i("Audio Paris", "onClick: in playBtn");
+                Log.i("Audio Meditations", "onClick: in playBtn");
 
 
                 pauseBtn.setVisibility(View.VISIBLE);
@@ -577,6 +577,7 @@ public class AudioPlayerMeditations extends Fragment {
                 break;
 
         }
+        Log.i(tag, "playTrack: ok here");
         if (bgSound != null) {
             bgSound.prep(intent);
             setEndTime(bgSound.getDuration());

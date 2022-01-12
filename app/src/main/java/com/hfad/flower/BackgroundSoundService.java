@@ -52,11 +52,12 @@ public class BackgroundSoundService extends Service implements MediaPlayer.OnCom
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
 
-
-        //setTime();
-
         position = intent.getFloatExtra("pos", 0);
         Log.i(tag, "onStartCommand: " + position);
+        int ans = intent.getIntExtra("all", 0);
+
+        if (ans == 1)
+            prep(intent);
         //seekBar.setMax(mp.getDuration());
         mp.setOnCompletionListener(this);
 
@@ -67,54 +68,6 @@ public class BackgroundSoundService extends Service implements MediaPlayer.OnCom
         mp.start();
 
 
-//        seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-//            @Override
-//            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-//                if (fromUser)
-//                    mp.seekTo(progress);
-//            }
-//
-//            @Override
-//            public void onStartTrackingTouch(SeekBar seekBar) {
-//
-//            }
-//
-//            @Override
-//            public void onStopTrackingTouch(SeekBar seekBar) {
-//
-//            }
-//        });
-
-
-//        mp.setOnCompletionListener(listener = new MediaPlayer.OnCompletionListener() {
-//
-//        @Override
-//        public void onCompletion(MediaPlayer mp) {
-//            Log.i(tag, "onCompletion: ");
-
-            //bahaullah.resetButtons();
-            //performOnEnd();
-            // mp.release();
-//            Log.i("Audio Bahaullah", "onCompletion: " + trackNum);
-//            if (track.equals("all") && trackNum < numTracks) {
-//                trackNum++;
-//                playAll(trackNum);
-//            }
-//            else if (track.equals("all") && trackNum == numTracks) {
-//                trackNum = 0;
-//                playAllOn = 1;
-//                playBtn.setVisibility(View.VISIBLE);
-//                pauseBtn.setVisibility(View.GONE);
-//                playTrack(prayerArray[0]);
-//            }
-//            else {
-//                playBtn.setVisibility(View.VISIBLE);
-//                pauseBtn.setVisibility(View.GONE);
-//            }
-
-      //  }
-
-   // });
 
         return START_STICKY;
     }

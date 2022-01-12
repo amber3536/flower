@@ -39,6 +39,7 @@ public class AudioPlayerBahaullah extends Fragment {
     private TextView currTime;
     private TextView endTime;
     private Intent intent;
+    private int playAll = 0;
     private int playAllOn = 0;
     private FloatingActionButton backBtn;
     private FloatingActionButton forwardBtn;
@@ -415,6 +416,7 @@ public class AudioPlayerBahaullah extends Fragment {
     }
 
     private void playAll(int num) {
+        intent.putExtra("all", 1);
         switch (num) {
             case 0:
                 playTrack(prayerArray[0]);
@@ -702,14 +704,17 @@ public class AudioPlayerBahaullah extends Fragment {
                 txt.setText(prayerArray[7]);
                 break;
             case "all":
+                playAll = 1;
                 playAll(trackNum);
+
                 break;
         }
-        if (bgSound != null) {
+        if (bgSound != null && playAll == 0) {
+            Log.i(tag, "playTrack: truth");
             bgSound.prep(intent);
             setEndTime(bgSound.getDuration());
         }
-
+        playAll = 0;
     }
 
     private ServiceConnection serviceConnection = new ServiceConnection() {
