@@ -116,9 +116,11 @@ public class BackgroundSoundService extends Service implements MediaPlayer.OnCom
     }
 
     public void prep(Intent intent) {
-
+        if (mp != null)
+            mp.release();
         prayer = intent.getIntExtra("track", 0);
         Log.i(tag, "onStartCommand: " + prayer);
+        //if (mp == null)
         mp = MediaPlayer.create(this, prayer);
     }
 

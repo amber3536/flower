@@ -501,6 +501,7 @@ public class AudioPlayerBahaullah extends Fragment {
                 mSeekbarUpdateHandler.postDelayed(mUpdateSeekbar, 500);
                 break;
         }
+        //intent.putExtra("all", 0);
     }
 
     private void playTrack(String track) {
@@ -714,7 +715,7 @@ public class AudioPlayerBahaullah extends Fragment {
             bgSound.prep(intent);
             setEndTime(bgSound.getDuration());
         }
-        playAll = 0;
+        //playAll = 0;
     }
 
     private ServiceConnection serviceConnection = new ServiceConnection() {

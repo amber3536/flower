@@ -44,6 +44,7 @@ public class AudioPlayerTheBab extends Fragment {
     private String tag = "Audio The Bab";
     private BackgroundSoundService bgSound;
     private String tr = "TRACK";
+    private int playAll = 0;
     private int playAllOn = 0;
     private int numTracks = 13;
     private int isPlaying = 0;
@@ -426,6 +427,7 @@ public class AudioPlayerTheBab extends Fragment {
     }
 
     private void playAll(int num) {
+        intent.putExtra("all", 1);
         switch (num) {
             case 0:
                 playTrack(prayer1);
@@ -925,15 +927,18 @@ public class AudioPlayerTheBab extends Fragment {
                 txt.setText(prayerArray[13]);
                 break;
             case "all":
+                playAll = 1;
                 playAll(trackNum);
+
                 //txt.setText(prayerArray[0]);
                 break;
 
         }
-        if (bgSound != null) {
+        if (bgSound != null && playAll == 0) {
             bgSound.prep(intent);
             setEndTime(bgSound.getDuration());
         }
+        playAll = 0;
     }
 
     private ServiceConnection serviceConnection = new ServiceConnection() {

@@ -42,6 +42,7 @@ public class AudioPlayerAbdulBaha extends Fragment {
     private FloatingActionButton forwardBtn;
     private MediaPlayer.OnCompletionListener listener;
     private BackgroundSoundService bgSound;
+    private int playAll = 0;
     private int playAllCtrl = 0;
     private int isPlaying = 0;
     private Intent intent;
@@ -426,6 +427,7 @@ public class AudioPlayerAbdulBaha extends Fragment {
 
 
     private void playAll(int num) {
+        intent.putExtra("all", 1);
         switch (num) {
             case 0:
                 playTrack(prayerArray[0]);
@@ -909,14 +911,16 @@ public class AudioPlayerAbdulBaha extends Fragment {
                 break;
             case "all":
                 //playAllOn = 1;
+                playAll = 1;
                 playAll(trackNum);
                 //txt.setText(prayerArray[0]);
                 break;
         }
-        if (bgSound != null) {
+        if (bgSound != null && playAll == 0) {
             bgSound.prep(intent);
             setEndTime(bgSound.getDuration());
         }
+        playAll = 0;
     }
 
     private ServiceConnection serviceConnection = new ServiceConnection() {
