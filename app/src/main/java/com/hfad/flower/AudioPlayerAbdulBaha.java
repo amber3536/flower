@@ -323,7 +323,7 @@ public class AudioPlayerAbdulBaha extends Fragment {
                         }
                         else {
                             if (bgSound.isPlaying()) {
-                                //playAllCtrl = 1;
+                                playAllCtrl = 0;
                                 bgSound.pause();
                                 bgSound.seekTo(0);
                                 seekBar.setProgress(0);
@@ -336,7 +336,7 @@ public class AudioPlayerAbdulBaha extends Fragment {
                                 seekBar.setProgress(0);
                                 bgSound.seekTo(0);
                                 intent.putExtra("pos", bgSound.getCurrentPosition());
-                                //playAllCtrl = 0;
+                                playAllCtrl = 1;
                                 pos = 0;
                             }
                         }

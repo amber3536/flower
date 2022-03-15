@@ -23,6 +23,9 @@ import androidx.fragment.app.Fragment;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import java.util.Locale;
+import java.util.concurrent.TimeUnit;
+
 public class AudioPlayerParisTalks extends Fragment {
     private View view;
     public MediaPlayer mp;
@@ -31,6 +34,7 @@ public class AudioPlayerParisTalks extends Fragment {
     private String track;
     private ImageView img;
     private TextView txt;
+    private int playAll = 0;
     private int playAllOn = 0;
     private FloatingActionButton backBtn;
     private FloatingActionButton forwardBtn;
@@ -38,6 +42,8 @@ public class AudioPlayerParisTalks extends Fragment {
     private int trackNum = 0;
     private SeekBar seekBar;
     private Intent intent;
+    private TextView currTime;
+    private TextView endTime;
     private int playAllCtrl = 0;
     private int isPlaying = 0;
     private BackgroundSoundService bgSound;
@@ -70,6 +76,8 @@ public class AudioPlayerParisTalks extends Fragment {
         backBtn = view.findViewById(R.id.fab_back);
         img = view.findViewById(R.id.audio_img);
         txt = view.findViewById(R.id.audio_txt);
+        currTime = view.findViewById(R.id.currTime);
+        endTime = view.findViewById(R.id.endTime);
 
         bundle = this.getArguments();
 
@@ -103,6 +111,8 @@ public class AudioPlayerParisTalks extends Fragment {
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 if (fromUser)
                     bgSound.seekTo(progress);
+                intent.putExtra("pos", (float)progress);
+                mSeekbarUpdateHandler.postDelayed(mUpdateSeekbar, 500);
             }
 
             @Override
@@ -256,7 +266,7 @@ public class AudioPlayerParisTalks extends Fragment {
                         }
                         else {
                             if (bgSound.isPlaying()) {
-                                //playAllCtrl = 1;
+                                playAllCtrl = 0;
                                 bgSound.pause();
                                 bgSound.seekTo(0);
                                 seekBar.setProgress(0);
@@ -269,7 +279,7 @@ public class AudioPlayerParisTalks extends Fragment {
                                 seekBar.setProgress(0);
                                 bgSound.seekTo(0);
                                 intent.putExtra("pos", bgSound.getCurrentPosition());
-                                //playAllCtrl = 0;
+                                playAllCtrl = 1;
                                 pos = 0;
                             }
                         }
@@ -324,10 +334,14 @@ public class AudioPlayerParisTalks extends Fragment {
     private Runnable mUpdateSeekbar = new Runnable() {
         @Override
         public void run() {
-            seekBar.setMax(bgSound.getDuration());
-            Log.i(tag, "onClick: bgSound.getDuration " + bgSound.getDuration());
+            int totalTime = bgSound.getDuration();
+            seekBar.setMax(totalTime);
+            //Log.i(tag, "onClick: bgSound.getDuration " + bgSound.getDuration());
             //seekBar.setProgress((int)(bgSound.getCurrentPosition()/1000));
-            seekBar.setProgress((int)bgSound.getCurrentPosition());
+            float timeElapsed = bgSound.getCurrentPosition();
+            seekBar.setProgress((int)timeElapsed);
+            currTime.setText(String.format(Locale.US,"%02d:%02d", TimeUnit.MILLISECONDS.toMinutes((long) timeElapsed), TimeUnit.MILLISECONDS.toSeconds((long) timeElapsed) - TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes((long) timeElapsed))));
+
             Log.i(tag, "run: bgSound.getCurrentPos " + bgSound.getCurrentPosition());
             mSeekbarUpdateHandler.postDelayed(mUpdateSeekbar, 500);
         }
@@ -341,11 +355,13 @@ public class AudioPlayerParisTalks extends Fragment {
         track = curr;
         bgSound.seekTo(0);
         seekBar.setProgress(0);
+        currTime.setText("00:00");
         intent.putExtra("pos", bgSound.getCurrentPosition());
         playTrack(curr);
     }
 
     private void backTrack(String curr) {
+        currTime.setText("00:00");
         if (bgSound.getCurrentPosition() < 2000) {
             if (!bgSound.isPlaying()) {
                 bgSound.pause();
@@ -390,6 +406,7 @@ public class AudioPlayerParisTalks extends Fragment {
     }
 
     private void playAll(int num) {
+        intent.putExtra("all", 1);
         switch (num) {
             case 0:
 //                mp = MediaPlayer.create(getActivity().getApplicationContext(), R.raw.marian);
@@ -605,24 +622,18 @@ public class AudioPlayerParisTalks extends Fragment {
                 break;
 
             case "all":
-                //playAllOn = 1;
+                playAll = 1;
                 playAll(trackNum);
                 //txt.setText(prayerArray[0]);
                 break;
-//            case "The Evolution of Matter and Development of the Soul":
-//                mp = MediaPlayer.create(getActivity().getApplicationContext(), R.raw.paris_talks20);
-//                gradientDrawable = new GradientDrawable(
-//                        GradientDrawable.Orientation.TOP_BOTTOM,
-//                        new int[]{ContextCompat.getColor(getContext(), R.color.colorAccent),
-//                                ContextCompat.getColor(getContext(), R.color.colorFadedRed),
-//                                ContextCompat.getColor(getContext(), R.color.colorFadedPink),
-//                                ContextCompat.getColor(getContext(), R.color.colorAccent)});
-//
-//                view.findViewById(R.id.layout_audio_player).setBackground(gradientDrawable);
-//                break;
-
 
         }
+        if (bgSound != null && playAll == 0) {
+            Log.i(tag, "playTrack: truth");
+            bgSound.prep(intent);
+            setEndTime(bgSound.getDuration());
+        }
+        playAll = 0;
     }
 
 
@@ -648,6 +659,7 @@ public class AudioPlayerParisTalks extends Fragment {
             BackgroundSoundService.MyBinder binder = (BackgroundSoundService.MyBinder) service;
             bgSound = binder.getService();
             bgSound.setListener(AudioPlayerParisTalks.this);
+            playTrack(track);
             Log.i(tag, "onServiceConnected: ");
             //serviceBound = true;
         }
@@ -660,8 +672,7 @@ public class AudioPlayerParisTalks extends Fragment {
 
     @Override
     public void onDestroy() {
-        if (bgSound != null)
-            bgSound.stop();
+        bgSound.stop();
         Log.i("Audio Paris", "onDestroy: ");
 
         super.onDestroy();
@@ -690,6 +701,12 @@ public class AudioPlayerParisTalks extends Fragment {
         outState.putString(tr, track);
     }
 
+    public void setEndTime(int totalTime) {
+        Log.i("Audio Bahaullah", "setEndTime: " + totalTime);
+        //endTime.setText(String.format("%02d", TimeUnit.MILLISECONDS.toSeconds( totalTime)) );
+        endTime.setText(String.format(Locale.US, "%02d:%02d", TimeUnit.MILLISECONDS.toMinutes((long) totalTime), TimeUnit.MILLISECONDS.toSeconds((long) totalTime) - TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes((long) totalTime))));
+    }
+
     public void trackEndedParisTalks() {
         playAllCtrl = 0;
         if (track.equals("all") && trackNum < numTracks) {
@@ -702,10 +719,20 @@ public class AudioPlayerParisTalks extends Fragment {
             playBtn.setVisibility(View.VISIBLE);
             pauseBtn.setVisibility(View.GONE);
             playTrack(prayerArray[0]);
+            bgSound.seekTo(0);
+            seekBar.setProgress(0);
+            currTime.setText("00:00");
+            mSeekbarUpdateHandler.removeCallbacks(mUpdateSeekbar);
+
         }
         else {
+            currTime.setText("00:00");
+            mSeekbarUpdateHandler.removeCallbacks(mUpdateSeekbar);
             playBtn.setVisibility(View.VISIBLE);
             pauseBtn.setVisibility(View.GONE);
+            bgSound.seekTo(0);
+            seekBar.setProgress(0);
+            intent.putExtra("pos", bgSound.getCurrentPosition());
         }
 //        playBtn.setVisibility(View.VISIBLE);
 //        pauseBtn.setVisibility(View.GONE);

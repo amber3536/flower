@@ -35,6 +35,7 @@ public class AudioPlayerHiddenWords extends Fragment {
     private ImageView img;
     private TextView txt;
     private int playAllOn = 0;
+    private int playAll = 0;
     private TextView currTime;
     private TextView endTime;
     private FloatingActionButton backBtn;
@@ -260,7 +261,7 @@ public class AudioPlayerHiddenWords extends Fragment {
                         }
                         else {
                             if (bgSound.isPlaying()) {
-                                //playAllCtrl = 1;
+                                playAllCtrl = 0;
                                 bgSound.pause();
                                 bgSound.seekTo(0);
                                 seekBar.setProgress(0);
@@ -273,7 +274,7 @@ public class AudioPlayerHiddenWords extends Fragment {
                                 seekBar.setProgress(0);
                                 bgSound.seekTo(0);
                                 intent.putExtra("pos", bgSound.getCurrentPosition());
-                                //playAllCtrl = 0;
+                                playAllCtrl = 1;
                                 pos = 0;
                             }
                         }
@@ -400,6 +401,7 @@ public class AudioPlayerHiddenWords extends Fragment {
 
 
     private void playAll(int num) {
+        intent.putExtra("all", 1);
         switch (num) {
             case 0:
                 playTrack(prayerArray[0]);
@@ -564,10 +566,12 @@ public class AudioPlayerHiddenWords extends Fragment {
                 //txt.setText(prayerArray[0]);
                 break;
         }
-        if (bgSound != null) {
+        if (bgSound != null && playAll == 0) {
+            Log.i(tag, "playTrack: truth");
             bgSound.prep(intent);
             setEndTime(bgSound.getDuration());
         }
+        playAll = 0;
     }
 
     private ServiceConnection serviceConnection = new ServiceConnection() {
@@ -590,8 +594,8 @@ public class AudioPlayerHiddenWords extends Fragment {
 
     @Override
     public void onDestroy() {
-        if (bgSound != null)
-            bgSound.stop();
+
+        bgSound.stop();
         Log.i(tag, "onDestroy: ");
 
         super.onDestroy();

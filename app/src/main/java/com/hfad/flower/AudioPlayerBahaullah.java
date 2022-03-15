@@ -313,7 +313,7 @@ public class AudioPlayerBahaullah extends Fragment {
                         }
                         else {
                             if (bgSound.isPlaying()) {
-                                playAllCtrl = 1;
+                                playAllCtrl = 0;
                                 bgSound.pause();
                                 bgSound.seekTo(0);
                                 seekBar.setProgress(0);
@@ -326,7 +326,7 @@ public class AudioPlayerBahaullah extends Fragment {
                                 seekBar.setProgress(0);
                                 bgSound.seekTo(0);
                                 intent.putExtra("pos", bgSound.getCurrentPosition());
-                                playAllCtrl = 0;
+                                playAllCtrl = 1;
                                 pos = 0;
                             }
                         }
@@ -715,7 +715,7 @@ public class AudioPlayerBahaullah extends Fragment {
             bgSound.prep(intent);
             setEndTime(bgSound.getDuration());
         }
-        //playAll = 0;
+        playAll = 0;
     }
 
     private ServiceConnection serviceConnection = new ServiceConnection() {
@@ -741,8 +741,8 @@ public class AudioPlayerBahaullah extends Fragment {
     @Override
     public void onDestroy() {
        // mp.stop();
-        if (bgSound != null)
-            bgSound.stop();
+
+        bgSound.stop();
 
         Log.i("Audio Bahaullah", "onDestroy: ");
 

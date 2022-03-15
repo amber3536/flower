@@ -325,7 +325,7 @@ public class AudioPlayerTheBab extends Fragment {
                         }
                         else {
                             if (bgSound.isPlaying()) {
-                                //playAllCtrl = 1;
+                                playAllCtrl = 0;
                                 bgSound.pause();
                                 bgSound.seekTo(0);
                                 seekBar.setProgress(0);
@@ -338,7 +338,7 @@ public class AudioPlayerTheBab extends Fragment {
                                 seekBar.setProgress(0);
                                 bgSound.seekTo(0);
                                 intent.putExtra("pos", bgSound.getCurrentPosition());
-                                //playAllCtrl = 0;
+                                playAllCtrl = 1;
                                 pos = 0;
                             }
                         }
@@ -963,8 +963,8 @@ public class AudioPlayerTheBab extends Fragment {
     @Override
     public void onDestroy() {
         //mp.stop();
-        if (bgSound != null)
-            bgSound.stop();
+
+        bgSound.stop();
         Log.i("Audio The Bab", "onDestroy: ");
 
         super.onDestroy();
