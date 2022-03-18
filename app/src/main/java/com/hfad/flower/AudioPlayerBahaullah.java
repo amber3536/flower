@@ -4,6 +4,9 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
+import android.content.res.ColorStateList;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.graphics.drawable.GradientDrawable;
 import android.media.MediaPlayer;
 import android.os.Bundle;
@@ -38,6 +41,8 @@ public class AudioPlayerBahaullah extends Fragment {
     private TextView txt;
     private TextView currTime;
     private TextView endTime;
+    private FloatingActionButton shuffleBtn;
+    private FloatingActionButton repeatBtn;
     private Intent intent;
     private int playAll = 0;
     private int playAllOn = 0;
@@ -76,6 +81,8 @@ public class AudioPlayerBahaullah extends Fragment {
         pauseBtn = view.findViewById(R.id.fab_pause);
         forwardBtn = view.findViewById(R.id.fab_forward);
         backBtn = view.findViewById(R.id.fab_back);
+        repeatBtn = view.findViewById(R.id.fab_repeat);
+        shuffleBtn = view.findViewById(R.id.fab_shuffle);
         img = view.findViewById(R.id.audio_img);
         txt = view.findViewById(R.id.audio_txt);
         currTime = view.findViewById(R.id.currTime);
@@ -189,6 +196,15 @@ public class AudioPlayerBahaullah extends Fragment {
                     bgSound.pause();
                     //midSong = 0;
                 }
+            }
+        });
+
+        shuffleBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                shuffleBtn.setBackgroundTintList(ColorStateList.valueOf(Color.GRAY));
+                //shuffleBtn.getBackgroundTintList(ContextCompat.getColorStateList(getContext(), R.color.fadedBlue)));
+                //shuffleBtn.getBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(getContext(),R.color.fadedGray)));
             }
         });
 

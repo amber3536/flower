@@ -232,7 +232,7 @@ public class MainFragment extends Fragment {
             public void onClick(View v) {
 
 
-                loadFragment(new AudioPlayerPrayers());
+                //loadFragment(new AudioPlayerPrayers());
                 //hideView();
             }
         });
@@ -242,7 +242,7 @@ public class MainFragment extends Fragment {
             public void onClick(View v) {
 
 
-                loadFragment(new AudioPlayerMeditations());
+                //loadFragment(new AudioPlayerMeditations());
                 //hideView();
             }
         });
