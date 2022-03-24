@@ -228,6 +228,7 @@ public class AudioPlayerBahaullah extends Fragment {
                     //pq.add(trackNum);
                 }
                 else {
+                    track = "all";
                     shuffleOn = 0;
                     shuffleBtn.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#cdcdc5")));
                 }
@@ -314,12 +315,17 @@ public class AudioPlayerBahaullah extends Fragment {
                            playAll(trackNum);
                        }
                        else {
-                           playBtn.setVisibility(View.VISIBLE);
-                           pauseBtn.setVisibility(View.GONE);
+                           //playBtn.setVisibility(View.VISIBLE);
+                           //pauseBtn.setVisibility(View.GONE);
                            pq.clear();
                            count = 0;
-                           playAllOn = 1;
-                           trackNum = -1;
+                           //playAllOn = 1;
+                           trackNum = rand.nextInt(numTracks+1);
+                           pos = 0;
+                           bgSound.seekTo(0);
+                           seekBar.setProgress(0);
+                           intent.putExtra("pos", bgSound.getCurrentPosition());
+                           playAll(trackNum);
 
                        }
 
@@ -918,6 +924,13 @@ public class AudioPlayerBahaullah extends Fragment {
         playAllCtrl = 0;
         if (track.equals("all") && trackNum < numTracks) {
             trackNum++;
+            currTime.setText("00:00");
+            //mSeekbarUpdateHandler.removeCallbacks(mUpdateSeekbar);
+            playBtn.setVisibility(View.VISIBLE);
+            pauseBtn.setVisibility(View.GONE);
+            bgSound.seekTo(0);
+            seekBar.setProgress(0);
+            intent.putExtra("pos", bgSound.getCurrentPosition());
             playAll(trackNum);
         }
         else if (track.equals("all") && trackNum == numTracks) {
@@ -933,7 +946,7 @@ public class AudioPlayerBahaullah extends Fragment {
         }
         else if (track.equals("shuffle")) {
             currTime.setText("00:00");
-            mSeekbarUpdateHandler.removeCallbacks(mUpdateSeekbar);
+            //mSeekbarUpdateHandler.removeCallbacks(mUpdateSeekbar);
             playBtn.setVisibility(View.VISIBLE);
             pauseBtn.setVisibility(View.GONE);
             bgSound.seekTo(0);
@@ -959,8 +972,8 @@ public class AudioPlayerBahaullah extends Fragment {
                 pauseBtn.setVisibility(View.GONE);
                 pq.clear();
                 count = 0;
-                playAllOn = 1;
-                trackNum = -1;
+                //playAllOn = 1;
+                trackNum = 0;
 
             }
         }
