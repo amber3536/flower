@@ -26,7 +26,11 @@ import androidx.fragment.app.Fragment;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import java.util.Arrays;
 import java.util.Locale;
+import java.util.PriorityQueue;
+import java.util.Queue;
+import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
 
@@ -41,10 +45,15 @@ public class AudioPlayerBahaullah extends Fragment {
     private TextView txt;
     private TextView currTime;
     private TextView endTime;
+    private int shuffleOn = 0;
+    private Queue<Integer> pq = new PriorityQueue<>();
+
     private FloatingActionButton shuffleBtn;
+    private Random rand = new Random();
     private FloatingActionButton repeatBtn;
     private Intent intent;
     private int playAll = 0;
+    private int count = 0;
     private int playAllOn = 0;
     private FloatingActionButton backBtn;
     private FloatingActionButton forwardBtn;
@@ -111,6 +120,11 @@ public class AudioPlayerBahaullah extends Fragment {
             if (track.equals("all")) {
                 trackNum = savedInstanceState.getInt("all");
             }
+            else if (track.equals("shuffle")) {
+                shuffleOn = 1;
+                shuffleBtn.setBackgroundTintList(ColorStateList.valueOf(Color.GRAY));
+                trackNum = savedInstanceState.getInt("all");
+            }
 
             //bgSound.seekTo((int)pos);
             Log.i("Audio Bahaullah", "onCreateView: " + track);
@@ -122,6 +136,10 @@ public class AudioPlayerBahaullah extends Fragment {
         intent = new Intent(getActivity(),BackgroundSoundService.class);
         seekBar = (SeekBar) view.findViewById(R.id.seekBar1);
         Log.i(tag, "onCreateView: before bind");
+        if (track == "all")
+            trackNum = 0;
+        else
+            trackNum = Arrays.asList(prayerArray).indexOf(track);
         playTrack(track);
         requireActivity().bindService(intent, serviceConnection, Context.BIND_AUTO_CREATE);
         Log.i(tag, "onCreateView: after bind");
@@ -202,7 +220,18 @@ public class AudioPlayerBahaullah extends Fragment {
         shuffleBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                shuffleBtn.setBackgroundTintList(ColorStateList.valueOf(Color.GRAY));
+                if (shuffleOn == 0) {
+                    shuffleOn = 1;
+                    shuffleBtn.setBackgroundTintList(ColorStateList.valueOf(Color.GRAY));
+                    track = "shuffle";
+                    //trackNum = rand.nextInt(numTracks+1);
+                    //pq.add(trackNum);
+                }
+                else {
+                    shuffleOn = 0;
+                    shuffleBtn.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#cdcdc5")));
+                }
+
                 //shuffleBtn.getBackgroundTintList(ContextCompat.getColorStateList(getContext(), R.color.fadedBlue)));
                 //shuffleBtn.getBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(getContext(),R.color.fadedGray)));
             }
@@ -259,6 +288,42 @@ public class AudioPlayerBahaullah extends Fragment {
 //                       pauseBtn.setVisibility(View.GONE);
                        //txt.setText(prayerArray[0]);
                        break;
+                   case "shuffle":
+                       if (bgSound.isPlaying())
+                           playAllCtrl = 0;
+                       else
+                           playAllCtrl = 1;
+                       bgSound.pause();
+                       playBtn.setVisibility(View.VISIBLE);
+                       pauseBtn.setVisibility(View.GONE);
+//                        if (trackNum == numTracks)
+//                            trackNum = 0;
+//                        else
+//                            trackNum++;
+                       if (count < numTracks) {
+                           pq.add(trackNum);
+                           count++;
+                           while (pq.contains(trackNum)) {
+                               trackNum = rand.nextInt(numTracks+1);
+                           }
+
+                           pos = 0;
+                           bgSound.seekTo(0);
+                           seekBar.setProgress(0);
+                           intent.putExtra("pos", bgSound.getCurrentPosition());
+                           playAll(trackNum);
+                       }
+                       else {
+                           playBtn.setVisibility(View.VISIBLE);
+                           pauseBtn.setVisibility(View.GONE);
+                           pq.clear();
+                           count = 0;
+                           playAllOn = 1;
+                           trackNum = -1;
+
+                       }
+
+                       break;
                }
             }
         });
@@ -303,6 +368,60 @@ public class AudioPlayerBahaullah extends Fragment {
                                 trackNum = numTracks;
                             else
                                 trackNum--;
+
+                            if (!bgSound.isPlaying()) {
+                                bgSound.pause();
+                                //track = prayer8;
+                                bgSound.seekTo(0);
+                                seekBar.setProgress(0);
+                                pos = 0;
+                                intent.putExtra("pos", bgSound.getCurrentPosition());
+                                playAllCtrl = 1;
+                                playAll(trackNum);
+                                //playTrack(track);
+                                //midSong = 1;
+                                //playAll(trackNum);
+                                //bgSound.pause();
+                            }
+                            else {
+                                bgSound.stop();
+                                playAllCtrl = 0;
+                                //track = prayer8;
+                                //playTrack(track);
+                                //bgSound.start();
+                                playAll(trackNum);
+                            }
+                        }
+                        else {
+                            if (bgSound.isPlaying()) {
+                                playAllCtrl = 0;
+                                bgSound.pause();
+                                bgSound.seekTo(0);
+                                seekBar.setProgress(0);
+                                bgSound.start();
+                            } else {
+//                                bgSound.pause();
+//                                playBtn.setVisibility(View.VISIBLE);
+//                                pauseBtn.setVisibility(View.GONE);
+//                                mSeekbarUpdateHandler.removeCallbacks(mUpdateSeekbar);
+                                seekBar.setProgress(0);
+                                bgSound.seekTo(0);
+                                intent.putExtra("pos", bgSound.getCurrentPosition());
+                                playAllCtrl = 1;
+                                pos = 0;
+                            }
+                        }
+                        break;
+                    case "shuffle":
+                        if (bgSound.getCurrentPosition() < 2000) {
+//                            if (trackNum == 0)
+//                                trackNum = numTracks;
+//                            else {
+//                                trackNum--;
+//                            }
+                            if (!pq.isEmpty()) {
+                                trackNum = pq.poll();
+                            }
 
                             if (!bgSound.isPlaying()) {
                                 bgSound.pause();
@@ -811,6 +930,39 @@ public class AudioPlayerBahaullah extends Fragment {
             seekBar.setProgress(0);
             currTime.setText("00:00");
             mSeekbarUpdateHandler.removeCallbacks(mUpdateSeekbar);
+        }
+        else if (track.equals("shuffle")) {
+            currTime.setText("00:00");
+            mSeekbarUpdateHandler.removeCallbacks(mUpdateSeekbar);
+            playBtn.setVisibility(View.VISIBLE);
+            pauseBtn.setVisibility(View.GONE);
+            bgSound.seekTo(0);
+            seekBar.setProgress(0);
+            intent.putExtra("pos", bgSound.getCurrentPosition());
+            if (count < numTracks) {
+                count++;
+                pq.add(trackNum);
+                //intList.add(trackNum);
+
+                //while (intList.contains(trackNum)) {
+                while (pq.contains(trackNum)) {
+                    Log.i(tag, "trackEndedBahaullah: " + trackNum);
+                    trackNum = rand.nextInt(numTracks+1);
+                }
+                playAll(trackNum);
+
+//            intArray[count] = trackNum;
+//            while (intArray.contains[trackNum])
+            }
+            else {
+                playBtn.setVisibility(View.VISIBLE);
+                pauseBtn.setVisibility(View.GONE);
+                pq.clear();
+                count = 0;
+                playAllOn = 1;
+                trackNum = -1;
+
+            }
         }
         else {
             currTime.setText("00:00");
