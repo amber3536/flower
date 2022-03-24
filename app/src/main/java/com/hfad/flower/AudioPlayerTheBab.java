@@ -4,6 +4,8 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
+import android.content.res.ColorStateList;
+import android.graphics.Color;
 import android.graphics.drawable.GradientDrawable;
 import android.media.MediaPlayer;
 import android.os.Bundle;
@@ -23,7 +25,11 @@ import androidx.fragment.app.Fragment;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import java.util.Arrays;
 import java.util.Locale;
+import java.util.PriorityQueue;
+import java.util.Queue;
+import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
 public class AudioPlayerTheBab extends Fragment {
@@ -41,6 +47,13 @@ public class AudioPlayerTheBab extends Fragment {
     private SeekBar seekBar;
     private TextView currTime;
     private TextView endTime;
+    private int shuffleOn = 0;
+    private Queue<Integer> pq = new PriorityQueue<>();
+
+    private FloatingActionButton shuffleBtn;
+    private Random rand = new Random();
+    private FloatingActionButton repeatBtn;
+    private int count = 0;
     private String tag = "Audio The Bab";
     private BackgroundSoundService bgSound;
     private String tr = "TRACK";
@@ -86,6 +99,8 @@ public class AudioPlayerTheBab extends Fragment {
         txt = view.findViewById(R.id.audio_txt);
         currTime = view.findViewById(R.id.currTime);
         endTime = view.findViewById(R.id.endTime);
+        repeatBtn = view.findViewById(R.id.fab_repeat);
+        shuffleBtn = view.findViewById(R.id.fab_shuffle);
 
         Bundle bundle = this.getArguments();
         if (bundle != null) {
@@ -105,6 +120,11 @@ public class AudioPlayerTheBab extends Fragment {
             if (track.equals("all")) {
                 trackNum = savedInstanceState.getInt("all");
             }
+            else if (track.equals("shuffle")) {
+                shuffleOn = 1;
+                shuffleBtn.setBackgroundTintList(ColorStateList.valueOf(Color.GRAY));
+                trackNum = savedInstanceState.getInt("all");
+            }
         }
 
 
@@ -112,6 +132,10 @@ public class AudioPlayerTheBab extends Fragment {
         requireActivity().bindService(intent, serviceConnection, Context.BIND_AUTO_CREATE);
 
         seekBar = view.findViewById(R.id.seekBar1);
+        if (track == "all")
+            trackNum = 0;
+        else
+            trackNum = Arrays.asList(prayerArray).indexOf(track);
         playTrack(track);
 
         seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
@@ -168,6 +192,27 @@ public class AudioPlayerTheBab extends Fragment {
                     bgSound.pause();
                 }
 
+            }
+        });
+
+        shuffleBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (shuffleOn == 0) {
+                    shuffleOn = 1;
+                    shuffleBtn.setBackgroundTintList(ColorStateList.valueOf(Color.GRAY));
+                    track = "shuffle";
+                    //trackNum = rand.nextInt(numTracks+1);
+                    //pq.add(trackNum);
+                }
+                else {
+                    track = "all";
+                    shuffleOn = 0;
+                    shuffleBtn.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#cdcdc5")));
+                }
+
+                //shuffleBtn.getBackgroundTintList(ContextCompat.getColorStateList(getContext(), R.color.fadedBlue)));
+                //shuffleBtn.getBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(getContext(),R.color.fadedGray)));
             }
         });
 
@@ -235,6 +280,47 @@ public class AudioPlayerTheBab extends Fragment {
                         intent.putExtra("pos", bgSound.getCurrentPosition());
                         playAll(trackNum);
                         //txt.setText(prayerArray[0]);
+                        break;
+                    case "shuffle":
+                        if (bgSound.isPlaying())
+                            playAllCtrl = 0;
+                        else
+                            playAllCtrl = 1;
+                        bgSound.pause();
+                        playBtn.setVisibility(View.VISIBLE);
+                        pauseBtn.setVisibility(View.GONE);
+//                        if (trackNum == numTracks)
+//                            trackNum = 0;
+//                        else
+//                            trackNum++;
+                        if (count < numTracks) {
+                            pq.add(trackNum);
+                            count++;
+                            while (pq.contains(trackNum)) {
+                                trackNum = rand.nextInt(numTracks+1);
+                            }
+
+                            pos = 0;
+                            bgSound.seekTo(0);
+                            seekBar.setProgress(0);
+                            intent.putExtra("pos", bgSound.getCurrentPosition());
+                            playAll(trackNum);
+                        }
+                        else {
+                            //playBtn.setVisibility(View.VISIBLE);
+                            //pauseBtn.setVisibility(View.GONE);
+                            pq.clear();
+                            count = 0;
+                            //playAllOn = 1;
+                            trackNum = rand.nextInt(numTracks+1);
+                            pos = 0;
+                            bgSound.seekTo(0);
+                            seekBar.setProgress(0);
+                            intent.putExtra("pos", bgSound.getCurrentPosition());
+                            playAll(trackNum);
+
+                        }
+
                         break;
 
                 }
@@ -343,6 +429,60 @@ public class AudioPlayerTheBab extends Fragment {
                             }
                         }
                         //txt.setText(prayerArray[0]);
+                        break;
+                    case "shuffle":
+                        if (bgSound.getCurrentPosition() < 2000) {
+//                            if (trackNum == 0)
+//                                trackNum = numTracks;
+//                            else {
+//                                trackNum--;
+//                            }
+                            if (!pq.isEmpty()) {
+                                trackNum = pq.poll();
+                            }
+
+                            if (!bgSound.isPlaying()) {
+                                bgSound.pause();
+                                //track = prayer8;
+                                bgSound.seekTo(0);
+                                seekBar.setProgress(0);
+                                pos = 0;
+                                intent.putExtra("pos", bgSound.getCurrentPosition());
+                                playAllCtrl = 1;
+                                playAll(trackNum);
+                                //playTrack(track);
+                                //midSong = 1;
+                                //playAll(trackNum);
+                                //bgSound.pause();
+                            }
+                            else {
+                                bgSound.stop();
+                                playAllCtrl = 0;
+                                //track = prayer8;
+                                //playTrack(track);
+                                //bgSound.start();
+                                playAll(trackNum);
+                            }
+                        }
+                        else {
+                            if (bgSound.isPlaying()) {
+                                playAllCtrl = 0;
+                                bgSound.pause();
+                                bgSound.seekTo(0);
+                                seekBar.setProgress(0);
+                                bgSound.start();
+                            } else {
+//                                bgSound.pause();
+//                                playBtn.setVisibility(View.VISIBLE);
+//                                pauseBtn.setVisibility(View.GONE);
+//                                mSeekbarUpdateHandler.removeCallbacks(mUpdateSeekbar);
+                                seekBar.setProgress(0);
+                                bgSound.seekTo(0);
+                                intent.putExtra("pos", bgSound.getCurrentPosition());
+                                playAllCtrl = 1;
+                                pos = 0;
+                            }
+                        }
                         break;
 
                 }
@@ -1003,6 +1143,13 @@ public class AudioPlayerTheBab extends Fragment {
         playAllCtrl = 0;
         if (track.equals("all") && trackNum < numTracks) {
             trackNum++;
+            currTime.setText("00:00");
+            //mSeekbarUpdateHandler.removeCallbacks(mUpdateSeekbar);
+            playBtn.setVisibility(View.VISIBLE);
+            pauseBtn.setVisibility(View.GONE);
+            bgSound.seekTo(0);
+            seekBar.setProgress(0);
+            intent.putExtra("pos", bgSound.getCurrentPosition());
             playAll(trackNum);
         }
         else if (track.equals("all") && trackNum == numTracks) {
@@ -1015,6 +1162,39 @@ public class AudioPlayerTheBab extends Fragment {
             seekBar.setProgress(0);
             currTime.setText("00:00");
             mSeekbarUpdateHandler.removeCallbacks(mUpdateSeekbar);
+        }
+        else if (track.equals("shuffle")) {
+            currTime.setText("00:00");
+            //mSeekbarUpdateHandler.removeCallbacks(mUpdateSeekbar);
+            playBtn.setVisibility(View.VISIBLE);
+            pauseBtn.setVisibility(View.GONE);
+            bgSound.seekTo(0);
+            seekBar.setProgress(0);
+            intent.putExtra("pos", bgSound.getCurrentPosition());
+            if (count < numTracks) {
+                count++;
+                pq.add(trackNum);
+                //intList.add(trackNum);
+
+                //while (intList.contains(trackNum)) {
+                while (pq.contains(trackNum)) {
+                    Log.i(tag, "trackEndedBahaullah: " + trackNum);
+                    trackNum = rand.nextInt(numTracks+1);
+                }
+                playAll(trackNum);
+
+//            intArray[count] = trackNum;
+//            while (intArray.contains[trackNum])
+            }
+            else {
+                playBtn.setVisibility(View.VISIBLE);
+                pauseBtn.setVisibility(View.GONE);
+                pq.clear();
+                count = 0;
+                //playAllOn = 1;
+                trackNum = 0;
+
+            }
         }
         else {
             currTime.setText("00:00");
