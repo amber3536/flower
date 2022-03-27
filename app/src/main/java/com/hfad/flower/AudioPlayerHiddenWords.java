@@ -89,6 +89,8 @@ public class AudioPlayerHiddenWords extends Fragment {
         txt = view.findViewById(R.id.audio_txt);
         currTime = view.findViewById(R.id.currTime);
         endTime = view.findViewById(R.id.endTime);
+        repeatBtn = view.findViewById(R.id.fab_repeat);
+        shuffleBtn = view.findViewById(R.id.fab_shuffle);
 
         bundle = this.getArguments();
 
@@ -699,7 +701,7 @@ public class AudioPlayerHiddenWords extends Fragment {
 
     @Override
     public void onDestroy() {
-
+        mSeekbarUpdateHandler.removeCallbacks(mUpdateSeekbar);
         bgSound.stop();
         Log.i(tag, "onDestroy: ");
 

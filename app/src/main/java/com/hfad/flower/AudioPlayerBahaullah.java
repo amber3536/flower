@@ -882,7 +882,7 @@ public class AudioPlayerBahaullah extends Fragment {
     @Override
     public void onDestroy() {
        // mp.stop();
-
+        mSeekbarUpdateHandler.removeCallbacks(mUpdateSeekbar);
         bgSound.stop();
 
         Log.i("Audio Bahaullah", "onDestroy: ");

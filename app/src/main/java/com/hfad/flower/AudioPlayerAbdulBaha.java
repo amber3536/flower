@@ -1085,7 +1085,7 @@ public class AudioPlayerAbdulBaha extends Fragment {
     @Override
     public void onDestroy() {
 //        mp.stop();
-
+        mSeekbarUpdateHandler.removeCallbacks(mUpdateSeekbar);
         bgSound.stop();
         Log.i("Audio Abdul Baha", "onDestroy: ");
 

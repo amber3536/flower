@@ -82,7 +82,7 @@
         app:layout_constraintTop_toBottomOf="@id/seekBar1"
         app:layout_constraintBottom_toBottomOf="parent"
         app:backgroundTint="#cdcdc5"
-        app:fabCustomSize="80dp"/>
+        app:fabCustomSize="90dp"/>
 
     <TextView
         android:id="@+id/audio_txt"
