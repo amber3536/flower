@@ -133,7 +133,9 @@ public class BackgroundSoundService extends Service implements MediaPlayer.OnCom
     }
 
     public void setListener(AudioPlayerAbdulBaha listener) {
+
         abdulBahaListener = listener;
+        figure = 2;
     }
 
     public void setListener(AudioPlayerTheBab listener) {

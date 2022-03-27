@@ -51,9 +51,9 @@ public class AudioPlayerBahaullah extends Fragment {
     private FloatingActionButton shuffleBtn;
     private Random rand = new Random();
     private FloatingActionButton repeatBtn;
+    private int count = 0;
     private Intent intent;
     private int playAll = 0;
-    private int count = 0;
     private int playAllOn = 0;
     private FloatingActionButton backBtn;
     private FloatingActionButton forwardBtn;
