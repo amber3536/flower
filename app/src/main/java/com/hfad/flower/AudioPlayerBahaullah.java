@@ -46,6 +46,7 @@ public class AudioPlayerBahaullah extends Fragment {
     private TextView currTime;
     private TextView endTime;
     private int shuffleOn = 0;
+    private int repeatOn = 0;
     private Queue<Integer> pq = new PriorityQueue<>();
 
     private FloatingActionButton shuffleBtn;
@@ -123,6 +124,11 @@ public class AudioPlayerBahaullah extends Fragment {
             else if (track.equals("shuffle")) {
                 shuffleOn = 1;
                 shuffleBtn.setBackgroundTintList(ColorStateList.valueOf(Color.GRAY));
+                trackNum = savedInstanceState.getInt("all");
+            }
+            else if (track.equals("repeat")) {
+                repeatOn = 1;
+                repeatBtn.setBackgroundTintList(ColorStateList.valueOf(Color.GRAY));
                 trackNum = savedInstanceState.getInt("all");
             }
 
@@ -238,6 +244,27 @@ public class AudioPlayerBahaullah extends Fragment {
             }
         });
 
+        repeatBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (repeatOn == 0) {
+                    repeatOn = 1;
+                    repeatBtn.setBackgroundTintList(ColorStateList.valueOf(Color.GRAY));
+                    track = "repeat";
+                    //trackNum = rand.nextInt(numTracks+1);
+                    //pq.add(trackNum);
+                }
+                else {
+                    track = "all";
+                    repeatOn = 0;
+                    repeatBtn.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#cdcdc5")));
+                }
+
+                //shuffleBtn.getBackgroundTintList(ContextCompat.getColorStateList(getContext(), R.color.fadedBlue)));
+                //shuffleBtn.getBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(getContext(),R.color.fadedGray)));
+            }
+        });
+
         forwardBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -267,6 +294,7 @@ public class AudioPlayerBahaullah extends Fragment {
                        forwardTrack(prayer1);
                        break;
                    case "all":
+                   case "repeat":
                        //playAllOn = 1;
                        if (bgSound.isPlaying())
                            playAllCtrl = 0;
@@ -369,6 +397,7 @@ public class AudioPlayerBahaullah extends Fragment {
                         backTrack(prayer7);
                         break;
                     case "all":
+                    case "repeat":
                         if (bgSound.getCurrentPosition() < 2000) {
                             if (trackNum == 0)
                                 trackNum = numTracks;
@@ -926,8 +955,8 @@ public class AudioPlayerBahaullah extends Fragment {
             trackNum++;
             currTime.setText("00:00");
             //mSeekbarUpdateHandler.removeCallbacks(mUpdateSeekbar);
-            playBtn.setVisibility(View.VISIBLE);
-            pauseBtn.setVisibility(View.GONE);
+            //playBtn.setVisibility(View.VISIBLE);
+            //pauseBtn.setVisibility(View.GONE);
             bgSound.seekTo(0);
             seekBar.setProgress(0);
             intent.putExtra("pos", bgSound.getCurrentPosition());
@@ -976,6 +1005,16 @@ public class AudioPlayerBahaullah extends Fragment {
                 trackNum = 0;
 
             }
+        }
+        else if (track.equals("repeat")) {
+            currTime.setText("00:00");
+            //mSeekbarUpdateHandler.removeCallbacks(mUpdateSeekbar);
+            //playBtn.setVisibility(View.VISIBLE);
+            //pauseBtn.setVisibility(View.GONE);
+            bgSound.seekTo(0);
+            seekBar.setProgress(0);
+            intent.putExtra("pos", bgSound.getCurrentPosition());
+            playAll(trackNum);
         }
         else {
             currTime.setText("00:00");
