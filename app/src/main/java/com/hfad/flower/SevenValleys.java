@@ -22,14 +22,14 @@ public class SevenValleys extends Fragment {
         tv = view.findViewById(R.id.textView);
 
 
-        mp = MediaPlayer.create(getActivity().getApplicationContext(), R.raw.marian);
+        //mp = MediaPlayer.create(getActivity().getApplicationContext(), R.raw.marian);
 
-        tv.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mp.start();
-            }
-        });
+        //tv.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                mp.start();
+//            }
+//        });
         return view;
     }
 }

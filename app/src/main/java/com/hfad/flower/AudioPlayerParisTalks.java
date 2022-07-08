@@ -51,6 +51,7 @@ public class AudioPlayerParisTalks extends Fragment {
     private TextView currTime;
     private TextView endTime;
     private int shuffleOn = 0;
+    private int repeatOn = 0;
     private Queue<Integer> pq = new PriorityQueue<>();
 
     private FloatingActionButton shuffleBtn;
@@ -117,11 +118,16 @@ public class AudioPlayerParisTalks extends Fragment {
                 shuffleBtn.setBackgroundTintList(ColorStateList.valueOf(Color.GRAY));
                 trackNum = savedInstanceState.getInt("all");
             }
+            else if (track.equals("repeat")) {
+                repeatOn = 1;
+                repeatBtn.setBackgroundTintList(ColorStateList.valueOf(Color.GRAY));
+                trackNum = savedInstanceState.getInt("all");
+            }
             Log.i("Audio Paris", "onCreateView: " + track);
         }
 
         intent = new Intent(getActivity(),BackgroundSoundService.class);
-        requireActivity().bindService(intent, serviceConnection, Context.BIND_AUTO_CREATE);
+        //
 
         seekBar = (SeekBar) view.findViewById(R.id.seekBar1);
         if (track == "all")
@@ -129,14 +135,16 @@ public class AudioPlayerParisTalks extends Fragment {
         else
             trackNum = Arrays.asList(prayerArray).indexOf(track);
         playTrack(track);
+        requireActivity().bindService(intent, serviceConnection, Context.BIND_AUTO_CREATE);
 
         seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                if (fromUser)
+                if (fromUser) {
                     bgSound.seekTo(progress);
-                intent.putExtra("pos", (float)progress);
-                mSeekbarUpdateHandler.postDelayed(mUpdateSeekbar, 500);
+                    intent.putExtra("pos", (float) progress);
+                    mSeekbarUpdateHandler.postDelayed(mUpdateSeekbar, 500);
+                }
             }
 
             @Override
@@ -210,6 +218,27 @@ public class AudioPlayerParisTalks extends Fragment {
             }
         });
 
+        repeatBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (repeatOn == 0) {
+                    repeatOn = 1;
+                    repeatBtn.setBackgroundTintList(ColorStateList.valueOf(Color.GRAY));
+                    track = "repeat";
+                    //trackNum = rand.nextInt(numTracks+1);
+                    //pq.add(trackNum);
+                }
+                else {
+                    track = "all";
+                    repeatOn = 0;
+                    repeatBtn.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#cdcdc5")));
+                }
+
+                //shuffleBtn.getBackgroundTintList(ContextCompat.getColorStateList(getContext(), R.color.fadedBlue)));
+                //shuffleBtn.getBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(getContext(),R.color.fadedGray)));
+            }
+        });
+
 
         forwardBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -231,6 +260,7 @@ public class AudioPlayerParisTalks extends Fragment {
                         forwardTrack(prayer1);
                         break;
                     case "all":
+                    case "repeat":
                         //playAllOn = 1;
                         if (bgSound.isPlaying())
                             playAllCtrl = 0;
@@ -321,6 +351,7 @@ public class AudioPlayerParisTalks extends Fragment {
                         backTrack(prayer4);
                         break;
                     case "all":
+                    case "repeat":
                         //playAllOn = 1;
                         if (bgSound.getCurrentPosition() < 2000) {
                             if (trackNum == 0)
@@ -857,6 +888,16 @@ public class AudioPlayerParisTalks extends Fragment {
                 trackNum = 0;
 
             }
+        }
+        else if (track.equals("repeat")) {
+            currTime.setText("00:00");
+            //mSeekbarUpdateHandler.removeCallbacks(mUpdateSeekbar);
+            //playBtn.setVisibility(View.VISIBLE);
+            //pauseBtn.setVisibility(View.GONE);
+            bgSound.seekTo(0);
+            seekBar.setProgress(0);
+            intent.putExtra("pos", bgSound.getCurrentPosition());
+            playAll(trackNum);
         }
         else {
             currTime.setText("00:00");
