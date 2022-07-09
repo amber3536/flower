@@ -642,7 +642,7 @@ public class AudioPlayerHiddenWords extends Fragment {
                 txt.setText(prayerArray[1]);
                 break;
             case prayer3:
-                intent.putExtra("track", R.raw.bahai_24);
+                intent.putExtra("track", R.raw.bahai_24_silence);
                 intent.putExtra("pos", pos);
 //                mp = MediaPlayer.create(getContext(), R.raw.from_the_sweet_scented);
                 if (pos != 0) {
